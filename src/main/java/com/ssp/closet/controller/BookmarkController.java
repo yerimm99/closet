@@ -23,7 +23,7 @@ public class BookmarkController {
 			@RequestParam(value = "productId") int productId) {
 		bookmark = new Bookmark(userId, productId);
 		bookmarkService.createMark(bookmark);
-		return ""; //그 전에 있던 페이지
+		return ""; //그전에 있던 페이지
 	}
 	
 	@RequestMapping("/delete")
