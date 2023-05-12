@@ -5,31 +5,36 @@ import java.sql.Date;
 
 @SuppressWarnings("serial")
 public class Product implements Serializable {
-	private String productId;
+	
+	private int productId;
+	private String categoryId; 
 	private int price;
 	private String name;
-	private String brand;
 	private String description;
-	private String type;
-	private int quantity;
-	private String supplierId;
+	private int type;
+	private String suppId;
 	private String color;
 	private String size;
+	private int status;	
+	private Date registerDate;
+	private int period;
 	private String picture1;
 	private String picture2;
 	private String picture3;
 	private String picture4;
-	private String picture5;
-	private int status;	
-	private int categoryId; 
-	private Date registerDate;
-	private String suppId;
 	
-	public String getProductId() {
+	
+	public int getProductId() {
 		return productId;
 	}
-	public void setProductId(String productId) {
+	public void setProductId(int productId) {
 		this.productId = productId;
+	}
+	public String getCategoryId() {
+		return categoryId;
+	}
+	public void setCategoryId(String categoryId) {
+		this.categoryId = categoryId;
 	}
 	public int getPrice() {
 		return price;
@@ -43,35 +48,23 @@ public class Product implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getBrand() {
-		return brand;
-	}
-	public void setBrand(String brand) {
-		this.brand = brand;
-	}
 	public String getDescription() {
 		return description;
 	}
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getType() {
+	public int getType() {
 		return type;
 	}
-	public void setType(String type) {
+	public void setType(int type) {
 		this.type = type;
 	}
-	public int getQuantity() {
-		return quantity;
+	public String getSuppId() {
+		return suppId;
 	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-	public String getSupplierId() {
-		return supplierId;
-	}
-	public void setSupplierId(String supplierId) {
-		this.supplierId = supplierId;
+	public void setSuppId(String suppId) {
+		this.suppId = suppId;
 	}
 	public String getColor() {
 		return color;
@@ -109,23 +102,11 @@ public class Product implements Serializable {
 	public void setPicture4(String picture4) {
 		this.picture4 = picture4;
 	}
-	public String getPicture5() {
-		return picture5;
-	}
-	public void setPicture5(String picture5) {
-		this.picture5 = picture5;
-	}
 	public int getStatus() {
 		return status;
 	}
 	public void setStatus(int status) {
 		this.status = status;
-	}
-	public int getCategoryId() {
-		return categoryId;
-	}
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
 	}
 	public Date getRegisterDate() {
 		return registerDate;
@@ -133,11 +114,12 @@ public class Product implements Serializable {
 	public void setRegisterDate(Date registerDate) {
 		this.registerDate = registerDate;
 	}
-	public String getSuppId() {
-		return suppId;
+	public int getPeriod() {
+		return period;
 	}
-	public void setSuppId(String suppId) {
-		this.suppId = suppId;
+	public void setPeriod(int period) {
+		this.period = period;
 	}
+
   
 }

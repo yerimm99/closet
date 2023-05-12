@@ -9,8 +9,7 @@ public class Review {
 	private String productName;
 	private Date writeDate;
 	private String content;
-	private double rate;
-	private String image;
+	private double rating;
 	
 	public int getOrderId() {
 		return orderId;
@@ -48,16 +47,10 @@ public class Review {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public double getRate() {
-		return rate;
+	public double getRating() {
+		return rating;
 	}
-	public void setRate(double rate) {
-		this.rate = rate;
-	}
-	public String getImage() {
-		return image;
-	}
-	public void setImage(String image) {
-		this.image = image;
+	public void setRating(double rating) {
+		this.rating = rating;
 	}
 }
