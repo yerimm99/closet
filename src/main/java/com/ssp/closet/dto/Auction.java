@@ -1,7 +1,6 @@
 package com.ssp.closet.dto;
 
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Date;
 
 @SuppressWarnings("serial")
