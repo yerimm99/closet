@@ -1,17 +1,31 @@
 package com.ssp.closet.dao.mybatis;
-//package ssp.closet.dao.mybatis;
-//
-//import ssp.closet.dao.OrderDao;
-//import ssp.closet.dao.mybatis.mapper.OrderMapper;
-//
-//public class MybatisOrderDao implements OrderDao {
-//
-////	protected OrderMapper orderMapper;
-////	
-////	public void deleteOrder(int orderId) {
-////		orderMapper.deleteOrder(orderId);
-////	}
-////	public void insertOrder(Order order) {
-////		orderMapper.insertOrder(order);
-////	}
-//}
+
+import java.util.List;
+
+import org.springframework.dao.DataAccessException;
+
+import com.ssp.closet.dao.OrderDao;
+import com.ssp.closet.dao.mybatis.mapper.OrderMapper;
+import com.ssp.closet.dto.Order;
+
+public class MybatisOrderDao implements OrderDao {
+	
+	private OrderMapper orderMapper;
+	
+	@Override
+	public void insertOrder(Order order) throws DataAccessException {
+		orderMapper.insertOrder(order);
+	}
+
+	@Override
+	public List<Order> getSellList(String suppId) throws DataAccessException {
+		List<Order> list = orderMapper.getSellList(suppId);
+		return list;
+	}
+
+	@Override
+	public List<Order> getBuyList(String userId) throws DataAccessException {
+		List<Order> list = orderMapper.getBuyList(userId);
+		return list;
+	}
+}
