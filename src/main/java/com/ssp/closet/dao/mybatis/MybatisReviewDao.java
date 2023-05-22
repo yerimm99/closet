@@ -21,14 +21,14 @@ public class MybatisReviewDao implements ReviewDao {
 	}
 
 	@Override
-	public List<Review> readReviewListByMe() {
-		List<Review> list = reviewMapper.readReviewListByMe();
+	public List<Review> readReviewListByMe(String userId) {
+		List<Review> list = reviewMapper.readReviewListByMe(userId);
 		return list;
 	}
 
 	@Override
-	public List<Review> readReviewListToMe() {
-		List<Review> list = reviewMapper.readReviewListToMe();
+	public List<Review> readReviewListToMe(String suppId) {
+		List<Review> list = reviewMapper.readReviewListToMe(suppId);
 		return list;
 	}
 }
