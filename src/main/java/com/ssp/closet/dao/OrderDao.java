@@ -14,4 +14,7 @@ public interface OrderDao {
 	
 	//내가 구매한 상품 리스트 조회
 	List<Order> getBuyList(String userId) throws DataAccessException;
+	
+	//주문 상세 조회
+	Order getOrderDetail(int orderId) throws DataAccessException;
 }
