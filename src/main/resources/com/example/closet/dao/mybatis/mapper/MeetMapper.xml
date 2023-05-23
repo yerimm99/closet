@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.example.closet.dao.mybatis.mapper.GroupBuyMapper">
+	<cache />
+	
+	<select id="countPeopleNum" resultType="Integer">
+		SELECT COUNT(USERID)
+		FROM MEET
+		WHERE PRODUCTID = #{productId}
+	</select>
+	
+	<select id="getMeetDetail" resultType="GroupBuy">
+		SELECT
+		MEETID,
+		PRODUCTID,
+		USERID,
+		MEETRESULT,
+		SIGNDATE
+		FROM MEET
+		WHERE PRODUCTID = #{productId}
+	</select>
+	
+	<select id="getMeetList" resultType="Account">
+		SELECT USERID
+		FROM MEET
+		WHERE PRODUCTID = #{productId}
+	</select>
+
+</mapper>
