@@ -10,7 +10,7 @@ public interface ReviewMapper {
 	
 	void deleteReview(int orderId);
 	
-	List<Review> readReviewListByMe();
+	List<Review> readReviewListByMe(String userId);
 	
-	List<Review> readReviewListToMe();
+	List<Review> readReviewListToMe(String suppId);
 }
