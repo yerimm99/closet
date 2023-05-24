@@ -1,51 +1,55 @@
 package com.ssp.closet.dao.mybatis;
-//package ssp.closet.dao.mybatis;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//import java.util.StringTokenizer;
-//
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.dao.DataAccessException;
-//import org.springframework.stereotype.Repository;
-//
-//import com.example.jpetstore.dao.ProductDao;
-//import com.example.jpetstore.dao.mybatis.mapper.ProductMapper;
-//import com.example.jpetstore.domain.Product;
-//
-//@Repository
-//public class MybatisProductDao implements ProductDao {
-//	@Autowired
-//	private ProductMapper productMapper;
-//
-//	public List<Product> getProductListByCategory(String categoryId) 
-//			throws DataAccessException {
-//	    return productMapper.getProductListByCategory(categoryId);
-//	}
-//
-//	public Product getProduct(String productId) throws DataAccessException {
-//	    return productMapper.getProduct(productId);
-//	}
-//
-//	public List<Product> searchProductList(String keywords) 
-//			throws DataAccessException {
-//	    return productMapper.searchProductList(
-//	    	"%" + keywords.toLowerCase() + "%");
-//	}
-//
-//	/* Inner Classes */
-//	public static class ProductSearch {
-//
-//		private List<String> keywordList = new ArrayList<String>();
-//
-//		public ProductSearch(String keywords) {
-//			StringTokenizer splitter = new StringTokenizer(keywords," ",false);
-//			while (splitter.hasMoreTokens()) {
-//				this.keywordList.add("%" + splitter.nextToken() + "%");
-//			}
-//		}
-//		public List<String> getKeywordList() {
-//			return keywordList;
-//		}
-//	}	
-//}
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Repository;
+
+import com.ssp.closet.dao.ProductDao;
+import com.ssp.closet.dao.SequenceDao;
+import com.ssp.closet.dao.mybatis.mapper.ProductMapper;
+import com.ssp.closet.dto.Auction;
+import com.ssp.closet.dto.GroupBuy;
+import com.ssp.closet.dto.Product;
+
+@Repository
+public class MybatisProductDao implements ProductDao {
+
+	@Autowired
+	private ProductMapper productMapper;
+	@Autowired
+	private SequenceDao sequenceDao;
+
+	
+	public void insertAuctionProduct(Product product, Auction auction) throws DataAccessException {
+		product.setProductId(sequenceDao.getNextId("productnum")); //productnum 은 추후 수정
+		productMapper.insertAuctionProduct(product, auction);
+	}
+	
+	public void insertGroupBuyProduct(Product product, GroupBuy groupBuy) throws DataAccessException {
+		product.setProductId(sequenceDao.getNextId("productnum")); //productnum 은 추후 수정
+		productMapper.insertGroupBuyProduct(product, groupBuy);
+	}
+
+	public void updateProduct(Product product) throws DataAccessException {
+		productMapper.updateProduct(product);
+	}
+
+	public void deleteProduct(int productId) throws DataAccessException {
+		productMapper.deleteProduct(productId);
+	}
+
+	public List<Product> getProductList() throws DataAccessException {
+		List<Product> list = productMapper.getProductList();
+		return list;
+	}
+
+	public Product getProductDetail(int productId) throws DataAccessException {
+		Product product = productMapper.getProductDetail(productId);
+		return product;
+	}
+	
+	
+	//상품 검색
+}
