@@ -5,25 +5,25 @@ import java.sql.Date;
 
 @SuppressWarnings("serial")
 public class Product implements Serializable {
-	
+
+	/* Private Fields */
 	private int productId;
-	private String categoryId; 
-	private int price;
+	private String categoryId; // 상의? 하의? ....
 	private String name;
-	private String description;
-	private int type;
-	private String suppId;
+	private String description; // 상품 설명
+	private int type; // 경매? 공동구매?
+	private int status; // 판매 상태
+	private Date registerDate; // 등록 날짜
+	private int period; // 판매 기간
+	private String suppId; //판매자 또는 등록자의 userId
 	private String color;
 	private String size;
-	private int status;	
-	private Date registerDate;
-	private int period;
 	private String picture1;
 	private String picture2;
 	private String picture3;
 	private String picture4;
-	
-	
+
+	/* JavaBeans Properties */
 	public int getProductId() {
 		return productId;
 	}
@@ -35,12 +35,6 @@ public class Product implements Serializable {
 	}
 	public void setCategoryId(String categoryId) {
 		this.categoryId = categoryId;
-	}
-	public int getPrice() {
-		return price;
-	}
-	public void setPrice(int price) {
-		this.price = price;
 	}
 	public String getName() {
 		return name;
@@ -59,6 +53,24 @@ public class Product implements Serializable {
 	}
 	public void setType(int type) {
 		this.type = type;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	public Date getRegisterDate() {
+		return registerDate;
+	}
+	public void setRegisterDate(Date registerDate) {
+		this.registerDate = registerDate;
+	}
+	public int getPeriod() {
+		return period;
+	}
+	public void setPeriod(int period) {
+		this.period = period;
 	}
 	public String getSuppId() {
 		return suppId;
@@ -102,24 +114,4 @@ public class Product implements Serializable {
 	public void setPicture4(String picture4) {
 		this.picture4 = picture4;
 	}
-	public int getStatus() {
-		return status;
-	}
-	public void setStatus(int status) {
-		this.status = status;
-	}
-	public Date getRegisterDate() {
-		return registerDate;
-	}
-	public void setRegisterDate(Date registerDate) {
-		this.registerDate = registerDate;
-	}
-	public int getPeriod() {
-		return period;
-	}
-	public void setPeriod(int period) {
-		this.period = period;
-	}
-
-  
 }
