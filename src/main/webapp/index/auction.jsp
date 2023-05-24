@@ -15,6 +15,7 @@
 	<jsp:include page = "menu.jsp"/>
 	<hr>
 	<div class = "layout">
+		<!-- 판매하기 기능 -->
 		<div class = "sell">
 			<form class = "sFrom" method = "POST" action="<c:url value='/auction/registerForm' />">
 				<input type = "button" >

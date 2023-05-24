@@ -7,8 +7,7 @@
 	<title>메인 페이지</title>
 	<style type = "text/css">
 		body{margin:0}
-		.event{margin:10px 0px 0px 0px;background:url('${pageContext.request.contextPath}/images/event.jpg');
-		width:100%;height:300px}
+		.event{margin:10px 0px 0px 0px;background-color:gray;width:100%;height:300px}
 		.layout{margin:0px auto;width:1180px;padding:10px}
 	</style>
 </head>
