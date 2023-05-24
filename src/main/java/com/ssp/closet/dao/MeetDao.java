@@ -8,7 +8,7 @@ import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Meet;
 
 public interface MeetDao {
-
+	
 	//공동구매 신청 등록
 	void insertMeet(Meet meet) throws DataAccessException;
 
