@@ -1,20 +1,24 @@
 package com.ssp.closet.service;
-//package ssp.closet.service;
-//
-//import ssp.closet.dao.ProductDao;
-//import ssp.closet.dao.AccountDao;
-//import ssp.closet.dao.Product;
-//import ssp.closet.dao.Account;
-//
-//public interface ProductServiceImpl implements ProductService{
-//	
-//	@Autowired
-//	private ProductDao productDao;
-//	
-//	@Autowired
-//	private AccountDao accountDao;
-//	
-//	public void create(Product product) {
-//		productDao.create(product);
-//	}
-//}
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ssp.closet.dao.ProductDao;
+import com.ssp.closet.dto.Product;
+
+@Service("productServiceImpl")
+public class ProductServiceImpl implements ProductService{
+	
+	@Autowired
+	private ProductDao productDao;
+
+	public List<Product> getProductList() {
+		return productDao.getProductList();
+	}
+
+	public Product getProductDetail(int productId) {
+		return productDao.getProductDetail(productId);
+	}
+}

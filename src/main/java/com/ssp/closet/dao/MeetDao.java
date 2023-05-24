@@ -8,6 +8,13 @@ import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Meet;
 
 public interface MeetDao {
+	
+	//공동구매 신청 등록
+	void insertMeet(Meet meet) throws DataAccessException;
+
+	//공동구매 신청 삭제
+	void deleteMeet(int meetId) throws DataAccessException;
+
 	//현재 공동구매 참여자 인원 계산
 	int countPeopleNum(int productId) throws DataAccessException;
 

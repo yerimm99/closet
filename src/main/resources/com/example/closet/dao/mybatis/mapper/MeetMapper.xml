@@ -4,13 +4,27 @@
 <mapper
 	namespace="com.example.closet.dao.mybatis.mapper.GroupBuyMapper">
 	<cache />
-	
+
+	<insert id="insertMeet">
+		INSERT INTO MEET (MEETID, SIGNDATE, MEETRESULT,
+		PRODUCTID, USERID)
+		VALUES (#{meetId}, #{signDate}, #{MeetResult},
+		#{productId}, #{userId})
+	</insert>
+
+	<delete id="deleteMeet">
+		DELETE FROM MEET
+		WHERE
+		MEETID = #{meetId}
+	</delete>
+
 	<select id="countPeopleNum" resultType="Integer">
 		SELECT COUNT(USERID)
-		FROM MEET
+		FROM
+		MEET
 		WHERE PRODUCTID = #{productId}
 	</select>
-	
+
 	<select id="getMeetDetail" resultType="GroupBuy">
 		SELECT
 		MEETID,
@@ -19,13 +33,14 @@
 		MEETRESULT,
 		SIGNDATE
 		FROM MEET
-		WHERE PRODUCTID = #{productId}
+		WHERE MEETID = #{meetId}
 	</select>
-	
+
 	<select id="getMeetList" resultType="Account">
 		SELECT USERID
 		FROM MEET
-		WHERE PRODUCTID = #{productId}
+		WHERE
+		PRODUCTID = #{productId}
 	</select>
 
 </mapper>

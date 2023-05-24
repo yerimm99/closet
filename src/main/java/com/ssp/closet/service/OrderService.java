@@ -1,11 +1,12 @@
 package com.ssp.closet.service;
-//package ssp.closet.service;
-//
-//import ssp.closet.dao.OrderDao;
-//
-//public interface OrderService {
-//	
-////	void insertOrder(Order order);
-////	void deleteOrder(int orderId);
-//	
-//}
+
+import java.util.List;
+
+import com.ssp.closet.dto.Order;
+
+public interface OrderService {
+	
+	List<Order> getSellList(String suppId);
+	List<Order> getBuyList(String userId);
+	Order getOrderDetail(int orderId);
+}
