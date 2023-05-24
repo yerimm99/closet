@@ -1,55 +1,47 @@
 package com.ssp.closet.dto;
 
-import java.io.Serializable;
-import java.util.Date;
 
 @SuppressWarnings("serial")
-public class Auction implements Serializable {
+public class Auction extends Product {
+	
 	private int productId;
 	private String userId;
-	private int acutionPrice;
+	private int startPrice;
 	private int maxPrice;
-	private Date signDate;
-	private int auctionResult;
+	private int used;
 	
-	public int getMaxPrice() {
-		return maxPrice;
-	}
-
-	public void setMaxPrice(int maxPrice) {
-		this.maxPrice = maxPrice;
-	}
-
-	public int getAcutionPrice() {
-		return acutionPrice;
-	}
-	public void setAcutionPrice(int acutionPrice) {
-		this.acutionPrice = acutionPrice;
-	}
-	public Date getSignDate() {
-		return signDate;
-	}
-	public void setSignDate(Date signDate) {
-		this.signDate = signDate;
-	}
-	public int getAuctionResult() {
-		return auctionResult;
-	}
-	public void setAuctionResult(int auctionResult) {
-		this.auctionResult = auctionResult;
-	}
-	
-	public String getUserId() {
-		return userId;
-	}
-
 	public int getProductId() {
 		return productId;
 	}
-
 	public void setProductId(int productId) {
 		this.productId = productId;
 	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public int getStartPrice() {
+		return startPrice;
+	}
+	public void setStartPrice(int startPrice) {
+		this.startPrice = startPrice;
+	}
+	public int getMaxPrice() {
+		return maxPrice;
+	}
+	public void setMaxPrice(int maxPrice) {
+		this.maxPrice = maxPrice;
+	}
+	public int getUsed() {
+		return used;
+	}
+	public void setUsed(int used) {
+		this.used = used;
+	}
+	
+	
 	
 //	public boolean deadline() {
 //		Calendar getToday = Calendar.getInstance();
