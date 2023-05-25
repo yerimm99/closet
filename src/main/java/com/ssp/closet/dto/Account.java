@@ -2,7 +2,6 @@ package com.ssp.closet.dto;
 
 import java.io.Serializable;
 
-
 @SuppressWarnings("serial")
 public class Account implements Serializable {
 
@@ -14,8 +13,11 @@ public class Account implements Serializable {
   private String name;
   private String address;
   private String phone;
+  private String status;
   private double rating;
-
+  private boolean listOption;
+  private boolean bannerOption;
+  
   /* JavaBeans Properties */
 
 
@@ -37,7 +39,17 @@ public class Account implements Serializable {
 
   public String getEmail() { return email; }
   public void setEmail(String email) { this.email = email; }
-
+  
+  public String getStatus() {return status;}
+  public void setStatus(String status) {this.status = status;}
+  
   public String getPhone() { return phone; }
   public void setPhone(String phone) { this.phone = phone; }
+  
+  public boolean isListOption() {return listOption;}
+  public void setListOption(boolean listOption) {this.listOption = listOption;}
+	
+  public boolean isBannerOption() {return bannerOption;}
+  public void setBannerOption(boolean bannerOption) {this.bannerOption = bannerOption;}
+  
 }
