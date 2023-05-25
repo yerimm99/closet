@@ -9,7 +9,7 @@
 	<title>¸Þ´º¹Ù</title>
 	<style type = "text/css">
 		.layout{margin:0px auto;width:1180px;height:58px;padding:10px}
-		.logo{width:240px;height48px;font-size:40px;float:left;margin:5px 0px 4px 0px}
+		.logo{font-weight:bold;width:240px;height48px;font-size:40px;float:left;margin:5px 0px 4px 0px}
 		.navitool{float:left;width:600px;height:40px;padding:0px;margin:10px 0px 10px 20px}
 		.navi{float:left;width:90px;padding:10px;height:20px;font-size:18px;text-align:center;margin:5px 0px 10px 0px;}
 		.login{float:right;width:200px;padding:10px;height:20px;font-size:18px;text-align:center;margin:15px 0px 10px 0px;}

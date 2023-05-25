@@ -1,19 +1,14 @@
 package com.ssp.closet.controller;
-//package ssp.closet.controller;
-//
-//import java.io.Serializable;
-//import org.springframework.beans.support.PagedListHolder;
-//
-//import com.example.jpetstore.domain.Account;
-//import com.example.jpetstore.domain.Product;
-//
+
+import java.io.Serializable;
+
 ///**
 // * @author Juergen Hoeller
 // * @since 30.11.2003
 // */
-//@SuppressWarnings("serial")
-//public class UserSession implements Serializable {
-//
+@SuppressWarnings("serial")
+public class UserSession implements Serializable {
+
 //	private Account account;
 //
 //	private PagedListHolder<Product> myList;
@@ -33,4 +28,4 @@ package com.ssp.closet.controller;
 //	public PagedListHolder<Product> getMyList() {
 //		return myList;
 //	}
-//}
+}
