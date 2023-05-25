@@ -6,38 +6,41 @@
 	<cache />
 
 	<insert id="insertAuctionProduct">
-		INSERT INTO PRODUCT (PRODUCTID, CATEGORYID, NAME,
+		INSERT ALL INTO PRODUCT (PRODUCTID, USERID, CATEGORYID, NAME,
 		DESCRIPTION, TYPE,
-		STATUS, REGISTERDATE, PERIOD, SUPPID, COLOR, SIZE,
+		STATUS, REGISTERDATE, PERIOD, COLOR, "size",
 		PICTURE1, PICTURE2, PICTURE3, PICTURE4)
-		VALUES (#{productId},
+		VALUES (#{productId}, #{userId},
 		#{categoryId}, #{name}, #{description}, #{type},
 		#{status},
-		#{registerDate}, #{period}, #{suppId}, #{color}, #{size},
+		#{registerDate}, #{period}, #{color}, #{size},
 		#{picture1},
 		#{picture2}, #{picture3}, #{picture4})
-		AND INSERT INTO AUCTION
+	    INTO AUCTION
 		(PRODUCTID, STARTPRICE, USED)
 		VALUES (#{productId}, #{startPrice},
 		#{used}})
+		SELECT *
+		FROM DUAL;
 	</insert>
 
 	<insert id="insertGroupBuyProduct">
-		INSERT INTO PRODUCT (PRODUCTID, CATEGORYID, NAME,
+		INSERT ALL INTO PRODUCT (PRODUCTID, USERID, CATEGORYID, NAME,
 		DESCRIPTION, TYPE,
-		STATUS, REGISTERDATE, PERIOD, SUPPID, COLOR, SIZE,
+		STATUS, REGISTERDATE, PERIOD, COLOR, "size",
 		PICTURE1, PICTURE2, PICTURE3, PICTURE4)
-		VALUES (#{productId},
+		VALUES (#{productId}, #{userId},
 		#{categoryId}, #{name}, #{description}, #{type},
 		#{status},
-		#{registerDate}, #{period}, #{suppId},
+		#{registerDate}, #{period},
 		#{color}, #{size}, #{picture1},
 		#{picture2},
 		#{picture3}, #{picture4})
-		AND INSERT INTO AUCTION
+		INTO GROUPBUY
 		(PRODUCTID, PRICE, PEOPLENUM)
-		VALUES (#{productId}, #{price},
-		#{peapleNum}})
+		VALUES (#{productId}, #{price}, #{peapleNum})
+		SELECT *
+        FROM DUAL;
 	</insert>
 
 	<update id="updateProduct">
@@ -62,8 +65,8 @@
 		SELECT
 		PRODUCTID,
 		NAME,
-		DESCN as description,
-		CATEGORY as categoryId
+		description,
+		categoryId
 		FROM PRODUCT
 		WHERE PRODUCTID
 		= #{productId}
@@ -73,11 +76,11 @@
 		SELECT
 		PRODUCTID,
 		NAME,
-		DESCN as description,
-		CATEGORY as categoryId
+		description,
+		categoryId
 		FROM
 		PRODUCT
-		WHERE STATUS = 0 <!-- 판매 중인 상품 -->
+		WHERE STATUS = 1 <!-- 판매 중인 상품 -->
 	</select>
 
 	<!-- <select id="searchProductList" resultType="Product"> -->
