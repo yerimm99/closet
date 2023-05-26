@@ -1,7 +1,7 @@
 spring:
   datasource:         # Oracle dataSource 
     driver-class-name: oracle.jdbc.driver.OracleDriver
-    url: jdbc:oracle:thin:@dblab_high?TNS_ADMIN=Users/Oracle/Wallet_DBLab  
+    url: jdbc:oracle:thin:@dblab_high?TNS_ADMIN=/Users/Oracle/Wallet_DBLab  
     username: ss230109
     password: Spring_105954
     
@@ -16,22 +16,37 @@ spring:
     view:             # JSP views
       prefix: /WEB-INF/jsp/
       suffix: .jsp
+      
+  jpa:
+    database: oracle
+    database-platform: org.hibernate.dialect.Oracle10gDialect
+    show-sql: true
+    generate-ddl: false
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        # do not changes camel case to snake case, which is the default spring.jpa.hibernate.naming.implicit-strategy 
+  
   devtools:
     livereload:
       enabled: 'true'
       
 mybatis:
-  type-aliases-package: com.example.jpetstore.domain
+  type-aliases-package: com.ssp.closet.dto
 #  mapper-locations: com/example/jpetstore/dao/mybatis/mapper/**/*.xml
-  
+  configuration:
+    cache-enabled: false
+    
 logging:
   level:
     com:
-      example:
-        jpetstore:
+      ssp:
+        closet:
           dao:
             mybatis:
-              mapper: DEBUG           
+              mapper: DEBUG        
+      org:
+        hibernate: INFO     
   
 server:
   port: 8088
