@@ -5,72 +5,7 @@
 	namespace="com.example.closet.dao.mybatis.mapper.ProductMapper">
 	<cache />
 
-	<insert id="insertAuctionProduct">
-		INSERT ALL INTO PRODUCT (PRODUCTID, USERID, CATEGORYID, NAME,
-		DESCRIPTION, TYPE,
-		STATUS, REGISTERDATE, PERIOD, COLOR, "size",
-		PICTURE1, PICTURE2, PICTURE3, PICTURE4)
-		VALUES (#{productId}, #{userId},
-		#{categoryId}, #{name}, #{description}, #{type},
-		#{status},
-		#{registerDate}, #{period}, #{color}, #{size},
-		#{picture1},
-		#{picture2}, #{picture3}, #{picture4})
-	    INTO AUCTION
-		(PRODUCTID, STARTPRICE, USED)
-		VALUES (#{productId}, #{startPrice},
-		#{used}})
-		SELECT *
-		FROM DUAL;
-	</insert>
-
-	<insert id="insertGroupBuyProduct">
-		INSERT ALL INTO PRODUCT (PRODUCTID, USERID, CATEGORYID, NAME,
-		DESCRIPTION, TYPE,
-		STATUS, REGISTERDATE, PERIOD, COLOR, "size",
-		PICTURE1, PICTURE2, PICTURE3, PICTURE4)
-		VALUES (#{productId}, #{userId},
-		#{categoryId}, #{name}, #{description}, #{type},
-		#{status},
-		#{registerDate}, #{period},
-		#{color}, #{size}, #{picture1},
-		#{picture2},
-		#{picture3}, #{picture4})
-		INTO GROUPBUY
-		(PRODUCTID, PRICE, PEOPLENUM)
-		VALUES (#{productId}, #{price}, #{peapleNum})
-		SELECT *
-        FROM DUAL;
-	</insert>
-
-	<update id="updateProduct">
-		UPDATE PRODUCT
-		SET
-		DESCRIPTION = #{description},
-		PICTURE1 = #{picture1},
-		PICTURE2 = #{picture2},
-		PICTURE3 = #{picture3},
-		PICTURE4 = #{picture4}
-		WHERE
-		PRODUCTID = #{productId}
-	</update>
-
-	<delete id="deleteProduct">
-		DELETE FROM PRODUCT
-		WHERE
-		PRODUCTID = #{productId}
-	</delete>
-
-	<select id="getProductDetail" resultType="Product">
-		SELECT
-		PRODUCTID,
-		NAME,
-		description,
-		categoryId
-		FROM PRODUCT
-		WHERE PRODUCTID
-		= #{productId}
-	</select>
+<!-- 상품 검색용으로 사용  -->
 
 	<select id="getProductList" resultType="Product">
 		SELECT
@@ -92,5 +27,40 @@
 	<!-- from PRODUCT -->
 	<!-- WHERE lower(name) like #{value} -->
 	<!-- </select> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Dao에 작성(하고 나면 지울게요) -->
+<!-- 	<update id="updateProduct"> -->
+<!-- 		UPDATE PRODUCT -->
+<!-- 		SET -->
+<!-- 		DESCRIPTION = #{description}, -->
+<!-- 		PICTURE1 = #{picture1}, -->
+<!-- 		PICTURE2 = #{picture2}, -->
+<!-- 		PICTURE3 = #{picture3}, -->
+<!-- 		PICTURE4 = #{picture4} -->
+<!-- 		WHERE -->
+<!-- 		PRODUCTID = #{productId} -->
+<!-- 	</update> -->
+
+<!-- 	<delete id="deleteProduct"> -->
+<!-- 		DELETE FROM PRODUCT -->
+<!-- 		WHERE -->
+<!-- 		PRODUCTID = #{productId} -->
+<!-- 	</delete> -->
 
 </mapper>
