@@ -6,8 +6,8 @@ import com.ssp.closet.dto.Auction;
 
 public interface AuctionDao {
 	
-	  void createAuction(Auction auction) throws DataAccessException;
+	void insertAuctionProduct(Auction auction) throws DataAccessException;
 
-	  void deleteAuction(String productId) throws DataAccessException;
+	Auction getAuctionDetail(String productId) throws DataAccessException;
 
 }

@@ -4,8 +4,8 @@ import com.ssp.closet.dto.Auction;
 
 public interface AuctionMapper {
 	
-	void createAuction(Auction auction);
+	void insertAuctionProduct(Auction auction);
 
-	void deleteAuction(String productId);
+	Auction getAuctionDetail(String productId);
 
 }

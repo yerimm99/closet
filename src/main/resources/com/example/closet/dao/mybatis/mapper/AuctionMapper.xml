@@ -5,16 +5,13 @@
   <cache />
   
   	<insert id="insertAuctionProduct">
-		INSERT ALL INTO PRODUCT (PRODUCTID, USERID, CATEGORYID, NAME,
-		DESCRIPTION, TYPE,
+		INSERT ALL 
+		INTO PRODUCT (PRODUCTID, USERID, CATEGORYID, NAME, DESCRIPTION, TYPE,
 		STATUS, REGISTERDATE, PERIOD, COLOR, "size",
 		PICTURE1, PICTURE2, PICTURE3, PICTURE4)
-		VALUES (#{productId}, #{userId},
-		#{categoryId}, #{name}, #{description}, #{type},
-		#{status},
-		#{registerDate}, #{period}, #{color}, #{size},
-		#{picture1},
-		#{picture2}, #{picture3}, #{picture4})
+		VALUES (#{productId}, #{userId}, #{categoryId}, #{name}, #{description}, #{type},
+		#{status}, #{registerDate}, #{period}, #{color}, #{size},
+		#{picture1}, #{picture2}, #{picture3}, #{picture4})
 	    INTO AUCTION
 		(PRODUCTID, STARTPRICE, USED)
 		VALUES (#{productId}, #{startPrice},
@@ -22,27 +19,11 @@
 		SELECT *
 		FROM DUAL;
 	</insert>
-  
-   <insert id="createAuction" parameterType="Auction">
-    INSERT INTO AUCTION PRODUCTID, USERID, STARTPRICE, USED)
-    VALUES (#{productId}, #{userId}, #{startPrice}, #{used})
-  </insert>
-  
-<!--   옥션 상품 검색할 때 활용해주세요 -->
-<!--   	<select id="getProductDetail" resultType="Product"> -->
-<!-- 		SELECT -->
-<!-- 		PRODUCTID, -->
-<!-- 		NAME, -->
-<!-- 		description, -->
-<!-- 		categoryId -->
-<!-- 		FROM PRODUCT -->
-<!-- 		WHERE PRODUCTID -->
-<!-- 		= #{productId} -->
-<!-- 	</select> -->
-  
-  <delete id="deleteAuction" parameterType="java.lang.Integer">
-    DELETE FROM AUCTION WHERE PRODUCTID = #{productId}
-  </delete>
-  
+
+  <select id="getAuctionDetail" resultType="Auction">
+		SELECT p.PRODUCTID, p.NAME, p.COLOR, p.SIZE, p.DESCRIPTION, p.CATEGORYID, a.STARTPRICE, a.USED
+		FROM PRODUCT p, AUCTION a
+		WHERE PRODUCTID = #{productId} AND p.productId = g.productId
+	</select>
   
  </mapper>

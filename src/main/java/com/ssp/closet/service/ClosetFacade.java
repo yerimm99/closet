@@ -3,6 +3,7 @@ package com.ssp.closet.service;
 import java.util.List;
 
 import com.ssp.closet.dto.Account;
+import com.ssp.closet.dto.Auction;
 import com.ssp.closet.dto.Bookmark;
 import com.ssp.closet.dto.GroupBuy;
 import com.ssp.closet.dto.Meet;
@@ -11,6 +12,18 @@ import com.ssp.closet.dto.Review;
 
 public interface ClosetFacade {
 	
+	void updateProduct(int productId);
+	void deleteProduct(int productId);
+	List<Product> getProductList();
+	Product getProductDetail(int productId);
+	
+	void insertAuctionProduct(Auction auction);
+	Auction getAuctionDetail(String productId);
+	
+	int countPeopleNum(int productId);
+	Meet getMeetDetail(int meetId);
+	List<Account> getMeetList(int productId);
+	
 	int getPeopleNum(int productId);
 	GroupBuy getGroupBuyDetail(int productId);
 	
@@ -18,17 +31,13 @@ public interface ClosetFacade {
 	void deleteMark(String userId, int productId);
 	
 
-	int countPeopleNum(int productId);
-	Meet getMeetDetail(int meetId);
-	List<Account> getMeetList(int productId);
 	
 
-	List<Product> getProductList();
-	Product getProductDetail(int productId);
+	
 	
 
-	void insertReview(Review review);
-	void deleteReview(int orderId);
-	List<Review> readReviewListByMe();
-	List<Review> readReviewListToMe();
+//	void insertReview(Review review);
+//	void deleteReview(int orderId);
+//	List<Review> readReviewListByMe();
+//	List<Review> readReviewListToMe();
 }
