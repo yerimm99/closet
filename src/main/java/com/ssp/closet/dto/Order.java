@@ -131,4 +131,40 @@ public class Order implements Serializable {
 		expiryDate = "12/03";
 		cardType = "Visa";
 	}
+
+	public void initOrder(Account account, Product product, Auction auction) {
+		userId = account.getUserId();
+		name = account.getName();
+	    orderDate = new Date();
+
+	    shipToName = account.getName();
+	    shipAddress = account.getAddress();
+
+	    billToName = account.getName();
+
+	    productId = product.getProductId();
+	    price = auction.getMaxPrice();
+
+	    creditCard = "999 9999 9999 9999";
+	    expiryDate = "12/03";
+	    cardType = "Visa";
+	}
+
+	public void initOrder(Account account, Product product, GroupBuy groupBuy) {
+		userId = account.getUserId();
+		name = account.getName();
+	    orderDate = new Date();
+
+	    shipToName = account.getName();
+	    shipAddress = account.getAddress();
+
+	    billToName = account.getName();
+
+	    productId = product.getProductId();
+	    price = groupBuy.getPrice();
+
+	    creditCard = "999 9999 9999 9999";
+	    expiryDate = "12/03";
+	    cardType = "Visa";
+	}
 }
