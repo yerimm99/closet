@@ -27,8 +27,8 @@ mybatis:
 logging:
   level:
     com:
-      example:
-        jpetstore:
+      ssp:
+        closet:
           dao:
             mybatis:
               mapper: DEBUG           

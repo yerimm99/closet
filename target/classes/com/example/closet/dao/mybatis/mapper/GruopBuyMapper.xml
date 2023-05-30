@@ -5,6 +5,25 @@
 	namespace="com.example.closet.dao.mybatis.mapper.GroupBuyMapper">
 	<cache />
 	
+	<insert id="insertGroupBuyProduct">
+		INSERT ALL INTO PRODUCT (PRODUCTID, USERID, CATEGORYID, NAME,
+		DESCRIPTION, TYPE,
+		STATUS, REGISTERDATE, PERIOD, COLOR, "size",
+		PICTURE1, PICTURE2, PICTURE3, PICTURE4)
+		VALUES (#{productId}, #{userId},
+		#{categoryId}, #{name}, #{description}, #{type},
+		#{status},
+		#{registerDate}, #{period},
+		#{color}, #{size}, #{picture1},
+		#{picture2},
+		#{picture3}, #{picture4})
+		INTO GROUPBUY
+		(PRODUCTID, PRICE, PEOPLENUM)
+		VALUES (#{productId}, #{price}, #{peapleNum})
+		SELECT *
+        FROM DUAL;
+	</insert>
+	
 	<select id="getPeopleNum" resultType="Integer">
 		SELECT PEOPLENUM
 		FROM GroupBuy
@@ -12,12 +31,9 @@
 	</select>
 	
 	<select id="getGroupBuyDetail" resultType="GroupBuy">
-		SELECT
-		PRODUCTID,
-		PRICE,
-		PEOPLENUM,
-		FROM GroupBuy
-		WHERE PRODUCTID = #{productId}
+		SELECT p.PRODUCTID, p.NAME, p.DESCRIPTION, p.CATEGORYID, g.PRICE, g.PEOPLENUM
+		FROM PRODUCT p, GROUPBUY g
+		WHERE PRODUCTID = #{productId} AND p.productId = g.productId
 	</select>
 
 </mapper>

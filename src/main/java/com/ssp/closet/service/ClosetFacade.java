@@ -4,12 +4,17 @@ import java.util.List;
 
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Bookmark;
+import com.ssp.closet.dto.Category;
 import com.ssp.closet.dto.GroupBuy;
 import com.ssp.closet.dto.Meet;
+import com.ssp.closet.dto.Order;
 import com.ssp.closet.dto.Product;
 import com.ssp.closet.dto.Review;
 
 public interface ClosetFacade {
+	
+	List<Category> getCategoryList();
+	Category getCategory(String categoryId);
 	
 	int getPeopleNum(int productId);
 	GroupBuy getGroupBuyDetail(int productId);
@@ -26,9 +31,24 @@ public interface ClosetFacade {
 	List<Product> getProductList();
 	Product getProductDetail(int productId);
 	
-
+	void insertOrder(Order order);
+	List<Order> getBuyList(String userId);
+	List<Order> getSellList(String userId);
+	
 	void insertReview(Review review);
 	void deleteReview(int orderId);
 	List<Review> readReviewListByMe();
 	List<Review> readReviewListToMe();
+	
+	//Account Connect
+	
+	Account getAccount(String username);
+
+	Account getAccount(String username, String password);
+
+	void insertAccount(Account account);
+
+	void updateAccount(Account account);
+
+	List<String> getUsernameList();
 }
