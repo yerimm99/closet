@@ -1,16 +1,18 @@
 package com.ssp.closet.controller;
 
 import java.io.Serializable;
-
 import org.springframework.beans.support.PagedListHolder;
-
-import com.ssp.closet.dto.Account;
-import com.ssp.closet.dto.Product;
 
 ///**
 // * @author Juergen Hoeller
 // * @since 30.11.2003
 // */
+import com.ssp.closet.dto.*;
+
+/**
+ * @author Juergen Hoeller
+ * @since 30.11.2003
+ */
 @SuppressWarnings("serial")
 public class UserSession implements Serializable {
 
