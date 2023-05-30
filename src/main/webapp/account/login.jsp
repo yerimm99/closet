@@ -8,12 +8,11 @@
 	<style type="text/css">
 		.layout{margin:0px auto;width:1180px;padding:10px;font-size:18px}
 		table, td{border:none;}
-		input{width:500px;height:30px}
-		table{margin:250px auto 0px auto}
+		.inp{width:500px;height:35px}
+		table{margin:150px auto 0px auto}
 		td{height:40px}
-		.btn{text-align:center;font-size:18px;border-radius:10px;background-color:gray;
-		border:1px solid black;width:100px;height:30px}
-		.btnBox{width:350px;height:30px;margin:auto;background-color:white;text-align:center}
+		.btn{text-align:center;font-size:20px;border-radius:10px;background-color:black;
+		border:1px solid black;width:510px;height:35px;color:white;margin-top:10px}
 	</style>
 </head>
 <body>
@@ -26,16 +25,19 @@
 		<form name="form" method="POST" action="<c:url value='/account/login' />">
 			<table>
 				<tr>
-					<td>로그인</td>
+					<td style="text-align:center;font-size:24px">로그인</td>
 				</tr>
 				<tr>
 					<td>
-						<input type="text" style="width:230px" name="userId" placeholder = "아이디 입력" size = "40">
+						<br><br>
+						<input type="text" name="userId" placeholder = "아이디 입력" size = "40"
+							class = "inp">
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<input type="password" style="width:230px" name="password" placeholder = "비밀번호 입력">
+						<input type="password" name="password" placeholder = "비밀번호 입력"
+							class = "inp">
 					</td>
 				</tr>
 				<tr>
