@@ -21,12 +21,12 @@ import com.ssp.closet.service.ClosetFacade;
 public class GroupBuyFormController {
 	@Autowired
 	private ClosetFacade closet;
-	
+
 	@ModelAttribute("groupBuyForm")
 	public GroupBuyForm createGroupBuyForm() {
 		return new GroupBuyForm();
 	}
-	
+
 	@RequestMapping("/shop/newGroupBuyProduct.do")
 	public String initNewGroupBuyProduct(HttpServletRequest request,
 			@ModelAttribute("groupBuyForm") GroupBuyForm groupBuyForm
@@ -36,7 +36,7 @@ public class GroupBuyFormController {
 			groupBuyForm.getProduct().initGroupBuy(account);
 			return "NewGroupBuyForm";	
 	}
-	
+
 	@RequestMapping("/shop/editGroupBuyProduct.do")
 	public String initEditGroupBuyProduct(HttpServletRequest request,
 			@ModelAttribute("groupBuyForm") GroupBuyForm groupBuyForm

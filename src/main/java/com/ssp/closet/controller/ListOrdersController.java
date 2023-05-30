@@ -27,7 +27,7 @@ public class ListOrdersController {
 		return new ModelAndView("ListOrders", "orderList", 
 				closetStore.getBuyList(userId));
 	}
-	
+
 	@RequestMapping("/shop/listSellOrders.do")
 	public ModelAndView handleRequest2(
 		@ModelAttribute("userSession") UserSession userSession

@@ -29,7 +29,7 @@ public class OrderController {
 	private ClosetFacade closetStore;
 	@Autowired
 	private OrderValidator orderValidator;
-	
+
 	@ModelAttribute("orderForm")
 	public OrderForm createOrderForm() {
 		return new OrderForm();
@@ -43,7 +43,7 @@ public class OrderController {
 		creditCardTypes.add("American Express");
 		return creditCardTypes;			
 	}
-	
+
 	@RequestMapping("/shop/newAuctionOrder.do")
 	public String initNewAuctionOrder(HttpServletRequest request,
 			@ModelAttribute("buyProduct") Product product,
@@ -62,7 +62,7 @@ public class OrderController {
 			throw new ModelAndViewDefiningException(modelAndView);
 		}
 	}
-	
+
 	@RequestMapping("/shop/newGroupBuyOrder.do")
 	public String initNewGroupBuyOrder(HttpServletRequest request,
 			@ModelAttribute("buyProduct") Product product,
@@ -81,7 +81,7 @@ public class OrderController {
 			throw new ModelAndViewDefiningException(modelAndView);
 		}
 	}
-	
+
 	@RequestMapping("/shop/newOrderSubmitted.do")
 	public String bindAndValidateOrder(HttpServletRequest request,
 			@ModelAttribute("orderForm") OrderForm orderForm, 
@@ -91,7 +91,7 @@ public class OrderController {
 			orderValidator.validateCreditCard(orderForm.getOrder(), result);
 			orderValidator.validateBillingAddress(orderForm.getOrder(), result);
 			if (result.hasErrors()) return "NewOrderForm";
-			
+
 			if (orderForm.isShippingAddressRequired() == true) {
 				orderForm.setShippingAddressProvided(true);
 				return "ShippingForm";
@@ -106,7 +106,7 @@ public class OrderController {
 			return "ConfirmOrder";
 		}
 	}
-	
+
 	@RequestMapping("/shop/confirmOrder.do")
 	protected ModelAndView confirmOrder(
 			@ModelAttribute("orderForm") OrderForm orderForm, 
