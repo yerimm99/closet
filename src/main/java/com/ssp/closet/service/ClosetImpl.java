@@ -11,17 +11,17 @@ import com.ssp.closet.dao.BookmarkDao;
 import com.ssp.closet.dao.GroupBuyDao;
 import com.ssp.closet.dao.MeetDao;
 import com.ssp.closet.dao.ProductDao;
-import com.ssp.closet.dao.ReviewDao;
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Bookmark;
 import com.ssp.closet.dto.GroupBuy;
 import com.ssp.closet.dto.Meet;
+import com.ssp.closet.dto.Order;
 import com.ssp.closet.dto.Product;
 import com.ssp.closet.dto.Review;
 
 @Service
 @Transactional
-public class ClosetImpl implements ClosetFacade{
+public class ClosetImpl implements ClosetFacade {
 
 	@Autowired
 	private BookmarkDao bookmarkDao;
@@ -68,6 +68,51 @@ public class ClosetImpl implements ClosetFacade{
 
 	public Product getProductDetail(int productId) {
 		return productDao.getProductDetail(productId);
+	}
+	
+	
+	
+	
+	
+	@Override
+	public Account getAccount(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void insertOrder(Order order) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public List<Order> getBuyList(String userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<Order> getSellList(String userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void insertReview(Review review) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void deleteReview(int orderId) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public List<Review> readReviewListByMe() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<Review> readReviewListToMe() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 //	@Autowired
