@@ -2,8 +2,11 @@ package com.ssp.closet.dao.mybatis.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.ssp.closet.dto.Account;
 
+@Mapper
 public interface AccountMapper {
 
   Account getAccountByUsername(String username);

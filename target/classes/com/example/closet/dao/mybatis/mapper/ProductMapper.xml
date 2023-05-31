@@ -28,39 +28,23 @@
 	<!-- WHERE lower(name) like #{value} -->
 	<!-- </select> -->
 
+<!-- 여기 두는게 맞는거 같기도......ㅜ -->
+	<update id="updateProduct">
+		UPDATE PRODUCT
+		SET
+		DESCRIPTION = #{description},
+		PICTURE1 = #{picture1},
+		PICTURE2 = #{picture2},
+		PICTURE3 = #{picture3},
+		PICTURE4 = #{picture4}
+		WHERE
+		PRODUCTID = #{productId}
+	</update>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- Dao에 작성(하고 나면 지울게요) -->
-<!-- 	<update id="updateProduct"> -->
-<!-- 		UPDATE PRODUCT -->
-<!-- 		SET -->
-<!-- 		DESCRIPTION = #{description}, -->
-<!-- 		PICTURE1 = #{picture1}, -->
-<!-- 		PICTURE2 = #{picture2}, -->
-<!-- 		PICTURE3 = #{picture3}, -->
-<!-- 		PICTURE4 = #{picture4} -->
-<!-- 		WHERE -->
-<!-- 		PRODUCTID = #{productId} -->
-<!-- 	</update> -->
-
-<!-- 	<delete id="deleteProduct"> -->
-<!-- 		DELETE FROM PRODUCT -->
-<!-- 		WHERE -->
-<!-- 		PRODUCTID = #{productId} -->
-<!-- 	</delete> -->
+	<delete id="deleteProduct">
+		DELETE FROM PRODUCT
+		WHERE
+		PRODUCTID = #{productId}
+	</delete>
 
 </mapper>
