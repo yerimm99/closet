@@ -4,7 +4,7 @@
 <mapper namespace="com.example.jpetstore.dao.mybatis.mapper.AuctionMapper">
   <cache />
   
-  	<insert id="insertAuctionProduct">
+  	<insert id="insertAuction">
 		INSERT ALL 
 		INTO PRODUCT (PRODUCTID, USERID, CATEGORYID, NAME, DESCRIPTION, TYPE,
 		STATUS, REGISTERDATE, PERIOD, COLOR, "size",

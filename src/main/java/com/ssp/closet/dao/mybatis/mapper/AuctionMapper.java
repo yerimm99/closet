@@ -7,7 +7,7 @@ import com.ssp.closet.dto.Auction;
 @Mapper
 public interface AuctionMapper {
 	
-	void insertAuctionProduct(Auction auction);
+	void insertAuction(Auction auction);
 
 	Auction getAuctionDetail(String productId);
 

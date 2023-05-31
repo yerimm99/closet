@@ -57,7 +57,7 @@ public class AuctionFormController {
 				closet.insertAuctionProduct(auctionForm.getAuction()); //등록 
 			}
 			else {
-				closet.updateProduct(auctionForm.getAuction().getPeriod()); //수정 
+				closet.updateProduct(auctionForm.getAuction().getProductId()); //수정 
 			}
 		}
 		catch (DataIntegrityViolationException ex) {

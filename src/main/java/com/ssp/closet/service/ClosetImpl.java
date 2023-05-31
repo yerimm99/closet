@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.ssp.closet.dao.AuctionDao;
@@ -44,10 +45,11 @@ public class ClosetImpl implements ClosetFacade{
 	};
 	
 	@Autowired
+	@Qualifier("jpaAuctionDao")
 	private AuctionDao auctionDao;
 	
 	public void insertAuctionProduct(Auction auction) {
-		auctionDao.insertAuctionProduct(auction);
+		auctionDao.insertAuction(auction);
 	};
 	public Auction getAuctionDetail(String productId) {
 		return auctionDao.getAuctionDetail(productId);

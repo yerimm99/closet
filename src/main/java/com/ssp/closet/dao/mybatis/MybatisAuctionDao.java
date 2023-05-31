@@ -12,8 +12,8 @@ public class MybatisAuctionDao implements AuctionDao{
 	@Autowired
 	private AuctionMapper auctionMapper;
 	
-	public void insertAuctionProduct(Auction auction) throws DataAccessException {
-		auctionMapper.insertAuctionProduct(auction);
+	public void insertAuction(Auction auction) throws DataAccessException {
+		auctionMapper.insertAuction(auction);
 	};
 
 	public Auction getAuctionDetail(String productId) throws DataAccessException {
