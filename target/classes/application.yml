@@ -29,13 +29,11 @@ spring:
   
   devtools:
     livereload:
-      enabled: 'true'
+      enabled: true
       
 mybatis:
   type-aliases-package: com.ssp.closet.dto
 #  mapper-locations: com/example/jpetstore/dao/mybatis/mapper/**/*.xml
-  configuration:
-    cache-enabled: false
     
 logging:
   level:
