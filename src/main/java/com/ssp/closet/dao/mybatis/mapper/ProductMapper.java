@@ -2,15 +2,16 @@ package com.ssp.closet.dao.mybatis.mapper;
 
 import java.util.List;
 
-import com.ssp.closet.dto.Auction;
+import org.apache.ibatis.annotations.Mapper;
+
 import com.ssp.closet.dto.GroupBuy;
 import com.ssp.closet.dto.Product;
 
+@Mapper
 public interface ProductMapper {
 
-	void insertAuctionProduct(Product product, Auction auction);
 	void insertGroupBuyProduct(Product product, GroupBuy groupBuy);
-	void updateProduct(Product product);
+	void updateProduct(int productId);
 	void deleteProduct(int productId);
 	List<Product> getProductList();
 	Product getProductDetail(int productId);

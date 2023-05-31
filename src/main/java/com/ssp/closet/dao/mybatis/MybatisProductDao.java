@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import com.ssp.closet.dao.ProductDao;
 import com.ssp.closet.dao.SequenceDao;
 import com.ssp.closet.dao.mybatis.mapper.ProductMapper;
-import com.ssp.closet.dto.Auction;
 import com.ssp.closet.dto.GroupBuy;
 import com.ssp.closet.dto.Product;
 
@@ -21,19 +20,15 @@ public class MybatisProductDao implements ProductDao {
 	@Autowired
 	private SequenceDao sequenceDao;
 
-	
-	public void insertAuctionProduct(Product product, Auction auction) throws DataAccessException {
-		product.setProductId(sequenceDao.getNextId("productnum")); //productnum 은 추후 수정
-		productMapper.insertAuctionProduct(product, auction);
-	}
+
 	
 	public void insertGroupBuyProduct(Product product, GroupBuy groupBuy) throws DataAccessException {
 		product.setProductId(sequenceDao.getNextId("productnum")); //productnum 은 추후 수정
 		productMapper.insertGroupBuyProduct(product, groupBuy);
 	}
 
-	public void updateProduct(Product product) throws DataAccessException {
-		productMapper.updateProduct(product);
+	public void updateProduct(int productId) throws DataAccessException {
+		productMapper.updateProduct(productId);
 	}
 
 	public void deleteProduct(int productId) throws DataAccessException {
