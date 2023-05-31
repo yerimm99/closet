@@ -156,11 +156,6 @@ public class ClosetImpl implements ClosetFacade{
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
-	public List<String> getUsernameList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 
 }
