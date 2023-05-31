@@ -16,6 +16,14 @@ public class MybatisMeetDao {
 	@Autowired
 	private MeetMapper meetMapper;
 	
+	public void insertMeet(Meet meet) throws DataAccessException {
+		meetMapper.insertMeet(meet);
+	}
+	
+	public void deleteMeet(int meetId) throws DataAccessException {
+		meetMapper.deleteMeet(meetId);
+	}
+	
 	public int countPeopleNum(int productId) throws DataAccessException {
 		return meetMapper.countPeopleNum(productId);
 	}
