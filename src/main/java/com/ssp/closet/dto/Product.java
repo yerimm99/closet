@@ -1,7 +1,8 @@
 package com.ssp.closet.dto;
 
 import java.io.Serializable;
-import java.sql.Date;
+//import java.sql.Date;
+import java.util.Date;
 
 @SuppressWarnings("serial")
 public class Product implements Serializable {
@@ -113,5 +114,11 @@ public class Product implements Serializable {
 	}
 	public void setPicture4(String picture4) {
 		this.picture4 = picture4;
+	}
+	
+	public void initGroupBuy(Account account) {
+		suppId = account.getUserId();
+		name = account.getName();
+		registerDate = new Date();
 	}
 }
