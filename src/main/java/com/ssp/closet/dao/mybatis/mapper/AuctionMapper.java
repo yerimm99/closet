@@ -1,11 +1,14 @@
 package com.ssp.closet.dao.mybatis.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.ssp.closet.dto.Auction;
 
+@Mapper
 public interface AuctionMapper {
 	
-	void createAuction(Auction auction);
+	void insertAuction(Auction auction);
 
-	void deleteAuction(String productId);
+	Auction getAuctionDetail(String productId);
 
 }
