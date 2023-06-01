@@ -29,16 +29,6 @@
 			</tr>
 			<tr>
 				<td>
-					<form:input path = "startPrice" placeholder = "최소가격"/>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<form:input path = "startPrice" placeholder = "최소가격"/>
-				</td>
-			</tr>
-			<tr>
-				<td>
 					<form:input path = "size" placeholder = "사이즈"/>
 				</td>
 			</tr>
@@ -47,6 +37,27 @@
 					<form:input path = "color" placeholder = "색상"/>
 				</td>
 			</tr>
+			<tr>
+				<td>
+					<form:input path = "description" placeholder = "상품 설명"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<form:radiobuttons path = "type" name = "type" value = "0"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<form:input path = "startPrice" placeholder = "최소가격"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<form:input path = "startPrice" placeholder = "최소가격"/>
+				</td>
+			</tr>
+			
 			<tr>
 				<td>
 					

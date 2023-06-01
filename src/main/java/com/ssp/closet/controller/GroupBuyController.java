@@ -28,7 +28,7 @@ public class GroupBuyController {
 		return new GroupBuyForm();
 	}
 
-	@RequestMapping("/shop/newGroupBuyProduct.do")
+	@RequestMapping("/shop/GroupBuyProduct.do")
 	public String initNewGroupBuyProduct(HttpServletRequest request,
 			@ModelAttribute("groupBuyForm") GroupBuyForm groupBuyForm
 			) throws ModelAndViewDefiningException {
@@ -38,7 +38,7 @@ public class GroupBuyController {
 			return "NewGroupBuyForm";	
 	}
 
-	@RequestMapping("/shop/editGroupBuyProduct.do")
+	@RequestMapping("/shop/editGroupProduct.do")
 	public String initEditGroupBuyProduct(HttpServletRequest request,
 			@ModelAttribute("groupBuyForm") GroupBuyForm groupBuyForm
 			) throws ModelAndViewDefiningException {
