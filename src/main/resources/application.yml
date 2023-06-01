@@ -15,9 +15,9 @@ spring:
 #      poolName: HikariPool          
   mvc:  
     view:             # JSP views
-      prefix: /WEB-INF/jsp
-      suffix: .jsp
-      
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp    
+  
   jpa:
     database: oracle
     database-platform: org.hibernate.dialect.Oracle10gDialect
@@ -27,7 +27,7 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
         # do not changes camel case to snake case, which is the default spring.jpa.hibernate.naming.implicit-strategy 
-  
+ 
   devtools:
     livereload:
       enabled: true
@@ -49,4 +49,4 @@ logging:
         hibernate: INFO     
   
 server:
-  port: 8080
+  port: 8011
