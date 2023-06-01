@@ -49,4 +49,4 @@ logging:
         hibernate: INFO     
   
 server:
-  port: 8085
+  port: 8080
