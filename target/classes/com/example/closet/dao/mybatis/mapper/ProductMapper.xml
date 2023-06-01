@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.example.closet.dao.mybatis.mapper.ProductMapper">
+	<cache />
+
+<!-- 상품 검색용으로 사용  -->
+
+	<select id="getProductList" resultType="Product">
+		SELECT
+		PRODUCTID,
+		NAME,
+		description,
+		categoryId
+		FROM
+		PRODUCT
+		WHERE STATUS = 1 <!-- 판매 중인 상품 -->
+	</select>
+
+	<!-- <select id="searchProductList" resultType="Product"> -->
+	<!-- select -->
+	<!-- PRODUCTID, -->
+	<!-- NAME, -->
+	<!-- DESCN as description, -->
+	<!-- CATEGORY as categoryId -->
+	<!-- from PRODUCT -->
+	<!-- WHERE lower(name) like #{value} -->
+	<!-- </select> -->
+
+<!-- 여기 두는게 맞는거 같기도......ㅜ -->
+	<update id="updateProduct">
+		UPDATE PRODUCT
+		SET
+		DESCRIPTION = #{description},
+		PICTURE1 = #{picture1},
+		PICTURE2 = #{picture2},
+		PICTURE3 = #{picture3},
+		PICTURE4 = #{picture4}
+		WHERE
+		PRODUCTID = #{productId}
+	</update>
+
+	<delete id="deleteProduct">
+		DELETE FROM PRODUCT
+		WHERE
+		PRODUCTID = #{productId}
+	</delete>
+
+</mapper>
