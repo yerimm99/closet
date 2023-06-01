@@ -48,6 +48,7 @@
          	<groupId>org.apache.tomcat.embed</groupId>
     	 	<artifactId>tomcat-embed-jasper</artifactId>
   		</dependency>	
+
   		
   		<!-- Oracle JDBC driver & security related JARs required to access Oracle Wallets from Java -->
 		<dependency>
@@ -90,6 +91,7 @@
 			<scope>runtime</scope>
 		</dependency>
 		-->
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -102,32 +104,9 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
-		
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
-	
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-
-		<dependency>
-		    <groupId>org.apache.taglibs</groupId>
-		    <artifactId>taglibs-standard-impl</artifactId>
-		    <version>1.2.5</version>
-		    <scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-		</dependency>
-		
 	</dependencies>
-
+	
+	
 	<build>
 		<plugins>
 			<plugin>
@@ -136,5 +115,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
