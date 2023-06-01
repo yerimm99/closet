@@ -25,29 +25,29 @@ import com.ssp.closet.dto.Review;
 @Service
 @Transactional
 public class ClosetImpl implements ClosetFacade{
-	
+
 	@Autowired
 	private ProductDao productDao;
-	
+
 	public List<Product> getProductList() {
 		return productDao.getProductList();
 	}
-	
+
 	public Product getProductDetail(int productId) {
 		return productDao.getProductDetail(productId);
 	}
-	
+
 	public void updateProduct(int productId) {
 		productDao.updateProduct(productId);
 	};
 	public void deleteProduct(int productId) {
 		productDao.deleteProduct(productId);
 	};
-	
+
 	@Autowired
 	@Qualifier("jpaAuctionDao")
 	private AuctionDao auctionDao;
-	
+
 	public void insertAuctionProduct(Auction auction) {
 		auctionDao.insertAuction(auction);
 	};
@@ -55,19 +55,19 @@ public class ClosetImpl implements ClosetFacade{
 		return auctionDao.getAuctionDetail(productId);
 	};
 
-@Autowired
+	@Autowired
 	private BookmarkDao bookmarkDao;
-	
+
 	public void createMark(Bookmark bookmark) {
 		bookmarkDao.createMark(bookmark);
 	}
 	public void deleteMark(String userId, int productId) {
 		bookmarkDao.deleteMark(userId, productId);
 	}
-	
+
 	@Autowired
 	private GroupBuyDao groupBuyDao;
-	
+
 	public int getPeopleNum(int productId) {
 		return groupBuyDao.getPeopleNum(productId);
 	}
@@ -99,7 +99,7 @@ public class ClosetImpl implements ClosetFacade{
 	@Override
 	public void insertOrder(Order order) {
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
 	public List<Order> getBuyList(String userId) {
@@ -114,12 +114,12 @@ public class ClosetImpl implements ClosetFacade{
 	@Override
 	public void insertReview(Review review) {
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
 	public void deleteReview(int orderId) {
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
 	public List<Review> readReviewListByMe() {
@@ -149,13 +149,13 @@ public class ClosetImpl implements ClosetFacade{
 	@Override
 	public void insertAccount(Account account) {
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
 	public void updateAccount(Account account) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 
 }
