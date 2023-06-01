@@ -1,9 +1,18 @@
 package com.ssp.closet.dto;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.SecondaryTable;
 
 @SuppressWarnings("serial")
+@Entity
+@SecondaryTable(name="PRODUCT", 
+pkJoinColumns=@PrimaryKeyJoinColumn(
+	name="productId", referencedColumnName="productId"))
 public class Auction extends Product {
 	
+	@Id
 	private int productId;
 	private String userId;
 	private int startPrice;

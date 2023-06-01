@@ -1,7 +1,8 @@
 spring:
   datasource:         # Oracle dataSource 
     driver-class-name: oracle.jdbc.driver.OracleDriver
-    url: jdbc:oracle:thin:@dblab_high?TNS_ADMIN=/Users/Oracle/Wallet_DBLab  
+#    url: jdbc:oracle:thin:@dblab_high?TNS_ADMIN=/Users/Oracle/Wallet_DBLab  
+    url: jdbc:oracle:thin:@(description=(retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.ap-seoul-1.oraclecloud.com))(connect_data=(service_name=g4ecfbb775fd1ef_dblab_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
     username: ss230109
     password: Spring_105954
     
@@ -14,7 +15,7 @@ spring:
 #      poolName: HikariPool          
   mvc:  
     view:             # JSP views
-      prefix: /WEB-INF/jsp/
+      prefix: /WEB-INF/jsp
       suffix: .jsp
       
   jpa:
@@ -31,6 +32,7 @@ spring:
     livereload:
       enabled: true
       
+
 mybatis:
   type-aliases-package: com.ssp.closet.dto
 #  mapper-locations: com/example/jpetstore/dao/mybatis/mapper/**/*.xml
@@ -47,4 +49,4 @@ logging:
         hibernate: INFO     
   
 server:
-  port: 8088
+  port: 8080
