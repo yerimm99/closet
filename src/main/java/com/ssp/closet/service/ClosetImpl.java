@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import com.ssp.closet.dao.AuctionDao;
 import com.ssp.closet.dao.BookmarkDao;
 import com.ssp.closet.dao.GroupBuyDao;
-import com.ssp.closet.dao.MeetDao;
 import com.ssp.closet.dao.ProductDao;
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
@@ -55,7 +54,8 @@ public class ClosetImpl implements ClosetFacade{
 	public Auction getAuctionDetail(String productId) {
 		return auctionDao.getAuctionDetail(productId);
 	};
-	@Autowired
+
+@Autowired
 	private BookmarkDao bookmarkDao;
 	
 	public void createMark(Bookmark bookmark) {
@@ -76,20 +76,20 @@ public class ClosetImpl implements ClosetFacade{
 		return groupBuyDao.getGroupBuyDetail(productId);
 	}
 	
-	@Autowired
-	private MeetDao meetDao;
-
-	public int countPeopleNum(int productId) {
-		return meetDao.countPeopleNum(productId);
-	}
-
-	public Meet getMeetDetail(int meetId) {
-		return meetDao.getMeetDetail(meetId);
-	}
-
-	public List<Account> getMeetList(int productId) {
-		return meetDao.getMeetList(productId);
-	}
+//	@Autowired
+//	private MeetDao meetDao;
+//
+//	public int countPeopleNum(int productId) {
+//		return meetDao.countPeopleNum(productId);
+//	}
+//
+//	public Meet getMeetDetail(int meetId) {
+//		return meetDao.getMeetDetail(meetId);
+//	}
+//
+//	public List<Account> getMeetList(int productId) {
+//		return meetDao.getMeetList(productId);
+//	}
 	
 	@Override
 	public Account getAccount(String name) {
