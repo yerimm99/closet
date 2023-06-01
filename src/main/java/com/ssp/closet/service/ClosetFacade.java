@@ -21,10 +21,10 @@ public interface ClosetFacade {
 	
 	void insertAuctionProduct(Auction auction);
 	Auction getAuctionDetail(String productId);
-	
-	int countPeopleNum(int productId);
-	Meet getMeetDetail(int meetId);
-	List<Account> getMeetList(int productId);
+//	
+//	int countPeopleNum(int productId);
+//	Meet getMeetDetail(int meetId);
+//	List<Account> getMeetList(int productId);
   
 	List<Category> getCategoryList();
 	Category getCategory(String categoryId);

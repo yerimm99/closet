@@ -9,7 +9,7 @@ import com.ssp.closet.dao.AccountDao;
 import com.ssp.closet.dao.mybatis.mapper.AccountMapper;
 import com.ssp.closet.dto.Account;
 
-
+@Repository
 public class MybatisAccountDao implements AccountDao {
 
 	@Autowired

@@ -17,13 +17,13 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("index.do").setViewName("index");
+		registry.addViewController("/index").setViewName("index");
 	}
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(interceptor)
-				.addPathPatterns("/account/updateForm.do");		
+				.addPathPatterns("/auction/auctionForm.do");		
 	}
 	
 }

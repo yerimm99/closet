@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Repository;
 
 import com.ssp.closet.dao.mybatis.mapper.BidMapper;
 import com.ssp.closet.dto.Bid;
 
+@Repository
 public class MybatisBidDao {
 	
 	@Autowired
