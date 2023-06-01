@@ -16,13 +16,8 @@ spring:
   mvc:  
     view:             # JSP views
       prefix: /WEB-INF/jsp/
-<<<<<<< HEAD
       suffix: .jsp
-      
-=======
-      suffix: .jsp    
-  
->>>>>>> branch 'develop' of https://github.com/yerimm99/ssd_closet.git
+
   jpa:
     database: oracle
     database-platform: org.hibernate.dialect.Oracle10gDialect
@@ -54,8 +49,4 @@ logging:
         hibernate: INFO     
   
 server:
-<<<<<<< HEAD
-  port: 8090
-=======
   port: 8011
->>>>>>> branch 'develop' of https://github.com/yerimm99/ssd_closet.git
