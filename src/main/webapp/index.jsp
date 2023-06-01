@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
     
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="EUC-KR">
-	<title>¸ŞÀÎ ÆäÀÌÁö</title>
+	<title>ë©”ì¸ í˜ì´ì§€</title>
 	<style type = "text/css">
 		body{margin:0}
 		.event{margin:10px 0px 0px 0px;background-color:gray;width:100%;height:300px}
@@ -13,9 +12,9 @@
 	</style>
 </head>
 <body>
-	<!-- ¸Ş´º¹Ù -->
+	<!-- ë©”ë‰´ë°” -->
 	<jsp:include page = "menu.jsp"/>
-	<!-- ÀÌº¥Æ® ¹è³Ê -->
+	<!-- ì´ë²¤íŠ¸ ë°°ë„ˆ -->
 	<div class="event">
 	</div>
 	<div class = "layout">
