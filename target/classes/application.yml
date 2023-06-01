@@ -15,7 +15,7 @@ spring:
 #      poolName: HikariPool          
   mvc:  
     view:             # JSP views
-      prefix: /webapp
+      prefix: /webapp/jsp
       suffix: .jsp
       
   jpa:
