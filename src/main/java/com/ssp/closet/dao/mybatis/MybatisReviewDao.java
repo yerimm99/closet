@@ -2,12 +2,16 @@ package com.ssp.closet.dao.mybatis;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import com.ssp.closet.dao.ReviewDao;
 import com.ssp.closet.dao.mybatis.mapper.ReviewMapper;
 import com.ssp.closet.dto.Review;
 
+@Repository
 public class MybatisReviewDao implements ReviewDao {
-	
+	@Autowired
 	private ReviewMapper reviewMapper;
 
 	@Override
