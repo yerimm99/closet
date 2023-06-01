@@ -19,7 +19,7 @@ public interface ClosetFacade {
 	List<Product> getProductList();
 	Product getProductDetail(int productId);
 	
-	void insertAuctionProduct(Auction auction);
+	void insertAuction(Auction auction);
 	Auction getAuctionDetail(String productId);
 //	
 //	int countPeopleNum(int productId);
