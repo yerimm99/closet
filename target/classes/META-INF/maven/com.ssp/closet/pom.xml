@@ -16,7 +16,7 @@
 	
 	<properties>
 		<java.version>1.8</java.version>
-		<ojdbc.path>C:/Oracle/ojdbc8-full</ojdbc.path>
+		<ojdbc.path>/Users/Oracle/ojdbc8-full</ojdbc.path>
 	</properties>
 	 
 	<dependencies>
