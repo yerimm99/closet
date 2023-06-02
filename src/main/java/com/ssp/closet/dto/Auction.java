@@ -9,8 +9,6 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SecondaryTable;
 @SuppressWarnings("serial")
 @Entity
-@SecondaryTable(name="Bid", 
-pkJoinColumns=@PrimaryKeyJoinColumn(name="productId", referencedColumnName="productId"))
 public class Auction extends Product {
 	
 	@Id
@@ -22,9 +20,6 @@ public class Auction extends Product {
 	private int used;
 	private String picture1;
 	private String picture2;
-	@OneToOne(cascade=CascadeType.ALL)
-	@PrimaryKeyJoinColumn(name="userId")
-	private Bid bid;
 	
 	public int getProductId() {
 		return productId;
