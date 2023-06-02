@@ -8,19 +8,16 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.util.WebUtils;
 
+import com.ssp.closet.dto.Account;
+import com.ssp.closet.service.AuctionFormValidator;
 import com.ssp.closet.service.ClosetFacade;
 
-//validator 빼고 일단 완성 
 @Controller
 @RequestMapping({"/auction/registerForm.do", "/auction/editAuction.do"})
 public class AuctionFormController {
@@ -32,11 +29,11 @@ public class AuctionFormController {
 	@Autowired
 	private ClosetFacade closet;
 	
-//	@Autowired
-//	private AuctionFormValidator validator;
-//	public void setValidator(AuctionFormValidator validator) {
-//		this.validator = validator;
-//	}
+	@Autowired
+	private AuctionFormValidator validator;
+	public void setValidator(AuctionFormValidator validator) {
+		this.validator = validator;
+	}
 	
 	@ModelAttribute("auctionForm")
 	public AuctionForm createAuctionForm() {
@@ -64,9 +61,14 @@ public class AuctionFormController {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public String onSubmit( //auction 등록 
-			HttpServletRequest request, //HttpSession session, 세션 사용? 
+			HttpServletRequest request, HttpSession session, //세션 사용? 
 			@ModelAttribute("auctionForm") AuctionForm auctionForm,
 			BindingResult result) throws Exception {
+		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
+		validator.validateAuctionForm(auctionForm.getAuction(), result);
+		if (result.hasErrors()) return "fromViewName";
+		Account account = closet.getAccount(userSession.getAccount().getUserId());
+		auctionForm.getAuction().initAuction(account);
 		closet.insertAuction(auctionForm.getAuction()); //등록 
 		return successViewName;
 		

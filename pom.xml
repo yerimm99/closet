@@ -54,8 +54,13 @@
 		<dependency>
 			<groupId>com.oracle.database.jdbc</groupId>
 			<artifactId>ojdbc8</artifactId>
+			<version>19.3.0.0</version>
 			<scope>runtime</scope>
 			<exclusions>
+				<exclusion>
+                    <groupId>com.oracle.database.jdbc</groupId>
+                    <artifactId>ucp</artifactId>
+                </exclusion>
 				<exclusion>
 					<groupId>com.oracle.database.ha</groupId>
 					<artifactId>simplefan</artifactId>
@@ -65,22 +70,30 @@
 					<artifactId>ons</artifactId>
 				</exclusion>
 			</exclusions>
-		</dependency>	
+		</dependency>
+		<dependency>
+            <groupId>com.oracle.database.jdbc</groupId>
+            <artifactId>ucp</artifactId>
+            <version>19.3.0.0</version>
+        </dependency>	
 		<dependency>
 		    <groupId>com.oracle.database.security</groupId>
 		    <artifactId>oraclepki</artifactId>
+		    <version>19.3.0.0</version>
 			<!--<scope>system</scope>
             <systemPath>${ojdbc.path}/oraclepki.jar</systemPath>-->
 		</dependency>	
   		<dependency>
 		    <groupId>com.oracle.database.security</groupId>
 		    <artifactId>osdt_cert</artifactId>
+		    <version>19.3.0.0</version>
 			<!--<scope>system</scope>
             <systemPath>${ojdbc.path}/osdt_cert.jar</systemPath>-->
 		</dependency>		
 		<dependency>
 		    <groupId>com.oracle.database.security</groupId>
 		    <artifactId>osdt_core</artifactId>
+		    <version>19.3.0.0</version>
 			<!--<scope>system</scope>
             <systemPath>${ojdbc.path}/osdt_core.jar</systemPath>-->
 		</dependency>		

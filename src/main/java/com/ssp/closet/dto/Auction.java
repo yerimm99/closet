@@ -1,20 +1,18 @@
 package com.ssp.closet.dto;
 
-import javax.persistence.CascadeType;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.SecondaryTable;
 @SuppressWarnings("serial")
 @Entity
 public class Auction extends Product {
 	
 	@Id
-	private int productId;
+	private int productId = super.getProductId();
 	@Column(name="userId")
-	private String suppId;
+	private String bidder;
 	private int startPrice;
 	private int maxPrice;
 	private int used;
@@ -27,11 +25,11 @@ public class Auction extends Product {
 	public void setProductId(int productId) {
 		this.productId = productId;
 	}
-	public String getSuppId() {
-		return suppId;
+	public String getBidder() {
+		return bidder;
 	}
-	public void setUserId(String suppId) {
-		this.suppId = suppId;
+	public void setBidder(String bidder) {
+		this.bidder = bidder;
 	}
 	public int getStartPrice() {
 		return startPrice;
@@ -63,7 +61,14 @@ public class Auction extends Product {
 	public void setPicture2(String picture2) {
 		this.picture2 = picture2;
 	}
-	
+	public void initAuction(Account account) {
+		super.setType(1);
+		super.setStatus(1);
+		super.setRegisterDate(new Date());
+		super.setSuppId(account.getUserId());
+		maxPrice = startPrice;
+
+	  }
 	
 	
 //	public boolean deadline() {

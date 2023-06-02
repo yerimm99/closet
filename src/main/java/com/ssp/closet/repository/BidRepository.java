@@ -30,7 +30,7 @@ public interface BidRepository extends JpaRepository<Bid, Integer>{
 			"where b.bidId = :bidId")
 	void updateFailResult(int bidId); //나눠야 할지 result 값을 받아서 쓰는 걸로 합칠
 	  
-	@Query("select MAX(b.bidPrice) from Bid b, Auction a" + 
+	@Query("select max(b.bidPrice) from Bid b, Auction a " + 
 			"where b.productId = a.productId and b.productId = :productId")
 	int findMaxBidPrice(int productId);		 
 	  

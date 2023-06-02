@@ -23,7 +23,7 @@ public interface ClosetFacade {
 	void insertAuction(Auction auction);
 	Auction getAuctionDetail(int productId);
 	
-	void insertBid(Bid bid);
+	void createBid(Bid bid);
 	void updatePrice(Bid bid);
 	void deleteBid(int bidId);
 	void updateSuccessResult(int productId);

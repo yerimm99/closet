@@ -1,6 +1,7 @@
 package com.ssp.closet.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -12,6 +13,7 @@ import com.ssp.closet.dao.AuctionDao;
 import com.ssp.closet.dao.BookmarkDao;
 import com.ssp.closet.dao.GroupBuyDao;
 import com.ssp.closet.dao.ProductDao;
+import com.ssp.closet.dao.jpa.JpaAuctionDao;
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
 import com.ssp.closet.dto.Bid;
@@ -22,6 +24,7 @@ import com.ssp.closet.dto.Meet;
 import com.ssp.closet.dto.Order;
 import com.ssp.closet.dto.Product;
 import com.ssp.closet.dto.Review;
+import com.ssp.closet.repository.AuctionRepository;
 import com.ssp.closet.repository.BidRepository;
 
 @Service
@@ -47,20 +50,23 @@ public class ClosetImpl implements ClosetFacade{
 	};
 
 	@Autowired
-	@Qualifier("jpaAuctionDao")
-	private AuctionDao auctionDao;
+	private JpaAuctionDao auctionDao;
 
 	public void insertAuction(Auction auction) {
 		auctionDao.insertAuction(auction);
 	};
 	public Auction getAuctionDetail(int productId) {
 		return auctionDao.getAuctionDetail(productId);
+//		String pId = String.valueOf(productId);
+//		Optional<Auction> result = aucRepository.findById(pId);
+//		if (result.isPresent()) return result.get();
+//		return null;
 	};
 	
 	@Autowired
 	private BidRepository bidRepository;
 	
-	public void insertBid(Bid bid) {
+	public void createBid(Bid bid) {
 		bidRepository.save(bid);
 	};
 
