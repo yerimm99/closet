@@ -18,7 +18,7 @@ public class MybatisAuctionDao implements AuctionDao{
 		auctionMapper.insertAuction(auction);
 	};
 
-	public Auction getAuctionDetail(String productId) throws DataAccessException {
+	public Auction getAuctionDetail(int productId) throws DataAccessException {
 		return auctionMapper.getAuctionDetail(productId);
 	};
 

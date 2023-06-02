@@ -1,15 +1,32 @@
 package com.ssp.closet.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Bid {
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@SuppressWarnings("serial")
+@Entity
+public class Bid implements Serializable{
 	
-	int bidId;
-	int productId;
-	String userId;
-	int bidPrice;
-	int bidResult;
-	Date signDate;
+	@Id
+	//@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int bidId;
+	private int productId;
+	private String userId;
+	private int bidPrice;
+	private int bidResult;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date signDate;
+	@OneToOne(cascade=CascadeType.ALL)
+	@PrimaryKeyJoinColumn(name="userId")
+	private Auction auction;
 	
 	public int getBidId() {
 		return bidId;

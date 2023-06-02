@@ -89,7 +89,9 @@
 			<tr>
 				<td><!-- form:form태그에 file url업로드 기능 없음. requestParam으로 가져가야함 -->
 					최소 1개 최대 4개의 사진을 업로드해주세요
-					<input type = "file" name = "picture1" id = "picture1" multiple>
+					<form:input path = "auction.picture1" placeholder = "사진1" class = "inp"/>
+					<form:input path = "auction.picture2" placeholder = "사진2" class = "inp"/>
+					<!-- <input type = "file" name = "picture1" id = "picture1" multiple> -->
 					<hr>
 				</td>
 			</tr>

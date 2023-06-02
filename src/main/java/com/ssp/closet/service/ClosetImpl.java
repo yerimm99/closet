@@ -14,6 +14,7 @@ import com.ssp.closet.dao.GroupBuyDao;
 import com.ssp.closet.dao.ProductDao;
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
+import com.ssp.closet.dto.Bid;
 import com.ssp.closet.dto.Bookmark;
 import com.ssp.closet.dto.Category;
 import com.ssp.closet.dto.GroupBuy;
@@ -21,6 +22,7 @@ import com.ssp.closet.dto.Meet;
 import com.ssp.closet.dto.Order;
 import com.ssp.closet.dto.Product;
 import com.ssp.closet.dto.Review;
+import com.ssp.closet.repository.BidRepository;
 
 @Service
 @Transactional
@@ -51,9 +53,41 @@ public class ClosetImpl implements ClosetFacade{
 	public void insertAuction(Auction auction) {
 		auctionDao.insertAuction(auction);
 	};
-	public Auction getAuctionDetail(String productId) {
+	public Auction getAuctionDetail(int productId) {
 		return auctionDao.getAuctionDetail(productId);
 	};
+	
+	@Autowired
+	private BidRepository bidRepository;
+	
+	public void insertBid(Bid bid) {
+		bidRepository.save(bid);
+	};
+
+	public void updatePrice(Bid bid) {
+		bidRepository.updateBidPrice(bid.getBidId(), bid.getBidPrice());
+	};
+
+	public void deleteBid(int bidId) {
+		bidRepository.deleteByBidId(bidId);
+	};
+	  
+	public void updateSuccessResult(int productId) {
+		bidRepository.updateSuccessResult(productId);
+	};
+	  
+	public void updateFailResult(int productId) {
+		bidRepository.updateFailResult(productId);
+	};
+	  
+	public int findMaxPrice(int productId) {
+		return bidRepository.findMaxBidPrice(productId);
+	};		 
+	  
+	public List<Bid> getBidResultList(String userId) {
+		return bidRepository.getByUserId(userId);
+	};
+
 
 	@Autowired
 	private BookmarkDao bookmarkDao;

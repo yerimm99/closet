@@ -8,6 +8,6 @@ public interface AuctionDao {
 	
 	void insertAuction(Auction auction) throws DataAccessException;
 
-	Auction getAuctionDetail(String productId) throws DataAccessException;
+	Auction getAuctionDetail(int productId) throws DataAccessException;
 
 }

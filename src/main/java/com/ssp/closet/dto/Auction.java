@@ -1,5 +1,6 @@
 package com.ssp.closet.dto;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -7,17 +8,19 @@ import javax.persistence.SecondaryTable;
 
 @SuppressWarnings("serial")
 @Entity
-@SecondaryTable(name="PRODUCT", 
-pkJoinColumns=@PrimaryKeyJoinColumn(
-	name="productId", referencedColumnName="productId"))
+@SecondaryTable(name="Bid", 
+pkJoinColumns=@PrimaryKeyJoinColumn(name="productId", referencedColumnName="productId"))
 public class Auction extends Product {
 	
 	@Id
 	private int productId;
-	private String userId;
+	@Column(name="userId")
+	private String suppId;
 	private int startPrice;
 	private int maxPrice;
 	private int used;
+	private String picture1;
+	private String picture2;
 	
 	public int getProductId() {
 		return productId;
@@ -25,11 +28,11 @@ public class Auction extends Product {
 	public void setProductId(int productId) {
 		this.productId = productId;
 	}
-	public String getUserId() {
-		return userId;
+	public String getSuppId() {
+		return suppId;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUserId(String suppId) {
+		this.suppId = suppId;
 	}
 	public int getStartPrice() {
 		return startPrice;
@@ -48,6 +51,18 @@ public class Auction extends Product {
 	}
 	public void setUsed(int used) {
 		this.used = used;
+	}
+	public String getPicture1() {
+		return picture1;
+	}
+	public void setPicture1(String picture1) {
+		this.picture1 = picture1;
+	}
+	public String getPicture2() {
+		return picture2;
+	}
+	public void setPicture2(String picture2) {
+		this.picture2 = picture2;
 	}
 	
 	

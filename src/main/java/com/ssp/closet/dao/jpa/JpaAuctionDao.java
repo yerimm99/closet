@@ -25,7 +25,7 @@ public class JpaAuctionDao implements AuctionDao{
 		em.persist(auction);
 	};
 
-	public Auction getAuctionDetail(String productId) throws DataAccessException {
+	public Auction getAuctionDetail(int productId) throws DataAccessException {
 		return em.find(Auction.class, productId);
 	};
 
