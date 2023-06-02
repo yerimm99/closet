@@ -26,7 +26,7 @@
 	<div class = "layout">
 		<div class = "logo">&amp;closet</div>
 		<div class = "navitool">
-			<div class = "navi"><a href="<c:url value='/index/auction' />">경매</a></div>
+			<div class = "navi"><a href="<c:url value="/closet/auction.do" />">경매</a></div>
 			<div class = "navi"><a href="<c:url value='/index/groupby' />">공동구매</a></div>
 			<div class = "navi"><a href="<c:url value='/index/best' />">BEST</a></div>
 			<div class = "navi"><a href="<c:url value='/index/search' />">검색</a></div>

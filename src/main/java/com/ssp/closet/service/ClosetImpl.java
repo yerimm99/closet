@@ -48,7 +48,7 @@ public class ClosetImpl implements ClosetFacade{
 	@Qualifier("jpaAuctionDao")
 	private AuctionDao auctionDao;
 
-	public void insertAuctionProduct(Auction auction) {
+	public void insertAuction(Auction auction) {
 		auctionDao.insertAuction(auction);
 	};
 	public Auction getAuctionDetail(String productId) {
