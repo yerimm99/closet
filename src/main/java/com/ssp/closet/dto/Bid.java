@@ -24,9 +24,7 @@ public class Bid implements Serializable{
 	private int bidResult;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date signDate;
-	@OneToOne(cascade=CascadeType.ALL)
-	@PrimaryKeyJoinColumn(name="userId")
-	private Auction auction;
+
 	
 	public int getBidId() {
 		return bidId;

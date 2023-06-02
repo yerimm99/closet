@@ -1,11 +1,12 @@
 package com.ssp.closet.dto;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SecondaryTable;
-
 @SuppressWarnings("serial")
 @Entity
 @SecondaryTable(name="Bid", 
@@ -21,6 +22,9 @@ public class Auction extends Product {
 	private int used;
 	private String picture1;
 	private String picture2;
+	@OneToOne(cascade=CascadeType.ALL)
+	@PrimaryKeyJoinColumn(name="userId")
+	private Bid bid;
 	
 	public int getProductId() {
 		return productId;
