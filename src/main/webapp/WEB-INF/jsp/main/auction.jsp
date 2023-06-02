@@ -31,12 +31,12 @@
 	<hr>
 	
 	<div class = "layout">
-	   <%-- <div> --%>
+		<div>
 			<!-- 판매하기 기능 -->
 			<div class = "sell">
 				<a href='<c:url value="/auction/registerForm.do" />'>판매하기</a>
 			</div>
-<%-- 			<!-- 카테고리 -->
+ 			<!-- 카테고리 -->
 			<div class = "category">
 				<a href="<c:url value='/auction/list?categoryId=전체' />">전체</a>
 				<a href="<c:url value='/auction/list?categoryId=신발' />">신발</a>
@@ -44,7 +44,7 @@
 				<a href="<c:url value='/auction/list?categoryId=상의' />">상의</a>
 				<a href="<c:url value='/auction/list?categoryId=하의' />">하의</a>
 				<a href="<c:url value='/auction/list?categoryId=가방' />">가방</a>
-				<a href="<c:url value='/auction/list?categoryId=지갑' />">지갑</a>
+				<a href="<c:url value='/auction/liWst?categoryId=지갑' />">지갑</a>
 				<a href="<c:url value='/auction/list?categoryId=시계' />">시계</a>
 				<a href="<c:url value='/auction/list?categoryId=패션잡화' />">패션잡화</a>
 			</div>
@@ -67,10 +67,6 @@
 				<input type = "checkbox" name = "categoryId" value = "패션잡화">패션잡화<br>
 			</form>
 		</div>
-		<!-- 해당 상품 리스트 -->
-		<div class = "list">
-			<jsp:include page = "../auction/list.jsp"/>
-		</div> --%>
 	</div>
 </body>
 </html>

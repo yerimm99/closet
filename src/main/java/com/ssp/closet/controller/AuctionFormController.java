@@ -1,5 +1,8 @@
 package com.ssp.closet.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -43,6 +46,20 @@ public class AuctionFormController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String showForm() {
 		return formViewName;
+	}
+	
+	@ModelAttribute("categories")
+	public List<String> referenceData2() {
+		ArrayList<String> categories = new ArrayList<String>();
+		categories.add("신발");
+		categories.add("아우터");
+		categories.add("상의");
+		categories.add("하의");
+		categories.add("가방");
+		categories.add("지갑");
+		categories.add("시계");
+		categories.add("패션잡화");
+		return categories;			
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
