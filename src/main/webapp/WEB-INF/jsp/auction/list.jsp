@@ -20,7 +20,7 @@
 	    	<tr>
 	    </c:if>
 	    	<td>
-	    		<a href = "<c:url value='/auction/detail'>
+	    		<a href = "<c:url value='/auction/detail.do'>
 									<c:param name = 'productId' value='${prod.productId}' />
 									</c:url>">
 		      		<img src="<c:url value='${prod.picture1}'/>" width="250px" height="250px"/><br>
