@@ -39,9 +39,9 @@ public class SignonController {
 		}
 		else {
 			UserSession userSession = new UserSession(account);
-			PagedListHolder<Product> myList = new PagedListHolder<Product>(this.closetStore.getProductListByCategory(account.getFavouriteCategoryId()));
-			myList.setPageSize(4);
-			userSession.setMyList(myList);
+			//PagedListHolder<Product> myList = new PagedListHolder<Product>(this.closetStore.getProductListByCategory(account.getFavouriteCategoryId()));
+			//myList.setPageSize(4);
+			//userSession.setMyList(myList);
 			model.addAttribute("userSession", userSession);
 			if (forwardAction != null) 
 				return new ModelAndView("redirect:" + forwardAction);
