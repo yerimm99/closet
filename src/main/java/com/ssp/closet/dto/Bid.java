@@ -60,9 +60,9 @@ public class Bid implements Serializable{
 		this.signDate = signDate;
 	}
 	
-	public void initBid(Account account, Auction auction) {
+	public void initBid(Account account, int pId) {
 		userId = account.getUserId();
-		productId = auction.getProductId();
+		productId = pId;
 		bidResult = 0;
 		signDate = new Date();
 	}

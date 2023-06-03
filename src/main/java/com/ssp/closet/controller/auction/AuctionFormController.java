@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ModelAndViewDefiningException;
@@ -23,6 +24,7 @@ import com.ssp.closet.service.AuctionFormValidator;
 import com.ssp.closet.service.ClosetFacade;
 
 @Controller
+@SessionAttributes("auctionForm")
 public class AuctionFormController {
 	
 //	@Value("auction/registerForm")
@@ -64,7 +66,7 @@ public class AuctionFormController {
 			@ModelAttribute("auctionForm") AuctionForm auctionForm
 			) throws ModelAndViewDefiningException {
 		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
-		if (userSession != null) {	// edit an existing account
+		if (userSession != null) {	
 			Account account = closet.getAccount(userSession.getAccount().getUserId());
 			auctionForm.getAuction().initAuction(account);
 			return "auction/registerForm";

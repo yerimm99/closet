@@ -10,6 +10,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.ModelAndViewDefiningException;
 
 import com.ssp.closet.controller.UserSession;
 import com.ssp.closet.dto.Account;
@@ -17,6 +21,7 @@ import com.ssp.closet.dto.Auction;
 import com.ssp.closet.service.ClosetFacade;
 
 @Controller
+@SessionAttributes("bidForm")
 public class BidFormController {
 	@Autowired
 	private ClosetFacade closet;
@@ -25,23 +30,34 @@ public class BidFormController {
 	public void setCloset(ClosetFacade closet) {
 		this.closet = closet;
 	}
-	@RequestMapping("/auction/auctionForm.do")
-	public String onSubmit( //Bid 등록 
-			HttpServletRequest request, HttpSession session, //세션 사용? 
-			@RequestParam("productid") int productId,
+	
+	@RequestMapping("/bid/newBid.do")
+	public String initNewBid(HttpServletRequest request,
 			@ModelAttribute("bidForm") BidForm bidForm,
-			BindingResult result) throws Exception {
+			@RequestParam("productid") int productId
+			) throws ModelAndViewDefiningException {
 		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
-		
-		if (result.hasErrors()) return "auction/auctionForm";
-		
-		Account account = closet.getAccount(userSession.getAccount().getUserId());
-		Auction auction = closet.getAuctionDetail(productId);
-		bidForm.getBid().initBid(account, auction);
-		closet.createBid(bidForm.getBid()); //등록 
+		if (userSession != null) {	
+			Account account = closet.getAccount(userSession.getAccount().getUserId());
+			bidForm.getBid().initBid(account, productId);
+			return "bid/bidForm";
+		} else {	
+			return "redirect: /account/login";
+		}	
+	
+	}
+	
+	@RequestMapping("/bid/confirmBid.do")
+	protected ModelAndView confirmBid( //Bid 등록 
+			@ModelAttribute("bidForm") BidForm bidForm, 
+			SessionStatus status) throws Exception {
 
-		session.setAttribute("userSession", userSession);
-		return "main/auction";
+		//if (result.hasErrors()) return "bid/bidForm";
+		closet.createBid(bidForm.getBid()); //등록 
+		ModelAndView mav = new ModelAndView("auction/detail");
+		//mav.addObject("product", auctionForm.getAuction());
+		status.setComplete();  // remove session
+		return mav;
 	}
 	
 	@RequestMapping("/auction/auctionPriceUpdateForm.do")
