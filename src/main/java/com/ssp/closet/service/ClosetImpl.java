@@ -45,25 +45,22 @@ public class ClosetImpl implements ClosetFacade{
 
 	public void updateProduct(int productId) {
 		productDao.updateProduct(productId);
-	};
+	}
 	public void deleteProduct(int productId) {
 		productDao.deleteProduct(productId);
-	};
+	}
 
 	@Autowired
 	private AuctionRepository aucRepository;
 
 	public void insertAuction(Auction auction) {
 		aucRepository.save(auction);
-	};
-	public Auction getAuctionDetail(int productId) {
-		String pId = String.valueOf(productId);
-		Optional<Auction> result = aucRepository.findById(pId);
-		if (result.isPresent()) return result.get();
-		return null;
 	}
-	public void updatePrice(Auction auction) {
-		aucRepository.updateMaxPrice(auction);
+	public Auction getAuctionDetail(int productId) {
+		return aucRepository.getReferenceById(productId); 
+	}
+	public void updateMaxPrice(Auction auction) {
+		aucRepository.updatePrice(auction.getProductId(), findMaxPrice(auction.getProductId()));
 	}
 	
 	@Autowired
@@ -71,31 +68,35 @@ public class ClosetImpl implements ClosetFacade{
 	
 	public void createBid(Bid bid) {
 		bidRepository.save(bid);
-	};
+	}
 
-	public void updatePrice(int bidId, int bidPrice) {
-		bidRepository.updateBidPrice(bidId, bidPrice);
-	};
+	public void updateBidPrice(int bidId, int newPrice) {
+		bidRepository.updatePrice(bidId, newPrice);
+	}
 
 	public void deleteBid(int bidId) {
 		bidRepository.deleteByBidId(bidId);
-	};
+	}
 	  
 	public void updateSuccessResult(int productId) {
 		bidRepository.updateSuccessResult(productId);
-	};
+	}
 	  
 	public void updateFailResult(int productId) {
 		bidRepository.updateFailResult(productId);
-	};
+	}
 	  
 	public int findMaxPrice(int productId) {
 		return bidRepository.findMaxBidPrice(productId);
-	};		 
+	}	 
 	  
 	public List<Bid> getBidResultList(String userId) {
-		return bidRepository.getByUserId(userId);
-	};
+		return bidRepository.findResultByUserId(userId);
+	}
+	
+	public Bid getBid(String userId) {
+		return bidRepository.findByUserId(userId);
+	}
 
 
 	@Autowired
