@@ -20,10 +20,11 @@
 		FROM DUAL;
 	</insert>
 
-  <select id="getAuctionDetail" resultType="Auction">
+    <select id="getAuctionDetail" resultType="Auction">
 		SELECT p.PRODUCTID, p.NAME, p.COLOR, p.SIZE, p.DESCRIPTION, p.CATEGORYID, a.STARTPRICE, a.USED
 		FROM PRODUCT p, AUCTION a
-		WHERE PRODUCTID = #{productId} AND p.productId = g.productId
-	</select>
+		WHERE PRODUCTID = #{productId} AND p.productId = a.productId
+    </select>
+    
   
  </mapper>

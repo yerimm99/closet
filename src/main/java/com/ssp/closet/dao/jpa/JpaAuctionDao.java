@@ -23,11 +23,9 @@ public class JpaAuctionDao implements AuctionDao{
 		int newProductId = sequenceDao.getNextId("a");
     	auction.setProductId(newProductId);
 		em.persist(auction);
-	};
+	}
 
 	public Auction getAuctionDetail(int productId) throws DataAccessException {
 		return em.find(Auction.class, productId);
-	};
-
-	
+	}
 }

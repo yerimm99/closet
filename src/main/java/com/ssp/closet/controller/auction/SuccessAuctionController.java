@@ -1,4 +1,4 @@
-package com.ssp.closet.controller;
+package com.ssp.closet.controller.auction;
 
 public class SuccessAuctionController {
 	

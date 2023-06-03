@@ -24,7 +24,7 @@ public interface ClosetFacade {
 	Auction getAuctionDetail(int productId);
 	
 	void createBid(Bid bid);
-	void updatePrice(Bid bid);
+	void updatePrice(int bidId, int bidPrice);
 	void deleteBid(int bidId);
 	void updateSuccessResult(int productId);
 	void updateFailResult(int productId);

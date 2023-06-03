@@ -70,8 +70,8 @@ public class ClosetImpl implements ClosetFacade{
 		bidRepository.save(bid);
 	};
 
-	public void updatePrice(Bid bid) {
-		bidRepository.updateBidPrice(bid.getBidId(), bid.getBidPrice());
+	public void updatePrice(int bidId, int bidPrice) {
+		bidRepository.updateBidPrice(bidId, bidPrice);
 	};
 
 	public void deleteBid(int bidId) {

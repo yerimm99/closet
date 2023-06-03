@@ -1,4 +1,4 @@
-package com.ssp.closet.controller;
+package com.ssp.closet.controller.auction;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;

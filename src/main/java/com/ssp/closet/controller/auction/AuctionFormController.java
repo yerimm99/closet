@@ -1,4 +1,4 @@
-package com.ssp.closet.controller;
+package com.ssp.closet.controller.auction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.ssp.closet.controller.UserSession;
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.service.AuctionFormValidator;
 import com.ssp.closet.service.ClosetFacade;
@@ -65,11 +66,17 @@ public class AuctionFormController {
 			@ModelAttribute("auctionForm") AuctionForm auctionForm,
 			BindingResult result) throws Exception {
 		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
+		
 		validator.validateAuctionForm(auctionForm.getAuction(), result);
+		
 		if (result.hasErrors()) return "fromViewName";
+		
 		Account account = closet.getAccount(userSession.getAccount().getUserId());
 		auctionForm.getAuction().initAuction(account);
+		
 		closet.insertAuction(auctionForm.getAuction()); //등록 
+
+		session.setAttribute("userSession", userSession);
 		return successViewName;
 		
 //		if (result.hasErrors()) return formViewName; // error 발생시 이동할 화면? 수정 필요..
