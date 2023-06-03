@@ -3,6 +3,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<c:set var="targetUrl"><c:url value="/auction/confirmAuction.do" /></c:set>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +28,7 @@
 	<hr>
 	
 	<div class = "layout">
-		<form:form modelAttribute = "auctionForm" method="POST" action="<c:url value='/auction/registerForm' />">
+		<form:form modelAttribute = "auctionForm" action="${targetUrl}" method="post" >
 		<table>
 			<tr>
 				<td style="text-align:center;font-size:24px">경매 상품 등록</td>
