@@ -1,10 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="EUC-KR">
-	<title>°øµ¿±¸¸Å ÆäÀÌÁö</title>
+	<title>ê³µë™êµ¬ë§¤ íŽ˜ì´ì§€</title>
 	<style type = "text/css">
 		body{margin:0}
 		.layout{margin:0px auto;width:1180px;padding:10px}
@@ -25,48 +26,48 @@
 	</style>
 </head>
 <body>
-	<!-- ¸Þ´º¹Ù -->
+	<!-- ë©”ë‰´ë°” -->
 	<jsp:include page = "../menu.jsp"/>
 	<hr>
 	
 	<div class = "layout">
 		<div>
-			<!-- ¹°°Ç µî·Ï ±â´É -->
+			<!-- ë¬¼ê±´ ë“±ë¡ ê¸°ëŠ¥ -->
 			<div class = "sell">
-				<a href="<c:url value='/auction/registerForm' />">µî·ÏÇÏ±â</a>
+				<a href="<c:url value='/auction/registerForm' />">ë“±ë¡í•˜ê¸°</a>
 			</div>
-			<!-- Ä«Å×°í¸® -->
+			<!-- ì¹´í…Œê³ ë¦¬ -->
 			<div class = "category">
-				<a href="<c:url value='/auction/list?categoryId=ÀüÃ¼' />">ÀüÃ¼</a>
-				<a href="<c:url value='/auction/list?categoryId=½Å¹ß' />">½Å¹ß</a>
-				<a href="<c:url value='/auction/list?categoryId=¾Æ¿ìÅÍ' />">¾Æ¿ìÅÍ</a>
-				<a href="<c:url value='/auction/list?categoryId=»óÀÇ' />">»óÀÇ</a>
-				<a href="<c:url value='/auction/list?categoryId=ÇÏÀÇ' />">ÇÏÀÇ</a>
-				<a href="<c:url value='/auction/list?categoryId=°¡¹æ' />">°¡¹æ</a>
-				<a href="<c:url value='/auction/list?categoryId=Áö°©' />">Áö°©</a>
-				<a href="<c:url value='/auction/list?categoryId=½Ã°è' />">½Ã°è</a>
-				<a href="<c:url value='/auction/list?categoryId=ÆÐ¼ÇÀâÈ­' />">ÆÐ¼ÇÀâÈ­</a>
+				<a href="<c:url value='/auction/list?categoryId=ì „ì²´' />">ì „ì²´</a>
+				<a href="<c:url value='/auction/list?categoryId=ì‹ ë°œ' />">ì‹ ë°œ</a>
+				<a href="<c:url value='/auction/list?categoryId=ì•„ìš°í„°' />">ì•„ìš°í„°</a>
+				<a href="<c:url value='/auction/list?categoryId=ìƒì˜' />">ìƒì˜</a>
+				<a href="<c:url value='/auction/list?categoryId=í•˜ì˜' />">í•˜ì˜</a>
+				<a href="<c:url value='/auction/list?categoryId=ê°€ë°©' />">ê°€ë°©</a>
+				<a href="<c:url value='/auction/list?categoryId=ì§€ê°‘' />">ì§€ê°‘</a>
+				<a href="<c:url value='/auction/list?categoryId=ì‹œê³„' />">ì‹œê³„</a>
+				<a href="<c:url value='/auction/list?categoryId=íŒ¨ì…˜ìž¡í™”' />">íŒ¨ì…˜ìž¡í™”</a>
 			</div>
 		</div>
-		<!-- Áßº¹¼±ÅÃ°¡´É -->
+		<!-- ì¤‘ë³µì„ íƒê°€ëŠ¥ -->
 		<div class = "categories">
 			<script>
 				document.frm.submit();
 			</script>
 			<form class = "cFrom" method = "POST" action="<c:url value='/auction/list' />">
-				<label>Ä«Å×°í¸®</label><br><br>
-				<input type = "checkbox" name = "categoryId" value = "ÀüÃ¼">ÀüÃ¼<br>
-				<input type = "checkbox" name = "categoryId" value = "½Å¹ß">½Å¹ß<br>
-				<input type = "checkbox" name = "categoryId" value = "¾Æ¿ìÅÍ">¾Æ¿ìÅÍ<br>
-				<input type = "checkbox" name = "categoryId" value = "»óÀÇ">»óÀÇ<br>
-				<input type = "checkbox" name = "categoryId" value = "ÇÏÀÇ">ÇÏÀÇ<br>
-				<input type = "checkbox" name = "categoryId" value = "°¡¹æ">°¡¹æ<br>
-				<input type = "checkbox" name = "categoryId" value = "Áö°©">Áö°©<br>
-				<input type = "checkbox" name = "categoryId" value = "½Ã°è">½Ã°è<br>
-				<input type = "checkbox" name = "categoryId" value = "ÆÐ¼ÇÀâÈ­">ÆÐ¼ÇÀâÈ­<br>
+				<label>ì¹´í…Œê³ ë¦¬</label><br><br>
+				<input type = "checkbox" name = "categoryId" value = "ì „ì²´">ì „ì²´<br>
+				<input type = "checkbox" name = "categoryId" value = "ì‹ ë°œ">ì‹ ë°œ<br>
+				<input type = "checkbox" name = "categoryId" value = "ì•„ìš°í„°">ì•„ìš°í„°<br>
+				<input type = "checkbox" name = "categoryId" value = "ìƒì˜">ìƒì˜<br>
+				<input type = "checkbox" name = "categoryId" value = "í•˜ì˜">í•˜ì˜<br>
+				<input type = "checkbox" name = "categoryId" value = "ê°€ë°©">ê°€ë°©<br>
+				<input type = "checkbox" name = "categoryId" value = "ì§€ê°‘">ì§€ê°‘<br>
+				<input type = "checkbox" name = "categoryId" value = "ì‹œê³„">ì‹œê³„<br>
+				<input type = "checkbox" name = "categoryId" value = "íŒ¨ì…˜ìž¡í™”">íŒ¨ì…˜ìž¡í™”<br>
 			</form>
 		</div>
-		<!-- ÇØ´ç »óÇ° ¸®½ºÆ® -->
+		<!-- í•´ë‹¹ ìƒí’ˆ ë¦¬ìŠ¤íŠ¸ -->
 		<div class = "list">
 			<jsp:include page = "../groupbuy/list.jsp"/>
 		</div>

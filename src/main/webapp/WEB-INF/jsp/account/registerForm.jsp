@@ -79,7 +79,7 @@
 	
 	<div class = "layout">
 		<h3>회원가입</h3>
-		<form:form modelAttribute = "account">
+		<form:form modelAttribute = "accountForm" action = "POST" action="<c:url value='/account/registerForm.do' />">
 		<table>
 			<tr>
 				<td>이름</td>
@@ -89,26 +89,24 @@
 				<td>아이디</td>
 				<td>
 					<form:input path = "userId"/>
-					<form:errors path = "userId"/>
 				</td>
 			</tr>
 			<tr>
 				<td>비밀번호</td>
 				<td>
 					<form:input path = "password" showPassword = "false"/>
-					<form:errors path = "password"/>
 				</td>
 			</tr>
 			<tr>
 				<td>주소</td>
 				<td>
-					<form:input path = "address" placeholder = "우편번호"/>
+					<input type="text" id="sample4_postcode" placeholder="우편번호">
 					<input type = "button" onclick = "sample4_execDaumPostcode()"
 						value = "우편번호 찾기"/><br>
-					<input type = "text" id = "sample4_roadAddress" placeholder = "도로명주소"/>
+					<input type = "text" id = "sample4_roadAddress" placeholder = "도로명주소" name = "address1"/>
 					<input type = "text" id = "sample4_jibunAddress" placeholder = "지번주소"/>
 					<span id = "guide" style = "color:#999;display:none"></span>
-					<input type = "text" id = "sample4_detailAddress" placeholder = "상세주소"/>
+					<input type = "text" id = "sample4_detailAddress" placeholder = "상세주소" name = "address2"/>
 					<input type = "text" id = "sample4_extraAddress" placeholder = "참고항목"/>
 				</td>
 				
@@ -117,14 +115,12 @@
 				<td>전화번호</td>
 				<td>
 					<form:input path = "phone"/>
-					<form:errors path = "phone"/>
 				</td>
 			</tr>
 			<tr>
 				<td>이메일</td>
 				<td>
 					<form:input path = "email"/>
-					<form:errors path = "email"/>
 				</td>
 			</tr>
 		</table>

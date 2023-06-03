@@ -25,7 +25,11 @@
 	
 	<div class = "layout">
 		<!-- 로그인 폼 -->
-		<form name="form" method="POST" action="<c:url value='/account/login' />">
+		<form name="form" method="POST" action="<c:url value='/account/SignonForm.do' />">
+			<c:if test="${!empty signonForwardAction}">
+      			<input type="hidden" name="forwardAction"
+        			value='<c:url value="${signonForwardAction}"/>' />
+    		</c:if>
 			<table>
 				<tr>
 					<td style="text-align:center;font-size:24px">로그인</td>
