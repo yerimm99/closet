@@ -46,38 +46,21 @@
 	<div class = "layout">
 		<!-- 상품 메인 사진 및 상세정보 -->
 		<div>
-			<div class="slider">
-				<input type="radio" name="slide" id="slide1" checked>
-				<input type="radio" name="slide" id="slide2">
-				<c:if test="${!empty product.picture3}" >
-        			<input type="radio" name="slide" id="slide3">
-      			</c:if>
-      			<c:if test="${!empty product.picture4}" >
-        			<input type="radio" name="slide" id="slide4">
-      			</c:if>
-      			
-				<ul id="imgholder" class="imgs">
-					<li><img src="<c:url value='${product.picture1}'/>"></li>
-					<li><img src="<c:url value='${product.picture2}'/>"></li>
-					<c:if test="${!empty product.picture3}" >
-						<li><img src="<c:url value='${product.picture3}'/>"></li>
-					</c:if>
-					<c:if test="${!empty product.picture4}" >
-						<li><img src="<c:url value='${product.picture4}'/>"></li>
-					</c:if>
-				</ul>
-				<div class="bullets">
-					<label for="slide1">&nbsp;</label>
-					<label for="slide2">&nbsp;</label>
-					<label for="slide3">&nbsp;</label>
-					<label for="slide4">&nbsp;</label>
-				</div>
-			</div>
-			<!-- <div class = "mainImage">
-				<img src="<c:url value='${product.picture1}'/>">
-			</div>-->
 			<div class = "info">
 				<table>
+					<tr>
+						<th>이미지경로</th>
+						<td>
+							${product.picture1}<br>
+							${product.picture2}<br>
+							<c:if test="${!empty product.picture3}" >
+								${product.picture3}<br>
+							</c:if>
+							<c:if test="${!empty product.picture4}" >
+								${product.picture4}<br>
+							</c:if>
+						</td>
+					</tr>
 					<tr>
 						<th>상품명</th>
 						<td>&lt; ${product.used} &gt; ${product.name}</td>
