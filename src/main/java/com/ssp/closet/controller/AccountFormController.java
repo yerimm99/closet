@@ -27,7 +27,7 @@
 //@Controller
 //@RequestMapping({"/account/login.jsp","/account/registerForm.jsp", "/account/updateForm.jsp"})
 //public class AccountFormController { 
-//
+
 //	@Value("EditAccountForm")
 //	private String formViewName;
 //	@Value("index")

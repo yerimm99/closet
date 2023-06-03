@@ -37,13 +37,10 @@ public class BidFormController {
 			@RequestParam("productid") int productId
 			) throws ModelAndViewDefiningException {
 		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
-		if (userSession != null) {	
-			Account account = closet.getAccount(userSession.getAccount().getUserId());
-			bidForm.getBid().initBid(account, productId);
-			return "bid/bidForm";
-		} else {	
-			return "redirect: /account/login";
-		}	
+
+		Account account = closet.getAccount(userSession.getAccount().getUserId());
+		bidForm.getBid().initBid(account, productId);
+		return "bid/bidForm";
 	
 	}
 	
@@ -52,7 +49,6 @@ public class BidFormController {
 			@ModelAttribute("bidForm") BidForm bidForm, 
 			SessionStatus status) throws Exception {
 
-		//if (result.hasErrors()) return "bid/bidForm";
 		closet.createBid(bidForm.getBid()); //등록 
 		ModelAndView mav = new ModelAndView("auction/detail");
 		//mav.addObject("product", auctionForm.getAuction());

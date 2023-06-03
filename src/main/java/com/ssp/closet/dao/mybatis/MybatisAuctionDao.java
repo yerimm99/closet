@@ -21,4 +21,8 @@ public class MybatisAuctionDao implements AuctionDao{
 	public Auction getAuctionDetail(int productId) throws DataAccessException {
 		return auctionMapper.getAuctionDetail(productId);
 	}
+	
+	public void updateMaxPrice(Auction auction) throws DataAccessException {
+		auctionMapper.updateMaxPrice(auction);
+	}
 }

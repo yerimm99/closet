@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.ssp.closet.dao.AuctionDao;
+import com.ssp.closet.dao.BidDao;
 import com.ssp.closet.dao.BookmarkDao;
 import com.ssp.closet.dao.GroupBuyDao;
 import com.ssp.closet.dao.ProductDao;
@@ -50,18 +51,20 @@ public class ClosetImpl implements ClosetFacade{
 	};
 
 	@Autowired
-	private JpaAuctionDao auctionDao;
+	private AuctionRepository aucRepository;
 
 	public void insertAuction(Auction auction) {
-		auctionDao.insertAuction(auction);
+		aucRepository.save(auction);
 	};
 	public Auction getAuctionDetail(int productId) {
-		return auctionDao.getAuctionDetail(productId);
-//		String pId = String.valueOf(productId);
-//		Optional<Auction> result = aucRepository.findById(pId);
-//		if (result.isPresent()) return result.get();
-//		return null;
-	};
+		String pId = String.valueOf(productId);
+		Optional<Auction> result = aucRepository.findById(pId);
+		if (result.isPresent()) return result.get();
+		return null;
+	}
+	public void updatePrice(Auction auction) {
+		aucRepository.updateMaxPrice(auction);
+	}
 	
 	@Autowired
 	private BidRepository bidRepository;

@@ -12,9 +12,9 @@ public interface BidRepository extends JpaRepository<Bid, Integer>{
 	
 	//void insertBid(Bid bid); save(bid)?
 
-	@Query("update Bid b " + 
-			"set b.bidPrice = :bidPrice " +
-			"where b.bidId = :bidId")			// JPQL 이용
+	@Query("update BID b " + 
+			"set b.BIDPRICE = :bidPrice " +
+			"where b.BIDID = :bidId")			// JPQL 이용
 	void updateBidPrice(@Param("bidId")int bidId, @Param("bidPrice")int price);
 
 	//void deleteBid(int bidId);

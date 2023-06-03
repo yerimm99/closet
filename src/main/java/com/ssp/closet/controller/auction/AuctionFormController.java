@@ -65,14 +65,11 @@ public class AuctionFormController {
 	public String initNewAuction(HttpServletRequest request,
 			@ModelAttribute("auctionForm") AuctionForm auctionForm
 			) throws ModelAndViewDefiningException {
-		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
-		if (userSession != null) {	
-			Account account = closet.getAccount(userSession.getAccount().getUserId());
-			auctionForm.getAuction().initAuction(account);
-			return "auction/registerForm";
-		} else {	
-			return "redirect: /account/login";
-		}	
+		
+		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");	
+		Account account = closet.getAccount(userSession.getAccount().getUserId());
+		auctionForm.getAuction().initAuction(account);
+		return "auction/registerForm";
 	
 	}
 	

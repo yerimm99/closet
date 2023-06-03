@@ -10,4 +10,6 @@ public interface AuctionDao {
 
 	Auction getAuctionDetail(int productId) throws DataAccessException;
 	
+	void updateMaxPrice(Auction auction) throws DataAccessException;
+	
 }
