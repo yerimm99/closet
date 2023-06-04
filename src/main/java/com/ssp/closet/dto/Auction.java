@@ -5,68 +5,53 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 @SuppressWarnings("serial")
 @Entity
+@Table(name = "AUCTION")
 public class Auction extends Product {
-	
-	@Id
-	private int productId = super.getProductId();
-	@Column(name="userId")
-	private String bidder;
+
+	private int productId;
 	private int startPrice;
-	private int maxPrice;
 	private int used;
-	private String picture1;
-	private String picture2;
 	
-	public int getProductId() {
-		return productId;
-	}
-	public void setProductId(int productId) {
-		this.productId = productId;
-	}
-	public String getBidder() {
-		return bidder;
-	}
-	public void setBidder(String bidder) {
-		this.bidder = bidder;
-	}
+//	public int getProductId() {
+//		return productId;
+//	}
+//	public void setProductId(int productId) {
+//		this.productId = productId;
+//	}
+//	public String getBidder() {
+//		return bidder;
+//	}
+//	public void setBidder(String bidder) {
+//		this.bidder = bidder;
+//	}
 	public int getStartPrice() {
 		return startPrice;
 	}
 	public void setStartPrice(int startPrice) {
 		this.startPrice = startPrice;
 	}
-	public int getMaxPrice() {
-		return maxPrice;
-	}
-	public void setMaxPrice(int maxPrice) {
-		this.maxPrice = maxPrice;
-	}
+//	public int getMaxPrice() {
+//		return maxPrice;
+//	}
+//	public void setMaxPrice(int maxPrice) {
+//		this.maxPrice = maxPrice;
+//	}
 	public int getUsed() {
 		return used;
 	}
 	public void setUsed(int used) {
 		this.used = used;
 	}
-	public String getPicture1() {
-		return picture1;
-	}
-	public void setPicture1(String picture1) {
-		this.picture1 = picture1;
-	}
-	public String getPicture2() {
-		return picture2;
-	}
-	public void setPicture2(String picture2) {
-		this.picture2 = picture2;
-	}
+
 	public void initAuction(Account account) {
 		super.setType(1);
 		super.setStatus(1);
 		super.setRegisterDate(new Date());
 		super.setSuppId(account.getUserId());
-		maxPrice = startPrice;
+		super.setPrice(startPrice);
 
 	  }
 	

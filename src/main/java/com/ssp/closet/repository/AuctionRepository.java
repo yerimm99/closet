@@ -9,8 +9,8 @@ import com.ssp.closet.dto.Auction;
 public interface AuctionRepository extends JpaRepository<Auction, Integer> {
 	//List<Auction> getAuctionResultList (String userId);
 	
-	@Query("update AUCTION a " + 
-			"set a.PRICE = :maxPrice " +
-			"where a.PRODUCTID = :productId")
+	@Query("update Auction a " + 
+			"set a.price = :maxPrice " +
+			"where a.productId = :productId")
 	void updatePrice(@Param("productId")int productId, @Param("maxPrice")int price);
 }

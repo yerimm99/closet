@@ -58,12 +58,12 @@ public interface ClosetFacade {
 	
 	//Account Connect
 	
-	Account getAccount(String username);
+	Account getAccount(String userId);
 
-	Account getAccount(String username, String password);
+	Account getAccount(String userId, String password);
 
-	void insertAccount(Account account);
+//	void insertAccount(Account account);
 
-	void updateAccount(Account account);
+//	void updateAccount(Account account);
 
 }

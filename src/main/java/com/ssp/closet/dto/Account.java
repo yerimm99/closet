@@ -2,12 +2,20 @@ package com.ssp.closet.dto;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.SecondaryTable;
+import javax.persistence.Table;
+import javax.persistence.Id;
 
 @SuppressWarnings("serial")
+@Entity
+@Table(name = "ACCOUNT")
 public class Account implements Serializable {
 
   /* Private Fields */
-
+  @Id
   private String userId;
   private String password;
   private String email;
@@ -15,10 +23,6 @@ public class Account implements Serializable {
   private String address;
   private String phone;
   private double rating;
-  private String status;
-  private boolean listOption;
-  private boolean bannerOption;
-
 
   /* JavaBeans Properties */
 
@@ -44,13 +48,5 @@ public class Account implements Serializable {
 
   public String getPhone() { return phone; }
   public void setPhone(String phone) { this.phone = phone; }
-  
-  public String getStatus() {return status;}
-  public void setStatus(String status) {this.status = status;}
 
-  public boolean isListOption() {return listOption;}
-  public void setListOption(boolean listOption) {this.listOption = listOption;}
-
-  public boolean isBannerOption() {return bannerOption;}
-  public void setBannerOption(boolean bannerOption) {this.bannerOption = bannerOption;}
 }

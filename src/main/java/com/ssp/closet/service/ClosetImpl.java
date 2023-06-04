@@ -1,7 +1,6 @@
 package com.ssp.closet.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -9,12 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.ssp.closet.dao.AuctionDao;
-import com.ssp.closet.dao.BidDao;
+import com.ssp.closet.dao.AccountDao;
 import com.ssp.closet.dao.BookmarkDao;
 import com.ssp.closet.dao.GroupBuyDao;
 import com.ssp.closet.dao.ProductDao;
-import com.ssp.closet.dao.jpa.JpaAuctionDao;
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
 import com.ssp.closet.dto.Bid;
@@ -32,6 +29,30 @@ import com.ssp.closet.repository.BidRepository;
 @Transactional
 public class ClosetImpl implements ClosetFacade{
 
+	@Autowired 
+	@Qualifier("jpaAccountDao")
+	private AccountDao accountDao;
+	
+	public Account getAccount(String userId) {
+		return accountDao.getAccount(userId);
+	}
+
+	public Account getAccount(String userId, String password) {
+		return accountDao.getAccount(userId, password);
+	}
+
+//	public void insertAccount(Account account) {
+//		accountDao.insertAccount(account);
+//	}
+
+//	public void updateAccount(Account account) {
+//		accountDao.updateAccount(account);
+//	}
+//
+//	public List<String> getUsernameList() {
+//		return accountDao.getUsernameList();
+//	}
+//	
 	@Autowired
 	private ProductDao productDao;
 
@@ -135,11 +156,7 @@ public class ClosetImpl implements ClosetFacade{
 //		return meetDao.getMeetList(productId);
 //	}
 	
-	@Override
-	public Account getAccount(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 	@Override
 	public void insertOrder(Order order) {
 		// TODO Auto-generated method stub
@@ -185,21 +202,6 @@ public class ClosetImpl implements ClosetFacade{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	@Override
-	public Account getAccount(String username, String password) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public void insertAccount(Account account) {
-		// TODO Auto-generated method stub
-
-	}
-	@Override
-	public void updateAccount(Account account) {
-		// TODO Auto-generated method stub
-
-	}
-
+	
 
 }

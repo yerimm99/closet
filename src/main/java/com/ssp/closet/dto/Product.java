@@ -4,14 +4,25 @@ import java.io.Serializable;
 //import java.sql.Date;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 @SuppressWarnings("serial")
 @Entity
+@Table(name = "PRODUCT")
+@Inheritance(strategy=InheritanceType.JOINED)
+@DiscriminatorColumn // 하위 테이블의 구분 컬럼 생성(default = DTYPE)
 public class Product implements Serializable {
 
 	/* Private Fields */
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int productId;
 	private String categoryId; // 상의? 하의? ....
 	private String name;
@@ -20,6 +31,7 @@ public class Product implements Serializable {
 	private int status; // 판매 상태
 	private Date registerDate; // 등록 날짜
 	private int period; // 판매 기간
+	@Column(name="userId")
 	private String suppId; //판매자 또는 등록자의 userId
 	private String color;
 	private String size;
@@ -27,6 +39,7 @@ public class Product implements Serializable {
 	private String picture2;
 	private String picture3;
 	private String picture4;
+	private int price;
 
 	/* JavaBeans Properties */
 	public int getProductId() {
@@ -120,6 +133,12 @@ public class Product implements Serializable {
 		this.picture4 = picture4;
 	}
 
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
 	public void initGroupBuy(Account account) {
 		suppId = account.getUserId();
 		name = account.getName();

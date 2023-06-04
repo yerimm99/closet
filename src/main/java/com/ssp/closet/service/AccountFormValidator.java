@@ -25,7 +25,6 @@ public class AccountFormValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.address", "ADDRESS_REQUIRED", "Address (1) is required.");
 
 		if (accountForm.isNewAccount()) {
-			account.setStatus("OK");
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.username", "USER_ID_REQUIRED", "User ID is required.");
 			if (account.getPassword() == null || account.getPassword().length() < 1 ||
 					!account.getPassword().equals(accountForm.getRepeatedPassword())) {

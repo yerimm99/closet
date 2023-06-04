@@ -32,6 +32,10 @@ public class AuctionFormController {
 	@Autowired
 	private ClosetFacade closet;
 	
+	@Autowired
+	public void setClosetStore(ClosetFacade closet) {
+		this.closet = closet;
+	}
 //	@Autowired
 //	private AuctionFormValidator validator;
 //	public void setValidator(AuctionFormValidator validator) {
@@ -66,10 +70,14 @@ public class AuctionFormController {
 			@ModelAttribute("auctionForm") AuctionForm auctionForm
 			) throws ModelAndViewDefiningException {
 		
-		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");	
-		Account account = closet.getAccount(userSession.getAccount().getUserId());
-		auctionForm.getAuction().initAuction(account);
-		return "auction/registerForm";
+		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
+		Account account = closet.getAccount("aaa");
+		if (account == null) {
+			return ("index");
+		} else {
+			auctionForm.getAuction().initAuction(account);
+			return "auction/registerForm";
+		}
 	
 	}
 	
