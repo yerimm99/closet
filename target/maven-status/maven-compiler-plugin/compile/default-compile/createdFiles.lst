@@ -7,6 +7,7 @@ com\ssp\closet\dao\mybatis\mapper\AccountMapper.class
 com\ssp\closet\dao\GroupBuyDao.class
 com\ssp\closet\dto\Product.class
 com\ssp\closet\controller\OrderForm.class
+com\ssp\closet\controller\ViewGroupBuyController.class
 com\ssp\closet\dto\Auction.class
 com\ssp\closet\controller\SignoffController.class
 com\ssp\closet\dao\ReviewDao.class
@@ -25,6 +26,7 @@ com\ssp\closet\dao\mybatis\MybatisAuctionDao.class
 com\ssp\closet\controller\GroupBuyForm.class
 com\ssp\closet\controller\AuctionController.class
 com\ssp\closet\dao\mybatis\MybatisSequenceDao.class
+com\ssp\closet\controller\SignonController.class
 com\ssp\closet\dao\mybatis\OracleSequenceDao.class
 com\ssp\closet\dao\OrderDao.class
 com\ssp\closet\dao\mybatis\mapper\SequenceMapper.class
@@ -53,6 +55,7 @@ com\ssp\closet\dao\mybatis\mapper\CategoryMapper.class
 com\ssp\closet\controller\ReviewCommand.class
 com\ssp\closet\controller\SignonInterceptor.class
 com\ssp\closet\service\OrderValidator.class
+com\ssp\closet\repository\ProductRepository.class
 com\ssp\closet\dao\mybatis\MybatisGroupBuyDao.class
 com\ssp\closet\dto\Review.class
 com\ssp\closet\service\ClosetFacade.class
@@ -60,6 +63,7 @@ com\ssp\closet\controller\ListOrdersController.class
 com\ssp\closet\dao\SequenceDao.class
 com\ssp\closet\dao\BookmarkDao.class
 com\ssp\closet\controller\AuctionFormController.class
+com\ssp\closet\controller\AccountFormController.class
 com\ssp\closet\dao\mybatis\MybatisProductDao.class
 com\ssp\closet\dao\mybatis\mapper\OrderMapper.class
 com\ssp\closet\dto\Sequence.class

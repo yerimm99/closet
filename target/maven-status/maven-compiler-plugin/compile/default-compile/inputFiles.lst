@@ -47,6 +47,7 @@ C:\Users\s0104\git\ssd_closet\src\main\java\com\ssp\closet\controller\GroupBuyFo
 C:\Users\s0104\git\ssd_closet\src\main\java\com\ssp\closet\dto\Meet.java
 C:\Users\s0104\git\ssd_closet\src\main\java\com\ssp\closet\controller\RankController.java
 C:\Users\s0104\git\ssd_closet\src\main\java\com\ssp\closet\dao\jpa\JpaAuctionDao.java
+C:\Users\s0104\git\ssd_closet\src\main\java\com\ssp\closet\repository\ProductRepository.java
 C:\Users\s0104\git\ssd_closet\src\main\java\com\ssp\closet\service\ClosetImpl.java
 C:\Users\s0104\git\ssd_closet\src\main\java\com\ssp\closet\dao\CategoryDao.java
 C:\Users\s0104\git\ssd_closet\src\main\java\com\ssp\closet\service\client\OrderServiceClient_rmi.java
@@ -76,6 +77,7 @@ C:\Users\s0104\git\ssd_closet\src\main\java\com\ssp\closet\dao\mybatis\mapper\Gr
 C:\Users\s0104\git\ssd_closet\src\main\java\com\ssp\closet\service\OrderServiceImpl.java
 C:\Users\s0104\git\ssd_closet\src\main\java\com\ssp\closet\dto\Account.java
 C:\Users\s0104\git\ssd_closet\src\main\java\com\ssp\closet\controller\AuctionController.java
+C:\Users\s0104\git\ssd_closet\src\main\java\com\ssp\closet\controller\ViewGroupBuyController.java
 C:\Users\s0104\git\ssd_closet\src\main\java\com\ssp\closet\controller\BookmarkController.java
 C:\Users\s0104\git\ssd_closet\src\main\java\com\ssp\closet\controller\ProductController.java
 C:\Users\s0104\git\ssd_closet\src\main\java\com\ssp\closet\dao\AuctionDao.java

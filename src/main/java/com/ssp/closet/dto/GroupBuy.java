@@ -2,10 +2,20 @@ package com.ssp.closet.dto;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.SecondaryTable;
+import javax.persistence.PrimaryKeyJoinColumn;
+
 @SuppressWarnings("serial")
+@Entity
+//@SecondaryTable(name="GroupBuyProduct", 
+//	pkJoinColumns=@PrimaryKeyJoinColumn(
+//		name="productId", referencedColumnName="productId"))
 public class GroupBuy implements Serializable {
 
 	/* Private Fields */
+	@Id
 	private int productId;
 	private int price;
 	private int peopleNum; // 공동구매가 이뤄지기 위한 최소 인원

@@ -14,6 +14,9 @@
 <body>
 	<c:choose>
 		<c:when test = "${productList == null}">
+			<div class = "sell">
+				<a href="<c:url value='/groupbuy/registerForm' />">등록하기</a>
+			</div>
 		</c:when>
 		<c:otherwise>
 			<c:set var="i" value="0" />
@@ -31,8 +34,8 @@
 				      		${prod.name}<br>
 				      		${prod.description}<br>
 				      		color: ${prod.color} || size: ${prod.size}<br><br><br>
-				      		가격: ${prod.maxPrice}원<br>
-				      		현재모인 인원수: ${prod.peopleNum} <!-- 이거 전체인원수랑 현재 인원수로 나눠야함.. -->
+<%-- 				      		가격: ${prod.maxPrice}원<br> --%>
+<%-- 				      		현재모인 인원수: ${prod.peopleNum} <!-- 이거 전체인원수랑 현재 인원수로 나눠야함.. --> --%>
 			      		</a>
 			      	</td>
 				<c:if test="${i%j == j-1 }">

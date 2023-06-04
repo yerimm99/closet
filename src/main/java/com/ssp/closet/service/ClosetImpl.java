@@ -21,28 +21,34 @@ import com.ssp.closet.dto.Meet;
 import com.ssp.closet.dto.Order;
 import com.ssp.closet.dto.Product;
 import com.ssp.closet.dto.Review;
+import com.ssp.closet.repository.ProductRepository;
 
 @Service
 @Transactional
 public class ClosetImpl implements ClosetFacade{
 
-	@Autowired
-	private ProductDao productDao;
+	@Autowired  
+	private ProductRepository productRepository;
 
+//	public List<Product> getProductListByType(int type, int status) {
+//		return productRepository.findByTypeAndStatus(type, status);
+//	}
+	
 	public List<Product> getProductList() {
-		return productDao.getProductList();
+		return productRepository.findAll();
 	}
 
-	public Product getProductDetail(int productId) {
-		return productDao.getProductDetail(productId);
-	}
+//	public Product getProductDetail(int productId) {
+//		return productRepository.findByProductId(productId);
+//	}
+//
+//	public void updateProduct(String description, String picture1, String picture2, String picture3, String picture4, int productId) {
+//		productRepository.updateByProductId(description, picture1, picture2, picture3, picture4, productId);
+//	};
+//	public void deleteProduct(int productId) {
+//		productRepository.deleteByProductIdIfGroupBuyPeopleNumIsOne(productId);
+//	};
 
-	public void updateProduct(int productId) {
-		productDao.updateProduct(productId);
-	};
-	public void deleteProduct(int productId) {
-		productDao.deleteProduct(productId);
-	};
 
 	@Autowired
 	@Qualifier("jpaAuctionDao")
