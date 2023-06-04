@@ -44,8 +44,7 @@ public class SignonController {
 			Model model) throws Exception {
 		Account account = closetStore.getAccount(userId, password);
 		if (account == null) {
-			return new ModelAndView("Error", "message", 
-					"Invalid username or password.  Signon failed.");
+			return new ModelAndView("main/auction");
 		}
 		else {
 			UserSession userSession = new UserSession(account);
