@@ -44,5 +44,6 @@ public class MybatisAccountDao implements AccountDao {
 	@Override
 	public int existingUser(String userId) {
 		return accountMapper.exisingUser(userId);
-	}		
+	}	
+	
 }
