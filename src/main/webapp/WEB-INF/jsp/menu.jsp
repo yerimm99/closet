@@ -29,7 +29,7 @@
 		<div class = "logo">&amp;closet</div>
 		<div class = "navitool">
 			<div class = "navi"><a href="<c:url value="/closet/auction.do" />">경매</a></div>
-			<div class = "navi"><a href="<c:url value='/closet/groupby.do' />">공동구매</a></div>
+			<div class = "navi"><a href="<c:url value='/closet/groupbuy.do' />">공동구매</a></div>
 			<div class = "navi"><a href="<c:url value='/closet/best.do' />">BEST</a></div>
 			<div class = "navi"><a href="<c:url value='/closet/search.do' />">검색</a></div>
 		</div>
