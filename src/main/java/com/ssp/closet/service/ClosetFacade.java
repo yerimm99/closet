@@ -49,7 +49,7 @@ public interface ClosetFacade {
 	
 	Account getAccount(String username);
 
-	Account getAccount(String username, String password);
+	Account getAccount(String userId, String password);
 
 	void insertAccount(Account account);
 
