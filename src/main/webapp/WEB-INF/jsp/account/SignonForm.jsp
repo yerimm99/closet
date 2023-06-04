@@ -25,7 +25,7 @@
 	
 	<div class = "layout">
 		<!-- ·Î±×ÀÎ Æû -->
-		<form name="form" method="POST" action="<c:url value='/account/SignonForm.do' />">
+		<form name="form" method="POST" action="<c:url value='/account/signon.do' />">
 			<c:if test="${!empty signonForwardAction}">
       			<input type="hidden" name="forwardAction"
         			value='<c:url value="${signonForwardAction}"/>' />

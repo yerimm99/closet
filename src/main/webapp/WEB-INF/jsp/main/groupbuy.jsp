@@ -34,19 +34,19 @@
 		<div>
 			<!-- 물건 등록 기능 -->
 			<div class = "sell">
-				<a href="<c:url value='/auction/registerForm' />">등록하기</a>
+				<a href="<c:url value='/groupbuy/registerForm' />">등록하기</a>
 			</div>
 			<!-- 카테고리 -->
 			<div class = "category">
-				<a href="<c:url value='/auction/list?categoryId=전체' />">전체</a>
-				<a href="<c:url value='/auction/list?categoryId=신발' />">신발</a>
-				<a href="<c:url value='/auction/list?categoryId=아우터' />">아우터</a>
-				<a href="<c:url value='/auction/list?categoryId=상의' />">상의</a>
-				<a href="<c:url value='/auction/list?categoryId=하의' />">하의</a>
-				<a href="<c:url value='/auction/list?categoryId=가방' />">가방</a>
-				<a href="<c:url value='/auction/list?categoryId=지갑' />">지갑</a>
-				<a href="<c:url value='/auction/list?categoryId=시계' />">시계</a>
-				<a href="<c:url value='/auction/list?categoryId=패션잡화' />">패션잡화</a>
+				<a href="<c:url value='/groupbuy/list?categoryId=전체' />">전체</a>
+				<a href="<c:url value='/groupbuy/list?categoryId=신발' />">신발</a>
+				<a href="<c:url value='/groupbuy/list?categoryId=아우터' />">아우터</a>
+				<a href="<c:url value='/groupbuy/list?categoryId=상의' />">상의</a>
+				<a href="<c:url value='/groupbuy/list?categoryId=하의' />">하의</a>
+				<a href="<c:url value='/groupbuy/list?categoryId=가방' />">가방</a>
+				<a href="<c:url value='/groupbuy/list?categoryId=지갑' />">지갑</a>
+				<a href="<c:url value='/groupbuy/list?categoryId=시계' />">시계</a>
+				<a href="<c:url value='/groupbuy/list?categoryId=패션잡화' />">패션잡화</a>
 			</div>
 		</div>
 		<!-- 중복선택가능 -->
@@ -54,7 +54,7 @@
 			<script>
 				document.frm.submit();
 			</script>
-			<form class = "cFrom" method = "POST" action="<c:url value='/auction/list' />">
+			<form class = "cFrom" method = "POST" action="<c:url value='/groupbuy/list' />">
 				<label>카테고리</label><br><br>
 				<input type = "checkbox" name = "categoryId" value = "전체">전체<br>
 				<input type = "checkbox" name = "categoryId" value = "신발">신발<br>

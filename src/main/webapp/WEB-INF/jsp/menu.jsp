@@ -34,7 +34,7 @@
 		<div class = "login">
 			<c:choose>
 				<c:when test = "${empty userSession.account}">
-					<a href="<c:url value='/account/login.do' />" class = "aLogin">로그인</a>
+					<a href="<c:url value='/account/SignonForm.do' />" class = "aLogin">로그인</a>
 					<a href="<c:url value='/account/registerForm.do' />">회원가입</a>
 				</c:when>
 				<c:otherwise>

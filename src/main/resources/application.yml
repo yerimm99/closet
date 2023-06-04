@@ -54,4 +54,8 @@ server:
       - oraclepki.jar
       - osdt_core.jar
       - osdt_cert.jar
+<<<<<<< HEAD
   port: 8089
+=======
+  port: 8089
+>>>>>>> branch 'develop' of https://github.com/yerimm99/ssd_closet.git
