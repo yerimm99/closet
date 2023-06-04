@@ -1,3 +1,5 @@
 Manifest-Version: 1.0
-Class-Path: 
+Built-By: Yeji Park
+Build-Jdk: 19.0.2
+Created-By: Maven Integration for Eclipse
 
