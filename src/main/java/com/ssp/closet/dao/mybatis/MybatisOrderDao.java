@@ -21,7 +21,7 @@ public class MybatisOrderDao implements OrderDao {
 	@Autowired
 	private SequenceDao sequenceDao;
 
-	@Transactional
+	//@Transactional
 	public void insertOrder(Order order) throws DataAccessException {
 		order.setOrderId(sequenceDao.getNextId("ordernum")); //ordernum 은 추후 수정
     	orderMapper.insertOrder(order);
