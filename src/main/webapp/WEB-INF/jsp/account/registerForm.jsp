@@ -83,18 +83,18 @@
 		<table>
 			<tr>
 				<td>이름</td>
-				<td><form:input path = "name"/></td>
+				<td><form:input path = "account.name"/></td>
 			</tr>
 			<tr>
 				<td>아이디</td>
 				<td>
-					<form:input path = "userId"/>
+					<form:input path = "account.userId"/>
 				</td>
 			</tr>
 			<tr>
 				<td>비밀번호</td>
 				<td>
-					<form:input path = "password" showPassword = "false"/>
+					<form:input path = "account.password" showPassword = "false"/>
 				</td>
 			</tr>
 			<tr>
@@ -114,13 +114,13 @@
 			<tr>
 				<td>전화번호</td>
 				<td>
-					<form:input path = "phone"/>
+					<form:input path = "account.phone"/>
 				</td>
 			</tr>
 			<tr>
 				<td>이메일</td>
 				<td>
-					<form:input path = "email"/>
+					<form:input path = "account.email"/>
 				</td>
 			</tr>
 		</table>
