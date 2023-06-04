@@ -8,7 +8,7 @@ import com.ssp.closet.dto.Account;
 public interface AccountDao {
 	Account getAccount(String username) throws DataAccessException;
 
-	Account getAccount(String username, String password) throws DataAccessException;
+	Account getAccount(String userId, String password) throws DataAccessException;
 
 	void insertAccount(Account account) throws DataAccessException;
 

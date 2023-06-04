@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.ssp.closet.dao.AccountDao;
 import com.ssp.closet.dao.AuctionDao;
 import com.ssp.closet.dao.BookmarkDao;
 import com.ssp.closet.dao.GroupBuyDao;
@@ -141,10 +142,13 @@ public class ClosetImpl implements ClosetFacade{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Autowired
+	private AccountDao accountDao;
+	
 	@Override
-	public Account getAccount(String username, String password) {
-		// TODO Auto-generated method stub
-		return null;
+	public Account getAccount(String userId, String password) {
+		return accountDao.getAccount(userId, password);
 	}
 	@Override
 	public void insertAccount(Account account) {
