@@ -79,7 +79,7 @@
 	
 	<div class = "layout">
 		<h3>회원가입</h3>
-		<form:form modelAttribute = "accountForm" action = "POST">
+		<form:form modelAttribute = "accountForm" action = "POST" >
 		<table>
 			<tr>
 				<td>이름</td>
@@ -123,11 +123,12 @@
 					<form:input path = "account.email"/>
 				</td>
 			</tr>
+			<tr>
+				<td colspan = "2">
+					<input type="submit" value="가입하기"class="btn">
+				</td>
+			</tr>
 		</table>
-		<br>
-		<div class="btnBox">
-        	<input type="submit" value="가입하기"class="btn">
-        </div>
 		</form:form>
 	</div>
 </body>
