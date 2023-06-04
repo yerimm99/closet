@@ -31,12 +31,12 @@ public class AccountFormValidator implements Validator {
 			if (account.getPassword() == null || account.getPassword().length() < 1 ||
 					!account.getPassword().equals(accountForm.getRepeatedPassword())) {
 				errors.reject("PASSWORD_MISMATCH",
-					 "Passwords did not match or were not provided. Matching passwords are required.");
+					 "비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
 			}
 		}
 		else if (account.getPassword() != null && account.getPassword().length() > 0) {
 			if (!account.getPassword().equals(accountForm.getRepeatedPassword())) {
-				errors.reject("PASSWORD_MISMATCH", "Passwords did not match. Matching passwords are required.");
+				errors.reject("PASSWORD_MISMATCH", "비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
 			}
 		}
 	}
