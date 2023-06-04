@@ -79,7 +79,7 @@
 	
 	<div class = "layout">
 		<h3>회원가입</h3>
-		<form:form modelAttribute = "accountForm" action = "POST" action="<c:url value='/account/registerForm.do' />">
+		<form:form modelAttribute = "accountForm" action = "POST">
 		<table>
 			<tr>
 				<td>이름</td>
