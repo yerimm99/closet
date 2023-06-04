@@ -2,9 +2,11 @@ package com.ssp.closet.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 //import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,8 +27,16 @@ public class SignonController {
 	public void setClosetStore(ClosetFacade closetStore) {
 		this.closetStore = closetStore;
 	}
+	
+	@Value("account/SignonForm")
+	private String formViewName;
+	
+	@RequestMapping("/account/SignonForm.do")
+	public String showForm() {
+		return formViewName;
+	}
 
-	@RequestMapping("/account/sigonOnform")
+	@RequestMapping("/account/signon.do")
 	public ModelAndView handleRequest(HttpServletRequest request,
 			@RequestParam("userId") String userId,
 			@RequestParam("password") String password,
