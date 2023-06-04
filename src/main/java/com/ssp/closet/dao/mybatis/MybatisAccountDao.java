@@ -14,32 +14,35 @@ public class MybatisAccountDao implements AccountDao {
 
 	@Autowired
 	private AccountMapper accountMapper;
-
-	public Account getAccount(String username) throws DataAccessException {
-		return accountMapper.getAccountByUsername(username);
+	 
+	@Override
+	public Account getAccount(String userId) throws DataAccessException {
+		return accountMapper.getAccountByUsername(userId);
+	}
+	
+	@Override
+	public Account getAccount(String userId, String password) 
+	throws DataAccessException {
+		return accountMapper.getAccountByUsernameAndPassword(userId, password);
+	}
+	
+	@Override
+	public int insertAccount(Account account) throws DataAccessException {
+		return accountMapper.insertAccount(account);
+	}
+	
+	@Override
+	public int updateAccount(Account account) throws DataAccessException {
+		return accountMapper.updateAccount(account);
+	}	
+	
+	@Override
+	public int removeAccount(String userId) throws DataAccessException {
+		return accountMapper.removeAccount(userId);
 	}
 
-	public Account getAccount(String username, String password) 
-			throws DataAccessException {
-		return accountMapper.getAccountByUsernameAndPassword(username, password);
-	}
-
-	public void insertAccount(Account account) throws DataAccessException {
-		accountMapper.insertAccount(account);
-		accountMapper.insertProfile(account);
-		accountMapper.insertSignon(account);
-	}
-
-	public void updateAccount(Account account) throws DataAccessException {
-		accountMapper.updateAccount(account);
-		accountMapper.updateProfile(account);
-		if (account.getPassword() != null && account.getPassword().length() > 0) 
-		{
-			accountMapper.updateSignon(account);
-		}
-	}
-
-	public List<String> getUsernameList() throws DataAccessException {
-		return accountMapper.getUsernameList();
-	}
+	@Override
+	public int existingUser(String userId) {
+		return accountMapper.exisingUser(userId);
+	}		
 }
