@@ -35,7 +35,6 @@ public interface AccountMapper {
 	@Select("SELECT USERID FROM ACCOUNT WHERE ACCOUNT.USERID = #{userId}")
 	int  exisingUser(String userId);	
 	
-	
 //	@Update("UPDATE ACCOUNT set MILEAGE = MILEAGE - #{mileage} WHERE USERID = #{userId}")
 //	int  useMileage(int mileage, String userId);
 //	
