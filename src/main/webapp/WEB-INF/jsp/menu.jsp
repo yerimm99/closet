@@ -19,7 +19,9 @@
 		a:active{text-decoration:none;color:black}
 		a:hover{text-decoration:none;color:black}
 		.aLogin{margin-left:30px;margin-right:30px;float:left;}
-	
+		.logout{float:left;margin-left:50px}
+		.mypage{float:left;margin-left:20px}
+		.mypageImg{width:22px; height:22px}
 	</style>
 </head>
 <body>
@@ -38,10 +40,10 @@
 					<a href="<c:url value='/account/registerForm.do' />">회원가입</a>
 				</c:when>
 				<c:otherwise>
-				    <a href="<c:url value='/closet/mypage.do' />">
-				    	<img border="0" src="../images/mypage.png" />
+				    <a href="<c:url value='/closet/mypage.do' />" class = "mypage">
+				    	<img border="0" src="../../images/mypage.gif" class = "mypageImg"/>
 				    </a>
-					<a href="<c:url value='/account/logout.do' />">로그아웃</a>
+					<a href="<c:url value='/account/signoff.do' />" class = "logout">로그아웃</a>
 				</c:otherwise>
 			</c:choose>
 		</div>

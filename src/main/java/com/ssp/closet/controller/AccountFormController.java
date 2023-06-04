@@ -20,7 +20,7 @@ import com.ssp.closet.service.AccountFormValidator;
 import com.ssp.closet.service.ClosetFacade;
 
 @Controller
-@RequestMapping({"/account/login.jsp","/account/registerForm.jsp", "/account/updateForm.jsp"})
+@RequestMapping(value = "/account")
 public class AccountFormController { 
 
 	@Value("EditAccountForm")
