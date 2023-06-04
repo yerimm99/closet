@@ -2,7 +2,7 @@ package com.ssp.closet.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.support.PagedListHolder;
+//import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import com.ssp.closet.dto.Account;
-import com.ssp.closet.dto.Product;
+//import com.ssp.closet.dto.Product;
 import com.ssp.closet.service.ClosetFacade;
 
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -26,13 +26,13 @@ public class SignonController {
 		this.closetStore = closetStore;
 	}
 
-	@RequestMapping("/shop/signon.do")
+	@RequestMapping("/account/sigonOnform")
 	public ModelAndView handleRequest(HttpServletRequest request,
-			@RequestParam("userid") String userid,
+			@RequestParam("userId") String userId,
 			@RequestParam("password") String password,
 			@RequestParam(value="forwardAction", required=false) String forwardAction,
 			Model model) throws Exception {
-		Account account = closetStore.getAccount(userid, password);
+		Account account = closetStore.getAccount(userId, password);
 		if (account == null) {
 			return new ModelAndView("Error", "message", 
 					"Invalid username or password.  Signon failed.");
@@ -42,6 +42,8 @@ public class SignonController {
 			//PagedListHolder<Product> myList = new PagedListHolder<Product>(this.closetStore.getProductListByCategory(account.getFavouriteCategoryId()));
 			//myList.setPageSize(4);
 			//userSession.setMyList(myList);
+			
+			
 			model.addAttribute("userSession", userSession);
 			if (forwardAction != null) 
 				return new ModelAndView("redirect:" + forwardAction);
@@ -50,4 +52,3 @@ public class SignonController {
 		}
 	}
 }
-
