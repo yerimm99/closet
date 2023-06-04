@@ -19,23 +19,24 @@ public class AccountFormValidator implements Validator {
 		AccountForm accountForm = (AccountForm)obj; 
 		Account account = accountForm.getAccount();
 
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.name", "USER_NAME_REQUIRED", "User Name is required.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.userId", "USER_ID_REQUIRED", "User ID is required.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.password", "USER_ID_PASSWORD", "User Password is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.email", "EMAIL_REQUIRED", "Email address is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.phone", "PHONE_REQUIRED", "Phone number is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.address", "ADDRESS_REQUIRED", "Address (1) is required.");
 
 		if (accountForm.isNewAccount()) {
 			account.setStatus("OK");
-			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.username", "USER_ID_REQUIRED", "User ID is required.");
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.userId", "USER_ID_REQUIRED", "User ID is required.");
 			if (account.getPassword() == null || account.getPassword().length() < 1 ||
 					!account.getPassword().equals(accountForm.getRepeatedPassword())) {
 				errors.reject("PASSWORD_MISMATCH",
-					 "Passwords did not match or were not provided. Matching passwords are required.");
+					 "비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
 			}
 		}
 		else if (account.getPassword() != null && account.getPassword().length() > 0) {
 			if (!account.getPassword().equals(accountForm.getRepeatedPassword())) {
-				errors.reject("PASSWORD_MISMATCH", "Passwords did not match. Matching passwords are required.");
+				errors.reject("PASSWORD_MISMATCH", "비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
 			}
 		}
 	}
