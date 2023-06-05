@@ -1,6 +1,7 @@
 package com.ssp.closet.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,9 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @SuppressWarnings("serial")
 @Entity
@@ -16,17 +20,35 @@ public class Account implements Serializable {
 
   /* Private Fields */
   @Id
+  @Column(name="USERID")
   private String userId;
+  @Column(name="PASSWORD")
   private String password;
+  @Column(name="EMAIL")
   private String email;
+  @Column(name="USERNAME")
   private String name;
+  @Column(name="ADDRESS")
   private String address;
+  @Column(name="PHONE")
   private String phone;
+  @Column(name="RATING")
   private double rating;
 
-  /* JavaBeans Properties */
+  @OneToMany(mappedBy = "bidder")
+  private List<Bid> bids;
+
+  @OneToMany(mappedBy = "account")
+  private List<Product> products;
 
 
+  public List<Product> getProducts() {
+      return products;
+  }
+
+  public void setProducts(List<Product> products) {
+      this.products = products;
+  }
 
   public String getUserId() { return userId; }
   public void setUserId(String userId) { this.userId = userId; }

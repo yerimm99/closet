@@ -71,7 +71,7 @@ public class AuctionFormController {
 			) throws ModelAndViewDefiningException {
 		
 		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
-		Account account = closet.getAccount("aaa");
+		Account account = closet.getAccount("aaa");//userSession.getAccount().getUserId()
 		if (account == null) {
 			return ("index");
 		} else {

@@ -1,44 +1,45 @@
 package com.ssp.closet.dto;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
+
+
+import javax.persistence.ForeignKey;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
+
 @SuppressWarnings("serial")
+@PrimaryKeyJoinColumn(name = "PRODUCTID") 
 @Entity
 @Table(name = "AUCTION")
-public class Auction extends Product {
-
-	private int productId;
-	private int startPrice;
-	private int used;
+@DiscriminatorValue("Auction")
+public class Auction extends Product implements Serializable {
 	
-//	public int getProductId() {
-//		return productId;
-//	}
-//	public void setProductId(int productId) {
-//		this.productId = productId;
-//	}
-//	public String getBidder() {
-//		return bidder;
-//	}
-//	public void setBidder(String bidder) {
-//		this.bidder = bidder;
-//	}
+
+	@Column(name = "STARTPRICE")
+    private int startPrice;
+    @Column(name = "USED")
+    private int used;
+	
+    @OneToMany(mappedBy = "auction")
+    private List<Bid> bids;
+
+
+    public Auction() {}
+    
 	public int getStartPrice() {
 		return startPrice;
 	}
 	public void setStartPrice(int startPrice) {
 		this.startPrice = startPrice;
 	}
-//	public int getMaxPrice() {
-//		return maxPrice;
-//	}
-//	public void setMaxPrice(int maxPrice) {
-//		this.maxPrice = maxPrice;
-//	}
 	public int getUsed() {
 		return used;
 	}
@@ -50,9 +51,7 @@ public class Auction extends Product {
 		super.setType(1);
 		super.setStatus(1);
 		super.setRegisterDate(new Date());
-		super.setSuppId(account.getUserId());
-		super.setPrice(startPrice);
-
+		super.setAccount(account);
 	  }
 	
 	

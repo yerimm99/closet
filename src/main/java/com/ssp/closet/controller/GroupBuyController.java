@@ -34,7 +34,7 @@ public class GroupBuyController {
 			) throws ModelAndViewDefiningException {
 		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
 			Account account = closet.getAccount(userSession.getAccount().getUserId());
-			groupBuyForm.getProduct().initGroupBuy(account);
+			//groupBuyForm.getProduct().initGroupBuy(account);
 			return "NewGroupBuyForm";	
 	}
 
@@ -44,7 +44,7 @@ public class GroupBuyController {
 			) throws ModelAndViewDefiningException {
 		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
 			Account account = closet.getAccount(userSession.getAccount().getUserId());
-			groupBuyForm.getProduct().initGroupBuy(account);
+			//groupBuyForm.getProduct().initGroupBuy(account);
 			return "EditGroupBuyForm";	
 	}
 }
