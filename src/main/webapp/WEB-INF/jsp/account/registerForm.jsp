@@ -79,22 +79,22 @@
 	
 	<div class = "layout">
 		<h3>회원가입</h3>
-		<form:form modelAttribute = "accountForm" action = "POST" action="<c:url value='/account/registerForm.do' />">
+		<form:form modelAttribute = "accountForm" action = "POST" >
 		<table>
 			<tr>
 				<td>이름</td>
-				<td><form:input path = "name"/></td>
+				<td><form:input path = "account.name"/></td>
 			</tr>
 			<tr>
 				<td>아이디</td>
 				<td>
-					<form:input path = "userId"/>
+					<form:input path = "account.userId"/>
 				</td>
 			</tr>
 			<tr>
 				<td>비밀번호</td>
 				<td>
-					<form:input path = "password" showPassword = "false"/>
+					<form:input path = "account.password" showPassword = "false"/>
 				</td>
 			</tr>
 			<tr>
@@ -114,20 +114,21 @@
 			<tr>
 				<td>전화번호</td>
 				<td>
-					<form:input path = "phone"/>
+					<form:input path = "account.phone"/>
 				</td>
 			</tr>
 			<tr>
 				<td>이메일</td>
 				<td>
-					<form:input path = "email"/>
+					<form:input path = "account.email"/>
+				</td>
+			</tr>
+			<tr>
+				<td colspan = "2">
+					<input type="submit" value="가입하기"class="btn">
 				</td>
 			</tr>
 		</table>
-		<br>
-		<div class="btnBox">
-        	<input type="submit" value="가입하기"class="btn">
-        </div>
 		</form:form>
 	</div>
 </body>

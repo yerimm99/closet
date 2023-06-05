@@ -23,26 +23,32 @@ public class MybatisAccountDao implements AccountDao {
 	@Override
 	public Account getAccount(String userId, String password) 
 	throws DataAccessException {
-		return accountMapper.getAccountByUsernameAndPassword(userId, password);
+		return accountMapper.getAccountByUserIdAndPassword(userId, password);
 	}
 	
-	@Override
-	public int insertAccount(Account account) throws DataAccessException {
-		return accountMapper.insertAccount(account);
-	}
+//	@Override
+//	public void insertAccount(Account account) throws DataAccessException {
+//		return accountMapper.insertAccount(account);
+//	}
+//	
+//	@Override
+//	public void updateAccount(Account account) throws DataAccessException {
+//		return accountMapper.updateAccount(account);
+//	}	
+//	
+//	@Override
+//	public int removeAccount(String userId) throws DataAccessException {
+//		return accountMapper.removeAccount(userId);
+//	}
+//
+//	@Override
+//	public int existingUser(String userId) {
+//		return accountMapper.exisingUser(userId);
+//	}	
 	
-	@Override
-	public int updateAccount(Account account) throws DataAccessException {
-		return accountMapper.updateAccount(account);
-	}	
-	
-	@Override
-	public int removeAccount(String userId) throws DataAccessException {
-		return accountMapper.removeAccount(userId);
-	}
+	public void insertAccount(Account account) throws DataAccessException{return;}
 
-	@Override
-	public int existingUser(String userId) {
-		return accountMapper.exisingUser(userId);
-	}	
+	public void updateAccount(Account account) throws DataAccessException{return;}
+
+	public List<String> getUsernameList() throws DataAccessException{return null;}
 }

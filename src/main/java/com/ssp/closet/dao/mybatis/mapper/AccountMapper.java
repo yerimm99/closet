@@ -18,7 +18,7 @@ public interface AccountMapper {
 	@Select("SELECT USERID, PASSWORD, EMAIL, NAME, ADDRESS, PHONE, RATING"
 			+ " FROM ACCOUNT WHERE ACCOUNT.USERID = #{userId}"
 			+ " AND PASSWORD = #{password}")
-	Account getAccountByUsernameAndPassword(String userId, String password);
+	Account getAccountByUserIdAndPassword(String userId, String password);
 	
 	@Insert("INSERT INTO ACCOUNT (USERID, PASSWORD, EMAIL, NAME, ADDRESS, PHONE, RATING)"
 			+ " VALUES ({userid}, #{password}, #{email}, #{name}, #{address}, #{phone}, #{rating}")
