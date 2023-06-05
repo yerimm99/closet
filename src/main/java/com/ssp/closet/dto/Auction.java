@@ -7,9 +7,6 @@ import javax.persistence.SecondaryTable;
 
 @SuppressWarnings("serial")
 @Entity
-@SecondaryTable(name="PRODUCT2", 
-pkJoinColumns=@PrimaryKeyJoinColumn(
-	name="productId", referencedColumnName="productId"))
 public class Auction extends Product {
 	
 	@Id
