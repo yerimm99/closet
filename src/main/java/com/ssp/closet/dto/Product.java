@@ -7,6 +7,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,8 +17,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 @SuppressWarnings("serial")
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "PRODUCT")
 @Inheritance(strategy=InheritanceType.JOINED)
 @DiscriminatorColumn(name = "DTYPE") // 하위 테이블의 구분 컬럼 생성(default = DTYPE)
@@ -40,6 +48,8 @@ public class Product implements Serializable {
 	@Column(name="STATUS")
 	private int status; // 판매 상태
 	@Column(name="REGISTERDATE")
+	@CreatedDate
+	@Temporal(TemporalType.DATE)
 	private Date registerDate; // 등록 날짜
 	@Column(name="SELLPERIOD")
 	private int period; // 판매 기간
@@ -59,7 +69,7 @@ public class Product implements Serializable {
 	private String picture4;
 	@Column(name="PRICE")
 	private int price;
-	@Column(name = "DTYPE")
+	@Column(name = "DTYPE", insertable=false, updatable=false)
 	private String DTYPE;
 
 	@ManyToOne

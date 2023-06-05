@@ -47,11 +47,12 @@ logging:
               mapper: DEBUG        
       org:
         hibernate: INFO     
-  
+        SQL: DEBUG
+        BasicBinder: TRACE
 server:
   tomcat:
     additional-tld-skip-patterns:
       - oraclepki.jar
       - osdt_core.jar
       - osdt_cert.jar
-  port: 8080
+  port: 8087

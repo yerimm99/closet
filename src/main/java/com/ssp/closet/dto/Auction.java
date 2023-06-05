@@ -16,7 +16,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 @SuppressWarnings("serial")
-@PrimaryKeyJoinColumn(name = "PRODUCTID") 
 @Entity
 @Table(name = "AUCTION")
 @DiscriminatorValue("Auction")

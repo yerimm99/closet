@@ -79,7 +79,7 @@
 					</tr>
 					<tr>
 						<td>현재최고가</td>
-						<td>${product.maxPrice}</td>
+						<td>${product.price}</td>
 					</tr>
 					<tr>
 						<td colspan = "2">
