@@ -24,15 +24,15 @@ public interface AccountMapper {
 			+ " VALUES ({userid}, #{password}, #{email}, #{name}, #{address}, #{phone}, #{rating}")
 	int  insertAccount(Account account);
 	
-	@Insert("UPDATE ACCOUNT SET USERID = #{userId}, PASSWORD = #{password}, "
+	@Insert("UPDATE ACCOUNT SET USERID = #{userid}, PASSWORD = #{password}, "
 			+ "EMAIL = #{email}, NAME = #{name}, ADDRESS = #{address}, "
 			+ "PHONE = #{phone}, RATING = #{rating}")
 	int  updateAccount(Account account);
 
-	@Delete("DELETE FROM ACCOUNT WHERE USERID = #{userId}")
+	@Delete("DELETE FROM ACCOUNT WHERE USERID = #{userid}")
 	int  removeAccount(String userid);
 
-	@Select("SELECT USERID FROM ACCOUNT WHERE ACCOUNT.USERID = #{userId}")
+	@Select("SELECT USERID FROM ACCOUNT WHERE ACCOUNT.USERID = #{userid}")
 	int  exisingUser(String userid);	
 	
 //	@Update("UPDATE ACCOUNT set MILEAGE = MILEAGE - #{mileage} WHERE USERID = #{userId}")
