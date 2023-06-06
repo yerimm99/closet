@@ -13,12 +13,12 @@ import com.ssp.closet.dto.Account;
 @Mapper
 public interface AccountMapper {
 
-	Account getAccountByUsername(String userId);
+	Account getAccountByUsername(String userid);
 
 	@Select("SELECT USERID, PASSWORD, EMAIL, NAME, ADDRESS, PHONE, RATING"
 			+ " FROM ACCOUNT WHERE ACCOUNT.USERID = #{userId}"
 			+ " AND PASSWORD = #{password}")
-	Account getAccountByUserIdAndPassword(String userId, String password);
+	Account getAccountByUserIdAndPassword(String userid, String password);
 	
 	@Insert("INSERT INTO ACCOUNT (USERID, PASSWORD, EMAIL, NAME, ADDRESS, PHONE, RATING)"
 			+ " VALUES ({userid}, #{password}, #{email}, #{name}, #{address}, #{phone}, #{rating}")
@@ -30,10 +30,10 @@ public interface AccountMapper {
 	int  updateAccount(Account account);
 
 	@Delete("DELETE FROM ACCOUNT WHERE USERID = #{userId}")
-	int  removeAccount(String userId);
+	int  removeAccount(String userid);
 
 	@Select("SELECT USERID FROM ACCOUNT WHERE ACCOUNT.USERID = #{userId}")
-	int  exisingUser(String userId);	
+	int  exisingUser(String userid);	
 	
 //	@Update("UPDATE ACCOUNT set MILEAGE = MILEAGE - #{mileage} WHERE USERID = #{userId}")
 //	int  useMileage(int mileage, String userId);
