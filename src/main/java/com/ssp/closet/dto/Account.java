@@ -15,14 +15,9 @@ public class Account implements Serializable {
   private String address;
   private String phone;
   private double rating;
-  private String status;
-  private boolean listOption;
-  private boolean bannerOption;
 
 
   /* JavaBeans Properties */
-
-
 
   public String getUserId() { return userId; }
   public void setUserId(String userId) { this.userId = userId; }
@@ -45,12 +40,4 @@ public class Account implements Serializable {
   public String getPhone() { return phone; }
   public void setPhone(String phone) { this.phone = phone; }
   
-  public String getStatus() {return status;}
-  public void setStatus(String status) {this.status = status;}
-
-  public boolean isListOption() {return listOption;}
-  public void setListOption(boolean listOption) {this.listOption = listOption;}
-
-  public boolean isBannerOption() {return bannerOption;}
-  public void setBannerOption(boolean bannerOption) {this.bannerOption = bannerOption;}
 }
