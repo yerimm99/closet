@@ -27,10 +27,10 @@
     SELECT USERID,
     	PASSWORD,
       	EMAIL,
-      	NAME,
-      	RATING
-      	ADDRESS
-      ACCOUNT.PHONE
+      	USERNAME,
+      	RATING,
+      	ADDRESS,
+        PHONE
     FROM ACCOUNT
     WHERE USERID = #{param1}
       AND PASSWORD = #{param2}
