@@ -15,10 +15,10 @@ public interface AccountMapper {
 
 	Account getAccountByUsername(String userid);
 
-	@Select("SELECT USERID, PASSWORD, EMAIL, NAME, ADDRESS, PHONE, RATING"
-			+ " FROM ACCOUNT WHERE ACCOUNT.USERID = #{userId}"
+	@Select("SELECT USERID, PASSWORD, EMAIL, USERNAME, ADDRESS, PHONE, RATING"
+			+ " FROM ACCOUNT WHERE USERID = #{userId}"
 			+ " AND PASSWORD = #{password}")
-	Account getAccountByUserIdAndPassword(String userid, String password);
+	Account getAccountByUserIdAndPassword(String userId, String password);
 	
 	@Insert("INSERT INTO ACCOUNT (USERID, PASSWORD, EMAIL, NAME, ADDRESS, PHONE, RATING)"
 			+ " VALUES ({userid}, #{password}, #{email}, #{name}, #{address}, #{phone}, #{rating}")
@@ -35,10 +35,10 @@ public interface AccountMapper {
 	@Select("SELECT USERID FROM ACCOUNT WHERE ACCOUNT.USERID = #{userid}")
 	int  exisingUser(String userid);	
 	
-//	@Update("UPDATE ACCOUNT set MILEAGE = MILEAGE - #{mileage} WHERE USERID = #{userId}")
-//	int  useMileage(int mileage, String userId);
-//	
-//	@Update("UPDATE ACCOUNT set MILEAGE = MILEAGE + #{mileage} WHERE USERID = #{userId}")
-//	int  getMileage(int mileage, String userId);
+	@Update("UPDATE ACCOUNT set MILEAGE = MILEAGE - #{mileage} WHERE USERID = #{userId}")
+	int  useMileage(int mileage, String userId);
+	
+	@Update("UPDATE ACCOUNT set MILEAGE = MILEAGE + #{mileage} WHERE USERID = #{userId}")
+	int  getMileage(int mileage, String userId);
 
 }
