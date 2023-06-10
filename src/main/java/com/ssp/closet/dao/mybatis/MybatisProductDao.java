@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.ssp.closet.dao.ProductDao;
 import com.ssp.closet.dao.SequenceDao;
 import com.ssp.closet.dao.mybatis.mapper.ProductMapper;
-import com.ssp.closet.dto.GroupBuy;
+import com.ssp.closet.dto.Groupbuy;
 import com.ssp.closet.dto.Product;
 
 @Repository
@@ -22,7 +22,7 @@ public class MybatisProductDao implements ProductDao {
 
 
 	
-	public void insertGroupBuyProduct(Product product, GroupBuy groupBuy) throws DataAccessException {
+	public void insertGroupBuyProduct(Product product, Groupbuy groupBuy) throws DataAccessException {
 		product.setProductId(sequenceDao.getNextId("productnum")); //productnum 은 추후 수정
 		productMapper.insertGroupBuyProduct(product, groupBuy);
 	}

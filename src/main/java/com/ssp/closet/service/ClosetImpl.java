@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 import com.ssp.closet.dao.AccountDao;
 import com.ssp.closet.dao.AuctionDao;
 import com.ssp.closet.dao.BookmarkDao;
-import com.ssp.closet.dao.GroupBuyDao;
+import com.ssp.closet.dao.GroupbuyDao;
 import com.ssp.closet.dao.ProductDao;
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
 import com.ssp.closet.dto.Bookmark;
 import com.ssp.closet.dto.Category;
-import com.ssp.closet.dto.GroupBuy;
+import com.ssp.closet.dto.Groupbuy;
 import com.ssp.closet.dto.Meet;
 import com.ssp.closet.dto.Order;
 import com.ssp.closet.dto.Product;
@@ -73,15 +73,17 @@ public class ClosetImpl implements ClosetFacade{
 	}
 
 	@Autowired
-	private GroupBuyDao groupBuyDao;
-
-	public int getPeopleNum(int productId) {
-		return groupBuyDao.getPeopleNum(productId);
+	@Qualifier("jpaGroupbuyDao")
+	private GroupbuyDao groupbuyDao;
+	
+	public void insertGroupbuy(Groupbuy groupbuy) {
+		groupbuyDao.insertGroupbuy(groupbuy);
+	}
+	
+	public Groupbuy getGroupbuyDetail(int productId) {
+		return groupbuyDao.getGroupbuyDetail(productId);
 	}
 
-	public GroupBuy getGroupBuyDetail(int productId) {
-		return groupBuyDao.getGroupBuyDetail(productId);
-	}
 	
 //	@Autowired
 //	private MeetDao meetDao;
@@ -166,6 +168,4 @@ public class ClosetImpl implements ClosetFacade{
 		// TODO Auto-generated method stub
 
 	}
-
-
 }

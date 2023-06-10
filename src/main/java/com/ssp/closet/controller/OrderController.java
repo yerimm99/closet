@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndViewDefiningException;
 
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
-import com.ssp.closet.dto.GroupBuy;
+import com.ssp.closet.dto.Groupbuy;
 import com.ssp.closet.dto.Product;
 import com.ssp.closet.service.ClosetFacade;
 import com.ssp.closet.service.OrderValidator;
@@ -66,7 +66,7 @@ public class OrderController {
 	@RequestMapping("/shop/newGroupBuyOrder.do")
 	public String initNewGroupBuyOrder(HttpServletRequest request,
 			@ModelAttribute("buyProduct") Product product,
-			@ModelAttribute("buyDetail") GroupBuy groupBuy,
+			@ModelAttribute("buyDetail") Groupbuy groupBuy,
 			@ModelAttribute("orderForm") OrderForm orderForm
 			) throws ModelAndViewDefiningException {
 		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");

@@ -150,7 +150,7 @@ public class Order implements Serializable {
 	    cardType = "Visa";
 	}
 
-	public void initOrder(Account account, Product product, GroupBuy groupBuy) {
+	public void initOrder(Account account, Product product, Groupbuy groupBuy) {
 		userId = account.getUserId();
 		name = account.getName();
 	    orderDate = new Date();
