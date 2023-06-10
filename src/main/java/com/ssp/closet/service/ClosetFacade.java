@@ -6,7 +6,7 @@ import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
 import com.ssp.closet.dto.Bookmark;
 import com.ssp.closet.dto.Category;
-import com.ssp.closet.dto.GroupBuy;
+import com.ssp.closet.dto.Groupbuy;
 import com.ssp.closet.dto.Meet;
 import com.ssp.closet.dto.Order;
 import com.ssp.closet.dto.Product;
@@ -31,8 +31,8 @@ public interface ClosetFacade {
 	Category getCategory(String categoryId);
 
 	
-	int getPeopleNum(int productId);
-	GroupBuy getGroupBuyDetail(int productId);
+	void insertGroupbuy(Groupbuy groupbuy);
+	Groupbuy getGroupbuyDetail(int productId);
 	
 	void createMark(Bookmark bookmark);
 	void deleteMark(String userId, int productId);

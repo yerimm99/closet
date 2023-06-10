@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
-import com.ssp.closet.dto.GroupBuy;
+import com.ssp.closet.dto.Groupbuy;
 import com.ssp.closet.dto.Product;
 
 public interface ProductDao {
 
 	//공동구매 상품 등록
-	void insertGroupBuyProduct(Product product, GroupBuy groupBuy) throws DataAccessException;
+	void insertGroupBuyProduct(Product product, Groupbuy groupBuy) throws DataAccessException;
 
 	//상품 수정
 	void updateProduct(int productId) throws DataAccessException;
