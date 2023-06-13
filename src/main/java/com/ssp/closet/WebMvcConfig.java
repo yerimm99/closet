@@ -24,7 +24,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(interceptor)
 				.addPathPatterns("/auction/auctionForm.do");
-//		registry.addInterceptor(interceptor)
-//				.addPathPatterns("/gruopbuy/gruopbuyForm.do");		
+		registry.addInterceptor(interceptor)
+				.addPathPatterns("/gruopbuy/gruopbuyForm.do");
+		registry.addInterceptor(interceptor)
+				.addPathPatterns("/main/myPage.do");	
 	}
 }

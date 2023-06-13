@@ -30,6 +30,64 @@
 			<tr>
 				<td style="text-align:center;font-size:24px">공동구매 상품 등록</td>
 			</tr>
+			<tr>
+				<td>
+					<br><br>
+					<form:input path = "groupbuy.name" placeholder = "상품명" class = "inp"/>
+					<hr>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<form:input path = "groupbuy.size" placeholder = "사이즈" class = "inp"/>
+					<hr>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<form:input path = "groupbuy.color" placeholder = "색상" class = "inp"/>
+					<hr>
+				</td>
+			</tr>
+			<tr>
+				<td><!-- 왜자꾸 0이 기본값으로 들어가는지 모르겠음 -->
+					<form:input path = "groupbuy.price" placeholder = "가격"  class = "inp"/>
+					<hr>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<!-- 왜자꾸 0이 기본값으로 들어가는지 모르겠음 -->
+					<form:input path = "groupbuy.peopleNum" placeholder = "공동구매 참여자 수" class = "inp"/>
+					<hr>
+				</td>
+			</tr>
+			<tr>
+				<td><!-- 이쁘게 수정 -->
+					상품의 카테고리를 고르세요.
+					<form:select path = "groupbuy.categoryId" items = "${categories}"/>
+					<hr>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<form:textarea path = "groupbuy.description" class = "inpText"
+						 placeholder = "올릴 상품에 대한 설명을 작성해주세요."/>
+					<hr>
+				</td>
+			</tr>
+			<tr>
+				<td><!-- form:form태그에 file url업로드 기능 없음. requestParam으로 가져가야함 -->
+					최소 1개 최대 4개의 사진을 업로드해주세요
+					<input type = "file" name = "picture1" id = "picture1" multiple>
+					<hr>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="submit" value="등록하기">
+				</td>
+			</tr>
 		</table>
 		</form:form>
 	</div>

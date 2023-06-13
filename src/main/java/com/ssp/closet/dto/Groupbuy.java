@@ -12,7 +12,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @SecondaryTable(name="PRODUCT1", 
 pkJoinColumns=@PrimaryKeyJoinColumn(
 		name="productId", referencedColumnName="productId"))
-public class Groupbuy implements Serializable {
+public class Groupbuy extends Product implements Serializable {
 
 	/* Private Fields */
 	@Id
