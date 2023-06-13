@@ -15,7 +15,7 @@
 	<c:choose>
 		<c:when test = "${productList == null}">
 			<div class = "sell">
-				<a href="<c:url value='/groupbuy/registerForm' />">등록하기</a>
+				공동구매 상품이 하나도 없습니다.
 			</div>
 		</c:when>
 		<c:otherwise>
