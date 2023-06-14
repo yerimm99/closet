@@ -10,9 +10,8 @@ public class OracleSequenceDao extends MybatisSequenceDao {
    * @param name Name is the name of the oracle sequence.
    * @return the next sequence
    */
-	public int getNextId(String name) throws DataAccessException {
+	public int getNextId() throws DataAccessException {
 		Sequence sequence = new Sequence();
-		sequence.setName(name);
 		sequence = sequenceMapper.getOracleSequence(sequence);
 		return sequence.getNextId();
 	 }

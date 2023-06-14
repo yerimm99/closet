@@ -16,11 +16,13 @@ public class MybatisAuctionDao implements AuctionDao{
 	
 	public void insertAuction(Auction auction) throws DataAccessException {
 		auctionMapper.insertAuction(auction);
-	};
+	}
 
-	public Auction getAuctionDetail(String productId) throws DataAccessException {
+	public Auction getAuctionDetail(int productId) throws DataAccessException {
 		return auctionMapper.getAuctionDetail(productId);
-	};
-
-
+	}
+	
+	public void updateMaxPrice(Auction auction) throws DataAccessException {
+		auctionMapper.updateMaxPrice(auction);
+	}
 }

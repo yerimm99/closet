@@ -9,6 +9,8 @@ public interface AuctionMapper {
 	
 	void insertAuction(Auction auction);
 
-	Auction getAuctionDetail(String productId);
+	Auction getAuctionDetail(int productId);
+	
+	void updateMaxPrice(Auction auction);
 
 }

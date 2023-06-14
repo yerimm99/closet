@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="EUC-KR">
+	<meta charset="utf-8">
 	<title>경매 상품 상세페이지</title>
 	<style type = "text/css">
 		body{margin:0}
@@ -42,7 +42,7 @@
 	<!-- 메뉴바 -->
 	<jsp:include page = "../menu.jsp"/>
 	<hr>
-	
+
 	<div class = "layout">
 		<!-- 상품 메인 사진 및 상세정보 -->
 		<div>
@@ -79,7 +79,7 @@
 					</tr>
 					<tr>
 						<td>현재최고가</td>
-						<td>${product.maxPrice}</td>
+						<td>${product.price}</td>
 					</tr>
 					<tr>
 						<td colspan = "2">
@@ -91,9 +91,7 @@
 				</table>
 			</div>
 		</div>
-	
-	
-	
+
 	</div>
 </body>
 </html>

@@ -143,7 +143,7 @@ public class Order implements Serializable {
 	    billToName = account.getName();
 
 	    productId = product.getProductId();
-	    price = auction.getMaxPrice();
+	    //price = auction.getMaxPrice();
 
 	    creditCard = "999 9999 9999 9999";
 	    expiryDate = "12/03";

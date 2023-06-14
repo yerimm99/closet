@@ -34,7 +34,7 @@
 		<div>
 			<!-- 판매하기 기능 -->
 			<div class = "sell">
-				<a href='<c:url value="/auction/registerForm.do" />'>판매하기</a>
+				<a href='<c:url value="/auction/newAuction.do" />'>판매하기</a>
 			</div>
  			<!-- 카테고리 -->
 			<div class = "category">

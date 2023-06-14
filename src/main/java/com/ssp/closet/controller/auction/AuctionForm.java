@@ -1,4 +1,4 @@
-package com.ssp.closet.controller;
+package com.ssp.closet.controller.auction;
 
 import java.io.Serializable;
 
