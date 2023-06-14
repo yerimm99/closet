@@ -22,11 +22,11 @@ import com.ssp.closet.dto.Meet;
 import com.ssp.closet.dto.Order;
 import com.ssp.closet.dto.Product;
 import com.ssp.closet.dto.Review;
+
 import com.ssp.closet.repository.AuctionRepository;
 import com.ssp.closet.repository.BidRepository;
-
 import com.ssp.closet.repository.ProductRepository;
-
+import com.ssp.closet.service.ClosetFacade;
 @Service
 @Transactional
 public class ClosetImpl implements ClosetFacade{
@@ -34,7 +34,6 @@ public class ClosetImpl implements ClosetFacade{
 
 	@Autowired  
 	private ProductRepository productRepository;
-
 //	public List<Product> getProductListByType(int type, int status) {
 //		return productRepository.findByTypeAndStatus(type, status);
 //	}
@@ -53,8 +52,6 @@ public class ClosetImpl implements ClosetFacade{
 //	public void deleteProduct(int productId) {
 //		productRepository.deleteByProductIdIfGroupBuyPeopleNumIsOne(productId);
 //	};
-
-
 	@Autowired
 	private AuctionRepository aucRepository;
 
@@ -192,6 +189,11 @@ public class ClosetImpl implements ClosetFacade{
 	@Autowired
 	private AccountDao accountDao;
 	
+	@Override
+	public Account getAccount(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	@Override
 	public Account getAccount(String userId, String password) {
 		return accountDao.getAccount(userId, password);
