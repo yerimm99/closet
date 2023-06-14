@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.util.WebUtils;
 
+import com.ssp.closet.controller.AccountForm;
+import com.ssp.closet.controller.UserSession;
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.service.AccountFormValidator;
 import com.ssp.closet.service.ClosetFacade;
