@@ -2,7 +2,6 @@ package com.ssp.closet.dto;
 
 import java.io.Serializable;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,8 +13,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @SuppressWarnings("serial")
 @Entity
+@Getter
+@Setter
 @Table(name = "BID")
 public class Bid implements Serializable{
 	
@@ -43,43 +47,6 @@ public class Bid implements Serializable{
     @JoinColumn(name = "PRODUCTID", insertable = false, updatable = false)
     private Auction auction;
 	
-	public int getBidId() {
-		return bidId;
-	}
-	
-	public void setBidId(int bidId) {
-		this.bidId = bidId;
-	}
-//	public int getProductId() {
-//		return productId;
-//	}
-//	public void setProductId(int productId) {
-//		this.productId = productId;
-//	}
-//	public String getUserId() {
-//		return userId;
-//	}
-//	public void setUserId(String userId) {
-//		this.userId = userId;
-//	}
-	public int getBidPrice() {
-		return bidPrice;
-	}
-	public void setBidPrice(int bidPrice) {
-		this.bidPrice = bidPrice;
-	}
-	public int getBidResult() {
-		return bidResult;
-	}
-	public void setBidResult(int bidResult) {
-		this.bidResult = bidResult;
-	}
-	public Date getSignDate() {
-		return signDate;
-	}
-	public void setSignDate(Date signDate) {
-		this.signDate = signDate;
-	}
 	
 	public void initBid(Account account, Auction ac) {
 		bidder = account;

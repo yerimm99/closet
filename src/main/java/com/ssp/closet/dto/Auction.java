@@ -9,16 +9,17 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.ForeignKey;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "AUCTION")
 @DiscriminatorValue("Auction")
+@Getter
+@Setter
 public class Auction extends Product implements Serializable {
 	
 
@@ -32,19 +33,6 @@ public class Auction extends Product implements Serializable {
 
 
     public Auction() {}
-    
-	public int getStartPrice() {
-		return startPrice;
-	}
-	public void setStartPrice(int startPrice) {
-		this.startPrice = startPrice;
-	}
-	public int getUsed() {
-		return used;
-	}
-	public void setUsed(int used) {
-		this.used = used;
-	}
 
 	public void initAuction(Account account) {
 		super.setType(1);
