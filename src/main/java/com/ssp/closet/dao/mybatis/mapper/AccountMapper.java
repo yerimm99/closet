@@ -13,7 +13,9 @@ import com.ssp.closet.dto.Account;
 @Mapper
 public interface AccountMapper {
 
-	Account getAccountByUsername(String userid);
+	@Select("SELECT USERID, PASSWORD, EMAIL, USERNAME, ADDRESS, PHONE, RATING"
+			+ " FROM ACCOUNT WHERE USERID = #{userId}")
+	Account getAccountByUsername(String userId);
 
 	@Select("SELECT USERID, PASSWORD, EMAIL, USERNAME, ADDRESS, PHONE, RATING"
 			+ " FROM ACCOUNT WHERE USERID = #{userId}"

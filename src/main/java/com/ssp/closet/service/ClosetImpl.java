@@ -191,8 +191,7 @@ public class ClosetImpl implements ClosetFacade{
 	
 	@Override
 	public Account getAccount(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		return accountDao.getAccount(name);
 	}
 	@Override
 	public Account getAccount(String userId, String password) {

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ModelAndViewDefiningException;
+import org.springframework.web.util.WebUtils;
 
 import com.ssp.closet.controller.UserSession;
 import com.ssp.closet.dto.Account;
@@ -70,13 +71,14 @@ public class AuctionFormController {
 			@ModelAttribute("auctionForm") AuctionForm auctionForm
 			) throws ModelAndViewDefiningException {
 		
-		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
-		Account account = closet.getAccount("aaa");//userSession.getAccount().getUserId()
-		if (account == null) {
-			return ("index");
-		} else {
+		UserSession userSession = 
+				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
+		if (userSession != null) {
+			Account account = closet.getAccount(userSession.getAccount().getUserId());
 			auctionForm.getAuction().initAuction(account);
 			return "auction/registerForm";
+		} else {
+			return ("redirect:/account/SingonForm");
 		}
 	
 	}
