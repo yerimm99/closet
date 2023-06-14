@@ -41,34 +41,50 @@ public class BidFormController {
 //		this.validator = validator;
 //	}
 	
-	@ModelAttribute("bidForm")
-	public BidForm formBackingObject(HttpServletRequest request) 
-			throws Exception {
-		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
 
-		Account account = closet.getAccount(userSession.getAccount().getUserId());
-		Bid bid = closet.getBid(account.getUserId());
-		if(bid != null) {
-			return new BidForm(closet.getBid(account.getUserId()));
-		} else {
-			return new BidForm();
+	public String initBid(HttpServletRequest request,
+			@ModelAttribute("auction") Auction auction,
+			@ModelAttribute("bidForm") BidForm bidForm) 
+			throws Exception {
+		UserSession userSession = 
+				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
+		if (userSession != null) {
+			Account account = closet.getAccount(userSession.getAccount().getUserId());
+//			Bid bid = closet.getBid(account.getUserId());
+			bidForm.getBid().initBid(account, auction);
+			return "bid/bidForm";
+//			if (bid != null) {
+//				bidForm.getBid().initBid(account, auction);
+//				return "bid/updateForm";
+//			} else {
+//				bidForm.getBid().initBid(account, auction);
+//				return "bid/bidForm";
+//			}
+		}
+		else {
+			return "redirect:/account/SignonForm.do";
 		}
 	}
 	
-//	@RequestMapping("/bid/newBid.do")
-//	public String initNewBid(HttpServletRequest request,
+
+//	@RequestMapping("/bid/updatePrice.do")
+//	public String initUpdateBid(HttpServletRequest request,
+//			@ModelAttribute("auction") Auction auction,
 //			@ModelAttribute("bidForm") BidForm bidForm,
-//			@RequestParam("productid") int productId
-//			) throws Exception {
-//		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
-//
-//		Account account = closet.getAccount(userSession.getAccount().getUserId());
-//		bidForm.getBid().initBid(account, productId);
-//		return "bid/bidForm";
-//	
+//			@RequestParam("bidPrice") int bidPrice) 
+//			throws Exception {
+//		UserSession userSession = 
+//				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
+//		if (userSession != null) {
+//			Account account = closet.getAccount(userSession.getAccount().getUserId());
+//			bidForm.getBid().initBid(account, auction);
+//			return "bid/updatePriceForm";
+//		}
+//		else {
+//			return "redirect:/account/SignonForm.do";
+//		}
 //	}
 	
-	@RequestMapping(method = RequestMethod.POST)
 	protected ModelAndView confirmBid( //Bid 등록 
 			@ModelAttribute("auction") Auction auction,
 			@ModelAttribute("bidForm") BidForm bidForm,
@@ -87,7 +103,7 @@ public class BidFormController {
 				closet.updateMaxPrice(auction);
 			}
 			else {
-				closet.updateBidPrice(bidForm.getBid().getBidId(), bidPrice);
+				closet.updateBidPrice(bidForm.getBid().getId(), bidPrice);
 				closet.updateMaxPrice(auction);
 			}
 		}
@@ -105,19 +121,7 @@ public class BidFormController {
 		status.setComplete();  // remove session
 		return mav;
 	}
-//	
-//	@RequestMapping("/bid/newAuction.do")
-//	public String initNewAuction(HttpServletRequest request,
-//			@ModelAttribute("auctionForm") AuctionForm auctionForm
-//			) throws Exception {
-//		
-//		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");	
-//		Account account = closet.getAccount(userSession.getAccount().getUserId());
-//		auctionForm.getAuction().initAuction(account);
-//		return "auction/registerForm";
-//	
-//	}
-//	
+
 //	@RequestMapping("/bid/bidPriceUpdateForm.do")
 //	public ModelAndView conFirmUpdate(
 //			HttpServletRequest request,

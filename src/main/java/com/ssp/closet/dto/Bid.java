@@ -2,49 +2,51 @@ package com.ssp.closet.dto;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
+
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.EntityListeners;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import lombok.Getter;
 import lombok.Setter;
 
-@SuppressWarnings("serial")
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
 @Table(name = "BID")
-public class Bid implements Serializable{
+public class Bid {
 	
-	@Id
-	@Column(name = "BIDID")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int bidId;
-	@Column(name = "PRODUCTID")
-	private int productId;
-	@Column(name = "USERID")
-	private String userId; //입찰자 얘를 bidId로 써도 될듯 
+	@EmbeddedId
+	private BidId id;
+
 	@Column(name = "BIDPRICE")
 	private int bidPrice;
 	@Column(name = "BIDRESULT")
 	private int bidResult;
 	@Column(name = "SIGNDATE")
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	private Date signDate;
 
 	@ManyToOne
-    @JoinColumn(name = "USERID", insertable = false, updatable = false)
+	@MapsId("userId")
+    @JoinColumn(name = "USERID")
     private Account bidder;
 	
 	@ManyToOne
-    @JoinColumn(name = "PRODUCTID", insertable = false, updatable = false)
+	@MapsId("productId")
+    @JoinColumn(name = "PRODUCTID")
     private Auction auction;
 	
 	

@@ -69,7 +69,7 @@ public class AuctionFormController {
 	@RequestMapping("/auction/newAuction.do")
 	public String initNewAuction(HttpServletRequest request,
 			@ModelAttribute("auctionForm") AuctionForm auctionForm
-			) throws ModelAndViewDefiningException {
+			) throws Exception {
 		
 		UserSession userSession = 
 				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
@@ -78,7 +78,7 @@ public class AuctionFormController {
 			auctionForm.getAuction().initAuction(account);
 			return "auction/registerForm";
 		} else {
-			return ("redirect:/account/SingonForm");
+			return "redirect:/account/SignonForm.do";
 		}
 	
 	}
