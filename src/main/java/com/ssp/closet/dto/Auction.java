@@ -22,7 +22,6 @@ import javax.persistence.OneToMany;
 @Setter
 public class Auction extends Product implements Serializable {
 	
-
 	@Column(name = "STARTPRICE")
     private int startPrice;
     @Column(name = "USED")

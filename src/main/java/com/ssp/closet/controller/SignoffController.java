@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class SignoffController { 
-	@RequestMapping("/shop/signoff.do")
+	@RequestMapping("/account/signoff.do")
 	public String handleRequest(HttpSession session) throws Exception {
 		session.removeAttribute("userSession");
 		session.invalidate();
+		
 		return "index";
 	}
 }

@@ -7,7 +7,7 @@ import com.ssp.closet.dto.Auction;
 import com.ssp.closet.dto.Bid;
 import com.ssp.closet.dto.Bookmark;
 import com.ssp.closet.dto.Category;
-import com.ssp.closet.dto.GroupBuy;
+import com.ssp.closet.dto.Groupbuy;
 import com.ssp.closet.dto.Meet;
 import com.ssp.closet.dto.Order;
 import com.ssp.closet.dto.Product;
@@ -15,10 +15,11 @@ import com.ssp.closet.dto.Review;
 
 public interface ClosetFacade {
 	
-	void updateProduct(int productId);
-	void deleteProduct(int productId);
+//	void updateProduct(String description, String picture1, String picture2, String picture3, String picture4, int productId);
+//	void deleteProduct(int productId);
+	//List<Product> getProductListByType(int type, int status);
 	List<Product> getProductList();
-	Product getProductDetail(int productId);
+//	Product getProductDetail(int productId);
 	
 	void insertAuction(Auction auction);
 	Auction getAuctionDetail(int productId);
@@ -41,8 +42,8 @@ public interface ClosetFacade {
 	Category getCategory(String categoryId);
 
 	
-	int getPeopleNum(int productId);
-	GroupBuy getGroupBuyDetail(int productId);
+	void insertGroupbuy(Groupbuy groupbuy);
+	Groupbuy getGroupbuyDetail(int productId);
 	
 	void createMark(Bookmark bookmark);
 	void deleteMark(String userId, int productId);

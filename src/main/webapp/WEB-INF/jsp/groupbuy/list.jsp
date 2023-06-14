@@ -12,30 +12,39 @@
 	</style>
 </head>
 <body>
-	<c:set var="i" value="0" />
-	<c:set var="j" value="4" />
-	<table border="1">
-	<c:forEach items="${productList}" var="prod">
-		<c:if test="${i%j == 0 }">
-	    	<tr>
-	    </c:if>
-	    	<td>
-	    		<a href = "<c:url value='/groupbuy/detail'>
-									<c:param name = 'productId' value='${prod.productId}' />
-									</c:url>">
-		      		<img src="<c:url value='${prod.picture1}'/>" width="250px" height="250px"/><br>
-		      		${prod.name}<br>
-		      		${prod.description}<br>
-		      		color: ${prod.color} || size: ${prod.size}<br><br><br>
-		      		가격: ${prod.maxPrice}원<br>
-		      		현재모인 인원수: ${prod.peopleNum} <!-- 이거 전체인원수랑 현재 인원수로 나눠야함.. -->
-	      		</a>
-	      	</td>
-		<c:if test="${i%j == j-1 }">
-	    	</tr>
-	    </c:if>
-	    <c:set var="i" value="${i+1 }" />
-	</c:forEach>
-	</table>
+	<c:choose>
+		<c:when test = "${productList == null}">
+			<div class = "sell">
+				공동구매 상품이 하나도 없습니다.
+			</div>
+		</c:when>
+		<c:otherwise>
+			<c:set var="i" value="0" />
+			<c:set var="j" value="4" />
+			<table border="1">
+			<c:forEach items="${productList}" var="prod">
+				<c:if test="${i%j == 0 }">
+			    	<tr>
+			    </c:if>
+			    	<td>
+			    		<a href = "<c:url value='/groupbuy/detail'>
+											<c:param name = 'productId' value='${prod.productId}' />
+											</c:url>">
+				      		<img src="<c:url value='${prod.picture1}'/>" width="250px" height="250px"/><br>
+				      		${prod.name}<br>
+				      		${prod.description}<br>
+				      		color: ${prod.color} || size: ${prod.size}<br><br><br>
+<%-- 				      		가격: ${prod.maxPrice}원<br> --%>
+<%-- 				      		현재모인 인원수: ${prod.peopleNum} <!-- 이거 전체인원수랑 현재 인원수로 나눠야함.. --> --%>
+			      		</a>
+			      	</td>
+				<c:if test="${i%j == j-1 }">
+			    	</tr>
+			    </c:if>
+			    <c:set var="i" value="${i+1 }" />
+			</c:forEach>
+			</table>
+	</c:otherwise>
+	</c:choose>
 </body>
 </html>

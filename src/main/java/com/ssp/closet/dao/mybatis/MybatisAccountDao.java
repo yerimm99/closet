@@ -14,32 +14,41 @@ public class MybatisAccountDao implements AccountDao {
 
 	@Autowired
 	private AccountMapper accountMapper;
-
-	public Account getAccount(String username) throws DataAccessException {
-		return accountMapper.getAccountByUsername(username);
+	 
+	@Override
+	public Account getAccount(String userId) throws DataAccessException {
+		return accountMapper.getAccountByUsername(userId);
 	}
-
-	public Account getAccount(String username, String password) 
-			throws DataAccessException {
-		return accountMapper.getAccountByUsernameAndPassword(username, password);
+	
+	@Override
+	public Account getAccount(String userId, String password) 
+	throws DataAccessException {
+		return accountMapper.getAccountByUserIdAndPassword(userId, password);
 	}
+	
+//	@Override
+//	public void insertAccount(Account account) throws DataAccessException {
+//		return accountMapper.insertAccount(account);
+//	}
+//	
+//	@Override
+//	public void updateAccount(Account account) throws DataAccessException {
+//		return accountMapper.updateAccount(account);
+//	}	
+//	
+//	@Override
+//	public int removeAccount(String userId) throws DataAccessException {
+//		return accountMapper.removeAccount(userId);
+//	}
+//
+//	@Override
+//	public int existingUser(String userId) {
+//		return accountMapper.exisingUser(userId);
+//	}	
+	
+	public void insertAccount(Account account) throws DataAccessException{return;}
 
-	public void insertAccount(Account account) throws DataAccessException {
-		accountMapper.insertAccount(account);
-		accountMapper.insertProfile(account);
-		accountMapper.insertSignon(account);
-	}
+	public void updateAccount(Account account) throws DataAccessException{return;}
 
-	public void updateAccount(Account account) throws DataAccessException {
-		accountMapper.updateAccount(account);
-		accountMapper.updateProfile(account);
-		if (account.getPassword() != null && account.getPassword().length() > 0) 
-		{
-			accountMapper.updateSignon(account);
-		}
-	}
-
-	public List<String> getUsernameList() throws DataAccessException {
-		return accountMapper.getUsernameList();
-	}
+	public List<String> getUsernameList() throws DataAccessException{return null;}
 }

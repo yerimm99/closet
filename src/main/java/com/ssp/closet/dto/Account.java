@@ -43,5 +43,4 @@ public class Account implements Serializable {
   @OneToMany(mappedBy = "account")
   private List<Product> products;
 
-
 }

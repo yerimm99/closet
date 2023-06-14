@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>BEST 페이지</title>
+	<meta charset="EUC-KR">
+	<title>공동구매 페이지</title>
 	<style type = "text/css">
 		body{margin:0}
 		.layout{margin:0px auto;width:1180px;padding:10px}
@@ -32,21 +32,21 @@
 	
 	<div class = "layout">
 		<div>
-			<!-- 판매하기 기능 -->
+			<!-- 물건 등록 기능 -->
 			<div class = "sell">
-				<a href='<c:url value="/auction/registerForm.do" />'>판매하기</a>
+				<a href="<c:url value='/groupbuy/registerForm.do' />">등록하기</a>
 			</div>
- 			<!-- 카테고리 -->
+			<!-- 카테고리 -->
 			<div class = "category">
-				<a href="<c:url value='/auction/list?categoryId=전체' />">전체</a>
-				<a href="<c:url value='/auction/list?categoryId=신발' />">신발</a>
-				<a href="<c:url value='/auction/list?categoryId=아우터' />">아우터</a>
-				<a href="<c:url value='/auction/list?categoryId=상의' />">상의</a>
-				<a href="<c:url value='/auction/list?categoryId=하의' />">하의</a>
-				<a href="<c:url value='/auction/list?categoryId=가방' />">가방</a>
-				<a href="<c:url value='/auction/liWst?categoryId=지갑' />">지갑</a>
-				<a href="<c:url value='/auction/list?categoryId=시계' />">시계</a>
-				<a href="<c:url value='/auction/list?categoryId=패션잡화' />">패션잡화</a>
+				<a href="<c:url value='/groupbuy/list?categoryId=전체' />">전체</a>
+				<a href="<c:url value='/groupbuy/list?categoryId=신발' />">신발</a>
+				<a href="<c:url value='/groupbuy/list?categoryId=아우터' />">아우터</a>
+				<a href="<c:url value='/groupbuy/list?categoryId=상의' />">상의</a>
+				<a href="<c:url value='/groupbuy/list?categoryId=하의' />">하의</a>
+				<a href="<c:url value='/groupbuy/list?categoryId=가방' />">가방</a>
+				<a href="<c:url value='/groupbuy/list?categoryId=지갑' />">지갑</a>
+				<a href="<c:url value='/groupbuy/list?categoryId=시계' />">시계</a>
+				<a href="<c:url value='/groupbuy/list?categoryId=패션잡화' />">패션잡화</a>
 			</div>
 		</div>
 		<!-- 중복선택가능 -->
@@ -54,7 +54,7 @@
 			<script>
 				document.frm.submit();
 			</script>
-			<form class = "cFrom" method = "POST" action="<c:url value='/auction/list' />">
+			<form class = "cFrom" method = "POST" action="<c:url value='/groupbuy/list' />">
 				<label>카테고리</label><br><br>
 				<input type = "checkbox" name = "categoryId" value = "전체">전체<br>
 				<input type = "checkbox" name = "categoryId" value = "신발">신발<br>
@@ -66,6 +66,10 @@
 				<input type = "checkbox" name = "categoryId" value = "시계">시계<br>
 				<input type = "checkbox" name = "categoryId" value = "패션잡화">패션잡화<br>
 			</form>
+		</div>
+		<!-- 해당 상품 리스트 -->
+		<div class = "list">
+			<jsp:include page = "../groupbuy/list.jsp"/>
 		</div>
 	</div>
 </body>

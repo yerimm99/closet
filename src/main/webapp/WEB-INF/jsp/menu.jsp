@@ -19,7 +19,9 @@
 		a:active{text-decoration:none;color:black}
 		a:hover{text-decoration:none;color:black}
 		.aLogin{margin-left:30px;margin-right:30px;float:left;}
-	
+		.logout{float:left;margin-left:50px}
+		.mypage{float:left;margin-left:20px}
+		.mypageImg{width:22px; height:22px}
 	</style>
 </head>
 <body>
@@ -27,24 +29,21 @@
 		<div class = "logo">&amp;closet</div>
 		<div class = "navitool">
 			<div class = "navi"><a href="<c:url value="/closet/auction.do" />">경매</a></div>
-			<div class = "navi"><a href="<c:url value='/index/groupby' />">공동구매</a></div>
-			<div class = "navi"><a href="<c:url value='/index/best' />">BEST</a></div>
-			<div class = "navi"><a href="<c:url value='/index/search' />">검색</a></div>
+			<div class = "navi"><a href="<c:url value='/closet/groupbuy.do' />">공동구매</a></div>
+			<div class = "navi"><a href="<c:url value='/closet/best.do' />">BEST</a></div>
+			<div class = "navi"><a href="<c:url value='/closet/search.do' />">검색</a></div>
 		</div>
 		<div class = "login">
 			<c:choose>
 				<c:when test = "${empty userSession.account}">
-					<a href="<c:url value='/login.do' />" class = "aLogin">로그인</a>
-					<a href="<c:url value='/account/registerForm' />">회원가입</a>
+					<a href="<c:url value='/account/SignonForm.do' />" class = "aLogin">로그인</a>
+					<a href="<c:url value='/account/registerForm.do' />">회원가입</a>
 				</c:when>
 				<c:otherwise>
-				    <a href="<c:url value='/index/mypage' />">
-				    	<img border="0" src="../images/mypage.png" />
+				    <a href="<c:url value='/closet/mypage.do' />" class = "mypage">
+				    	<img border="0" src="../../images/mypage.gif" class = "mypageImg"/>
 				    </a>
-				    <a href="<c:url value='' />">
-				    	<img border="0" src="../images/like.png" />
-				    </a>
-					<a href="<c:url value='/account/logout' />">로그아웃</a>
+					<a href="<c:url value='/account/signoff.do' />" class = "logout">로그아웃</a>
 				</c:otherwise>
 			</c:choose>
 		</div>
