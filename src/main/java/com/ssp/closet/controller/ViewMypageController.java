@@ -25,7 +25,7 @@ public class ViewMypageController {
 		public String handleRequest(
 				ModelMap model
 				) throws Exception {
-			return "/main/mypage";
+			return "/main/myPage";
 		}
 
 }

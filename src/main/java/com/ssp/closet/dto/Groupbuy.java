@@ -9,10 +9,10 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 @SuppressWarnings("serial")
 @Entity
-//@SecondaryTable(name="GroupBuyProduct", 
-//	pkJoinColumns=@PrimaryKeyJoinColumn(
-//		name="productId", referencedColumnName="productId"))
-public class GroupBuy implements Serializable {
+@SecondaryTable(name="PRODUCT1", 
+pkJoinColumns=@PrimaryKeyJoinColumn(
+		name="productId", referencedColumnName="productId"))
+public class Groupbuy extends Product implements Serializable {
 
 	/* Private Fields */
 	@Id
@@ -20,7 +20,7 @@ public class GroupBuy implements Serializable {
 	private int price;
 	private int peopleNum; // 공동구매가 이뤄지기 위한 최소 인원
 	private int[] userId; // 공동구매 참여자의 userId
-	
+
 	/* JavaBeans Properties */
 	public int getProductId() {
 		return productId;
