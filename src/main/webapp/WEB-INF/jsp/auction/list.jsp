@@ -1,28 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page import="java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="EUC-KR">
-	<title>°æ¸Å»óÇ° ¸®½ºÆ®</title>
+	<title>ê²½ë§¤ìƒí’ˆ ë¦¬ìŠ¤íŠ¸</title>
 	<style type="text/css">
-		table, td{border:2px solid black;border-collapse:collapse;}
+		table, td{border:1px solid black;border-collapse:collapse;}
 	</style>
 </head>
 <body>
 	<c:choose>
-		<c:when test = "${productList == null}">
+		<c:when test = "${productList.getSource() == null}">
 			<div class = "sell">
-				°æ¸Å »óÇ°ÀÌ ÇÏ³ªµµ ¾ø½À´Ï´Ù.
+				ê²½ë§¤ ìƒí’ˆì´ í•˜ë‚˜ë„ ì—†ìŠµë‹ˆë‹¤.
 			</div>
 		</c:when>
 		<c:otherwise>
 			<c:set var="i" value="0" />
 			<c:set var="j" value="4" />
 			<table border="1">
-			<c:forEach items="${productList}" var="prod">
+			<c:forEach items="${productList.getSource()}" var="prod">
 				<c:if test="${i%j == 0 }">
 			    	<tr>
 			    </c:if>
@@ -34,8 +36,8 @@
 				    	  		${prod.name}<br>
 				      			${prod.description}<br>
 				      			color: ${prod.color} || size: ${prod.size}<br><br><br>
-				      			${prod.maxPrice}¿ø<br>
-				      			ÇöÀç ÃÖ°í°¡
+				      			${prod.maxPrice}ì›<br>
+				      			í˜„ì¬ ìµœê³ ê°€
 				   		</a>
 			      	</td>
 				<c:if test="${i%j == j-1 }">
