@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<c:set var="targetUrl"><c:url value='/bid/confirmBid.do' /></c:set>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,10 +32,10 @@
 			<hr>
 			<div>
 			±¸¸Å Èñ¸Á°¡
-			<form method="POST" action="<c:url value='/groupbuy/registerForm' />">
+			<form:form modelAttribute = "bidForm" method="POST" action="${targetUrl}">
 				<input type = "text" placeholder = "Èñ¸Á°¡ÀÔ·Â" name = "bidPrice">
 				<input type = "submit" value = "ÀÔÂûÇÏ±â">
-			</form>
+			</form:form>
 			</div>
 		</div>
 	</div>

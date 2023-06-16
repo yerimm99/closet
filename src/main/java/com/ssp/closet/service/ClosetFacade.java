@@ -5,6 +5,7 @@ import java.util.List;
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
 import com.ssp.closet.dto.Bid;
+import com.ssp.closet.dto.BidId;
 import com.ssp.closet.dto.Bookmark;
 import com.ssp.closet.dto.Category;
 import com.ssp.closet.dto.Groupbuy;
@@ -27,13 +28,14 @@ public interface ClosetFacade {
 	public List<Auction> getAuctionList();
 	
 	void createBid(Bid bid);
-	void updateBidPrice(int bidId, int newPrice);
-	void deleteBid(int bidId);
-	void updateSuccessResult(int productId);
-	void updateFailResult(int productId);
+	void updateBidPrice(int productId, int newPrice);
+	void deleteBid(int productId);
+	void updateSuccessResult(BidId bidId);
+	void updateFailResult(BidId bidId);
 	int findMaxPrice(int productId);		 	  
-	List<Bid> getBidResultList(String userId);
+//	List<Bid> getBidResultList(String userId);
 	Bid getBid(String userId);
+	Bid getBid(String userId, int productId);
 //	
 //	int countPeopleNum(int productId);
 //	Meet getMeetDetail(int meetId);

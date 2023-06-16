@@ -7,12 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.ModelAndViewDefiningException;
 import org.springframework.web.util.WebUtils;
 
 import com.ssp.closet.controller.UserSession;
@@ -33,11 +33,11 @@ public class AuctionFormController {
 	public void setClosetStore(ClosetFacade closet) {
 		this.closet = closet;
 	}
-//	@Autowired
-//	private AuctionFormValidator validator;
-//	public void setValidator(AuctionFormValidator validator) {
-//		this.validator = validator;
-//	}
+	@Autowired
+	private AuctionFormValidator validator;
+	public void setValidator(AuctionFormValidator validator) {
+		this.validator = validator;
+	}
 	
 	@ModelAttribute("auctionForm")
 	public AuctionForm createAuctionForm() {
@@ -65,7 +65,7 @@ public class AuctionFormController {
 	@RequestMapping("/auction/newAuction.do")
 	public String initNewAuction(HttpServletRequest request,
 			@ModelAttribute("auctionForm") AuctionForm auctionForm
-			) throws ModelAndViewDefiningException {
+			) throws Exception {
 		
 		UserSession userSession = 
 				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
@@ -94,11 +94,16 @@ public class AuctionFormController {
 	@RequestMapping("/auction/confirmAuction.do")
 	protected ModelAndView confirmAuction( //auction 등록 확인 
 			@ModelAttribute("auctionForm") AuctionForm auctionForm, 
-			SessionStatus status) {
+			SessionStatus status, BindingResult result) {
+
+		validator.validateAuctionForm(auctionForm.getAuction(), result);
+		ModelAndView mav1 = new ModelAndView("auction/registerForm");
+		if (result.hasErrors()) return mav1;
+		
 		closet.insertAuction(auctionForm.getAuction()); //등록 
-		ModelAndView mav = new ModelAndView("auction/detail");
-		mav.addObject("product", auctionForm.getAuction());
+		ModelAndView mav2 = new ModelAndView("auction/detail");
+		mav2.addObject("product", auctionForm.getAuction());
 		status.setComplete();  // remove session
-		return mav;
+		return mav2;
 	}
 }

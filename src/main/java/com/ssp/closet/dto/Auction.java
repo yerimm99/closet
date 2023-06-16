@@ -23,7 +23,7 @@ import javax.persistence.OneToMany;
 public class Auction extends Product implements Serializable {
 	
 	@Column(name = "STARTPRICE")
-    private int startPrice;
+    private Integer startPrice;
     @Column(name = "USED")
     private int used;
 	
