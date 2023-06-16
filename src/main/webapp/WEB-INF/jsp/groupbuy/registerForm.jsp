@@ -1,91 +1,113 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>°øµ¿±¸¸Å »óÇ° µî·ÏÆû</title>
+	<meta charset="utf-8">
+	<title>ê³µë™êµ¬ë§¤ ìƒí’ˆ ë“±ë¡í¼</title>
 	<style type = "text/css">
 		body{margin:0}
 		.layout{margin:0px auto;width:1180px;padding:10px;font-size:18px}
 		table, td{border:none;border-collapse:collapse;}
-		.inp{width:500px;height:35px}
-		.inpText{width:500px;height:80px}
+		td{padding: 0px 15px}
+		.inp{width:600px;height:35px}
+		.inpText{width:800px;height:80px;font-size:18px}
+		.category{padding:0px}
+		.btn{display:block;margin:0px auto;text-align:center;font-size:20px;border-radius:10px;background-color:black;
+		border:1px solid black;width:510px;height:35px;color:white;margin-top:10px}
 		table{margin:50px auto 0px auto}
 		td{height:40px}
 		input{border:none;}
 	</style>
 </head>
 <body>
-<!-- ¸Ş´º¹Ù -->
+	<!-- ë©”ë‰´ë°” -->
 	<jsp:include page = "../menu.jsp"/>
 	<hr>
 	
 	<div class = "layout">
-		<form:form modelAttribute = "groupbuyForm" method="POST" action="<c:url value='/groupbuy/registerForm' />">
+		<form:form modelAttribute = "groupbuyForm" action="/groupbuy/registerForm" method="post" >
 		<table>
 			<tr>
-				<td style="text-align:center;font-size:24px">°øµ¿±¸¸Å »óÇ° µî·Ï</td>
+				<td style="text-align:center;font-size:24px" colspan = "2">ê³µë™êµ¬ë§¤ ìƒí’ˆ ë“±ë¡<br><br></td>
 			</tr>
 			<tr>
+				<td>ìƒí’ˆëª…</td>
 				<td>
-					<br><br>
-					<form:input path = "groupbuy.name" placeholder = "»óÇ°¸í" class = "inp"/>
+					<form:input path = "groupbuy.name" class = "inp"/>
 					<hr>
 				</td>
 			</tr>
 			<tr>
+				<td>ì‚¬ì´ì¦ˆ</td>
 				<td>
-					<form:input path = "groupbuy.size" placeholder = "»çÀÌÁî" class = "inp"/>
+					<form:input path = "groupbuy.size" class = "inp"/>
 					<hr>
 				</td>
 			</tr>
 			<tr>
+				<td>ìƒ‰ìƒ</td>
 				<td>
-					<form:input path = "groupbuy.color" placeholder = "»ö»ó" class = "inp"/>
+					<form:input path = "groupbuy.color" class = "inp"/>
 					<hr>
 				</td>
 			</tr>
 			<tr>
-				<td><!-- ¿ÖÀÚ²Ù 0ÀÌ ±âº»°ªÀ¸·Î µé¾î°¡´ÂÁö ¸ğ¸£°ÚÀ½ -->
-					<form:input path = "groupbuy.price" placeholder = "°¡°İ"  class = "inp"/>
-					<hr>
-				</td>
-			</tr>
-			<tr>
+				<td>ê°€ê²©</td>
 				<td>
-					<!-- ¿ÖÀÚ²Ù 0ÀÌ ±âº»°ªÀ¸·Î µé¾î°¡´ÂÁö ¸ğ¸£°ÚÀ½ -->
-					<form:input path = "groupbuy.peopleNum" placeholder = "°øµ¿±¸¸Å Âü¿©ÀÚ ¼ö" class = "inp"/>
+					<form:input path = "groupbuy.price"  class = "inp"/>
 					<hr>
 				</td>
 			</tr>
 			<tr>
-				<td><!-- ÀÌ»Ú°Ô ¼öÁ¤ -->
-					»óÇ°ÀÇ Ä«Å×°í¸®¸¦ °í¸£¼¼¿ä.
-					<form:select path = "groupbuy.categoryId" items = "${categories}"/>
-					<hr>
-				</td>
-			</tr>
-			<tr>
+				<td>ì°¸ì—¬ì ìˆ˜</td>
 				<td>
+					<!-- ì™œìê¾¸ 0ì´ ê¸°ë³¸ê°’ìœ¼ë¡œ ë“¤ì–´ê°€ëŠ”ì§€ ëª¨ë¥´ê² ìŒ -->
+					<form:input path = "groupbuy.period" class = "inp"/>
+					<hr>
+				</td>
+			</tr>
+		 	<tr>
+				<td>ìƒí’ˆ ì¹´í…Œê³ ë¦¬</td>
+				<td>
+					<form:radiobuttons path="groupbuy.categoryId" items = "${categories}" class = "category"/>
+				</td>
+			</tr>
+			<tr>
+				<td colspan = "2">
+					<hr>
 					<form:textarea path = "groupbuy.description" class = "inpText"
-						 placeholder = "¿Ã¸± »óÇ°¿¡ ´ëÇÑ ¼³¸íÀ» ÀÛ¼ºÇØÁÖ¼¼¿ä."/>
+						 placeholder = "ì˜¬ë¦´ ìƒí’ˆì— ëŒ€í•œ ì„¤ëª…ì„ ì‘ì„±í•´ì£¼ì„¸ìš”."/>
 					<hr>
 				</td>
 			</tr>
 			<tr>
-				<td><!-- form:formÅÂ±×¿¡ file url¾÷·Îµå ±â´É ¾øÀ½. requestParamÀ¸·Î °¡Á®°¡¾ßÇÔ -->
-					ÃÖ¼Ò 1°³ ÃÖ´ë 4°³ÀÇ »çÁøÀ» ¾÷·ÎµåÇØÁÖ¼¼¿ä
-					<input type = "file" name = "picture1" id = "picture1" multiple>
-					<hr>
-				</td>
-			</tr>
-			<tr>
+				<td>ì‚¬ì§„ì²¨ë¶€</td>
 				<td>
-					<input type="submit" value="µî·ÏÇÏ±â">
+					<input type = "file" name = "file" multiple/>
+				</td>
+			</tr>
+			<tr>
+				<td colspan = "2"><hr></td>
+			</tr>
+			<tr>
+				<td>ì‚¬ì§„ì²¨ë¶€(ë‚˜ì¤‘ì—ì‚­ì œ)</td>
+				<td><!-- form:formíƒœê·¸ì— file urlì—…ë¡œë“œ ê¸°ëŠ¥ ì—†ìŒ. requestParamìœ¼ë¡œ ê°€ì ¸ê°€ì•¼í•¨ -->
+					ìµœì†Œ 1ê°œ ìµœëŒ€ 4ê°œì˜ ì‚¬ì§„ì„ ì—…ë¡œë“œí•´ì£¼ì„¸ìš”<br>
+					<form:input path = "groupbuy.picture1" placeholder = "ì‚¬ì§„1" class = "inp"/><br>
+					<form:input path = "groupbuy.picture2" placeholder = "ì‚¬ì§„2" class = "inp"/>
+					<!-- <input type = "file" name = "picture1" id = "picture1" multiple> -->
+				</td>
+			</tr>
+			<tr>
+				<td colspan = "2">
+					<hr>
+					<input type="submit" value="ë“±ë¡í•˜ê¸°" class = "btn">
+					<br><br><br>
 				</td>
 			</tr>
 		</table>
