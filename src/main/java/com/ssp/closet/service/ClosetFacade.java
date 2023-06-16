@@ -27,14 +27,14 @@ public interface ClosetFacade {
 	void updateMaxPrice(Auction auction);
 	
 	void createBid(Bid bid);
-	void updateBidPrice(BidId bidId, int newPrice);
-	void deleteBid(BidId bidId);
+	void updateBidPrice(int productId, int newPrice);
+	void deleteBid(int productId);
 	void updateSuccessResult(BidId bidId);
 	void updateFailResult(BidId bidId);
 	int findMaxPrice(int productId);		 	  
 //	List<Bid> getBidResultList(String userId);
 	Bid getBid(String userId);
-//	Bid getBid(String userId, int productId);
+	Bid getBid(String userId, int productId);
 //	
 //	int countPeopleNum(int productId);
 //	Meet getMeetDetail(int meetId);

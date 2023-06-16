@@ -83,7 +83,7 @@
 					</tr>
 					<tr>
 						<td colspan = "2">
-							<a href = "<c:url value='/bid/bidForm.do'>
+							<a href = "<c:url value='/bid/newBid.do'>
 									<c:param name = 'productId' value='${product.productId}' />
 									</c:url>">경매 참가하기</a>
 						</td>

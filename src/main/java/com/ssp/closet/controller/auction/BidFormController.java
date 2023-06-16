@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ModelAndViewDefiningException;
@@ -19,10 +21,10 @@ import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
 import com.ssp.closet.dto.Bid;
 import com.ssp.closet.dto.BidId;
-import com.ssp.closet.service.AuctionFormValidator;
 import com.ssp.closet.service.ClosetFacade;
 
 @Controller
+@SessionAttributes("auction")
 public class BidFormController {
 	@Autowired
 	private ClosetFacade closet;
@@ -31,36 +33,37 @@ public class BidFormController {
 	public void setCloset(ClosetFacade closet) {
 		this.closet = closet;
 	}
-//	
-//	@Autowired
-//	private AuctionFormValidator validator;
-//	public void setValidator(AuctionFormValidator validator) {
-//		this.validator = validator;
-//	}
 	
-
+	@RequestMapping(method = RequestMethod.GET)
+	public String showForm() {
+		return "bid/bidForm";
+	}
+	
 	@RequestMapping({"/bid/newBid.do","/bid/editBid.do"})
-	public String initBid(HttpServletRequest request,
-			@ModelAttribute("auction") Auction auction,
+	public ModelAndView initBid(HttpServletRequest request,
+			@RequestParam("productId") int productId,
 			@ModelAttribute("bidForm") BidForm bidForm) 
-			throws Exception {
+			throws ModelAndViewDefiningException {
 		UserSession userSession = 
 				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
 		if (userSession != null) {
 			Account account = closet.getAccount(userSession.getAccount().getUserId());
-//			Bid bid = closet.getBid(account.getUserId());
+			Auction auction = closet.getAuctionDetail(productId);
 			bidForm.getBid().initBid(account, auction);
-			return "bid/bidForm";
-//			if (bid != null) {
-//				bidForm.getBid().initBid(account, auction);
-//				return "bid/updateForm";
-//			} else {
-//				bidForm.getBid().initBid(account, auction);
-//				return "bid/bidForm";
-//			}
-		}
-		else {
-			return "redirect:/account/SignonForm.do";
+
+			Bid existingBid = closet.getBid(account.getUserId(), productId);
+			bidForm.getBid().initBid(account, auction);
+			if (existingBid != null) {
+				bidForm.setNewBid(false);
+			} else {
+				bidForm.setNewBid(true);
+			}
+			ModelAndView mav = new ModelAndView("bid/bidForm");
+			mav.addObject("product", auction);
+			return mav;
+		} else {
+			ModelAndView mav = new ModelAndView("redirect:/account/SignonForm.do");
+			return mav;
 		}
 	}
 	
@@ -83,8 +86,8 @@ public class BidFormController {
 //		}
 //	}
 	
+	@RequestMapping("/bid/confirmBid.do")
 	protected ModelAndView confirmBid( //Bid 등록 
-			@ModelAttribute("auction") Auction auction,
 			@ModelAttribute("bidForm") BidForm bidForm,
 			@RequestParam("bidPrice") int bidPrice,
 			SessionStatus status, BindingResult result) throws ModelAndViewDefiningException {
@@ -95,13 +98,15 @@ public class BidFormController {
 			ModelAndView mav = new ModelAndView("auction/detail");
 			return mav;
 		}
+	
+		Auction auction = bidForm.getBid().getAuction();
 		try {
 			if (bidForm.isNewBid()) {
 				closet.createBid(bidForm.getBid());
 				closet.updateMaxPrice(auction);
 			}
 			else {
-				closet.updateBidPrice(bidForm.getBid().getId(), bidPrice);
+				closet.updateBidPrice(bidForm.getBid().getId().getProductId(), bidPrice);
 				closet.updateMaxPrice(auction);
 			}
 		}
@@ -109,6 +114,7 @@ public class BidFormController {
 			result.rejectValue("bid.bidPrice", "BIDPRICE_ALREADY_EXISTS",
 					"bidPrice already exists: choose a different price.");
 			ModelAndView mav = new ModelAndView("auction/detail");
+			mav.addObject("product", auction);
 			return mav;
 		}
 //		bidForm.getBid().initBid(bidForm.getBid().getUserId(), bidForm.getBid().getProductId());
@@ -136,9 +142,9 @@ public class BidFormController {
 	
 	@RequestMapping("/bid/deleteBid.do")
 	public String removeBid(
-			@ModelAttribute("BidId") BidId bidId
+			@RequestParam("productId") int productId
 		) throws Exception {
-		closet.deleteBid(bidId);
+		closet.deleteBid(productId);
 		return "main/myPage";
 	}
 }

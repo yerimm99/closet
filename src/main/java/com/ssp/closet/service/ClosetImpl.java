@@ -73,12 +73,12 @@ public class ClosetImpl implements ClosetFacade{
 		bidRepository.save(bid);
 	}
 
-	public void updateBidPrice(BidId bidId, int newPrice) {
-		bidRepository.updatePrice(bidId, newPrice);
+	public void updateBidPrice(int productId, int newPrice) {
+		bidRepository.updatePrice(productId, newPrice);
 	}
 
-	public void deleteBid(BidId bidId) {
-		bidRepository.deleteById(bidId);
+	public void deleteBid(int productId) {
+		bidRepository.deleteById(productId);
 	}
 	  
 	public void updateSuccessResult(BidId bidId) {
@@ -101,9 +101,9 @@ public class ClosetImpl implements ClosetFacade{
 		return bidRepository.findByBidderUserId(userId);
 	}
 
-//	public Bid getBid(String userId, int productId) {
-//		return bidRepository.findByUserIdAndProductId(userId, productId);
-//	}
+	public Bid getBid(String userId, int productId) {
+		return bidRepository.findByUserIdAndProductId(userId, productId);
+	}
 
 	@Autowired
 	private BookmarkDao bookmarkDao;

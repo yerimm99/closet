@@ -3,6 +3,7 @@ package com.ssp.closet.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -10,17 +11,14 @@ import com.ssp.closet.dto.Bid;
 import com.ssp.closet.dto.BidId;
 
 public interface BidRepository extends JpaRepository<Bid, BidId>{
-	
-	//void insertBid(Bid bid); save(bid)?
-	
+
+	@Modifying
 	@Query("update Bid b " + 
 			"set b.bidPrice = :newPrice " +
-			"where b.id = :bidId")			// JPQL 이용
-	void updatePrice(@Param("bidId")BidId bidId, @Param("newPrice")int price);
-	
-	
-	//void deleteBid(int bidId);
-	void deleteById(BidId bidId);
+			"where b.id.productId = :productId")			// JPQL 이용
+	void updatePrice(@Param("productId")int productId, @Param("newPrice")int price);
+
+	void deleteById(int productId);
 	  
 	@Query("update Bid b " + 
 			"set b.bidResult = 1 " +
@@ -32,6 +30,7 @@ public interface BidRepository extends JpaRepository<Bid, BidId>{
 			"where b.id = :bidId")
 	void updateFailResult(BidId bidId); //나눠야 할지 result 값을 받아서 쓰는 걸로 합칠
 	  
+	@Modifying
 	@Query("select max(b.bidPrice) from Bid b " + 
 			"where b.auction.productId = :productId")
 	int findMaxBidPrice(int productId);		 
@@ -42,6 +41,8 @@ public interface BidRepository extends JpaRepository<Bid, BidId>{
 //	
 	@Query("SELECT b FROM Bid b WHERE b.bidder.userId = :userId")
 	Bid findByBidderUserId(String userId);
-	//Bid findByUserIdAndProductId(String userId, int productId);
+	
+	@Query("SELECT b FROM Bid b WHERE b.bidder.userId = :userId and b.auction.productId = :productId")
+	Bid findByUserIdAndProductId(String userId, int productId);
 
 }
