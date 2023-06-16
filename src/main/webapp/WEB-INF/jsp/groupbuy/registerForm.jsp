@@ -30,7 +30,7 @@
 	<hr>
 	
 	<div class = "layout">
-		<form:form modelAttribute = "groupbuyForm" action="/groupbuy/registerForm" method="post" >
+		<form:form modelAttribute = "groupbuyForm" action="/groupbuy/confirmGroupbuy.do" method="post" >
 		<table>
 			<tr>
 				<td style="text-align:center;font-size:24px" colspan = "2">공동구매 상품 등록<br><br></td>
@@ -67,7 +67,7 @@
 				<td>참여자 수</td>
 				<td>
 					<!-- 왜자꾸 0이 기본값으로 들어가는지 모르겠음 -->
-					<form:input path = "groupbuy.period" class = "inp"/>
+					<form:input path = "groupbuy.peopleNum" class = "inp"/>
 					<hr>
 				</td>
 			</tr>

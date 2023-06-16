@@ -1,59 +1,46 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="java.util.*" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="EUC-KR">
-	<title>°øµ¿±¸¸Å »óÇ°¸®½ºÆ®</title>
-	<style type="text/css">
-		table, td{border:2px solid black;border-collapse:collapse;}
-	</style>
+<meta charset="EUC-KR">
+<title>ê³µë™êµ¬ë§¤ ìƒí’ˆë¦¬ìŠ¤íŠ¸</title>
+<style type="text/css">
+table, td {border: 1px solid black;border-collapse: collapse;}
+</style>
 </head>
 <body>
 	<c:choose>
-		<c:when test = "${productList == null}">
-			<div class = "sell">
-				°øµ¿±¸¸Å »óÇ°ÀÌ ÇÏ³ªµµ ¾ø½À´Ï´Ù.
-			</div>
+		<c:when test="${productList.getSource() == null}">
+			<div class="sell">ê³µë™êµ¬ë§¤ ìƒí’ˆì´ í•˜ë‚˜ë„ ì—†ìŠµë‹ˆë‹¤.</div>
 		</c:when>
 		<c:otherwise>
 			<c:set var="i" value="0" />
-            <c:set var="j" value="4" />
-            <h3>°´Ã¼ °³¼ö: <c:out value="${productList.getSource().size()}" /></h3>
-            <c:if test="${not empty productList.getSource()}">
-                <h3>Ã¹ ¹øÂ° °´Ã¼ÀÇ »óÇ° ID: <c:out value="${productList.getSource()[0].productId}" /></h3>
-            </c:if>
-            <table border="1">
-                <!-- Rest of your code -->
-            </table>
-<%-- 			<c:set var="i" value="0" /> --%>
-<%-- 			<c:set var="j" value="4" /> --%>
-<!-- 			<table border="1"> -->
-<%-- 			<c:forEach items="${productList}" var="prod"> --%>
-<%-- 				<c:if test="${i%j == 0 }"> --%>
-<!-- 			    	<tr> -->
-<%-- 			    </c:if> --%>
-<!-- 			    	<td> -->
-<%-- 			    		<a href = "<c:url value='/groupbuy/detail'> --%>
-<%-- 											<c:param name = 'productId' value='${prod.productId}' /> --%>
-<%-- 											</c:url>"> --%>
-<%-- <%-- 				      		<img src="<c:url value='${prod.picture1}'/>" width="250px" height="250px"/><br> --%> --%>
-<%-- <%-- 				      		${prod.name}<br> --%> --%>
-<%-- <%-- 				      		${prod.description}<br> --%> --%>
-<%-- <%-- 				      		color: ${prod.color} || size: ${prod.size}<br><br><br> --%> --%>
-<%-- <%-- 				      		°¡°İ: ${prod.maxPrice}¿ø<br> --%> --%>
-<%-- <%-- 				      		ÇöÀç¸ğÀÎ ÀÎ¿ø¼ö: ${prod.peopleNum} <!-- ÀÌ°Å ÀüÃ¼ÀÎ¿ø¼ö¶û ÇöÀç ÀÎ¿ø¼ö·Î ³ª´²¾ßÇÔ.. --> --%> --%>
-<!-- 			      		</a> -->
-<!-- 			      	</td> -->
-<%-- 				<c:if test="${i%j == j-1 }"> --%>
-<!-- 			    	</tr> -->
-<%-- 			    </c:if> --%>
-<%-- 			    <c:set var="i" value="${i+1 }" /> --%>
-<%-- 			</c:forEach> --%>
-<!-- 			</table> -->
-	</c:otherwise>
+			<c:set var="j" value="4" />
+			<table border="1">
+				<c:forEach items="${productList.getSource()}" var="prod">
+					<c:if test="${i%j == 0 }">
+						<tr>
+					</c:if>
+					<td>
+						<a href="<c:url value='/groupbuy/detail.do'>
+ 							<c:param name = 'productId' value='${prod.productId}' />
+ 							</c:url>">
+							<img src="<c:url value='${prod.picture1}'/>" width="250px"
+							height="250px" /><br> ${prod.name}<br>
+							${prod.description}<br> color: ${prod.color} || size:${prod.size}<br><br>
+							ê°€ê²©: ${prod.price}ì›<br> í˜„ì¬ëª¨ì¸ ì¸ì›ìˆ˜: 0 / ${prod.peopleNum} <!-- ì´ê±° ì „ì²´ì¸ì›ìˆ˜ë‘ í˜„ì¬ ì¸ì›ìˆ˜ë¡œ ë‚˜ëˆ ì•¼í•¨.. -->
+						</a>
+					</td>
+					<c:if test="${i%j == j-1 }">
+						</tr>
+					</c:if>
+					<c:set var="i" value="${i+1 }" />
+				</c:forEach>
+			</table>
+		</c:otherwise>
 	</c:choose>
 </body>
 </html>

@@ -25,6 +25,7 @@ public interface ClosetFacade {
 	void insertAuction(Auction auction);
 	Auction getAuctionDetail(int productId);
 	void updateMaxPrice(Auction auction);
+	public List<Auction> getAuctionList();
 	
 	void createBid(Bid bid);
 	void updateBidPrice(int productId, int newPrice);

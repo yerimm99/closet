@@ -1,5 +1,7 @@
 package com.ssp.closet.dao;
 
+import java.util.List;
+
 import org.springframework.dao.DataAccessException;
 
 import com.ssp.closet.dto.Auction;
@@ -12,4 +14,5 @@ public interface AuctionDao {
 	
 	void updateMaxPrice(Auction auction) throws DataAccessException;
 	
+	List<Auction> getAuctionList() throws DataAccessException ;
 }

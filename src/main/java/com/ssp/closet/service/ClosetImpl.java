@@ -6,9 +6,11 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.ssp.closet.dao.AccountDao;
+import com.ssp.closet.dao.AuctionDao;
 import com.ssp.closet.dao.BookmarkDao;
 import com.ssp.closet.dao.GroupbuyDao;
 import com.ssp.closet.dao.ProductDao;
@@ -26,6 +28,7 @@ import com.ssp.closet.dto.Review;
 
 import com.ssp.closet.repository.AuctionRepository;
 import com.ssp.closet.repository.BidRepository;
+import com.ssp.closet.repository.GroupbuyRepository;
 import com.ssp.closet.repository.ProductRepository;
 import com.ssp.closet.service.ClosetFacade;
 @Service
@@ -114,18 +117,31 @@ public class ClosetImpl implements ClosetFacade{
 	public void deleteMark(String userId, int productId) {
 		bookmarkDao.deleteMark(userId, productId);
 	}
-
+	
 	@Autowired
-	@Qualifier("jpaGroupbuyDao")
-	private GroupbuyDao groupbuyDao;
+	@Qualifier("jpaAuctionDao")
+	private AuctionDao auctionDao;
+	
+	public List<Auction> getAuctionList() {
+		return auctionDao.getAuctionList();
+	}
+	
+	
+	@Autowired
+	private GroupbuyRepository groupbuyRepository;
 	
 	public void insertGroupbuy(Groupbuy groupbuy) {
-		groupbuyDao.insertGroupbuy(groupbuy);
+		groupbuyRepository.save(groupbuy);
 	}
 	
 	public Groupbuy getGroupbuyDetail(int productId) {
-		return groupbuyDao.getGroupbuyDetail(productId);
+		return groupbuyRepository.getReferenceById(productId); 
 	}
+
+	
+	@Autowired
+	@Qualifier("jpaGroupbuyDao")
+	private GroupbuyDao groupbuyDao;
 	
 	public List<Groupbuy> getGroupbuyList(){
 		return groupbuyDao.getGroupbuyList();

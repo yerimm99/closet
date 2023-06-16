@@ -6,9 +6,12 @@ import org.springframework.beans.support.PagedListHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ssp.closet.dto.Groupbuy;
 import com.ssp.closet.service.ClosetFacade;
@@ -47,5 +50,13 @@ public class ViewGroupBuyController {
 		model.put("productList", productList);
 		return "main/groupbuy"; 
 	}
+	
+	
+	@RequestMapping("/groupbuy/detail.do")
+	public void detailGroupbuy(
+			@RequestParam("productId") int productId,
+			ModelMap model) throws Exception {
+		Groupbuy product = this.closet.getGroupbuyDetail(productId);
+		model.put("product", product);
+	}
 }
-

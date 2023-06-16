@@ -1,49 +1,33 @@
 package com.ssp.closet.dto;
 
 import java.io.Serializable;
+import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.SecondaryTable;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+
+import lombok.Getter;
+import lombok.Setter;
+
 
 @SuppressWarnings("serial")
 @Entity
-@SecondaryTable(name="PRODUCT1", 
-pkJoinColumns=@PrimaryKeyJoinColumn(
-		name="productId", referencedColumnName="productId"))
+@Table(name = "GROUPBUY")
+@DiscriminatorValue("Groupbuy")
+@Getter
+@Setter
 public class Groupbuy extends Product implements Serializable {
-
-	/* Private Fields */
-	@Id
-	private int productId;
-	private int price;
+	@Column(name = "PEOPLENUM")
 	private int peopleNum; // 공동구매가 이뤄지기 위한 최소 인원
-	//private int[] userId; // 공동구매 참여자의 userId
+	
+	public Groupbuy() {}
 
-	/* JavaBeans Properties */
-	public int getProductId() {
-		return productId;
-	}
-	public void setProductId(int productId) {
-		this.productId = productId;
-	}
-	public int getPrice() {
-		return price;
-	}
-	public void setPrice(int price) {
-		this.price = price;
-	}
-	public int getPeopleNum() {
-		return peopleNum;
-	}
-	public void setPeopleNum(int peopleNum) {
-		this.peopleNum = peopleNum;
-	}
-//	public int[] getUserId() {
-//		return userId;
-//	}
-//	public void setUserId(int[] userId) {
-//		this.userId = userId;
-//	}
+	public void initGroupbuy(Account account) {
+		super.setType(1);
+		super.setStatus(1);
+		super.setRegisterDate(new Date());
+		super.setAccount(account);
+	  }
 }
