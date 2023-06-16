@@ -18,6 +18,7 @@
 		td{padding: 0px 15px}
 		.inp{width:600px;height:35px}
 		.inpText{width:600px;height:80px}
+		.category{padding:0px}
 		table{margin:50px auto 0px auto}
 		td{height:40px}
 		input{border:none;}
@@ -58,7 +59,7 @@
 			<tr>
 				<td>최소 가격</td>
 				<td>
-					<form:input path = "auction.startPrice"  class = "inp" value = "최소금액"/>
+					<form:input path = "auction.startPrice"  class = "inp"/>
 					<hr>
 				</td>
 			</tr>
@@ -70,19 +71,14 @@
 					<hr>
 				</td>
 			</tr>
-		 	<tr>
+		 	<tr style = "height:60px">
 				<td>상품 카테고리</td>
 				<td>
-					<form:radiobutton path = "auction.used" value = "0"/>
-						<label>새상품</label>
-					&nbsp;&nbsp;
-					<form:radiobutton path = "auction.used" value = "1"/>
-						<label>중고상품</label>
-					<hr>
+					<form:radiobuttons path="auction.categoryId" items = "${categories}" class = "category"/>
 				</td>
 			</tr>
 			<tr>
-				<td>상품 유형</td>
+				<td style = "height:50px">상품 유형</td>
 				<td><!-- 이쁘게 수정 -->
 					<form:radiobutton path = "auction.used" value = "0"/>
 						<label>새상품</label>
@@ -93,9 +89,9 @@
 			</tr>
 			<tr>
 				<td colspan = "2">
+					<hr>
 					<form:textarea path = "auction.description" class = "inpText"
 						 placeholder = "올릴 상품에 대한 설명을 작성해주세요."/>
-					<hr>
 				</td>
 			</tr>
 			<tr>
