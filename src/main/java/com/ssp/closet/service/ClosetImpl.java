@@ -78,7 +78,7 @@ public class ClosetImpl implements ClosetFacade{
 	}
 
 	public void deleteBid(BidId bidId) {
-		bidRepository.deleteByBidId(bidId);
+		bidRepository.deleteById(bidId);
 	}
 	  
 	public void updateSuccessResult(BidId bidId) {
@@ -93,17 +93,17 @@ public class ClosetImpl implements ClosetFacade{
 		return bidRepository.findMaxBidPrice(productId);
 	}	 
 	  
-	public List<Bid> getBidResultList(String userId) {
-		return bidRepository.findResultByUserId(userId);
-	}
+//	public List<Bid> getBidResultList(String userId) {
+//		return bidRepository.findResultByBidder(userId);
+//	}
 	
 	public Bid getBid(String userId) {
-		return bidRepository.findByUserId(userId);
+		return bidRepository.findByBidderUserId(userId);
 	}
 
-	public Bid getBid(String userId, int productId) {
-		return bidRepository.findByUserIdAndProductId(userId, productId);
-	}
+//	public Bid getBid(String userId, int productId) {
+//		return bidRepository.findByUserIdAndProductId(userId, productId);
+//	}
 
 	@Autowired
 	private BookmarkDao bookmarkDao;

@@ -1,7 +1,6 @@
 package com.ssp.closet.controller.auction;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -9,9 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ModelAndViewDefiningException;
@@ -21,11 +18,11 @@ import com.ssp.closet.controller.UserSession;
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
 import com.ssp.closet.dto.Bid;
+import com.ssp.closet.dto.BidId;
 import com.ssp.closet.service.AuctionFormValidator;
 import com.ssp.closet.service.ClosetFacade;
 
 @Controller
-@RequestMapping({"/bid/newBid.do","/bid/editBid.do"})
 public class BidFormController {
 	@Autowired
 	private ClosetFacade closet;
@@ -42,6 +39,7 @@ public class BidFormController {
 //	}
 	
 
+	@RequestMapping({"/bid/newBid.do","/bid/editBid.do"})
 	public String initBid(HttpServletRequest request,
 			@ModelAttribute("auction") Auction auction,
 			@ModelAttribute("bidForm") BidForm bidForm) 
@@ -135,4 +133,12 @@ public class BidFormController {
 //		closet.updateBidPrice(bidForm.getBid().getBidId(), bidPrice);
 //		return "main/auction";
 //	}
+	
+	@RequestMapping("/bid/deleteBid.do")
+	public String removeBid(
+			@ModelAttribute("BidId") BidId bidId
+		) throws Exception {
+		closet.deleteBid(bidId);
+		return "main/myPage";
+	}
 }

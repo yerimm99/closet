@@ -32,9 +32,9 @@ public interface ClosetFacade {
 	void updateSuccessResult(BidId bidId);
 	void updateFailResult(BidId bidId);
 	int findMaxPrice(int productId);		 	  
-	List<Bid> getBidResultList(String userId);
+//	List<Bid> getBidResultList(String userId);
 	Bid getBid(String userId);
-	Bid getBid(String userId, int productId);
+//	Bid getBid(String userId, int productId);
 //	
 //	int countPeopleNum(int productId);
 //	Meet getMeetDetail(int meetId);

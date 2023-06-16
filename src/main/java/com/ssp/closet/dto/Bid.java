@@ -2,10 +2,8 @@ package com.ssp.closet.dto;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -49,10 +47,14 @@ public class Bid {
     @JoinColumn(name = "PRODUCTID")
     private Auction auction;
 	
+	public String getBidderUserId() {
+        return bidder.getUserId();
+    }
 	
 	public void initBid(Account account, Auction ac) {
 		bidder = account;
 		auction = ac;
+		bidPrice = -1;
 		bidResult = 0;
 		signDate = new Date();
 	}

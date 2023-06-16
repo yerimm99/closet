@@ -57,7 +57,7 @@ public class Product implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date registerDate; // 등록 날짜
 	@Column(name="SELLPERIOD")
-	private int period; // 판매 기간
+	private Integer period; // 판매 기간
 	//	@Column(name="userId")
 	//	private String suppId; //판매자 또는 등록자의 userId
 	@Column(name="COLOR")
