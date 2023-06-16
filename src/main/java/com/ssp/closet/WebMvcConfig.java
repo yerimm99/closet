@@ -18,6 +18,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/closet/index.do").setViewName("index");
+		registry.addViewController("/account/SignonForm.do").setViewName("account/SignonForm");
 	}
 	
 	@Override
