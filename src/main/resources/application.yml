@@ -55,4 +55,4 @@ server:
       - oraclepki.jar
       - osdt_core.jar
       - osdt_cert.jar
-  port: 8089
+  port: 8080
