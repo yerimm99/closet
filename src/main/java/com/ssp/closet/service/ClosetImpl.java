@@ -27,6 +27,7 @@ import com.ssp.closet.dto.Review;
 
 import com.ssp.closet.repository.AuctionRepository;
 import com.ssp.closet.repository.BidRepository;
+import com.ssp.closet.repository.GroupbuyRepository;
 import com.ssp.closet.repository.ProductRepository;
 import com.ssp.closet.service.ClosetFacade;
 @Service
@@ -121,18 +122,22 @@ public class ClosetImpl implements ClosetFacade{
 		return auctionDao.getAuctionList();
 	}
 	
-
+	
 	@Autowired
-	@Qualifier("jpaGroupbuyDao")
-	private GroupbuyDao groupbuyDao;
+	private GroupbuyRepository groupbuyRepository;
 	
 	public void insertGroupbuy(Groupbuy groupbuy) {
-		groupbuyDao.insertGroupbuy(groupbuy);
+		groupbuyRepository.save(groupbuy);
 	}
 	
 	public Groupbuy getGroupbuyDetail(int productId) {
-		return groupbuyDao.getGroupbuyDetail(productId);
+		return groupbuyRepository.getReferenceById(productId); 
 	}
+
+	
+	@Autowired
+	@Qualifier("jpaGroupbuyDao")
+	private GroupbuyDao groupbuyDao;
 	
 	public List<Groupbuy> getGroupbuyList(){
 		return groupbuyDao.getGroupbuyList();

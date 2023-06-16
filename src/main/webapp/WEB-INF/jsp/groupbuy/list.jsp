@@ -25,7 +25,7 @@ table, td {border: 1px solid black;border-collapse: collapse;}
 						<tr>
 					</c:if>
 					<td>
-						<a href="<c:url value='/groupbuy/detail'>
+						<a href="<c:url value='/groupbuy/detail.do'>
  							<c:param name = 'productId' value='${prod.productId}' />
  							</c:url>">
 							<img src="<c:url value='${prod.picture1}'/>" width="250px"
