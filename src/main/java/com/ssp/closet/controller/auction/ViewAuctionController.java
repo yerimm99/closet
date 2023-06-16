@@ -25,11 +25,10 @@ public class ViewAuctionController {
 		public String handleRequest(
 				ModelMap model
 				) throws Exception {
-			PagedListHolder<Auction> productList = new PagedListHolder<Auction>();
+			PagedListHolder<Auction> productList = new PagedListHolder<Auction>(this.closet.getAuctionList());
 			productList.setPageSize(20);
 			productList.setPage(5);
 			model.put("productList", productList);
 			return "/main/auction";
 		}
-
 }

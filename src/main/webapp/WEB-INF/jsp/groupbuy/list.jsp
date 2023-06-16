@@ -31,7 +31,7 @@ table, td {border: 1px solid black;border-collapse: collapse;}
 							<img src="<c:url value='${prod.picture1}'/>" width="250px"
 							height="250px" /><br> ${prod.name}<br>
 							${prod.description}<br> color: ${prod.color} || size:${prod.size}<br><br>
-							가격: ${prod.price}원<br> 현재모인 인원수:${prod.peopleNum} <!-- 이거 전체인원수랑 현재 인원수로 나눠야함.. -->
+							가격: ${prod.price}원<br> 현재모인 인원수: 0 / ${prod.peopleNum} <!-- 이거 전체인원수랑 현재 인원수로 나눠야함.. -->
 						</a>
 					</td>
 					<c:if test="${i%j == j-1 }">
