@@ -19,7 +19,7 @@ public class Groupbuy extends Product implements Serializable {
 	private int productId;
 	private int price;
 	private int peopleNum; // 공동구매가 이뤄지기 위한 최소 인원
-	private int[] userId; // 공동구매 참여자의 userId
+	//private int[] userId; // 공동구매 참여자의 userId
 
 	/* JavaBeans Properties */
 	public int getProductId() {
@@ -40,10 +40,10 @@ public class Groupbuy extends Product implements Serializable {
 	public void setPeopleNum(int peopleNum) {
 		this.peopleNum = peopleNum;
 	}
-	public int[] getUserId() {
-		return userId;
-	}
-	public void setUserId(int[] userId) {
-		this.userId = userId;
-	}
+//	public int[] getUserId() {
+//		return userId;
+//	}
+//	public void setUserId(int[] userId) {
+//		this.userId = userId;
+//	}
 }

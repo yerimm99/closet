@@ -122,6 +122,10 @@ public class ClosetImpl implements ClosetFacade{
 	public Groupbuy getGroupbuyDetail(int productId) {
 		return groupbuyDao.getGroupbuyDetail(productId);
 	}
+	
+	public List<Groupbuy> getGroupbuyList(){
+		return groupbuyDao.getGroupbuyList();
+	}
 
 	
 //	@Autowired

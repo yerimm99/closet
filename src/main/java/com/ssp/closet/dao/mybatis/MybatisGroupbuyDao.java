@@ -1,5 +1,7 @@
 package com.ssp.closet.dao.mybatis;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
@@ -20,5 +22,9 @@ public class MybatisGroupbuyDao implements GroupbuyDao {
 
 	public Groupbuy getGroupbuyDetail(int productId) throws DataAccessException {
 		return groupbuyMapper.getGroupbuyDetail(productId);
+	}
+	
+	public List<Groupbuy> getGroupbuyList() throws DataAccessException {
+		return groupbuyMapper.getGroupbuyList();
 	}
 }
