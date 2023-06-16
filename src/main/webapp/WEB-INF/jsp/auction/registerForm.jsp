@@ -17,8 +17,10 @@
 		table, td{border:none;border-collapse:collapse;}
 		td{padding: 0px 15px}
 		.inp{width:600px;height:35px}
-		.inpText{width:600px;height:80px}
+		.inpText{width:800px;height:80px;font-size:18px}
 		.category{padding:0px}
+		.btn{display:block;margin:0px auto;text-align:center;font-size:20px;border-radius:10px;background-color:black;
+		border:1px solid black;width:510px;height:35px;color:white;margin-top:10px}
 		table{margin:50px auto 0px auto}
 		td{height:40px}
 		input{border:none;}
@@ -92,21 +94,32 @@
 					<hr>
 					<form:textarea path = "auction.description" class = "inpText"
 						 placeholder = "올릴 상품에 대한 설명을 작성해주세요."/>
+					<hr>
 				</td>
 			</tr>
 			<tr>
 				<td>사진첨부</td>
+				<td>
+					<input type = "file" name = "file" multiple/>
+				</td>
+			</tr>
+			<tr>
+				<td colspan = "2"><hr></td>
+			</tr>
+			<tr>
+				<td>사진첨부(나중에삭제)</td>
 				<td><!-- form:form태그에 file url업로드 기능 없음. requestParam으로 가져가야함 -->
 					최소 1개 최대 4개의 사진을 업로드해주세요<br>
 					<form:input path = "auction.picture1" placeholder = "사진1" class = "inp"/><br>
 					<form:input path = "auction.picture2" placeholder = "사진2" class = "inp"/>
 					<!-- <input type = "file" name = "picture1" id = "picture1" multiple> -->
-					<hr>
 				</td>
 			</tr>
 			<tr>
 				<td colspan = "2">
-					<input type="submit" value="등록하기">
+					<hr>
+					<input type="submit" value="등록하기" class = "btn">
+					<br><br><br>
 				</td>
 			</tr>
 		</table>
