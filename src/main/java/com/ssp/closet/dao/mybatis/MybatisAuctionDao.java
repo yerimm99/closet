@@ -1,5 +1,7 @@
 package com.ssp.closet.dao.mybatis;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
@@ -24,5 +26,9 @@ public class MybatisAuctionDao implements AuctionDao{
 	
 	public void updateMaxPrice(Auction auction) throws DataAccessException {
 		auctionMapper.updateMaxPrice(auction);
+	}
+	
+	public List<Auction> getAuctionList() throws DataAccessException {
+		return auctionMapper.getAuctionList();
 	}
 }

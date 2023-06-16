@@ -6,9 +6,11 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.ssp.closet.dao.AccountDao;
+import com.ssp.closet.dao.AuctionDao;
 import com.ssp.closet.dao.BookmarkDao;
 import com.ssp.closet.dao.GroupbuyDao;
 import com.ssp.closet.dao.ProductDao;
@@ -110,6 +112,15 @@ public class ClosetImpl implements ClosetFacade{
 	public void deleteMark(String userId, int productId) {
 		bookmarkDao.deleteMark(userId, productId);
 	}
+	
+	@Autowired
+	@Qualifier("jpaAuctionDao")
+	private AuctionDao auctionDao;
+	
+	public List<Auction> getAuctionList() {
+		return auctionDao.getAuctionList();
+	}
+	
 
 	@Autowired
 	@Qualifier("jpaGroupbuyDao")

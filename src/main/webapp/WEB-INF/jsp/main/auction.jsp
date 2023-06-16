@@ -67,6 +67,10 @@
 				<input type = "checkbox" name = "categoryId" value = "패션잡화">패션잡화<br>
 			</form>
 		</div>
+				<!-- 해당 상품 리스트 -->
+		<div class = "list">
+			<jsp:include page = "../auction/list.jsp"/>
+		</div>
 	</div>
 </body>
 </html>

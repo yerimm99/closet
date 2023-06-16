@@ -36,8 +36,8 @@
 				    	  		${prod.name}<br>
 				      			${prod.description}<br>
 				      			color: ${prod.color} || size: ${prod.size}<br><br><br>
-				      			${prod.maxPrice}원<br>
-				      			현재 최고가
+<%-- 				      			${prod.maxPrice}원<br> 이건 prod 에서 받아오는게 아니라 따로 쿼리를 써야할거 같아요!--%>
+				      			현재 최고가 : 구하는 쿼리 필요
 				   		</a>
 			      	</td>
 				<c:if test="${i%j == j-1 }">
