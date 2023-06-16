@@ -31,10 +31,10 @@ public class SignonController {
 	@Value("account/SignonForm")
 	private String formViewName;
 	
-	@RequestMapping("/account/SignonForm.do")
-	public String showForm() {
-		return formViewName;
-	}
+//	@RequestMapping("/account/SignonForm.do")
+//	public String showForm() {
+//		return formViewName;
+//	}
 
 	@RequestMapping("/account/signon.do")
 	public ModelAndView handleRequest(HttpServletRequest request,
