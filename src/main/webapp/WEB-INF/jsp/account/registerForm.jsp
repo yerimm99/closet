@@ -11,7 +11,11 @@
 	<style type = "text/css">
 		body{margin:0}
 		.layout{margin:0px auto;width:1180px;padding:10px}
-		table, td{border:2px solid black;border-collapse:collapse;}
+		table, td{border:1px solid black;border-collapse:collapse;}
+		table{margin:50px auto 0px auto}
+		td{height:40px;}
+		td{height:40px}
+		input{border:none;}
 	</style>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
@@ -78,9 +82,11 @@
 	<hr>
 	
 	<div class = "layout">
-		<h3>회원가입</h3>
 		<form:form modelAttribute = "accountForm" action = "POST" >
 		<table>
+			<tr>
+				<td style="text-align:center;font-size:24px" colspan = "2">회원가입<br><br></td>
+			</tr>
 			<tr>
 				<td>이름</td>
 				<td><form:input path = "account.name"/></td>
@@ -104,7 +110,7 @@
 					<input type = "button" onclick = "sample4_execDaumPostcode()"
 						value = "우편번호 찾기"/><br>
 					<input type = "text" id = "sample4_roadAddress" placeholder = "도로명주소" name = "address1"/>
-					<input type = "text" id = "sample4_jibunAddress" placeholder = "지번주소"/>
+					<input type = "text" id = "sample4_jibunAddress" placeholder = "지번주소"/><br>
 					<span id = "guide" style = "color:#999;display:none"></span>
 					<input type = "text" id = "sample4_detailAddress" placeholder = "상세주소" name = "address2"/>
 					<input type = "text" id = "sample4_extraAddress" placeholder = "참고항목"/>
