@@ -126,6 +126,17 @@
 							</a>
 						</td>
 					</tr>
+					
+					
+					<tr>
+						<td colspan = "2" class = "gobtn3">
+							<a href = "<c:url value='/order/registerForm.do'>
+									<c:param name = 'productId' value='${product.productId}' />
+									</c:url>"><b style = "font-size:18px">주문버튼 임시구현</b>
+							</a>
+						</td>
+					</tr>
+					
 				</table>
 			</div>
 		</div>
