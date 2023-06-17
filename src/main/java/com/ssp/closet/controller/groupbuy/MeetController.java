@@ -5,7 +5,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,7 +36,8 @@ public class MeetController {
 	@RequestMapping("/groupbuy/enjoy.do")
 	public String initMeet(HttpServletRequest request,
 			@RequestParam("productId") int productId,
-			@ModelAttribute("meetForm") MeetForm meetForm) 
+			@ModelAttribute("meetForm") MeetForm meetForm,
+			ModelMap model) 
 			throws ModelAndViewDefiningException {
 		UserSession userSession = 
 				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
@@ -45,7 +48,6 @@ public class MeetController {
 			Meet existingMeet = closet.findMeetByUserIdAndProductId(account.getUserId(), productId);
 			if (existingMeet != null) {
 				meetForm.setNewMeet(false);
-				return "main/groupbuy";
 			} else {
 				meetForm.setNewMeet(true);
 				Meet meet = new Meet(account.getUserId(), productId);
@@ -63,10 +65,12 @@ public class MeetController {
 					    closet.createMeet(m);
 					}
 				}
-				return "main/myPage";
 			}
-		} else {
-			return "account/SignonForm";
 		}
+		PagedListHolder<Groupbuy> productList = new PagedListHolder<Groupbuy>(this.closet.getGroupbuyList());
+		productList.setPageSize(4);
+		model.put("productList", productList);
+		model.put("isNewMeet", meetForm.isNewMeet());
+		return "main/groupbuy"; 
 	}
 }
