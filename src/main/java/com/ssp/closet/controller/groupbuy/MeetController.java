@@ -8,12 +8,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ModelAndViewDefiningException;
 import org.springframework.web.util.WebUtils;
 
 import com.ssp.closet.controller.UserSession;
-import com.ssp.closet.controller.groupbuy.MeetForm;
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Groupbuy;
 import com.ssp.closet.dto.Meet;
@@ -32,7 +30,7 @@ public class MeetController {
 	}
 	
 	@RequestMapping("/meet/newMeet.do")
-	public ModelAndView initMeet(HttpServletRequest request,
+	public String initMeet(HttpServletRequest request,
 			@RequestParam("productId") int productId,
 			@ModelAttribute("meetForm") MeetForm meetForm) 
 			throws ModelAndViewDefiningException {
@@ -41,21 +39,20 @@ public class MeetController {
 		if (userSession != null) {
 			Account account = closet.getAccount(userSession.getAccount().getUserId());
 			Groupbuy groupbuy = closet.getGroupbuyDetail(productId);
-			meetForm.getMeet().initMeet(account, groupbuy);
-
+			
 			Meet existingMeet = closet.getMeet(account.getUserId(), productId);
-			meetForm.getMeet().initMeet(account, groupbuy);
 			if (existingMeet != null) {
 				meetForm.setNewMeet(false);
+				return "main/groupbuy";
 			} else {
 				meetForm.setNewMeet(true);
+				Meet meet =new Meet();
+				meet.initMeet(account, groupbuy);
+				closet.createMeet(meet);
+				return "main/myPage";
 			}
-			ModelAndView mav = new ModelAndView("meet/meetForm");
-			mav.addObject("product", groupbuy);
-			return mav;
 		} else {
-			ModelAndView mav = new ModelAndView("redirect:/account/SignonForm.do");
-			return mav;
+			return "account/SignonForm";
 		}
 	}
 }

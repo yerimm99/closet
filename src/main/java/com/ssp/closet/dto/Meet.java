@@ -1,6 +1,5 @@
 package com.ssp.closet.dto;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -20,22 +19,13 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import lombok.Getter;
 import lombok.Setter;
 
-@SuppressWarnings("serial")
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "MEET")
 @DiscriminatorValue("Meet")
 @Getter
 @Setter
-public class Meet implements Serializable {
-	/* Private Fields */
-//	@Id
-//	@SequenceGenerator(name = "MEET_SEQ_GENERATOR", sequenceName="MEET_SEQ", initialValue=1, allocationSize=1)
-//	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="MEET_SEQ_GENERATOR")
-//	@Column(name="MEETID")
-//	private int meetId;
-	
-	
+public class Meet{
 	@EmbeddedId
 	private MeetId meetId;
 	
@@ -54,7 +44,7 @@ public class Meet implements Serializable {
 	@MapsId("productId")
     @JoinColumn(name = "PRODUCTID")
     private Groupbuy groupbuy;
-	
+
 	public String getMeeterUserId() {
         return meeter.getUserId();
     }

@@ -50,6 +50,7 @@ public interface ClosetFacade {
 	List<Groupbuy> getGroupbuyList();
 	
 	Meet getMeet(String userId, int productId);
+	void createMeet(Meet meet);
 	
 	
 	void createMark(Bookmark bookmark);
