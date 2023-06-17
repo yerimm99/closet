@@ -1,14 +1,13 @@
-//package com.ssp.closet.dao;
-//
-//import java.util.List;
-//
-//import org.springframework.dao.DataAccessException;
-//
-//import com.ssp.closet.dto.Account;
-//import com.ssp.closet.dto.Meet;
-//
-//public interface MeetDao {
-//	
+package com.ssp.closet.dao;
+
+import org.springframework.dao.DataAccessException;
+
+import com.ssp.closet.dto.Meet;
+
+public interface MeetDao {
+	
+	Meet getMeet(String userId, int productId) throws DataAccessException;
+	
 //	//공동구매 신청 등록
 //	void insertMeet(Meet meet) throws DataAccessException;
 //
@@ -23,4 +22,4 @@
 //
 //	//공동구매 참여자 리스트 조회
 //	List<Account> getMeetList(int productId) throws DataAccessException;
-//}
+}
