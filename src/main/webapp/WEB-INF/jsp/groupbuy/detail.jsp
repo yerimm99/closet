@@ -83,9 +83,9 @@
 					</tr>
 					<tr>
 						<td colspan = "2">
-							<a href = "<c:url value='/bid/bidForm.do'>
+							<a href = "<c:url value='/closet/groupbuy.do'>
 									<c:param name = 'productId' value='${product.productId}' />
-									</c:url>">경매 참가하기</a>
+									</c:url>">공동구매 참가하기</a>
 						</td>
 					</tr>
 				</table>
