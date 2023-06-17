@@ -70,6 +70,10 @@ public class ClosetImpl implements ClosetFacade{
 		aucRepository.updatePrice(auction.getProductId(), findMaxPrice(auction.getProductId()));
 	}
 	
+	public List<Auction> getAuctionByCategoryId(String categoryId) {
+        return aucRepository.findByCategoryId(categoryId);
+    }
+	
 	@Autowired
 	private BidRepository bidRepository;
 	
@@ -134,6 +138,10 @@ public class ClosetImpl implements ClosetFacade{
 	public void insertGroupbuy(Groupbuy groupbuy) {
 		groupbuyRepository.save(groupbuy);
 	}
+	
+	public List<Groupbuy> getGroupbuyByCategoryId(String categoryId) {
+        return groupbuyRepository.findByCategoryId(categoryId);
+    }
 	
 	public Groupbuy getGroupbuyDetail(int productId) {
 		return groupbuyRepository.getReferenceById(productId); 
