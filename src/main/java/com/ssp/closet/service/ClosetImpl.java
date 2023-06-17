@@ -6,7 +6,6 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.ssp.closet.dao.AccountDao;
@@ -14,7 +13,6 @@ import com.ssp.closet.dao.AuctionDao;
 import com.ssp.closet.dao.BookmarkDao;
 import com.ssp.closet.dao.GroupbuyDao;
 import com.ssp.closet.dao.MeetDao;
-import com.ssp.closet.dao.ProductDao;
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
 import com.ssp.closet.dto.Bid;
@@ -32,7 +30,6 @@ import com.ssp.closet.repository.BidRepository;
 import com.ssp.closet.repository.GroupbuyRepository;
 import com.ssp.closet.repository.MeetRepository;
 import com.ssp.closet.repository.ProductRepository;
-import com.ssp.closet.service.ClosetFacade;
 @Service
 @Transactional
 public class ClosetImpl implements ClosetFacade{
@@ -170,16 +167,24 @@ public class ClosetImpl implements ClosetFacade{
 		meetRepository.save(meet);
 	}
 	
+	public Meet findMeetByUserIdAndProductId(String userId, int productId) {
+	    return meetRepository.findByUserIdAndProductId(userId, productId);
+	}
+	
+	public List<Meet> findByProductId(int productId){
+		return meetRepository.findByProductId(productId);
+	}
+	
+	public Integer getMeetCountByProductId(int productId) {
+		return meetRepository.getMeetCountByProductId(productId);
+	}
 
 
 	
 	@Autowired
 	@Qualifier("jpaMeetDao")
 	private MeetDao meetDao;
-	
-	public Meet getMeet(String userId, int productId) {
-		return meetDao.getMeet(userId, productId);
-	}
+
 //
 //	public int countPeopleNum(int productId) {
 //		return meetDao.countPeopleNum(productId);

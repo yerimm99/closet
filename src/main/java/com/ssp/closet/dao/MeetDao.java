@@ -6,11 +6,6 @@ import com.ssp.closet.dto.Meet;
 
 public interface MeetDao {
 	
-	Meet getMeet(String userId, int productId) throws DataAccessException;
-	
-//	//공동구매 신청 등록
-//	void insertMeet(Meet meet) throws DataAccessException;
-//
 //	//공동구매 신청 삭제
 //	void deleteMeet(int meetId) throws DataAccessException;
 //

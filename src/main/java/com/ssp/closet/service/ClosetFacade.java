@@ -52,9 +52,10 @@ public interface ClosetFacade {
 	List<Groupbuy> getGroupbuyList();
 	List<Groupbuy> getGroupbuyByCategoryId(String categoryId);
 	
-	Meet getMeet(String userId, int productId);
 	void createMeet(Meet meet);
-	
+	Meet findMeetByUserIdAndProductId(String userId, int productId);
+	List<Meet> findByProductId(int productId);
+	Integer getMeetCountByProductId(int productId);
 	
 	void createMark(Bookmark bookmark);
 	void deleteMark(String userId, int productId);

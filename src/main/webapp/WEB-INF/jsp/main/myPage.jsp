@@ -28,7 +28,7 @@
 		<div class = "accountInfo">
 			<table>
 				<tr>
-					<td colspan = "3">${account.name}님</td>
+					<td colspan = "3">${account.username}님</td>
 				</tr>
 				<tr>
 					<td>전화번호</td>
