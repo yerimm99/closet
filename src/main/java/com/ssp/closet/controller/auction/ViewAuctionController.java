@@ -55,7 +55,7 @@ public class ViewAuctionController {
 		public void detailAuction(
 				@RequestParam("productId") int productId,
 				ModelMap model) throws Exception {
-			Auction product = this.closet.getAuctionDetail(productId);
+			Auction product = this.closet.getAuction(productId);
 			model.put("product", product);
 		}
 }

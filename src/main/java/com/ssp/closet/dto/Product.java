@@ -82,15 +82,4 @@ public class Product implements Serializable {
 	private Account account;
 
 
-	public Account getAccount() {
-		return account;
-	}
-
-	public void setAccount(Account account) {
-		this.account = account;
-	}
-
-	public Product() {}
-
-
 }

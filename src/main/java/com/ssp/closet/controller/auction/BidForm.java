@@ -12,7 +12,8 @@ import lombok.Setter;
 @Setter
 public class BidForm implements Serializable{
 	private Bid bid;
-
+	
+	private int bidPrice;
 	private boolean newBid;
 	
 	public BidForm(Bid bid) {
@@ -22,7 +23,6 @@ public class BidForm implements Serializable{
 	
 	public BidForm() {
 		this.bid = new Bid();
-		this.newBid = true;
 	}
 	
 	public boolean isNewBid() {
