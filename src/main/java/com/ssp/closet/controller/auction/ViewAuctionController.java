@@ -31,4 +31,13 @@ public class ViewAuctionController {
 			model.put("productList", productList);
 			return "/main/auction";
 		}
+		
+		
+		@RequestMapping("/auction/detail.do")
+		public void detailAuction(
+				@RequestParam("productId") int productId,
+				ModelMap model) throws Exception {
+			Auction product = this.closet.getAuctionDetail(productId);
+			model.put("product", product);
+		}
 }
