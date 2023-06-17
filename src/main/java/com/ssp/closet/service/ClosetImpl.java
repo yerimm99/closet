@@ -67,8 +67,8 @@ public class ClosetImpl implements ClosetFacade{
 	public Auction getAuction(int productId) {
 		return aucRepository.findByProductId(productId); 
 	}
-	public void updateMaxPrice(Auction auction) {
-		aucRepository.updatePrice(auction.getProductId(), findMaxPrice(auction.getProductId()));
+	public void updateMaxPrice(int productId) {
+		aucRepository.updatePrice(productId, findMaxPrice(productId).getBidPrice());
 	}
 	
 	public List<Auction> getAuctionByCategoryId(String categoryId) {
@@ -80,26 +80,31 @@ public class ClosetImpl implements ClosetFacade{
 	
 	public void createBid(Bid bid) {
 		bidRepository.save(bid);
+		updateMaxPrice(bid.getProductId());
 	}
 
-	public void updateBidPrice(int productId, int newPrice) {
-		bidRepository.updatePrice(productId, newPrice);
+	public void updateBidPrice(int productId, String userId, int newPrice) {
+		bidRepository.updatePrice(productId, userId, newPrice);
+		updateMaxPrice(productId);
 	}
 
+	public boolean isBidPriceExists(int productId, int bidPrice) {
+		return bidRepository.existsByProductIdAndBidPrice(productId, bidPrice);
+	}
 	public void deleteBid(int productId) {
-		bidRepository.deleteById(productId);
+		bidRepository.deleteByProductId(productId);
 	}
 	  
-	public void updateSuccessResult(BidId bidId) {
-		bidRepository.updateSuccessResult(bidId);
-	}
+//	public void updateSuccessResult(BidId bidId) {
+//		bidRepository.updateSuccessResult(bidId);
+//	}
+//	  
+//	public void updateFailResult(BidId bidId) {
+//		bidRepository.updateFailResult(bidId);
+//	}
 	  
-	public void updateFailResult(BidId bidId) {
-		bidRepository.updateFailResult(bidId);
-	}
-	  
-	public int findMaxPrice(int productId) {
-		return bidRepository.findMaxBidPrice(productId);
+	public Bid findMaxPrice(int productId) {
+		return bidRepository.findTopByProductIdOrderByBidPriceDesc(productId);
 	}	 
 	  
 //	public List<Bid> getBidResultList(String userId) {
@@ -107,7 +112,7 @@ public class ClosetImpl implements ClosetFacade{
 //	}
 	
 	public Bid getBid(String userId) {
-		return bidRepository.findByBidderUserId(userId);
+		return bidRepository.findByUserId(userId);
 	}
 
 	public Bid getBid(String userId, int productId) {

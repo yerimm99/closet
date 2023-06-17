@@ -24,7 +24,7 @@ import com.ssp.closet.dto.BidId;
 import com.ssp.closet.service.ClosetFacade;
 
 @Controller
-@SessionAttributes("auction")
+@SessionAttributes("bidForm")
 public class BidFormController {
 	@Autowired
 	private ClosetFacade closet;
@@ -32,6 +32,11 @@ public class BidFormController {
 	@Autowired
 	public void setCloset(ClosetFacade closet) {
 		this.closet = closet;
+	}
+	
+	@ModelAttribute("bidForm")
+	public BidForm createBidForm() {
+		return new BidForm();
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
@@ -49,18 +54,17 @@ public class BidFormController {
 		if (userSession != null) {
 			Account account = closet.getAccount(userSession.getAccount().getUserId());
 			Auction auction = closet.getAuction(productId);
-
-//			Bid existingBid = closet.getBid(account.getUserId(), productId);
-//			bidForm.getBid().initBid(account, auction);
-//			if (existingBid != null) {
-//				bidForm.setBid(existingBid);
-//				bidForm.setNewBid(false);
-//			} else {
+			Bid existingBid = closet.getBid(account.getUserId(), productId);
+			bidForm.getBid().initBid(account, auction);
+			if (existingBid != null) {
+				bidForm.setBid(existingBid);
+				bidForm.setNewBid(false);
+			} else {
 				Bid newBid = new Bid();
 	            newBid.initBid(account, auction);
 	            bidForm.setBid(newBid); // 새로운 Bid 객체 설정
 				bidForm.setNewBid(true);
-			//}
+			}
 			ModelAndView mav = new ModelAndView("bid/bidForm");
 			mav.addObject("product", auction);
 			return mav;
@@ -69,80 +73,52 @@ public class BidFormController {
 			return mav;
 		}
 	}
-	
 
-//	@RequestMapping("/bid/updatePrice.do")
-//	public String initUpdateBid(HttpServletRequest request,
-//			@ModelAttribute("auction") Auction auction,
-//			@ModelAttribute("bidForm") BidForm bidForm,
-//			@RequestParam("bidPrice") int bidPrice) 
-//			throws Exception {
-//		UserSession userSession = 
-//				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
-//		if (userSession != null) {
-//			Account account = closet.getAccount(userSession.getAccount().getUserId());
-//			bidForm.getBid().initBid(account, auction);
-//			return "bid/updatePriceForm";
-//		}
-//		else {
-//			return "redirect:/account/SignonForm.do";
-//		}
-//	}
 	
 	@RequestMapping("/bid/confirmBid.do")
 	protected ModelAndView confirmBid( //Bid 등록 
 			@ModelAttribute("bidForm") BidForm bidForm,
-			//@RequestParam("bidPrice") int bidPrice,
 			SessionStatus status, BindingResult result) throws ModelAndViewDefiningException {
+		Bid bid = bidForm.getBid();
 		
-		//validator.validate(accountForm, result);
-
+		if (bid.getBidPrice() < bid.getAuction().getStartPrice()) {
+            result.rejectValue(
+                "bidPrice",
+                "START_PRICE_INVALID",
+                "입찰가는 경매 시작가 이상이어야 합니다."
+            );
+        }
+		if (closet.isBidPriceExists(bid.getProductId(), bid.getBidPrice())) {
+	        result.rejectValue("bidPrice", "BIDPRICE_ALREADY_EXISTS",
+	                "이미 존재하는 입찰가입니다.");
+		}
 		if (result.hasErrors()) { 
-			ModelAndView mav = new ModelAndView("auction/detail");
+			ModelAndView mav = new ModelAndView("bid/bidForm");
+			mav.addObject("product", bid.getAuction());
 			return mav;
 		}
-	
-		Bid bid = bidForm.getBid();
-		Auction auction = bid.getAuction();
+
 //		try {
-//			if (bidForm.isNewBid()) {
+			if (bidForm.isNewBid()) {
+				bidForm.setBidPrice(bid.getBidPrice());
 				closet.createBid(bid);
-				closet.updateMaxPrice(auction);
-//			}
-//			else {
-//				closet.updateBidPrice(bid.getId().getProductId(), bid.getBidPrice());
-//				closet.updateMaxPrice(auction);
-//			}
+			}
+			else {
+				closet.updateBidPrice(bid.getProductId(), bid.getUserId(), bid.getBidPrice());
+			}
 //		}
 //		catch (DataIntegrityViolationException ex) {
-//			result.rejectValue("bid.bidPrice", "BIDPRICE_ALREADY_EXISTS",
-//					"bidPrice already exists: choose a different price.");
-//			ModelAndView mav = new ModelAndView("auction/detail");
-//			mav.addObject("product", auction);
-//			return mav;
+//				ModelAndView mav = new ModelAndView("bid/bidForm");
+//				mav.addObject("product", bid.getAuction());
+//				return mav;
+//			
 //		}
-//		bidForm.getBid().initBid(bidForm.getBid().getUserId(), bidForm.getBid().getProductId());
-//		closet.createBid(bidForm.getBid()); //등록 
-//		closet.updateMaxPrice(auction); //최고가 갱신
 		ModelAndView mav = new ModelAndView("auction/detail");
-		mav.addObject("product", auction);
+		mav.addObject("product", bid.getAuction());
 		status.setComplete();  // remove session
 		return mav;
 	}
 
-//	@RequestMapping("/bid/bidPriceUpdateForm.do")
-//	public ModelAndView conFirmUpdate(
-//			HttpServletRequest request,
-//			@RequestParam("bidPrice") int bidPrice,
-//			@ModelAttribute("bidForm") BidForm bidForm,
-//			BindingResult result) throws ModelAndViewDefiningException {
-//		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");	
-//		Account account = closet.getAccount(userSession.getAccount().getUserId());
-//		if (result.hasErrors()) return "auction/auctionPriceUpdateForm";
-//
-//		closet.updateBidPrice(bidForm.getBid().getBidId(), bidPrice);
-//		return "main/auction";
-//	}
 	
 	@RequestMapping("/bid/deleteBid.do")
 	public String removeBid(
