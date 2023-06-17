@@ -22,26 +22,13 @@ public class ViewGroupBuyController {
 	public void setPetStore(ClosetFacade closet) {
 		this.closet = closet;
 	}
-
-	//	@RequestMapping("/closet/groupbuy.do")
-	//	public String handleRequest(
-	////			@RequestParam("type") int type,
-	////			@RequestParam("status") int status,
-	//			ModelMap model
-	//			) throws Exception {
-	//		return "main/groupbuy"; 
-	//	}
-
-//	private Integer peopleSum;
-//	peopleSum = closet.getMeetCountByProductId(getProductId());
 	
-	//	//공동구매 상품 리스트 보기
+	//공동구매 상품 리스트 보기
 	@RequestMapping("/closet/groupbuy.do")
 	public String handleRequest1(
 			ModelMap model
 			) throws Exception {
 		PagedListHolder<Groupbuy> productList = new PagedListHolder<Groupbuy>(this.closet.getGroupbuyList());
-		//		PagedListHolder<Product> productList = new PagedListHolder<Product>();
 		productList.setPageSize(4);
 		model.put("productList", productList);
 		return "main/groupbuy"; 

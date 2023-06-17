@@ -119,13 +119,13 @@ public class Order implements Serializable {
 
 	/* Public Methods */
 	public void initOrder(Account account) {
-		name = account.getName();
+		name = account.getUsername();
 		orderDate = new Date();
 
-		shipToName = account.getName();
+		shipToName = account.getUsername();
 		shipAddress = account.getAddress();
 
-		billToName = account.getName();
+		billToName = account.getUsername();
 
 		creditCard = "999 9999 9999 9999";
 		expiryDate = "12/03";
@@ -134,13 +134,13 @@ public class Order implements Serializable {
 
 	public void initOrder(Account account, Product product, Auction auction) {
 		userId = account.getUserId();
-		name = account.getName();
+		name = account.getUsername();
 	    orderDate = new Date();
 
-	    shipToName = account.getName();
+	    shipToName = account.getUsername();
 	    shipAddress = account.getAddress();
 
-	    billToName = account.getName();
+	    billToName = account.getUsername();
 
 	    productId = product.getProductId();
 	    //price = auction.getMaxPrice();
@@ -152,13 +152,13 @@ public class Order implements Serializable {
 
 	public void initOrder(Account account, Product product, Groupbuy groupBuy) {
 		userId = account.getUserId();
-		name = account.getName();
+		name = account.getUsername();
 	    orderDate = new Date();
 
-	    shipToName = account.getName();
+	    shipToName = account.getUsername();
 	    shipAddress = account.getAddress();
 
-	    billToName = account.getName();
+	    billToName = account.getUsername();
 
 	    productId = product.getProductId();
 	    price = groupBuy.getPrice();
