@@ -1,5 +1,7 @@
 package com.ssp.closet.controller.groupbuy;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +52,17 @@ public class MeetController {
 				closet.createMeet(meet);
 				groupbuy.setPeopleSum(groupbuy.getPeopleSum() + 1);
 				closet.insertGroupbuy(groupbuy); //변경사항 저장
+				if(groupbuy.getPeopleSum() == groupbuy.getPeopleNum()) {
+					groupbuy.setStatus(0);
+					closet.insertGroupbuy(groupbuy); //변경사항 저장
+					
+					List<Meet> meets = closet.findByProductId(productId);
+					for (Meet m : meets) {
+					    m.setMeetResult(1); // 값을 1로 변경
+					    // 변경된 엔티티 저장
+					    closet.createMeet(m);
+					}
+				}
 				return "main/myPage";
 			}
 		} else {
