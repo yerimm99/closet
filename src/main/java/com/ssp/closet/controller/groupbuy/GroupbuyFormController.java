@@ -1,4 +1,4 @@
-package com.ssp.closet.controller;
+package com.ssp.closet.controller.groupbuy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ModelAndViewDefiningException;
 import org.springframework.web.util.WebUtils;
 
+import com.ssp.closet.controller.UserSession;
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Groupbuy;
 import com.ssp.closet.service.ClosetFacade;
@@ -75,8 +75,6 @@ public class GroupbuyFormController {
 	}
 	
 	 // 수정 폼 만들어주시면 추가
-	
-	
 	
 	@RequestMapping("/groupbuy/confirmGroupbuy.do")
 	public String confirmGroupbuy( //groupbuy 등록 확인 

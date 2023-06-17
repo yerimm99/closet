@@ -20,7 +20,7 @@ import lombok.Setter;
 @Setter
 public class Groupbuy extends Product implements Serializable {
 	@Column(name = "PEOPLENUM")
-	private int peopleNum; // 공동구매가 이뤄지기 위한 최소 인원
+	private Integer peopleNum; // 공동구매가 이뤄지기 위한 최소 인원
 	
 	public Groupbuy() {}
 

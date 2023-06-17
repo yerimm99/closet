@@ -29,6 +29,7 @@ import com.ssp.closet.dto.Review;
 import com.ssp.closet.repository.AuctionRepository;
 import com.ssp.closet.repository.BidRepository;
 import com.ssp.closet.repository.GroupbuyRepository;
+import com.ssp.closet.repository.MeetRepository;
 import com.ssp.closet.repository.ProductRepository;
 import com.ssp.closet.service.ClosetFacade;
 @Service
@@ -68,6 +69,10 @@ public class ClosetImpl implements ClosetFacade{
 	public void updateMaxPrice(Auction auction) {
 		aucRepository.updatePrice(auction.getProductId(), findMaxPrice(auction.getProductId()));
 	}
+	
+	public List<Auction> getAuctionByCategoryId(String categoryId) {
+        return aucRepository.findByCategoryId(categoryId);
+    }
 	
 	@Autowired
 	private BidRepository bidRepository;
@@ -134,6 +139,10 @@ public class ClosetImpl implements ClosetFacade{
 		groupbuyRepository.save(groupbuy);
 	}
 	
+	public List<Groupbuy> getGroupbuyByCategoryId(String categoryId) {
+        return groupbuyRepository.findByCategoryId(categoryId);
+    }
+	
 	public Groupbuy getGroupbuyDetail(int productId) {
 		return groupbuyRepository.getReferenceById(productId); 
 	}
@@ -145,6 +154,17 @@ public class ClosetImpl implements ClosetFacade{
 	
 	public List<Groupbuy> getGroupbuyList(){
 		return groupbuyDao.getGroupbuyList();
+	}
+	
+	@Autowired
+	private MeetRepository meetRepository;
+	
+	public void createMeet(Meet meet) {
+		meetRepository.save(meet);
+	}
+	
+	public Meet getMeet(String userId, int productId) {
+		return meetRepository.findByUserIdAndProductId(userId, productId);
 	}
 
 	

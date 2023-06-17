@@ -29,7 +29,7 @@ table, td {border: 1px solid black;border-collapse: collapse;}
  							<c:param name = 'productId' value='${prod.productId}' />
  							</c:url>">
 							<img src="<c:url value='${prod.picture1}'/>" width="250px"
-							height="250px" /><br> ${prod.name}<br>
+							height="250px" /><br><b> ${prod.name}</b><br>
 							${prod.description}<br> color: ${prod.color} || size:${prod.size}<br><br>
 							가격: ${prod.price}원<br> 현재모인 인원수: 0 / ${prod.peopleNum} <!-- 이거 전체인원수랑 현재 인원수로 나눠야함.. -->
 						</a>

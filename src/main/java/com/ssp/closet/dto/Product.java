@@ -73,7 +73,7 @@ public class Product implements Serializable {
 	@Column(name="PICTURE4")
 	private String picture4;
 	@Column(name="PRICE")
-	private int price;
+	private Integer price;
 	@Column(name = "DTYPE", insertable=false, updatable=false)
 	private String DTYPE;
 
