@@ -13,7 +13,6 @@ import org.springframework.web.util.WebUtils;
 
 import com.ssp.closet.controller.UserSession;
 import com.ssp.closet.dto.Account;
-import com.ssp.closet.dto.Groupbuy;
 import com.ssp.closet.dto.Meet;
 import com.ssp.closet.service.ClosetFacade;
 
@@ -29,7 +28,7 @@ public class MeetController {
 		this.closet = closet;
 	}
 	
-	@RequestMapping("/meet/newMeet.do")
+	@RequestMapping("/groupbuy/enjoy.do")
 	public String initMeet(HttpServletRequest request,
 			@RequestParam("productId") int productId,
 			@ModelAttribute("meetForm") MeetForm meetForm) 
@@ -38,7 +37,6 @@ public class MeetController {
 				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
 		if (userSession != null) {
 			Account account = closet.getAccount(userSession.getAccount().getUserId());
-			Groupbuy groupbuy = closet.getGroupbuyDetail(productId);
 			
 			Meet existingMeet = closet.getMeet(account.getUserId(), productId);
 			if (existingMeet != null) {
@@ -46,8 +44,7 @@ public class MeetController {
 				return "main/groupbuy";
 			} else {
 				meetForm.setNewMeet(true);
-				Meet meet =new Meet();
-				meet.initMeet(account, groupbuy);
+				Meet meet = new Meet(account.getUserId(), productId);
 				closet.createMeet(meet);
 				return "main/myPage";
 			}

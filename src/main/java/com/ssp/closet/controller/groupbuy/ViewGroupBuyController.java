@@ -35,13 +35,10 @@ public class ViewGroupBuyController {
 	//	//공동구매 상품 리스트 보기
 	@RequestMapping("/closet/groupbuy.do")
 	public String handleRequest1(
-			//			@RequestParam("type") int type,
-			//			@RequestParam("status") int status,
 			ModelMap model
 			) throws Exception {
 		PagedListHolder<Groupbuy> productList = new PagedListHolder<Groupbuy>(this.closet.getGroupbuyList());
 		//		PagedListHolder<Product> productList = new PagedListHolder<Product>();
-		productList.setPageSize(20);
 		productList.setPageSize(4);
 		model.put("productList", productList);
 		return "main/groupbuy"; 

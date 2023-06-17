@@ -13,6 +13,7 @@ import com.ssp.closet.dao.AccountDao;
 import com.ssp.closet.dao.AuctionDao;
 import com.ssp.closet.dao.BookmarkDao;
 import com.ssp.closet.dao.GroupbuyDao;
+import com.ssp.closet.dao.MeetDao;
 import com.ssp.closet.dao.ProductDao;
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
@@ -156,6 +157,7 @@ public class ClosetImpl implements ClosetFacade{
 		return groupbuyDao.getGroupbuyList();
 	}
 	
+	
 	@Autowired
 	private MeetRepository meetRepository;
 	
@@ -163,13 +165,16 @@ public class ClosetImpl implements ClosetFacade{
 		meetRepository.save(meet);
 	}
 	
-	public Meet getMeet(String userId, int productId) {
-		return meetRepository.findByUserIdAndProductId(userId, productId);
-	}
+
 
 	
-//	@Autowired
-//	private MeetDao meetDao;
+	@Autowired
+	@Qualifier("jpaMeetDao")
+	private MeetDao meetDao;
+	
+	public Meet getMeet(String userId, int productId) {
+		return meetDao.getMeet(userId, productId);
+	}
 //
 //	public int countPeopleNum(int productId) {
 //		return meetDao.countPeopleNum(productId);
