@@ -26,6 +26,7 @@ public interface ClosetFacade {
 	Auction getAuctionDetail(int productId);
 	void updateMaxPrice(Auction auction);
 	public List<Auction> getAuctionList();
+	List<Auction> getAuctionByCategoryId(String categoryId);
 	
 	void createBid(Bid bid);
 	void updateBidPrice(int productId, int newPrice);
@@ -48,6 +49,10 @@ public interface ClosetFacade {
 	void insertGroupbuy(Groupbuy groupbuy);
 	Groupbuy getGroupbuyDetail(int productId);
 	List<Groupbuy> getGroupbuyList();
+	List<Groupbuy> getGroupbuyByCategoryId(String categoryId);
+	
+	Meet getMeet(String userId, int productId);
+	void createMeet(Meet meet);
 	
 	
 	void createMark(Bookmark bookmark);
