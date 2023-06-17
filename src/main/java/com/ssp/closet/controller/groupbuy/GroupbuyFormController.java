@@ -77,7 +77,6 @@ public class GroupbuyFormController {
 	 // 수정 폼 만들어주시면 추가
 	
 	
-	
 	@RequestMapping("/groupbuy/confirmGroupbuy.do")
 	public String confirmGroupbuy( //groupbuy 등록 확인 
 			@ModelAttribute("groupbuyForm") GroupbuyForm groupbuyForm, 
