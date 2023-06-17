@@ -166,6 +166,10 @@ public class ClosetImpl implements ClosetFacade{
 	    return meetRepository.findByUserIdAndProductId(userId, productId);
 	}
 	
+	public List<Meet> findByProductId(int productId){
+		return meetRepository.findByProductId(productId);
+	}
+	
 	public Integer getMeetCountByProductId(int productId) {
 		return meetRepository.getMeetCountByProductId(productId);
 	}

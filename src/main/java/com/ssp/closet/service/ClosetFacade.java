@@ -53,6 +53,7 @@ public interface ClosetFacade {
 	
 	void createMeet(Meet meet);
 	Meet findMeetByUserIdAndProductId(String userId, int productId);
+	List<Meet> findByProductId(int productId);
 	Integer getMeetCountByProductId(int productId);
 	
 	void createMark(Bookmark bookmark);
