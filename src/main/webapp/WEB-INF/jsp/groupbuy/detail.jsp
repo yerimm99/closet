@@ -30,10 +30,12 @@
 		.slider input[type=radio]:nth-child(4):checked~ul.imgs>li:nth-child(4){left: 0;transition: 0.5s;z-index:1;}
 		
 		table{width:480px;height:360px;}
-		.info{float:left;padding:30px;margin:20px 40px 0px 20px;}
+		.info{float:left;padding:20px;margin:20px 40px 0px 20px;}
 		th{text-align:left;padding:2px 10px;width:170px}
 		td{padding:0px 10px}
 		.gobtn{text-align:center;font-size:20px;border-radius:10px;background-color:black;
+		border:1px solid black;width:100px;height:35px;color:white;margin-top:10px}
+		.gobtn2{text-align:center;font-size:20px;border-radius:10px;
 		border:1px solid black;width:100px;height:35px;color:white;margin-top:10px}
 		a{display:block}
 	 	a:link{text-decoration:none;color:black}
@@ -73,8 +75,12 @@
 				<div class="bullets">
 					<label for="slide1">&nbsp;</label>
 					<label for="slide2">&nbsp;</label>
-					<label for="slide3">&nbsp;</label>
-					<label for="slide4">&nbsp;</label>
+					<c:if test="${!empty product.picture3}" >
+						<label for="slide3">&nbsp;</label>
+					</c:if>
+					<c:if test="${!empty product.picture4}" >
+						<label for="slide4">&nbsp;</label>
+					</c:if>
 				</div>
 			</div>
 			<!-- 상품 상세정보 및 버튼 -->
@@ -105,13 +111,18 @@
 						<td>${product.peopleNum}</td>
 					</tr>
 					<tr>
-						<td colspan = "2"><br></td>
-					</tr>
-					<tr>
 						<td colspan = "2" class = "gobtn">
 							<a href = "<c:url value='/groupbuy/enjoy.do'>
 									<c:param name = 'productId' value='${product.productId}'/>
 									</c:url>"><b style = "color:white;font-size:18px">공동구매 참가하기</b>
+							</a>
+						</td>
+					</tr>
+					<tr>
+						<td colspan = "2" class = "gobtn2">
+							<a href = "<c:url value='/bookmark/create.do'>
+									<c:param name = 'productId' value='${product.productId}' />
+									</c:url>"><b style = "font-size:18px">관심상품</b>
 							</a>
 						</td>
 					</tr>
