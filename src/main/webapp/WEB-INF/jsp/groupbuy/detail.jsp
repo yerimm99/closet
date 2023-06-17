@@ -9,9 +9,8 @@
 	<style type = "text/css">
 		body{margin:0}
 		.layout{margin:0px auto;width:1180px;padding:10px}
-		.slider{width: 640px;height: 480px;position: relative;margin: 0 auto;
-    		overflow: hidden; /* 현재 슬라이드 오른쪽에 위치한 나머지 슬라이드 들이 보이지 않도록 가림 */
-		}
+		.slider{float:left;width: 480px;height: 360px;position: relative;margin: 0 auto;border:1px solid black;
+    		overflow: hidden;margin:50px 20px 0px 40px}
 		.slider input[type=radio]{display: none;}
 		ul.imgs{padding: 0;margin: 0;list-style: none;}
 		ul.imgs li{position: absolute;left: 640px;transition-delay: 1s;
@@ -30,7 +29,12 @@
 		.slider input[type=radio]:nth-child(3):checked~ul.imgs>li:nth-child(3){left: 0;transition: 0.5s;z-index:1;}
 		.slider input[type=radio]:nth-child(4):checked~ul.imgs>li:nth-child(4){left: 0;transition: 0.5s;z-index:1;}
 		
-		.info{float:left;padding:10px}
+		table{width:480px;height:360px;}
+		.info{float:left;padding:30px;margin:20px 40px 0px 20px;}
+		th{text-align:left;padding:2px 10px;width:170px}
+		td{padding:0px 10px}
+		.gobtn{text-align:center;font-size:20px;border-radius:10px;background-color:black;
+		border:1px solid black;width:100px;height:35px;color:white;margin-top:10px}
 		a{display:block}
 	 	a:link{text-decoration:none;color:black}
 		a:visited{text-decoration:none;color:black}
@@ -44,53 +48,75 @@
 	<hr>
 	
 	<div class = "layout">
-		<!-- 상품 메인 사진 및 상세정보 -->
-		<div>
+		<div style="text-align:center;font-size:24px;margin-top:60px">상품 상세보기<br><br></div>
+		<!-- 상품 메인 사진 -->
+			<div class="slider">
+				<input type="radio" name="slide" id="slide1" checked>
+				<input type="radio" name="slide" id="slide2">
+				<c:if test="${!empty product.picture3}" >
+        			<input type="radio" name="slide" id="slide3">
+      			</c:if>
+      			<c:if test="${!empty product.picture4}" >
+        			<input type="radio" name="slide" id="slide4">
+      			</c:if>
+      			
+				<ul id="imgholder" class="imgs">
+					<li><img src="<c:url value='${product.picture1}'/>"></li>
+					<li><img src="<c:url value='${product.picture2}'/>"></li>
+					<c:if test="${!empty product.picture3}" >
+						<li><img src="<c:url value='${product.picture3}'/>"></li>
+					</c:if>
+					<c:if test="${!empty product.picture4}" >
+						<li><img src="<c:url value='${product.picture4}'/>"></li>
+					</c:if>
+				</ul>
+				<div class="bullets">
+					<label for="slide1">&nbsp;</label>
+					<label for="slide2">&nbsp;</label>
+					<label for="slide3">&nbsp;</label>
+					<label for="slide4">&nbsp;</label>
+				</div>
+			</div>
+			<!-- 상품 상세정보 및 버튼 -->
 			<div class = "info">
 				<table>
 					<tr>
-						<th>이미지경로</th>
-						<td>
-							${product.picture1}<br>
-							${product.picture2}<br>
-							<c:if test="${!empty product.picture3}" >
-								${product.picture3}<br>
-							</c:if>
-							<c:if test="${!empty product.picture4}" >
-								${product.picture4}<br>
-							</c:if>
-						</td>
-					</tr>
-					<tr>
 						<th>상품명</th>
-						<td>&lt; &gt; ${product.name}</td>
+						<td>&lt;${product.categoryId}&gt; ${product.name}</td>
 					</tr>
 					<tr>
-						<td>사이즈</td>
+						<th>상품정보</th>
+						<td>${product.description}</td>
+					</tr>
+					<tr>
+						<th>사이즈</th>
 						<td>${product.size}</td>
 					</tr>
 					<tr>
-						<td>색상</td>
+						<th>색상</th>
 						<td>${product.color}<br></td>
 					</tr>
 					<tr>
-						<td>가격</td>
+						<th>가격</th>
 						<td>${product.price}</td>
 					</tr>
 					<tr>
-						<td>필요참가인원</td>
+						<th>필요참가인원</th>
 						<td>${product.peopleNum}</td>
 					</tr>
 					<tr>
-						<td colspan = "2">
-							<a href = "<c:url value='/bid/bidForm.do'>
-									<c:param name = 'productId' value='${product.productId}' />
-									</c:url>">경매 참가하기</a>
+						<td colspan = "2"><br></td>
+					</tr>
+					<tr>
+						<td colspan = "2" class = "gobtn">
+							<a href = "<c:url value='/groupbuy/enjoy.do'>
+									<c:param name = 'productId' value='${product.productId}'/>
+									</c:url>"><b style = "color:white;font-size:18px">공동구매 참가하기</b>
+							</a>
 						</td>
 					</tr>
 				</table>
 			</div>
 		</div>
-	</div>
 </body>
 </html>
