@@ -32,6 +32,9 @@ public class ViewGroupBuyController {
 	//		return "main/groupbuy"; 
 	//	}
 
+//	private Integer peopleSum;
+//	peopleSum = closet.getMeetCountByProductId(getProductId());
+	
 	//	//공동구매 상품 리스트 보기
 	@RequestMapping("/closet/groupbuy.do")
 	public String handleRequest1(
@@ -57,7 +60,6 @@ public class ViewGroupBuyController {
 		else {
 			productList = new PagedListHolder<Groupbuy>(this.closet.getGroupbuyByCategoryId(categoryId));
 		}
-		productList.setPageSize(20);
 		productList.setPageSize(4);
 		model.put("productList", productList);
 		return "main/groupbuy"; 

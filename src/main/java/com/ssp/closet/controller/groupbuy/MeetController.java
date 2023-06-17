@@ -13,6 +13,7 @@ import org.springframework.web.util.WebUtils;
 
 import com.ssp.closet.controller.UserSession;
 import com.ssp.closet.dto.Account;
+import com.ssp.closet.dto.Groupbuy;
 import com.ssp.closet.dto.Meet;
 import com.ssp.closet.service.ClosetFacade;
 
@@ -37,8 +38,9 @@ public class MeetController {
 				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
 		if (userSession != null) {
 			Account account = closet.getAccount(userSession.getAccount().getUserId());
+			Groupbuy groupbuy = closet.getGroupbuyDetail(productId);
 			
-			Meet existingMeet = closet.getMeet(account.getUserId(), productId);
+			Meet existingMeet = closet.findMeetByUserIdAndProductId(account.getUserId(), productId);
 			if (existingMeet != null) {
 				meetForm.setNewMeet(false);
 				return "main/groupbuy";
@@ -46,6 +48,8 @@ public class MeetController {
 				meetForm.setNewMeet(true);
 				Meet meet = new Meet(account.getUserId(), productId);
 				closet.createMeet(meet);
+				groupbuy.setPeopleSum(groupbuy.getPeopleSum() + 1);
+				closet.insertGroupbuy(groupbuy); //변경사항 저장
 				return "main/myPage";
 			}
 		} else {
