@@ -32,17 +32,17 @@ public interface BidRepository extends JpaRepository<Bid, BidId>{
 	  
 	@Modifying
 	@Query("select max(b.bidPrice) from Bid b " + 
-			"where b.auction.productId = :productId")
+			"where b.id.productId = :productId")
 	int findMaxBidPrice(int productId);		 
 	  
 	//List<Bid> getBidResultList(String userId);
 //	@Query("SELECT a FROM Auction a WHERE b.bidder.userId = :userId")
 //	List<Bid> findResultByBidderUserId(String userId);
 //	
-	@Query("SELECT b FROM Bid b WHERE b.bidder.userId = :userId")
+	@Query("SELECT b FROM Bid b WHERE b.id.userId = :userId")
 	Bid findByBidderUserId(String userId);
 	
-	@Query("SELECT b FROM Bid b WHERE b.bidder.userId = :userId and b.auction.productId = :productId")
+	@Query("SELECT b FROM Bid b WHERE b.id.userId = :userId and b.id.productId = :productId")
 	Bid findByUserIdAndProductId(String userId, int productId);
 
 }

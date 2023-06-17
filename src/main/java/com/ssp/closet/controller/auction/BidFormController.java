@@ -48,14 +48,18 @@ public class BidFormController {
 				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
 		if (userSession != null) {
 			Account account = closet.getAccount(userSession.getAccount().getUserId());
-			Auction auction = closet.getAuctionDetail(productId);
+			Auction auction = closet.getAuction(productId);
 			bidForm.getBid().initBid(account, auction);
 
 			Bid existingBid = closet.getBid(account.getUserId(), productId);
 			bidForm.getBid().initBid(account, auction);
 			if (existingBid != null) {
+				bidForm.setBid(existingBid);
 				bidForm.setNewBid(false);
 			} else {
+				Bid newBid = new Bid();
+	            newBid.initBid(account, auction);
+	            bidForm.setBid(newBid); // 새로운 Bid 객체 설정
 				bidForm.setNewBid(true);
 			}
 			ModelAndView mav = new ModelAndView("bid/bidForm");

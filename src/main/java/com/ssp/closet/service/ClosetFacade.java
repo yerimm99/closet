@@ -23,7 +23,7 @@ public interface ClosetFacade {
 //	Product getProductDetail(int productId);
 	
 	void insertAuction(Auction auction);
-	Auction getAuctionDetail(int productId);
+	Auction getAuction(int productId);
 	void updateMaxPrice(Auction auction);
 	public List<Auction> getAuctionList();
 	

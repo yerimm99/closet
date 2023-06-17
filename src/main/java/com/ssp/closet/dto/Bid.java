@@ -37,14 +37,14 @@ public class Bid {
 	@Temporal(TemporalType.DATE)
 	private Date signDate;
 
-	@ManyToOne
 	@MapsId("userId")
+	@ManyToOne
     @JoinColumn(name = "USERID")
     private Account bidder;
 	
-	@ManyToOne
 	@MapsId("productId")
-    @JoinColumn(name = "PRODUCTID")
+	@ManyToOne
+	@JoinColumn(name = "PRODUCTID")
     private Auction auction;
 	
 	public String getBidderUserId() {
@@ -54,8 +54,9 @@ public class Bid {
 	public void initBid(Account account, Auction ac) {
 		bidder = account;
 		auction = ac;
-		bidPrice = -1;
+		id = new BidId(account.getUserId(), ac.getProductId());
 		bidResult = 0;
 		signDate = new Date();
+		
 	}
 }

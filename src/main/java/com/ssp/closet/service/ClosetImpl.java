@@ -62,8 +62,8 @@ public class ClosetImpl implements ClosetFacade{
 	public void insertAuction(Auction auction) {
 		aucRepository.save(auction);
 	}
-	public Auction getAuctionDetail(int productId) {
-		return aucRepository.getReferenceById(productId); 
+	public Auction getAuction(int productId) {
+		return aucRepository.findByProductId(productId); 
 	}
 	public void updateMaxPrice(Auction auction) {
 		aucRepository.updatePrice(auction.getProductId(), findMaxPrice(auction.getProductId()));
