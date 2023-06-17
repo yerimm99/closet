@@ -165,16 +165,20 @@ public class ClosetImpl implements ClosetFacade{
 		meetRepository.save(meet);
 	}
 	
+	public Meet findMeetByUserIdAndProductId(String userId, int productId) {
+	    return meetRepository.findByUserIdAndProductId(userId, productId);
+	}
+	
+	public Integer getMeetCountByProductId(int productId) {
+		return meetRepository.getMeetCountByProductId(productId);
+	}
 
 
 	
 	@Autowired
 	@Qualifier("jpaMeetDao")
 	private MeetDao meetDao;
-	
-	public Meet getMeet(String userId, int productId) {
-		return meetDao.getMeet(userId, productId);
-	}
+
 //
 //	public int countPeopleNum(int productId) {
 //		return meetDao.countPeopleNum(productId);
