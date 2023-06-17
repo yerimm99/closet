@@ -64,6 +64,13 @@
 				</td>
 			</tr>
 			<tr>
+				<td>공동구매 기간</td>
+				<td>
+					<form:input path = "groupbuy.period"  class = "inp"/>
+					<hr>
+				</td>
+			</tr>
+			<tr>
 				<td>참여자 수</td>
 				<td>
 					<!-- 왜자꾸 0이 기본값으로 들어가는지 모르겠음 -->

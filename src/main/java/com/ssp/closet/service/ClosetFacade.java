@@ -49,6 +49,8 @@ public interface ClosetFacade {
 	Groupbuy getGroupbuyDetail(int productId);
 	List<Groupbuy> getGroupbuyList();
 	
+	Meet getMeet(String userId, int productId);
+	
 	
 	void createMark(Bookmark bookmark);
 	void deleteMark(String userId, int productId);

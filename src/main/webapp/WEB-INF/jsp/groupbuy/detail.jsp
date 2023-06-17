@@ -83,7 +83,7 @@
 					</tr>
 					<tr>
 						<td colspan = "2">
-							<a href = "<c:url value='/closet/groupbuy.do'>
+							<a href = "<c:url value='/meet/newMeet.do'>
 									<c:param name = 'productId' value='${product.productId}' />
 									</c:url>">공동구매 참가하기</a>
 						</td>

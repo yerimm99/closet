@@ -29,6 +29,7 @@ import com.ssp.closet.dto.Review;
 import com.ssp.closet.repository.AuctionRepository;
 import com.ssp.closet.repository.BidRepository;
 import com.ssp.closet.repository.GroupbuyRepository;
+import com.ssp.closet.repository.MeetRepository;
 import com.ssp.closet.repository.ProductRepository;
 import com.ssp.closet.service.ClosetFacade;
 @Service
@@ -145,6 +146,17 @@ public class ClosetImpl implements ClosetFacade{
 	
 	public List<Groupbuy> getGroupbuyList(){
 		return groupbuyDao.getGroupbuyList();
+	}
+	
+	@Autowired
+	private MeetRepository meetRepository;
+	
+	public void createMeet(Meet meet) {
+		meetRepository.save(meet);
+	}
+	
+	public Meet getMeet(String userId, int productId) {
+		return meetRepository.findByUserIdAndProductId(userId, productId);
 	}
 
 	
