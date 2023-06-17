@@ -45,6 +45,7 @@ public class Meet{
     @JoinColumn(name = "PRODUCTID")
     private Groupbuy groupbuy;
 
+	
 	public String getMeeterUserId() {
         return meeter.getUserId();
     }
