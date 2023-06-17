@@ -49,19 +49,18 @@ public class BidFormController {
 		if (userSession != null) {
 			Account account = closet.getAccount(userSession.getAccount().getUserId());
 			Auction auction = closet.getAuction(productId);
-			bidForm.getBid().initBid(account, auction);
 
-			Bid existingBid = closet.getBid(account.getUserId(), productId);
-			bidForm.getBid().initBid(account, auction);
-			if (existingBid != null) {
-				bidForm.setBid(existingBid);
-				bidForm.setNewBid(false);
-			} else {
+//			Bid existingBid = closet.getBid(account.getUserId(), productId);
+//			bidForm.getBid().initBid(account, auction);
+//			if (existingBid != null) {
+//				bidForm.setBid(existingBid);
+//				bidForm.setNewBid(false);
+//			} else {
 				Bid newBid = new Bid();
 	            newBid.initBid(account, auction);
 	            bidForm.setBid(newBid); // 새로운 Bid 객체 설정
 				bidForm.setNewBid(true);
-			}
+			//}
 			ModelAndView mav = new ModelAndView("bid/bidForm");
 			mav.addObject("product", auction);
 			return mav;
@@ -93,7 +92,7 @@ public class BidFormController {
 	@RequestMapping("/bid/confirmBid.do")
 	protected ModelAndView confirmBid( //Bid 등록 
 			@ModelAttribute("bidForm") BidForm bidForm,
-			@RequestParam("bidPrice") int bidPrice,
+			//@RequestParam("bidPrice") int bidPrice,
 			SessionStatus status, BindingResult result) throws ModelAndViewDefiningException {
 		
 		//validator.validate(accountForm, result);
@@ -103,24 +102,25 @@ public class BidFormController {
 			return mav;
 		}
 	
-		Auction auction = bidForm.getBid().getAuction();
-		try {
-			if (bidForm.isNewBid()) {
-				closet.createBid(bidForm.getBid());
+		Bid bid = bidForm.getBid();
+		Auction auction = bid.getAuction();
+//		try {
+//			if (bidForm.isNewBid()) {
+				closet.createBid(bid);
 				closet.updateMaxPrice(auction);
-			}
-			else {
-				closet.updateBidPrice(bidForm.getBid().getId().getProductId(), bidPrice);
-				closet.updateMaxPrice(auction);
-			}
-		}
-		catch (DataIntegrityViolationException ex) {
-			result.rejectValue("bid.bidPrice", "BIDPRICE_ALREADY_EXISTS",
-					"bidPrice already exists: choose a different price.");
-			ModelAndView mav = new ModelAndView("auction/detail");
-			mav.addObject("product", auction);
-			return mav;
-		}
+//			}
+//			else {
+//				closet.updateBidPrice(bid.getId().getProductId(), bid.getBidPrice());
+//				closet.updateMaxPrice(auction);
+//			}
+//		}
+//		catch (DataIntegrityViolationException ex) {
+//			result.rejectValue("bid.bidPrice", "BIDPRICE_ALREADY_EXISTS",
+//					"bidPrice already exists: choose a different price.");
+//			ModelAndView mav = new ModelAndView("auction/detail");
+//			mav.addObject("product", auction);
+//			return mav;
+//		}
 //		bidForm.getBid().initBid(bidForm.getBid().getUserId(), bidForm.getBid().getProductId());
 //		closet.createBid(bidForm.getBid()); //등록 
 //		closet.updateMaxPrice(auction); //최고가 갱신

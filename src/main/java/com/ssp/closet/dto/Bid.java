@@ -44,7 +44,7 @@ public class Bid {
 	
 	@MapsId("productId")
 	@ManyToOne
-	@JoinColumn(name = "PRODUCTID")
+	@JoinColumn(name = "PRODUCTID", referencedColumnName = "productId")
     private Auction auction;
 	
 	public String getBidderUserId() {
@@ -52,8 +52,8 @@ public class Bid {
     }
 	
 	public void initBid(Account account, Auction ac) {
-		bidder = account;
-		auction = ac;
+		setBidder(account);
+		setAuction(ac);
 		id = new BidId(account.getUserId(), ac.getProductId());
 		bidResult = 0;
 		signDate = new Date();
