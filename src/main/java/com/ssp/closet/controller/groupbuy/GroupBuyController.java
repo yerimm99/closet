@@ -48,4 +48,4 @@ public class GroupBuyController {
 	public String showPopup() {
 	    return "groupbuy/popup";
 	}
-}
+} 
