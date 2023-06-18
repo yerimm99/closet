@@ -30,7 +30,6 @@ public class Auction extends Product implements Serializable {
 	@OneToMany(mappedBy = "auction")
 	private List<Bid> bids;
 
-
 	public Auction() {}
 
 	public void initAuction(Account account) {
