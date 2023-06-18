@@ -1,5 +1,8 @@
 package com.ssp.closet.controller.order;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +34,15 @@ public class OrderFormController {
 	@ModelAttribute("orderForm")
 	public OrderForm createOrderForm() {
 		return new OrderForm();
+	}
+	
+	@ModelAttribute("creditCardTypes")
+	public List<String> referenceData() {
+		ArrayList<String> creditCardTypes = new ArrayList<String>();
+		creditCardTypes.add("Visa");
+		creditCardTypes.add("MasterCard");
+		creditCardTypes.add("American Express");
+		return creditCardTypes;			
 	}
 	
 	@RequestMapping("/order/registerForm.do")  //order 등록 
