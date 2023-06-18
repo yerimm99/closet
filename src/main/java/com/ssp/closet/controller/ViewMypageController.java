@@ -1,18 +1,16 @@
 package com.ssp.closet.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.support.PagedListHolder;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import javax.servlet.http.HttpServletRequest;
 
-import com.ssp.closet.dto.Auction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.ssp.closet.dto.Account;
 import com.ssp.closet.service.ClosetFacade;
 
 @Controller
-@SessionAttributes()
 public class ViewMypageController {
 		private ClosetFacade closet;
 		
@@ -22,10 +20,16 @@ public class ViewMypageController {
 		}
 		
 		@RequestMapping("/closet/mypage.do")
-		public String handleRequest(
-				ModelMap model
-				) throws Exception {
-			return "/main/myPage";
+		public ModelAndView handleRequest(HttpServletRequest request) throws Exception {
+			UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
+			Account account = closet.getAccount(userSession.getAccount().getUserId());
+			
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("/main/myPage");
+			if(userSession != null) {
+				mav.addObject("account", account);
+			}
+			return mav;
 		}
 
 }
