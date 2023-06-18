@@ -56,10 +56,8 @@ public class Product implements Serializable {
 	@CreatedDate
 	@Temporal(TemporalType.DATE)
 	private Date registerDate; // 등록 날짜
-	@Column(name="SELLPERIOD")
-	private Integer period; // 판매 기간
-	//	@Column(name="userId")
-	//	private String suppId; //판매자 또는 등록자의 userId
+	@Column(name="ENDDATE")
+	private Date endDate; // 종료 날짜
 	@Column(name="COLOR")
 	private String color;
 	@Column(name="PSIZE")

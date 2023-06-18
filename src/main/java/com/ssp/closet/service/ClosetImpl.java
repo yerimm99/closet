@@ -1,11 +1,13 @@
 package com.ssp.closet.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.ssp.closet.dao.AccountDao;
@@ -66,6 +68,7 @@ public class ClosetImpl implements ClosetFacade{
 	}
 	public void updateMaxPrice(int productId) {
 		aucRepository.updatePrice(productId, findMaxPrice(productId).getBidPrice());
+		//aucRepository.save(getAuction(productId));
 	}
 	
 	public List<Auction> getAuctionByCategoryId(String categoryId) {
@@ -75,6 +78,25 @@ public class ClosetImpl implements ClosetFacade{
 	public void deleteAuctionByProductId(int productId) {
 		aucRepository.deleteByProductId(productId);
 	}
+	
+	@Scheduled(fixedDelay = 60000) // 경매 종료 확인 주기 (1분마다 실행)
+    public void checkAuctionEnd() {
+        // 경매 종료 시간이 현재 시간보다 이전인 경매 조회
+        List<Auction> endedAuctions = aucRepository.findEndedAuctions(LocalDateTime.now());
+        
+        // 각 경매에 대해 최고 입찰가 확인
+        for (Auction auction : endedAuctions) {
+            Bid highestBid = findMaxPrice(auction.getProductId());
+            if (highestBid != null) {
+                // 낙찰 처리
+                auction.setWinner(highestBid.getUserId());
+                auction.setStatus(0);
+                aucRepository.save(auction);
+                updateSuccessResult(auction.getWinner());
+                updateFailResult(auction.getWinner());
+            }
+        }
+    }
 	
 	@Autowired
 	private BidRepository bidRepository;
@@ -99,13 +121,13 @@ public class ClosetImpl implements ClosetFacade{
 		return bidRepository.countByProductId(productId);
 	}
 	  
-//	public void updateSuccessResult(BidId bidId) {
-//		bidRepository.updateSuccessResult(bidId);
-//	}
-//	  
-//	public void updateFailResult(BidId bidId) {
-//		bidRepository.updateFailResult(bidId);
-//	}
+	public void updateSuccessResult(String userId) {
+		bidRepository.updateSuccessResult(userId);
+	}
+	  
+	public void updateFailResult(String userId) {
+		bidRepository.updateFailResult(userId);
+	}
 	  
 	public Bid findMaxPrice(int productId) {
 		return bidRepository.findTopByProductIdOrderByBidPriceDesc(productId);

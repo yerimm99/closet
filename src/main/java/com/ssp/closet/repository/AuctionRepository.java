@@ -1,6 +1,9 @@
 package com.ssp.closet.repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
+
+import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -15,6 +18,7 @@ public interface AuctionRepository extends JpaRepository<Auction, Integer> {
 	Auction findByProductId(int productId);
 	
 	@Modifying
+	@Transactional
 	@Query("update Auction a " + 
 			"set a.price = :maxPrice " +
 			"where a.productId = :productId")
@@ -23,4 +27,8 @@ public interface AuctionRepository extends JpaRepository<Auction, Integer> {
 	List<Auction> findByCategoryId(String categoryId);
 	
 	void deleteByProductId(int productId);
+	
+	@Query("SELECT a FROM Auction a WHERE a.endDate <= :currentTime")
+    List<Auction> findEndedAuctions(@Param("currentTime") LocalDateTime currentTime);
+
 }

@@ -24,7 +24,6 @@ import com.ssp.closet.dto.BidId;
 import com.ssp.closet.service.ClosetFacade;
 
 @Controller
-@SessionAttributes("bidForm")
 public class BidFormController {
 	@Autowired
 	private ClosetFacade closet;
@@ -37,11 +36,6 @@ public class BidFormController {
 	@ModelAttribute("bidForm")
 	public BidForm createBidForm() {
 		return new BidForm();
-	}
-	
-	@RequestMapping(method = RequestMethod.GET)
-	public String showForm() {
-		return "bid/bidForm";
 	}
 	
 	@RequestMapping({"/bid/newBid.do","/bid/editBid.do"})

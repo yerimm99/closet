@@ -92,7 +92,7 @@ public class AuctionFormController {
 		if (userSession != null) {
 			Account account = closet.getAccount(userSession.getAccount().getUserId());
 			Auction auction = this.closet.getAuction(productId);
-			auctionForm.getAuction().initAuction(account, auction);
+			//auctionForm.getAuction().initAuction(account, auction);
 			return "auction/registerForm";
 		} else {
 			return "redirect:/account/SignonForm.do";

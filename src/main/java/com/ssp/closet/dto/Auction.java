@@ -26,7 +26,10 @@ public class Auction extends Product implements Serializable {
 	private Integer startPrice;
 	@Column(name = "USED")
 	private int used;
-
+	@Column(name = "WINNER")
+	private String winner;
+	
+	
 	@OneToMany(mappedBy = "auction")
 	private List<Bid> bids;
 
@@ -39,42 +42,5 @@ public class Auction extends Product implements Serializable {
 		super.setRegisterDate(new Date());
 		super.setAccount(account);
 	}
-
-
-	public void initAuction(Account account, Auction ac) {
-		super.setType(1);
-		super.setStatus(1);
-		super.setRegisterDate(new Date());
-		super.setAccount(account);
-		super.setCategoryId(ac.getCategoryId());
-		super.setName(ac.getName());
-		super.setPeriod(ac.getPeriod());
-		super.setRegisterDate(ac.getRegisterDate());
-		super.setProductId(ac.getProductId());
-		startPrice = ac.getStartPrice();
-		used = ac.getUsed();
-	}
-
-	//	public boolean deadline() {
-	//		Calendar getToday = Calendar.getInstance();
-	//		getToday.setTime(new Date()); //금일 날짜
-	//		
-	//		Calendar cmpDate = Calendar.getInstance();
-	//		cmpDate.setTime(signDate); //특정 일자
-	//		
-	//		long diffSec = (getToday.getTimeInMillis() - cmpDate.getTimeInMillis()) / 1000;
-	//		long diffDays = diffSec / (24*60*60); //일자수 차이
-	//		
-	//		System.out.println(diffDays + "일 차이");
-	//		
-	//		if (diffDays >= auctionPeriod) {
-	//			System.out.println("기한만료");
-	//			return true;
-	//		}
-	//		else {
-	//			System.out.println("기한남음");
-	//			return false;
-	//		}
-	//	}
 
 }

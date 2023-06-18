@@ -46,7 +46,7 @@ public class Groupbuy extends Product implements Serializable {
 		super.setAccount(account);
 		super.setCategoryId(g.getCategoryId());
 		super.setName(g.getName());
-		super.setPeriod(g.getPeriod());
+		//super.setPeriod(g.getPeriod());
 		super.setRegisterDate(g.getRegisterDate());
 		super.setProductId(g.getProductId());
 		peopleNum = g.getPeopleNum();
