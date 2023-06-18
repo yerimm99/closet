@@ -23,8 +23,7 @@ public class GroupBuyController {
 		this.closet = closet;
 	}
 
-	//url로 확인해봤는데 팝업이 안뜨고 페이지가 이동해서....ㅠㅠㅠㅠ
-	@RequestMapping("/myPage/deleteGroupbuy.do")
+	@RequestMapping("/groupbuy/delete.do")
 	public String removeGroupbuy(HttpServletRequest request,
 			@RequestParam("productId") int productId
 			) throws Exception {

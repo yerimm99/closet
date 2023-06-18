@@ -17,9 +17,7 @@ import org.springframework.web.util.WebUtils;
 import com.ssp.closet.controller.UserSession;
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
-import com.ssp.closet.dto.Auction;
 import com.ssp.closet.dto.Bid;
-import com.ssp.closet.dto.Auction;
 import com.ssp.closet.service.ClosetFacade;
 
 @Controller
@@ -73,7 +71,7 @@ public class ViewAuctionController {
 				PagedListHolder<Auction> productList = new PagedListHolder<Auction>(this.closet.findSellAuctionByAccount(account));
 				productList.setPageSize(4);
 				model.put("productList", productList);
-				return "main/auction";
+				return "auction/sellResultList";
 			} else {
 				return "redirect:/account/SignonForm.do";
 			}
@@ -99,7 +97,8 @@ public class ViewAuctionController {
 				PagedListHolder<Auction> productList = new PagedListHolder<>(productAuctions);
 				productList.setPageSize(4);
 				model.put("productList", productList);
-				return "main/auction";
+				model.put("bidList", bid);
+				return "auction/buyResultList";
 			} else {
 				return "redirect:/account/SignonForm.do";
 			}

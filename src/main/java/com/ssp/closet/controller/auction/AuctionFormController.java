@@ -85,7 +85,7 @@ public class AuctionFormController {
 		}
 	}
 	
-	@RequestMapping("/auction/editAuction.do")
+	@RequestMapping("/auction/update.do")
 	public String editNewAuction(HttpServletRequest request,
 			@RequestParam("productId") int productId,
 			@ModelAttribute("auctionForm") AuctionForm auctionForm

@@ -88,7 +88,7 @@ public class GroupbuyFormController {
 		}
 	}
 	
-	@RequestMapping("/groupbuy/editGroupbuy.do")  //groupbuy 수정
+	@RequestMapping("/groupbuy/update.do")  //groupbuy 수정
 	public String editGroupbuy(HttpServletRequest request,
 			@RequestParam("productId") int productId,
 			@ModelAttribute("groupbuyForm") GroupbuyForm groupbuyForm
@@ -108,22 +108,6 @@ public class GroupbuyFormController {
 			return "redirect:/account/SignonForm.do";
 		}
 	}
-	
-//	@RequestMapping("/groupbuy/confirmGroupbuy.do")
-//	public String confirmGroupbuy( //groupbuy 등록 확인 
-//			@RequestParam("productId") int productId,
-//			@ModelAttribute("groupbuyForm") GroupbuyForm groupbuyForm, 
-//			SessionStatus status,
-//			ModelMap model
-//			) throws Exception{
-//		closet.insertGroupbuy(groupbuyForm.getGroupbuy()); //등록 
-//		status.setComplete();  // remove session
-//		PagedListHolder<Groupbuy> productList = new PagedListHolder<Groupbuy>(this.closet.getGroupbuyList());
-//		productList.setPageSize(20);
-//		productList.setPageSize(4);
-//		model.put("productList", productList);
-//		return "redirect:/groupbuy/detail.do"; 
-//	}
 	
 	@RequestMapping("/groupbuy/confirmGroupbuy.do")
 	protected ModelAndView confirmGroupbuy( //auction 등록 확인 

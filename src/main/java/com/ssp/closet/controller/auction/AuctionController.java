@@ -21,7 +21,7 @@ public class AuctionController {
 		this.closet = closet;
 	}
 
-	@RequestMapping("/myPage/deleteAuction.do")
+	@RequestMapping("/auction/delete.do")
 	public String removeAuction(HttpServletRequest request,
 			@RequestParam("productId") int productId
 			) throws Exception {

@@ -28,7 +28,9 @@
 				<th colspan = "2">상품명</th>
 				<th>결과</th>
 			</tr>
-			<c:forEach items="${productList.getSource()}" var="prod">
+			<c:forEach items="${productList.getSource()}" var="prod" varStatus="prodStatus">
+			<c:forEach items="${bidList}" var="bid" varStatus="bidStatus">
+   			<c:if test="${prodStatus.index == bidStatus.index}">
 				<tr>
 					<td>
 						<img src="<c:url value='${prod.picture1}'/>" width="250px" height="250px" />
@@ -40,15 +42,15 @@
 						${prod.description}
 					</td>
 					<td>
-						<c:if test = "${prod.bidResult==0}">
+						<c:if test = "${bid.bidResult==0}">
 							입찰 중
 						</c:if>
-						<c:if test = "${prod.bidResult==1}">
+						<c:if test = "${bid.bidResult==1}">
 							<a href = "<c:url value='/order/registerForm.do'>
-								<c:param name = 'productId' value='${product.productId}' />
+								<c:param name = 'productId' value='${prod.productId}' />
 								</c:url>"><b style = "font-size:18px">주문 하기</b>
 							</a>							</c:if>
-						<c:if test = "${prod.bidResult==2}">
+						<c:if test = "${bid.bidResult==2}">
 							낙찰 실패
 						</c:if>
 						<c:if test = "${prod.status==0}">
@@ -56,6 +58,8 @@
 						</c:if>
 					</td>
 				</tr>
+				</c:if>
+ 			 </c:forEach>
 			</c:forEach>
 		</table>
 	</div>
