@@ -25,15 +25,14 @@ public interface ClosetFacade {
 	void updateMaxPrice(int productId);
 	List<Auction> getAuctionList();
 	List<Auction> getAuctionByCategoryId(String categoryId);
-	List<Auction> findAuctionByUserId(String userId);
+	List<Auction> findAuctionByUserId(String suppId);
 	void deleteAuctionByProductId(int productId);
 
 	void createBid(Bid bid);
 	void updateBidPrice(int productId, String userId, int newPrice);
 	boolean isBidPriceExists(int productId, int bidPrice);
 	void deleteBid(int productId);
-	//	void updateSuccessResult(BidId bidId);
-	//	void updateFailResult(BidId bidId);
+	void updateResult(String userId);
 	Bid findMaxPrice(int productId);		 	  
 	//	List<Bid> getBidResultList(String userId);
 	List<Bid> getBid(String userId);

@@ -96,8 +96,7 @@ public class ClosetImpl implements ClosetFacade{
                 auction.setWinner(highestBid.getUserId());
                 auction.setStatus(0);
                 aucRepository.save(auction);
-                updateSuccessResult(auction.getWinner());
-                updateFailResult(auction.getWinner());
+                updateResult(auction.getWinner());
             }
         }
     }
@@ -125,11 +124,8 @@ public class ClosetImpl implements ClosetFacade{
 		return bidRepository.countByProductId(productId);
 	}
 	  
-	public void updateSuccessResult(String userId) {
+	public void updateResult(String userId) {
 		bidRepository.updateSuccessResult(userId);
-	}
-	  
-	public void updateFailResult(String userId) {
 		bidRepository.updateFailResult(userId);
 	}
 	  
