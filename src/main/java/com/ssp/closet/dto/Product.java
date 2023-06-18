@@ -22,6 +22,7 @@ import javax.persistence.TemporalType;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -58,6 +59,7 @@ public class Product implements Serializable {
 	private Date registerDate; // 등록 날짜
 	@Column(name="ENDDATE")
 	@Temporal(TemporalType.DATE)
+	//@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date endDate; // 등록 날짜
 	@Column(name="COLOR")
 	private String color;

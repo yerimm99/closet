@@ -64,11 +64,12 @@
 				</td>
 			</tr>
 			<tr>
-				<td>endDate</td>
-<!-- 				<td> -->
-<%-- 					<form:input path = "groupbuy.period"  class = "inp"/> --%>
-<!-- 					<hr> -->
-<!-- 				</td> -->
+				<td>종료 날짜</td>
+ 				<td>
+ 					<form:input path = "groupbuy.endDate"  class = "inp" placeholder = "xxxx/xx/xx형식으로 입력해주세요."/>
+ 					<!--<form:input type = "date" path = "groupbuy.endDate" class = "inp" value = "2023/06/20"/>-->
+ 					<hr>
+ 				</td> 
 			</tr>
 			<tr>
 				<td>참여자 수</td>
