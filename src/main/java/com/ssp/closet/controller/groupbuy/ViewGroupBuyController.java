@@ -74,7 +74,7 @@ public class ViewGroupBuyController {
 			PagedListHolder<Groupbuy> productList = new PagedListHolder<Groupbuy>(this.closet.findSellGroupbuyByAccount(account));
 			productList.setPageSize(4);
 			model.put("productList", productList);
-			return "main/groupbuy";
+			return "groupbuy/sellResultList";
 		} else {
 			return "redirect:/account/SignonForm.do";
 		}
@@ -100,12 +100,12 @@ public class ViewGroupBuyController {
 			PagedListHolder<Groupbuy> productList = new PagedListHolder<>(productGroupbuys);
 			productList.setPageSize(4);
 			model.put("productList", productList);
-			return "main/groupbuy";
+			model.put("meetList", meet);
+			return "groupbuy/buyResultList";
 		} else {
 			return "redirect:/account/SignonForm.do";
 		}
 	}
-
 
 	@RequestMapping("/groupbuy/detail.do")
 	public void detailGroupbuy(
@@ -114,6 +114,4 @@ public class ViewGroupBuyController {
 		Groupbuy product = this.closet.getGroupbuyDetail(productId);
 		model.put("product", product);
 	}
-
-
 }

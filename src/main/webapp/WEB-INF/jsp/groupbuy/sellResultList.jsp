@@ -41,15 +41,15 @@
 					</td>
 					<td>
 						<a href = "<c:url value='/groupbuy/detail.do'>
-								<c:param name = 'productId' value='${product.productId}' />
+								<c:param name = 'productId' value='${prod.productId}' />
 								</c:url>"><b style = "font-size:18px">상세보기</b>
 						</a><br>
 						<a href = "<c:url value='/groupbuy/update.do'>
-								<c:param name = 'productId' value='${product.productId}' />
+								<c:param name = 'productId' value='${prod.productId}' />
 								</c:url>"><b style = "font-size:18px">수정하기</b>
 						</a><br>
 						<a href = "<c:url value='/groupbuy/delete.do'>
-								<c:param name = 'productId' value='${product.productId}' />
+								<c:param name = 'productId' value='${prod.productId}' />
 								</c:url>"><b style = "font-size:18px">삭제하기</b>
 						</a>
 					</td>
