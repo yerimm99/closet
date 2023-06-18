@@ -47,5 +47,7 @@ public interface BidRepository extends JpaRepository<Bid, BidId>{
 //	
 	Bid findByUserId(String userId);
 	Bid findByUserIdAndProductId(String userId, int productId);
+	
+	Integer countByProductId(int productId);
 
 }
