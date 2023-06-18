@@ -149,6 +149,10 @@ public class ClosetImpl implements ClosetFacade{
 	public Groupbuy getGroupbuyDetail(int productId) {
 		return groupbuyRepository.getReferenceById(productId); 
 	}
+	
+	public void deleteGroupbuyByProductId(int productId) {
+		groupbuyRepository.deleteByProductId(productId);
+	}
 
 	
 	@Autowired
@@ -177,6 +181,10 @@ public class ClosetImpl implements ClosetFacade{
 	
 	public Integer getMeetCountByProductId(int productId) {
 		return meetRepository.getMeetCountByProductId(productId);
+	}
+	
+	public void deleteByUserIdAndProductId(String userId, int productId) {
+		meetRepository.deleteByUserIdAndProductId(userId, productId);
 	}
 
 

@@ -8,4 +8,5 @@ import com.ssp.closet.dto.Groupbuy;
 
 public interface GroupbuyRepository extends JpaRepository<Groupbuy, Integer>{
 	List<Groupbuy> findByCategoryId(String categoryId);
+	void deleteByProductId(int productId);
 }
