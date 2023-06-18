@@ -23,16 +23,18 @@ public interface ClosetFacade {
 //	Product getProductDetail(int productId);
 	
 	void insertAuction(Auction auction);
-	Auction getAuctionDetail(int productId);
-	void updateMaxPrice(Auction auction);
+	Auction getAuction(int productId);
+	void updateMaxPrice(int productId);
 	public List<Auction> getAuctionList();
+	List<Auction> getAuctionByCategoryId(String categoryId);
 	
 	void createBid(Bid bid);
-	void updateBidPrice(int productId, int newPrice);
+	void updateBidPrice(int productId, String userId, int newPrice);
+	boolean isBidPriceExists(int productId, int bidPrice);
 	void deleteBid(int productId);
-	void updateSuccessResult(BidId bidId);
-	void updateFailResult(BidId bidId);
-	int findMaxPrice(int productId);		 	  
+//	void updateSuccessResult(BidId bidId);
+//	void updateFailResult(BidId bidId);
+	Bid findMaxPrice(int productId);		 	  
 //	List<Bid> getBidResultList(String userId);
 	Bid getBid(String userId);
 	Bid getBid(String userId, int productId);
@@ -48,7 +50,12 @@ public interface ClosetFacade {
 	void insertGroupbuy(Groupbuy groupbuy);
 	Groupbuy getGroupbuyDetail(int productId);
 	List<Groupbuy> getGroupbuyList();
+	List<Groupbuy> getGroupbuyByCategoryId(String categoryId);
 	
+	void createMeet(Meet meet);
+	Meet findMeetByUserIdAndProductId(String userId, int productId);
+	List<Meet> findByProductId(int productId);
+	Integer getMeetCountByProductId(int productId);
 	
 	void createMark(Bookmark bookmark);
 	void deleteMark(String userId, int productId);

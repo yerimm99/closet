@@ -29,7 +29,7 @@ public class Account implements Serializable {
   @Column(name="EMAIL")
   private String email;
   @Column(name="USERNAME")
-  private String name;
+  private String username;
   @Column(name="ADDRESS")
   private String address;
   @Column(name="PHONE")

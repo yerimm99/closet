@@ -1,4 +1,4 @@
-package com.ssp.closet.controller;
+package com.ssp.closet.controller.groupbuy;
 
 import org.springframework.beans.support.PagedListHolder;
 
@@ -6,13 +6,9 @@ import org.springframework.beans.support.PagedListHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.ssp.closet.dto.Groupbuy;
 import com.ssp.closet.service.ClosetFacade;
 
@@ -27,31 +23,36 @@ public class ViewGroupBuyController {
 		this.closet = closet;
 	}
 	
-//	@RequestMapping("/closet/groupbuy.do")
-//	public String handleRequest(
-////			@RequestParam("type") int type,
-////			@RequestParam("status") int status,
-//			ModelMap model
-//			) throws Exception {
-//		return "main/groupbuy"; 
-//	}
-	
-//	//공동구매 상품 리스트 보기 -> 이게 되면 경매는 비슷하게 적용하면 될거같아요
+	//공동구매 상품 리스트 보기
 	@RequestMapping("/closet/groupbuy.do")
-	public String handleRequest2(
-//			@RequestParam("type") int type,
-//			@RequestParam("status") int status,
+	public String handleRequest1(
 			ModelMap model
 			) throws Exception {
 		PagedListHolder<Groupbuy> productList = new PagedListHolder<Groupbuy>(this.closet.getGroupbuyList());
-//		PagedListHolder<Product> productList = new PagedListHolder<Product>();
-		productList.setPageSize(20);
 		productList.setPageSize(4);
 		model.put("productList", productList);
 		return "main/groupbuy"; 
 	}
-	
-	
+
+	//공동구매 상품 리스트 선택보기
+	@RequestMapping("/groupbuy/list.do")
+	public String handleRequest2(
+			@RequestParam("categoryId") String categoryId,
+			ModelMap model
+			) throws Exception {
+		PagedListHolder<Groupbuy> productList;
+		if(categoryId.equals("전체")) {
+			productList = new PagedListHolder<Groupbuy>(this.closet.getGroupbuyList());
+		}
+		else {
+			productList = new PagedListHolder<Groupbuy>(this.closet.getGroupbuyByCategoryId(categoryId));
+		}
+		productList.setPageSize(4);
+		model.put("productList", productList);
+		return "main/groupbuy"; 
+	}
+
+
 	@RequestMapping("/groupbuy/detail.do")
 	public void detailGroupbuy(
 			@RequestParam("productId") int productId,

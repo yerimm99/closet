@@ -33,7 +33,8 @@
 			<div>
 			±¸¸Å Èñ¸Á°¡
 			<form:form modelAttribute = "bidForm" method="POST" action="${targetUrl}">
-				<input type = "text" placeholder = "Èñ¸Á°¡ÀÔ·Â" name = "bidPrice">
+				<form:input placeholder="Èñ¸Á°¡ÀÔ·Â" path="bid.bidPrice" />
+				 <B><form:errors path="bidPrice" cssClass="error" /></B>
 				<input type = "submit" value = "ÀÔÂûÇÏ±â">
 			</form:form>
 			</div>

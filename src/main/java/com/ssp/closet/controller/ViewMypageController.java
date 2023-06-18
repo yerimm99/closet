@@ -5,7 +5,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.util.WebUtils;
 
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.service.ClosetFacade;
@@ -20,16 +21,18 @@ public class ViewMypageController {
 		}
 		
 		@RequestMapping("/closet/mypage.do")
-		public ModelAndView handleRequest(HttpServletRequest request) throws Exception {
-			UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
-			Account account = closet.getAccount(userSession.getAccount().getUserId());
+		public String handleRequest(HttpServletRequest request,
+				ModelMap model
+				) throws Exception {
 			
-			ModelAndView mav = new ModelAndView();
-			mav.setViewName("/main/myPage");
-			if(userSession != null) {
-				mav.addObject("account", account);
+			UserSession userSession = 
+					(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
+			if (userSession != null) {
+				Account account = closet.getAccount(userSession.getAccount().getUserId());
+				model.put("account", account);
+				return "/main/myPage";
+			} else {
+				return "redirect:/account/SignonForm.do";
 			}
-			return mav;
 		}
-
 }

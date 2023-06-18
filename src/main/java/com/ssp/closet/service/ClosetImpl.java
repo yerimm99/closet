@@ -6,14 +6,13 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.ssp.closet.dao.AccountDao;
 import com.ssp.closet.dao.AuctionDao;
 import com.ssp.closet.dao.BookmarkDao;
 import com.ssp.closet.dao.GroupbuyDao;
-import com.ssp.closet.dao.ProductDao;
+import com.ssp.closet.dao.MeetDao;
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
 import com.ssp.closet.dto.Bid;
@@ -29,8 +28,8 @@ import com.ssp.closet.dto.Review;
 import com.ssp.closet.repository.AuctionRepository;
 import com.ssp.closet.repository.BidRepository;
 import com.ssp.closet.repository.GroupbuyRepository;
+import com.ssp.closet.repository.MeetRepository;
 import com.ssp.closet.repository.ProductRepository;
-import com.ssp.closet.service.ClosetFacade;
 @Service
 @Transactional
 public class ClosetImpl implements ClosetFacade{
@@ -62,38 +61,47 @@ public class ClosetImpl implements ClosetFacade{
 	public void insertAuction(Auction auction) {
 		aucRepository.save(auction);
 	}
-	public Auction getAuctionDetail(int productId) {
-		return aucRepository.getReferenceById(productId); 
+	public Auction getAuction(int productId) {
+		return aucRepository.findByProductId(productId); 
 	}
-	public void updateMaxPrice(Auction auction) {
-		aucRepository.updatePrice(auction.getProductId(), findMaxPrice(auction.getProductId()));
+	public void updateMaxPrice(int productId) {
+		aucRepository.updatePrice(productId, findMaxPrice(productId).getBidPrice());
 	}
+	
+	public List<Auction> getAuctionByCategoryId(String categoryId) {
+        return aucRepository.findByCategoryId(categoryId);
+    }
 	
 	@Autowired
 	private BidRepository bidRepository;
 	
 	public void createBid(Bid bid) {
 		bidRepository.save(bid);
+		updateMaxPrice(bid.getProductId());
 	}
 
-	public void updateBidPrice(int productId, int newPrice) {
-		bidRepository.updatePrice(productId, newPrice);
+	public void updateBidPrice(int productId, String userId, int newPrice) {
+		bidRepository.updatePrice(productId, userId, newPrice);
+		updateMaxPrice(productId);
 	}
 
+	public boolean isBidPriceExists(int productId, int bidPrice) {
+		return bidRepository.existsByProductIdAndBidPrice(productId, bidPrice);
+	}
 	public void deleteBid(int productId) {
-		bidRepository.deleteById(productId);
+		bidRepository.deleteByProductId(productId);
 	}
 	  
-	public void updateSuccessResult(BidId bidId) {
-		bidRepository.updateSuccessResult(bidId);
-	}
+//	public void updateSuccessResult(BidId bidId) {
+//		bidRepository.updateSuccessResult(bidId);
+//	}
+//	  
+//	public void updateFailResult(BidId bidId) {
+//		bidRepository.updateFailResult(bidId);
+//	}
 	  
-	public void updateFailResult(BidId bidId) {
-		bidRepository.updateFailResult(bidId);
-	}
-	  
-	public int findMaxPrice(int productId) {
-		return bidRepository.findMaxBidPrice(productId);
+	public Bid findMaxPrice(int productId) {
+		return bidRepository.findTopByProductIdOrderByBidPriceDesc(productId);
 	}	 
 	  
 //	public List<Bid> getBidResultList(String userId) {
@@ -101,7 +109,7 @@ public class ClosetImpl implements ClosetFacade{
 //	}
 	
 	public Bid getBid(String userId) {
-		return bidRepository.findByBidderUserId(userId);
+		return bidRepository.findByUserId(userId);
 	}
 
 	public Bid getBid(String userId, int productId) {
@@ -134,6 +142,10 @@ public class ClosetImpl implements ClosetFacade{
 		groupbuyRepository.save(groupbuy);
 	}
 	
+	public List<Groupbuy> getGroupbuyByCategoryId(String categoryId) {
+        return groupbuyRepository.findByCategoryId(categoryId);
+    }
+	
 	public Groupbuy getGroupbuyDetail(int productId) {
 		return groupbuyRepository.getReferenceById(productId); 
 	}
@@ -146,10 +158,33 @@ public class ClosetImpl implements ClosetFacade{
 	public List<Groupbuy> getGroupbuyList(){
 		return groupbuyDao.getGroupbuyList();
 	}
+	
+	
+	@Autowired
+	private MeetRepository meetRepository;
+	
+	public void createMeet(Meet meet) {
+		meetRepository.save(meet);
+	}
+	
+	public Meet findMeetByUserIdAndProductId(String userId, int productId) {
+	    return meetRepository.findByUserIdAndProductId(userId, productId);
+	}
+	
+	public List<Meet> findByProductId(int productId){
+		return meetRepository.findByProductId(productId);
+	}
+	
+	public Integer getMeetCountByProductId(int productId) {
+		return meetRepository.getMeetCountByProductId(productId);
+	}
+
 
 	
-//	@Autowired
-//	private MeetDao meetDao;
+	@Autowired
+	@Qualifier("jpaMeetDao")
+	private MeetDao meetDao;
+
 //
 //	public int countPeopleNum(int productId) {
 //		return meetDao.countPeopleNum(productId);

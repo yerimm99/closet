@@ -73,24 +73,13 @@ public class Product implements Serializable {
 	@Column(name="PICTURE4")
 	private String picture4;
 	@Column(name="PRICE")
-	private int price;
+	private Integer price;
 	@Column(name = "DTYPE", insertable=false, updatable=false)
 	private String DTYPE;
 
 	@ManyToOne
 	@JoinColumn(name = "USERID", referencedColumnName = "USERID")
 	private Account account;
-
-
-	public Account getAccount() {
-		return account;
-	}
-
-	public void setAccount(Account account) {
-		this.account = account;
-	}
-
-	public Product() {}
 
 
 }
