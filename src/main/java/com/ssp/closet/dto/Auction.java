@@ -30,7 +30,6 @@ public class Auction extends Product implements Serializable {
 	@OneToMany(mappedBy = "auction")
 	private List<Bid> bids;
 
-
 	public Auction() {}
 
 	public void initAuction(Account account) {
@@ -38,21 +37,6 @@ public class Auction extends Product implements Serializable {
 		super.setStatus(1);
 		super.setRegisterDate(new Date());
 		super.setAccount(account);
-	}
-
-
-	public void initAuction(Account account, Auction ac) {
-		super.setType(1);
-		super.setStatus(1);
-		super.setRegisterDate(new Date());
-		super.setAccount(account);
-		super.setCategoryId(ac.getCategoryId());
-		super.setName(ac.getName());
-		super.setPeriod(ac.getPeriod());
-		super.setRegisterDate(ac.getRegisterDate());
-		super.setProductId(ac.getProductId());
-		startPrice = ac.getStartPrice();
-		used = ac.getUsed();
 	}
 
 	//	public boolean deadline() {

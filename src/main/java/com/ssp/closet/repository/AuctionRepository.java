@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
-
 public interface AuctionRepository extends JpaRepository<Auction, Integer> {
 	//List<Auction> getAuctionResultList (String userId);
 	
@@ -23,4 +23,8 @@ public interface AuctionRepository extends JpaRepository<Auction, Integer> {
 	List<Auction> findByCategoryId(String categoryId);
 	
 	void deleteByProductId(int productId);
+	
+	List<Auction> findByAccount(Account account);
+	
+	Auction findByProductId(Integer productId);
 }

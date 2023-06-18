@@ -14,10 +14,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.ModelAndViewDefiningException;
 import org.springframework.web.util.WebUtils;
 
 import com.ssp.closet.controller.UserSession;
+import com.ssp.closet.controller.auction.AuctionForm;
 import com.ssp.closet.dto.Account;
+import com.ssp.closet.dto.Auction;
 import com.ssp.closet.dto.Auction;
 import com.ssp.closet.service.AuctionFormValidator;
 import com.ssp.closet.service.ClosetFacade;
@@ -75,6 +78,7 @@ public class AuctionFormController {
 		if (userSession != null) {
 			Account account = closet.getAccount(userSession.getAccount().getUserId());
 			auctionForm.getAuction().initAuction(account);
+			auctionForm.setNewAuction(true);
 			return "auction/registerForm";
 		} else {
 			return "redirect:/account/SignonForm.do";
@@ -85,14 +89,17 @@ public class AuctionFormController {
 	public String editNewAuction(HttpServletRequest request,
 			@RequestParam("productId") int productId,
 			@ModelAttribute("auctionForm") AuctionForm auctionForm
-			) throws Exception {
-		
+			) throws ModelAndViewDefiningException {
 		UserSession userSession = 
 				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
 		if (userSession != null) {
 			Account account = closet.getAccount(userSession.getAccount().getUserId());
-			Auction auction = this.closet.getAuction(productId);
-			auctionForm.getAuction().initAuction(account, auction);
+			Auction existingAuction = closet.getAuction(productId);
+			auctionForm.getAuction().initAuction(account);
+			if (existingAuction != null) {
+				auctionForm.setAuction(existingAuction);
+				auctionForm.setNewAuction(false);
+			}
 			return "auction/registerForm";
 		} else {
 			return "redirect:/account/SignonForm.do";

@@ -53,7 +53,7 @@ public class MeetController {
 					groupbuy.setStatus(0);
 					closet.insertGroupbuy(groupbuy); //변경사항 저장
 
-					List<Meet> meets = closet.findByProductId(productId);
+					List<Meet> meets = closet.findMeetByProductId(productId);
 					for (Meet m : meets) {
 						m.setMeetResult(1); // 값을 1로 변경
 						// 변경된 엔티티 저장
