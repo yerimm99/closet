@@ -53,7 +53,7 @@ public class OrderController {
 		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
 		if (product != null) {
 			Account account = closetStore.getAccount(userSession.getAccount().getUserId());
-			orderForm.getOrder().initOrder(account, product, auction);
+			orderForm.getOrder().initOrder(account, auction);
 			return "NewOrderForm";	
 		}
 		else {
@@ -72,7 +72,7 @@ public class OrderController {
 		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
 		if (product != null) {
 			Account account = closetStore.getAccount(userSession.getAccount().getUserId());
-			orderForm.getOrder().initOrder(account, product, groupBuy);
+			orderForm.getOrder().initOrder(account, groupBuy);
 			return "NewOrderForm";	
 		}
 		else {

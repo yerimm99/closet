@@ -2,11 +2,11 @@ package com.ssp.closet.service;
 
 import java.util.List;
 
-import com.ssp.closet.dto.Order;
+import com.ssp.closet.dto.Delivery;
 
 public interface OrderService {
 	
-	List<Order> getSellList(String suppId);
-	List<Order> getBuyList(String userId);
-	Order getOrderDetail(int orderId);
+	List<Delivery> getSellList(String suppId);
+	List<Delivery> getBuyList(String userId);
+	Delivery getOrderDetail(int orderId);
 }
