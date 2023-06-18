@@ -72,6 +72,14 @@ public class ClosetImpl implements ClosetFacade{
         return aucRepository.findByCategoryId(categoryId);
     }
 	
+	public List<Auction> findSellAuctionByAccount(Account account){
+		 return aucRepository.findByAccount(account);
+	}
+	
+	public Auction findBuyAuctionByProductId(int productId) {
+		return aucRepository.findByProductId(productId);
+	}
+	
 	public void deleteAuctionByProductId(int productId) {
 		aucRepository.deleteByProductId(productId);
 	}
@@ -115,7 +123,7 @@ public class ClosetImpl implements ClosetFacade{
 //		return bidRepository.findResultByBidder(userId);
 //	}
 	
-	public Bid getBid(String userId) {
+	public List<Bid> getBid(String userId) {
 		return bidRepository.findByUserId(userId);
 	}
 
@@ -160,6 +168,14 @@ public class ClosetImpl implements ClosetFacade{
 	public void deleteGroupbuyByProductId(int productId) {
 		groupbuyRepository.deleteByProductId(productId);
 	}
+	
+	public List<Groupbuy> findSellGroupbuyByAccount(Account account){
+		return groupbuyRepository.findByAccount(account);
+	}
+	
+	public Groupbuy findBuyGroupbuyByProductId(int productId){
+		return groupbuyRepository.findByProductId(productId);
+	}
 
 	
 	@Autowired
@@ -182,8 +198,12 @@ public class ClosetImpl implements ClosetFacade{
 	    return meetRepository.findByUserIdAndProductId(userId, productId);
 	}
 	
-	public List<Meet> findByProductId(int productId){
+	public List<Meet> findMeetByProductId(int productId){
 		return meetRepository.findByProductId(productId);
+	}
+
+	public List<Meet> findMeetByUserId(String userId){
+		return meetRepository.findByUserId(userId);
 	}
 	
 	public Integer getMeetCountByProductId(int productId) {

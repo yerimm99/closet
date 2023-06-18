@@ -40,21 +40,6 @@ public class Auction extends Product implements Serializable {
 		super.setAccount(account);
 	}
 
-
-	public void initAuction(Account account, Auction ac) {
-		super.setType(1);
-		super.setStatus(1);
-		super.setRegisterDate(new Date());
-		super.setAccount(account);
-		super.setCategoryId(ac.getCategoryId());
-		super.setName(ac.getName());
-		super.setPeriod(ac.getPeriod());
-		super.setRegisterDate(ac.getRegisterDate());
-		super.setProductId(ac.getProductId());
-		startPrice = ac.getStartPrice();
-		used = ac.getUsed();
-	}
-
 	//	public boolean deadline() {
 	//		Calendar getToday = Calendar.getInstance();
 	//		getToday.setTime(new Date()); //금일 날짜

@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.ssp.closet.dto.Bid;
 import com.ssp.closet.dto.BidId;
+import com.ssp.closet.dto.Meet;
 
 public interface BidRepository extends JpaRepository<Bid, BidId>{
 
@@ -45,9 +46,13 @@ public interface BidRepository extends JpaRepository<Bid, BidId>{
 //	@Query("SELECT a FROM Auction a WHERE b.bidder.userId = :userId")
 //	List<Bid> findResultByBidderUserId(String userId);
 //	
-	Bid findByUserId(String userId);
+	//이거 List 로 받는게 맞는거 같아요!!
+//	Bid findByUserId(String userId);
+	List<Bid> findByUserId(String userId);
+	
 	Bid findByUserIdAndProductId(String userId, int productId);
 	
 	Integer countByProductId(int productId);
+	
 
 }

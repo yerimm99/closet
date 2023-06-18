@@ -9,18 +9,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ModelAndViewDefiningException;
 import org.springframework.web.util.WebUtils;
 
 import com.ssp.closet.controller.UserSession;
+import com.ssp.closet.controller.auction.AuctionForm;
 import com.ssp.closet.dto.Account;
+import com.ssp.closet.dto.Bid;
 import com.ssp.closet.dto.Groupbuy;
+import com.ssp.closet.service.AuctionFormValidator;
 import com.ssp.closet.service.ClosetFacade;
+import com.ssp.closet.service.GroupbuyFormValidator;
 
 
 @Controller
@@ -38,6 +44,12 @@ public class GroupbuyFormController {
 	@ModelAttribute("groupbuyForm")
 	public GroupbuyForm createGroupbuyForm() {
 		return new GroupbuyForm();
+	}
+	
+	@Autowired
+	private GroupbuyFormValidator validator;
+	public void setValidator(GroupbuyFormValidator validator) {
+		this.validator = validator;
 	}
 
 //	@RequestMapping(method = RequestMethod.GET)
@@ -69,42 +81,63 @@ public class GroupbuyFormController {
 		if (userSession != null) {
 			Account account = closet.getAccount(userSession.getAccount().getUserId());
 			groupbuyForm.getGroupbuy().initGroupbuy(account);
+			groupbuyForm.setNewGroupbuy(true);
 			return "groupbuy/registerForm";
 		} else {
 			return "redirect:/account/SignonForm.do";
 		}
 	}
 	
-	@RequestMapping("/groupbuy/editGroupbuy.do")
-	public String editNewGroupbuy(HttpServletRequest request,
+	@RequestMapping("/groupbuy/editGroupbuy.do")  //groupbuy 수정
+	public String editGroupbuy(HttpServletRequest request,
 			@RequestParam("productId") int productId,
 			@ModelAttribute("groupbuyForm") GroupbuyForm groupbuyForm
-			) throws Exception {
-		
+			) throws ModelAndViewDefiningException {
 		UserSession userSession = 
 				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
 		if (userSession != null) {
 			Account account = closet.getAccount(userSession.getAccount().getUserId());
-			Groupbuy groupbuy = this.closet.getGroupbuyDetail(productId);
-			groupbuyForm.getGroupbuy().initGroupbuy(account, groupbuy);
+			Groupbuy existingGroupbuy = closet.getGroupbuyDetail(productId);
+			groupbuyForm.getGroupbuy().initGroupbuy(account);
+			if (existingGroupbuy != null) {
+				groupbuyForm.setGroupbuy(existingGroupbuy);
+				groupbuyForm.setNewGroupbuy(false);
+			}
 			return "groupbuy/registerForm";
 		} else {
 			return "redirect:/account/SignonForm.do";
 		}
 	}
 	
+//	@RequestMapping("/groupbuy/confirmGroupbuy.do")
+//	public String confirmGroupbuy( //groupbuy 등록 확인 
+//			@RequestParam("productId") int productId,
+//			@ModelAttribute("groupbuyForm") GroupbuyForm groupbuyForm, 
+//			SessionStatus status,
+//			ModelMap model
+//			) throws Exception{
+//		closet.insertGroupbuy(groupbuyForm.getGroupbuy()); //등록 
+//		status.setComplete();  // remove session
+//		PagedListHolder<Groupbuy> productList = new PagedListHolder<Groupbuy>(this.closet.getGroupbuyList());
+//		productList.setPageSize(20);
+//		productList.setPageSize(4);
+//		model.put("productList", productList);
+//		return "redirect:/groupbuy/detail.do"; 
+//	}
+	
 	@RequestMapping("/groupbuy/confirmGroupbuy.do")
-	public String confirmGroupbuy( //groupbuy 등록 확인 
+	protected ModelAndView confirmGroupbuy( //auction 등록 확인 
 			@ModelAttribute("groupbuyForm") GroupbuyForm groupbuyForm, 
-			SessionStatus status,
-			ModelMap model
-			) throws Exception{
+			SessionStatus status, BindingResult result) {
+
+		validator.validateGroupbuyForm(groupbuyForm.getGroupbuy(), result);
+		ModelAndView mav1 = new ModelAndView("groupbuy/registerForm");
+		if (result.hasErrors()) return mav1;
+		
 		closet.insertGroupbuy(groupbuyForm.getGroupbuy()); //등록 
+		ModelAndView mav2 = new ModelAndView("groupbuy/detail");
+		mav2.addObject("product", groupbuyForm.getGroupbuy());
 		status.setComplete();  // remove session
-		PagedListHolder<Groupbuy> productList = new PagedListHolder<Groupbuy>(this.closet.getGroupbuyList());
-		productList.setPageSize(20);
-		productList.setPageSize(4);
-		model.put("productList", productList);
-		return "main/groupbuy"; 
+		return mav2;
 	}
 }
