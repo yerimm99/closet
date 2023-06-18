@@ -11,5 +11,6 @@ public interface MeetRepository  extends JpaRepository<Meet, MeetId>{
 	Meet findByUserIdAndProductId(String userId, int productId);
 	List<Meet> findByProductId(int productId);
 	Integer getMeetCountByProductId(int productId);
+	void deleteByUserIdAndProductId(String userId, int productId);
 	
 }

@@ -17,7 +17,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MeetId implements Serializable {
-	
+
     @Column(name = "USERID")
     private String userId;
 

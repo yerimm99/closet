@@ -46,7 +46,7 @@ public class Meet {
 	
 	
 	@ManyToOne
-	@JoinColumn(name = "PRODUCTID", referencedColumnName = "", insertable = false, updatable = false)
+	@JoinColumn(name = "PRODUCTID", referencedColumnName = "PRODUCTID", insertable = false, updatable = false)
 	private Groupbuy groupbuy;
 
 	@ManyToOne
