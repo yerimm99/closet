@@ -25,10 +25,11 @@ import com.ssp.closet.service.ClosetFacade;
 @Controller
 @SessionAttributes()
 public class ViewGroupBuyController { 
-	private ClosetFacade closet;
-
 	@Autowired
-	public void setPetStore(ClosetFacade closet) {
+	private ClosetFacade closet;
+	
+	@Autowired
+	public void setCloset(ClosetFacade closet) {
 		this.closet = closet;
 	}
 

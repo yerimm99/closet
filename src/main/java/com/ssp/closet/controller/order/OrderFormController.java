@@ -7,10 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ModelAndViewDefiningException;
 import org.springframework.web.util.WebUtils;
 
@@ -45,10 +49,17 @@ public class OrderFormController {
 		return creditCardTypes;			
 	}
 	
+//	@Autowired
+//	private OrderValidator validator;
+//	public void setValidator(OrderValidator validator) {
+//		this.validator = validator;
+//	}
+	
 	@RequestMapping("/order/registerForm.do")  //order 등록 
 	public String initNewOrder(HttpServletRequest request,
 			@RequestParam("productId") int productId,
-			@ModelAttribute("orderForm") OrderForm orderForm
+			@ModelAttribute("orderForm") OrderForm orderForm,
+			ModelMap model
 			) throws ModelAndViewDefiningException {
 		
 		UserSession userSession = 
@@ -57,9 +68,27 @@ public class OrderFormController {
 			Account account = closet.getAccount(userSession.getAccount().getUserId());
 			Groupbuy groupbuy = closet.getGroupbuyDetail(productId);
 			orderForm.getOrder().initOrder(account, groupbuy);
+			Groupbuy product = this.closet.getGroupbuyDetail(productId);
+			model.put("product", product);
 			return "order/registerForm";
 		} else {
 			return "redirect:/account/SignonForm.do";
 		}
+	}
+	
+	@RequestMapping("/order/confirmOrder.do")
+	protected ModelAndView confirmGroupbuy( //auction 등록 확인 
+			@ModelAttribute("orderForm") OrderForm orderForm, 
+			SessionStatus status, BindingResult result) {
+
+//		validator.validateGroupbuyForm(orderForm.getOrder(), result);
+//		ModelAndView mav1 = new ModelAndView("order/registerForm");
+//		if (result.hasErrors()) return mav1;
+		
+		closet.insertOrder(orderForm.getOrder()); //등록 
+		ModelAndView mav2 = new ModelAndView("order/detail");
+		mav2.addObject("product", orderForm.getOrder());
+		status.setComplete();  // remove session
+		return mav2;
 	}
 }
