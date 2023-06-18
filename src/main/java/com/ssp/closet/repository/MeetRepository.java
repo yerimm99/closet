@@ -10,6 +10,7 @@ import com.ssp.closet.dto.MeetId;
 public interface MeetRepository  extends JpaRepository<Meet, MeetId>{
 	Meet findByUserIdAndProductId(String userId, int productId);
 	List<Meet> findByProductId(int productId);
+	List<Meet> findByUserId(String userId);
 	Integer getMeetCountByProductId(int productId);
 	void deleteByUserIdAndProductId(String userId, int productId);
 	

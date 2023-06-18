@@ -57,7 +57,8 @@ public class Product implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date registerDate; // 등록 날짜
 	@Column(name="ENDDATE")
-	private Date endDate; // 종료 날짜
+	@Temporal(TemporalType.DATE)
+	private Date endDate;
 	@Column(name="COLOR")
 	private String color;
 	@Column(name="PSIZE")

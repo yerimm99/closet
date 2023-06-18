@@ -4,7 +4,12 @@ import java.io.Serializable;
 
 import com.ssp.closet.dto.Groupbuy;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @SuppressWarnings("serial")
+@Getter
+@Setter
 public class GroupbuyForm implements Serializable {
 
 	private Groupbuy groupbuy;

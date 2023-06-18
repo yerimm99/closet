@@ -15,63 +15,62 @@ import com.ssp.closet.dto.Product;
 import com.ssp.closet.dto.Review;
 
 public interface ClosetFacade {
-	
-//	void updateProduct(String description, String picture1, String picture2, String picture3, String picture4, int productId);
-//	void deleteProduct(int productId);
-	//List<Product> getProductListByType(int type, int status);
-	List<Product> getProductList();
-//	Product getProductDetail(int productId);
-	
+
+	List<Category> getCategoryList();
+	Category getCategory(String categoryId);
+
+
 	void insertAuction(Auction auction);
 	Auction getAuction(int productId);
 	void updateMaxPrice(int productId);
-	public List<Auction> getAuctionList();
+	List<Auction> getAuctionList();
 	List<Auction> getAuctionByCategoryId(String categoryId);
+	List<Auction> findAuctionByUserId(String userId);
 	void deleteAuctionByProductId(int productId);
-	
+
 	void createBid(Bid bid);
 	void updateBidPrice(int productId, String userId, int newPrice);
 	boolean isBidPriceExists(int productId, int bidPrice);
 	void deleteBid(int productId);
-//	void updateSuccessResult(BidId bidId);
-//	void updateFailResult(BidId bidId);
+	//	void updateSuccessResult(BidId bidId);
+	//	void updateFailResult(BidId bidId);
 	Bid findMaxPrice(int productId);		 	  
-//	List<Bid> getBidResultList(String userId);
-	Bid getBid(String userId);
+	//	List<Bid> getBidResultList(String userId);
+	List<Bid> getBid(String userId);
 	Bid getBid(String userId, int productId);
 	Integer countBidByProductId(int productId);
-	
-  
-	List<Category> getCategoryList();
-	Category getCategory(String categoryId);
 
-	
+
 	void insertGroupbuy(Groupbuy groupbuy);
 	Groupbuy getGroupbuyDetail(int productId);
 	List<Groupbuy> getGroupbuyList();
 	List<Groupbuy> getGroupbuyByCategoryId(String categoryId);
+	List<Groupbuy> findSellGroupbuyByAccount(Account account);
+	public Groupbuy findBuyGroupbuyByProductId(int productId);
 	void deleteGroupbuyByProductId(int productId);
 	
+
 	void createMeet(Meet meet);
 	Meet findMeetByUserIdAndProductId(String userId, int productId);
-	List<Meet> findByProductId(int productId);
+	List<Meet> findMeetByProductId(int productId);
+	List<Meet> findMeetByUserId(String userId);
 	Integer getMeetCountByProductId(int productId);
 	void deleteByUserIdAndProductId(String userId, int productId);
-	
+
 	void createMark(Bookmark bookmark);
 	void deleteMark(String userId, int productId);
 
 	void insertOrder(Delivery order);
 	List<Delivery> getBuyList(String userId);
 	List<Delivery> getSellList(String userId);
-	
+
 	void insertReview(Review review);
 	void deleteReview(int orderId);
 	List<Review> readReviewListByMe();
 	List<Review> readReviewListToMe();
-	
+
 	//Account Connect
-	
+
 	Account getAccount(String userId);
 
 	Account getAccount(String userId, String password);

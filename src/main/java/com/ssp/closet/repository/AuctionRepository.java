@@ -11,11 +11,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.ssp.closet.dto.Auction;
-
 public interface AuctionRepository extends JpaRepository<Auction, Integer> {
 	//List<Auction> getAuctionResultList (String userId);
 	
 	Auction findByProductId(int productId);
+	List<Auction> findByUserId(String userId);
 	
 	@Modifying
 	@Transactional
@@ -30,5 +30,5 @@ public interface AuctionRepository extends JpaRepository<Auction, Integer> {
 	
 	@Query("SELECT a FROM Auction a WHERE a.endDate <= :currentTime")
     List<Auction> findEndedAuctions(@Param("currentTime") LocalDateTime currentTime);
-
+	
 }

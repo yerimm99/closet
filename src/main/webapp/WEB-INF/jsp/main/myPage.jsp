@@ -78,31 +78,17 @@
 					</a>
 				</div>
 				<div class = "func">
-					<a href="<c:url value='/auction/.do'></c:url>">
+					<a href="<c:url value='/myPage/sellAuction.do'></c:url>">
 						<img border="0" src="../../images/click.png" class = "clickImg"
 							width = "40" height = "40"/>
-						<span>상품 수정 및 삭제</span>
+						<span>판매 내역 조회(+수정/삭제)</span>
 					</a>
 				</div>
 				<div class = "func">
-					<a href="<c:url value='/auction/.do'></c:url>">
+					<a href="<c:url value='/myPage/buyAuction.do'></c:url>">
 						<img border="0" src="../../images/click.png" class = "clickImg"
 							width = "40" height = "40"/>
-						<span>입찰 현황 조회</span>
-					</a>
-				</div>
-				<div class = "func">
-					<a href="<c:url value='/auction/.do'></c:url>">
-						<img border="0" src="../../images/click.png" class = "clickImg"
-							width = "40" height = "40"/>
-						<span>구매 내역 조회</span>
-					</a>
-				</div>
-				<div class = "func">
-					<a href="<c:url value='/auction/.do'></c:url>">
-						<img border="0" src="../../images/click.png" class = "clickImg"
-							width = "40" height = "40"/>
-						<span>판매내역조회</span>
+						<span>구매 내역 조회(+현황 조회)</span>
 					</a>
 				</div>
 			</div>
@@ -111,38 +97,24 @@
 				<div style = "margin:10px"><b>공동구매 관리</b></div>
 				<hr>
 				<div class = "func">
-					<a href="<c:url value='/groupbuy/.do'></c:url>">
+					<a href="<c:url value='/groupbuy/registerForm.do'></c:url>">
 						<img border="0" src="../../images/click.png" class = "clickImg"
 							width = "40" height = "40"/>
 						<span>상품등록</span>
 					</a>
 				</div>
 				<div class = "func">
-					<a href="<c:url value='/groupbuy/.do'></c:url>">
+					<a href="<c:url value='/myPage/sellGroupbuy.do'></c:url>">
 						<img border="0" src="../../images/click.png" class = "clickImg"
 							width = "40" height = "40"/>
-						<span>상품 수정 및 삭제</span>
+						<span>판매 내역 조회(+수정/삭제)</span>
 					</a>
 				</div>
 				<div class = "func">
-					<a href="<c:url value='/groupbuy/.do'></c:url>">
+					<a href="<c:url value='/myPage/buyGroupbuy.do'></c:url>">
 						<img border="0" src="../../images/click.png" class = "clickImg"
 							width = "40" height = "40"/>
-						<span>공동구매 현황 조회</span>
-					</a>
-				</div>
-				<div class = "func">
-					<a href="<c:url value='/groupbuy/.do'></c:url>">
-						<img border="0" src="../../images/click.png" class = "clickImg"
-							width = "40" height = "40"/>
-						<span>구매 내역 조회</span>
-					</a>
-				</div>
-				<div class = "func">
-					<a href="<c:url value='/groupbuy/.do'></c:url>">
-						<img border="0" src="../../images/click.png" class = "clickImg"
-							width = "40" height = "40"/>
-						<span>판매 내역 조회</span>
+						<span>구매 내역 조회(+현황 조회) </span>
 					</a>
 				</div>
 			</div>
