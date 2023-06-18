@@ -29,7 +29,6 @@ public interface ClosetFacade {
 	void deleteAuctionByProductId(int productId);
 
 	void createBid(Bid bid);
-	void updateBidPrice(int productId, String userId, int newPrice);
 	boolean isBidPriceExists(int productId, int bidPrice);
 	void deleteBid(int productId);
 	void updateResult(String userId);

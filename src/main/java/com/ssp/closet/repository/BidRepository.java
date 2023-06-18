@@ -13,12 +13,7 @@ import com.ssp.closet.dto.Meet;
 
 public interface BidRepository extends JpaRepository<Bid, BidId>{
 
-	@Modifying
-	@Query("update Bid b " + 
-			"set b.bidPrice = :newPrice " +
-			"where b.productId = :productId and b.userId = :userId")
-	void updatePrice(@Param("productId")int productId, @Param("userId")String userId, @Param("newPrice")Integer price);
-
+	
 	@Query("SELECT CASE WHEN COUNT(b) > 0 THEN true ELSE false END FROM Bid b " +
 			"WHERE b.productId = :productId AND b.bidPrice = :bidPrice")
 	boolean existsByProductIdAndBidPrice(@Param("productId") int productId, @Param("bidPrice") int bidPrice);

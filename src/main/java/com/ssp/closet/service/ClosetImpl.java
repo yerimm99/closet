@@ -109,11 +109,6 @@ public class ClosetImpl implements ClosetFacade{
 		updateMaxPrice(bid.getProductId());
 	}
 
-	public void updateBidPrice(int productId, String userId, int newPrice) {
-		bidRepository.updatePrice(productId, userId, newPrice);
-		updateMaxPrice(productId);
-	}
-
 	public boolean isBidPriceExists(int productId, int bidPrice) {
 		return bidRepository.existsByProductIdAndBidPrice(productId, bidPrice);
 	}

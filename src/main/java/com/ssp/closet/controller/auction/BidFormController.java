@@ -91,22 +91,8 @@ public class BidFormController {
 			mav.addObject("product", bid.getAuction());
 			return mav;
 		}
+		closet.createBid(bid);
 
-//		try {
-			if (bidForm.isNewBid()) {
-				bidForm.setBidPrice(bid.getBidPrice());
-				closet.createBid(bid);
-			}
-			else {
-				closet.updateBidPrice(bid.getProductId(), bid.getUserId(), bid.getBidPrice());
-			}
-//		}
-//		catch (DataIntegrityViolationException ex) {
-//				ModelAndView mav = new ModelAndView("bid/bidForm");
-//				mav.addObject("product", bid.getAuction());
-//				return mav;
-//			
-//		}
 		ModelAndView mav = new ModelAndView("auction/detail");
 		mav.addObject("product", bid.getAuction());
 		status.setComplete();  // remove session
