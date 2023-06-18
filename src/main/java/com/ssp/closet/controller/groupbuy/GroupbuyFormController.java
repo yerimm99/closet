@@ -37,7 +37,7 @@ public class GroupbuyFormController {
 	private ClosetFacade closet;
 	
 	@Autowired
-	public void setClosetStore(ClosetFacade closet) {
+	public void setCloset(ClosetFacade closet) {
 		this.closet = closet;
 	}
 
