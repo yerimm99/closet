@@ -21,4 +21,6 @@ public interface AuctionRepository extends JpaRepository<Auction, Integer> {
 	void updatePrice(@Param("productId")int productId, @Param("maxPrice")int price);
 	
 	List<Auction> findByCategoryId(String categoryId);
+	
+	void deleteByProductId(int productId);
 }

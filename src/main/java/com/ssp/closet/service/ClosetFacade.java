@@ -10,7 +10,7 @@ import com.ssp.closet.dto.Bookmark;
 import com.ssp.closet.dto.Category;
 import com.ssp.closet.dto.Groupbuy;
 import com.ssp.closet.dto.Meet;
-import com.ssp.closet.dto.Order;
+import com.ssp.closet.dto.Delivery;
 import com.ssp.closet.dto.Product;
 import com.ssp.closet.dto.Review;
 
@@ -27,6 +27,7 @@ public interface ClosetFacade {
 	void updateMaxPrice(int productId);
 	public List<Auction> getAuctionList();
 	List<Auction> getAuctionByCategoryId(String categoryId);
+	void deleteAuctionByProductId(int productId);
 	
 	void createBid(Bid bid);
 	void updateBidPrice(int productId, String userId, int newPrice);
@@ -38,10 +39,8 @@ public interface ClosetFacade {
 //	List<Bid> getBidResultList(String userId);
 	Bid getBid(String userId);
 	Bid getBid(String userId, int productId);
-//	
-//	int countPeopleNum(int productId);
-//	Meet getMeetDetail(int meetId);
-//	List<Account> getMeetList(int productId);
+	Integer countBidByProductId(int productId);
+	
   
 	List<Category> getCategoryList();
 	Category getCategory(String categoryId);
@@ -62,9 +61,9 @@ public interface ClosetFacade {
 	void createMark(Bookmark bookmark);
 	void deleteMark(String userId, int productId);
 
-	void insertOrder(Order order);
-	List<Order> getBuyList(String userId);
-	List<Order> getSellList(String userId);
+	void insertOrder(Delivery order);
+	List<Delivery> getBuyList(String userId);
+	List<Delivery> getSellList(String userId);
 	
 	void insertReview(Review review);
 	void deleteReview(int orderId);

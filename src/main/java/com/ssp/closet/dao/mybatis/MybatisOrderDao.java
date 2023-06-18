@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.ssp.closet.dao.OrderDao;
 import com.ssp.closet.dao.SequenceDao;
 import com.ssp.closet.dao.mybatis.mapper.OrderMapper;
-import com.ssp.closet.dto.Order;
+import com.ssp.closet.dto.Delivery;
 
 @Repository
 public class MybatisOrderDao implements OrderDao {
@@ -22,20 +22,20 @@ public class MybatisOrderDao implements OrderDao {
 	private SequenceDao sequenceDao;
 
 	//@Transactional
-	public void insertOrder(Order order) throws DataAccessException {
+	public void insertOrder(Delivery order) throws DataAccessException {
 		order.setOrderId(sequenceDao.getNextId("ordernum")); //ordernum 은 추후 수정
     	orderMapper.insertOrder(order);
 	}
 
-	public List<Order> getSellList(String suppId) throws DataAccessException {
+	public List<Delivery> getSellList(String suppId) throws DataAccessException {
 		return orderMapper.getSellList(suppId);
 	}
 
-	public List<Order> getBuyList(String userId) throws DataAccessException {
+	public List<Delivery> getBuyList(String userId) throws DataAccessException {
 		return orderMapper.getBuyList(userId);
 	}
 
-	public Order getOrderDetail(int orderId) throws DataAccessException {
+	public Delivery getOrderDetail(int orderId) throws DataAccessException {
 		return orderMapper.getOrderDetail(orderId);
 	}
 }

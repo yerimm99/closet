@@ -2,16 +2,16 @@ package com.ssp.closet.controller;
 
 import java.io.Serializable;
 
-import com.ssp.closet.dto.Order;
+import com.ssp.closet.dto.Delivery;
 
 @SuppressWarnings("serial")
 public class OrderForm implements Serializable {
 
-	private final Order order = new Order();
+	private final Delivery order = new Delivery();
 	private boolean shippingAddressRequired = false;
 	private boolean shippingAddressProvided = false;
 
-	public Order getOrder() {
+	public Delivery getOrder() {
 		return order;
 	}
 

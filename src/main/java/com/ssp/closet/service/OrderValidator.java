@@ -5,7 +5,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import com.ssp.closet.dto.Order;
+import com.ssp.closet.dto.Delivery;
 
 
 //추후 수정 필요...?
@@ -13,16 +13,16 @@ import com.ssp.closet.dto.Order;
 public class OrderValidator implements Validator {
 
 	public boolean supports(Class<?> clazz) {
-		return Order.class.isAssignableFrom(clazz);
+		return Delivery.class.isAssignableFrom(clazz);
 	}
 
 	public void validate(Object obj, Errors errors) {
-		validateCreditCard((Order) obj, errors);
-		validateBillingAddress((Order) obj, errors);
-		validateShippingAddress((Order) obj, errors);
+		validateCreditCard((Delivery) obj, errors);
+		validateBillingAddress((Delivery) obj, errors);
+		validateShippingAddress((Delivery) obj, errors);
 	}
 
-	public void validateCreditCard(Order order, Errors errors) {
+	public void validateCreditCard(Delivery order, Errors errors) {
 		errors.setNestedPath("order");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "creditCard", "CCN_REQUIRED", "FAKE (!) credit card number required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "expiryDate", "EXPIRY_DATE_REQUIRED", "Expiry date is required.");
@@ -30,7 +30,7 @@ public class OrderValidator implements Validator {
 		errors.setNestedPath("");
 	}
 
-	public void validateBillingAddress(Order order, Errors errors) {
+	public void validateBillingAddress(Delivery order, Errors errors) {
 		errors.setNestedPath("order");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "billToFirstName", "FIRST_NAME_REQUIRED", "Billing Info: first name is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "billToLastName", "LAST_NAME_REQUIRED", "Billing Info: last name is required.");
@@ -42,7 +42,7 @@ public class OrderValidator implements Validator {
 		errors.setNestedPath("");
 	}
 
-	public void validateShippingAddress(Order order, Errors errors) {
+	public void validateShippingAddress(Delivery order, Errors errors) {
 		errors.setNestedPath("order");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "shipToFirstName", "FIRST_NAME_REQUIRED", "Shipping Info: first name is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "shipToLastName", "LAST_NAME_REQUIRED", "Shipping Info: last name is required.");

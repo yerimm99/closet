@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.ssp.closet.dto.Order;
+import com.ssp.closet.dto.Delivery;
 
 @Mapper
 public interface OrderMapper {
 	
-	void insertOrder(Order order);
-	List<Order> getSellList(String suppId);
-	List<Order> getBuyList(String userId);
-	Order getOrderDetail(int orderId);
+	void insertOrder(Delivery order);
+	List<Delivery> getSellList(String suppId);
+	List<Delivery> getBuyList(String userId);
+	Delivery getOrderDetail(int orderId);
 }
