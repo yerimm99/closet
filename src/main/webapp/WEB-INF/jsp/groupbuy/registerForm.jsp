@@ -64,11 +64,11 @@
 				</td>
 			</tr>
 			<tr>
-				<td>공동구매 기간</td>
-				<td>
-					<form:input path = "groupbuy.period"  class = "inp"/>
-					<hr>
-				</td>
+				<td>endDate</td>
+<!-- 				<td> -->
+<%-- 					<form:input path = "groupbuy.period"  class = "inp"/> --%>
+<!-- 					<hr> -->
+<!-- 				</td> -->
 			</tr>
 			<tr>
 				<td>참여자 수</td>
