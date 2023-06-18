@@ -66,12 +66,12 @@
 				</td>
 			</tr>
 			<tr>
-				<td>경매 기간</td>
-				<td>
-					<!-- 왜자꾸 0이 기본값으로 들어가는지 모르겠음 -->
-					<form:input path = "auction.period" class = "inp"/>
-					<hr>
-				</td>
+				<td>endDate</td>
+<!-- 				<td> -->
+<!-- 					왜자꾸 0이 기본값으로 들어가는지 모르겠음 -->
+<%-- 					<form:input path = "auction.period" class = "inp"/> --%>
+<!-- 					<hr> -->
+<!-- 				</td> -->
 			</tr>
 		 	<tr style = "height:60px">
 				<td>상품 카테고리</td>

@@ -23,7 +23,7 @@ public class GroupbuyFormValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "size", "SIZE_REQUIRED", "Size is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "color", "COLOR_REQUIRED", "Color is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "price", "PRICE_REQUIRED", "Price is required.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "period", "PERIOD_REQUIRED", "Period is required.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "endDate", "ENDDATE_REQUIRED", "EndDate is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "categoryId", "CATEGORY_REQUIRED", "Category is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "DESCRIPTION_REQUIRED", "Description is required.");
 		errors.setNestedPath("");
