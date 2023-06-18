@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndViewDefiningException;
@@ -74,7 +75,23 @@ public class GroupbuyFormController {
 		}
 	}
 	
-	 // 수정 폼 만들어주시면 추가
+	@RequestMapping("/groupbuy/editGroupbuy.do")
+	public String editNewGroupbuy(HttpServletRequest request,
+			@RequestParam("productId") int productId,
+			@ModelAttribute("groupbuyForm") GroupbuyForm groupbuyForm
+			) throws Exception {
+		
+		UserSession userSession = 
+				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
+		if (userSession != null) {
+			Account account = closet.getAccount(userSession.getAccount().getUserId());
+			Groupbuy groupbuy = this.closet.getGroupbuyDetail(productId);
+			groupbuyForm.getGroupbuy().initGroupbuy(account, groupbuy);
+			return "groupbuy/registerForm";
+		} else {
+			return "redirect:/account/SignonForm.do";
+		}
+	}
 	
 	@RequestMapping("/groupbuy/confirmGroupbuy.do")
 	public String confirmGroupbuy( //groupbuy 등록 확인 

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,6 +18,7 @@ import org.springframework.web.util.WebUtils;
 
 import com.ssp.closet.controller.UserSession;
 import com.ssp.closet.dto.Account;
+import com.ssp.closet.dto.Auction;
 import com.ssp.closet.service.AuctionFormValidator;
 import com.ssp.closet.service.ClosetFacade;
 
@@ -62,6 +64,7 @@ public class AuctionFormController {
 		categories.add("패션잡화");
 		return categories;			
 	}
+	
 	@RequestMapping("/auction/newAuction.do")
 	public String initNewAuction(HttpServletRequest request,
 			@ModelAttribute("auctionForm") AuctionForm auctionForm
@@ -78,18 +81,23 @@ public class AuctionFormController {
 		}
 	}
 	
-//	@RequestMapping("/auction/newAuctionSubmitted.do")
-//	public String bindAndValidateAuction( 
-//			HttpServletRequest request,  
-//			@ModelAttribute("auctionForm") AuctionForm auctionForm,
-//			BindingResult result) throws Exception {
-//
-//		validator.validateAuctionForm(auctionForm.getAuction(), result);
-//		
-//		if (result.hasErrors()) return "formViewName";
-//		return "auction/detail";
-//		
-//	}
+	@RequestMapping("/auction/editAuction.do")
+	public String editNewAuction(HttpServletRequest request,
+			@RequestParam("productId") int productId,
+			@ModelAttribute("auctionForm") AuctionForm auctionForm
+			) throws Exception {
+		
+		UserSession userSession = 
+				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
+		if (userSession != null) {
+			Account account = closet.getAccount(userSession.getAccount().getUserId());
+			Auction auction = this.closet.getAuction(productId);
+			auctionForm.getAuction().initAuction(account, auction);
+			return "auction/registerForm";
+		} else {
+			return "redirect:/account/SignonForm.do";
+		}
+	}
 	
 	@RequestMapping("/auction/confirmAuction.do")
 	protected ModelAndView confirmAuction( //auction 등록 확인 

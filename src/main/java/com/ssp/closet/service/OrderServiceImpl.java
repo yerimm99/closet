@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ssp.closet.dao.OrderDao;
-import com.ssp.closet.dto.Order;
+import com.ssp.closet.dto.Delivery;
 
 @Service("orderServiceImpl")
 public class OrderServiceImpl implements OrderService {
@@ -14,15 +14,15 @@ public class OrderServiceImpl implements OrderService {
 	@Autowired
 	private OrderDao orderDao;
 
-	public List<Order> getSellList(String suppId) {
+	public List<Delivery> getSellList(String suppId) {
 		return orderDao.getSellList(suppId);
 	}
 
-	public List<Order> getBuyList(String userId) {
+	public List<Delivery> getBuyList(String userId) {
 		return orderDao.getBuyList(userId);
 	}
 
-	public Order getOrderDetail(int orderId) {
+	public Delivery getOrderDetail(int orderId) {
 		return orderDao.getOrderDetail(orderId);
 	}
 }

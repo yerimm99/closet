@@ -21,7 +21,7 @@ import com.ssp.closet.dto.Bookmark;
 import com.ssp.closet.dto.Category;
 import com.ssp.closet.dto.Groupbuy;
 import com.ssp.closet.dto.Meet;
-import com.ssp.closet.dto.Order;
+import com.ssp.closet.dto.Delivery;
 import com.ssp.closet.dto.Product;
 import com.ssp.closet.dto.Review;
 
@@ -72,6 +72,10 @@ public class ClosetImpl implements ClosetFacade{
         return aucRepository.findByCategoryId(categoryId);
     }
 	
+	public void deleteAuctionByProductId(int productId) {
+		aucRepository.deleteByProductId(productId);
+	}
+	
 	@Autowired
 	private BidRepository bidRepository;
 	
@@ -90,6 +94,9 @@ public class ClosetImpl implements ClosetFacade{
 	}
 	public void deleteBid(int productId) {
 		bidRepository.deleteByProductId(productId);
+	}
+	public Integer countBidByProductId(int productId) {
+		return bidRepository.countByProductId(productId);
 	}
 	  
 //	public void updateSuccessResult(BidId bidId) {
@@ -208,17 +215,17 @@ public class ClosetImpl implements ClosetFacade{
 	
 	
 	@Override
-	public void insertOrder(Order order) {
+	public void insertOrder(Delivery order) {
 		// TODO Auto-generated method stub
 
 	}
 	@Override
-	public List<Order> getBuyList(String userId) {
+	public List<Delivery> getBuyList(String userId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
-	public List<Order> getSellList(String userId) {
+	public List<Delivery> getSellList(String userId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
