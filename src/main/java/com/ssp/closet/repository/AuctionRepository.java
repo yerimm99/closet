@@ -15,8 +15,7 @@ import org.springframework.data.repository.query.Param;
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
 public interface AuctionRepository extends JpaRepository<Auction, Integer> {
-	//List<Auction> getAuctionResultList (String userId);
-	
+
 	Auction findByProductId(int productId);
 	List<Auction> findByAccount(Account account);
 	

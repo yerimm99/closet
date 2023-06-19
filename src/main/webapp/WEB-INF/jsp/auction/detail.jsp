@@ -64,8 +64,8 @@
       			</c:if>
       			
 				<ul id="imgholder" class="imgs">
-					<li><img src="<c:url value='${product.picture1}'/>"></li>
-					<li><img src="<c:url value='${product.picture2}'/>"></li>
+					<li><img src ='${product.getPicture1()}'></li>
+					<li><img src= '${product.getPicture2()}'></li>
 					<c:if test="${!empty product.picture3}" >
 						<li><img src="<c:url value='${product.picture3}'/>"></li>
 					</c:if>

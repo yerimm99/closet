@@ -31,7 +31,6 @@ public interface ClosetFacade {
 
 	Page<Auction> getAuctionByCategoryId(String categoryId, Pageable pageable);
 	Page<Auction> findSellAuctionByAccount(Account account, Pageable pageable);
-	Auction findBuyAuctionByProductId(int productId);
 	void deleteAuctionByProductId(int productId);
 
 	void scheduleAuctionEnd(Auction auction);

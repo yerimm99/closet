@@ -84,10 +84,6 @@ public class ClosetImpl implements ClosetFacade{
 		aucRepository.deleteByProductId(productId);
 	}
 	
-	public Auction findBuyAuctionByProductId(int productId){
-		return aucRepository.findByProductId(productId);
-	}
-	
 	public Page<Auction> getAuctionByCategoryId(String categoryId, Pageable pageable) {
         return aucRepository.findByCategoryId(categoryId, pageable);
     }
