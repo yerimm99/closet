@@ -24,7 +24,7 @@ import lombok.Setter;
 @Setter
 @Table(name = "DELIVERY")
 public class Delivery implements Serializable {
-
+	
 	/* Private Fields */
 	@Id
 	@SequenceGenerator(name = "ORDERID_SEQ_GENERATOR", sequenceName="ORDERID_SEQ", initialValue=1, allocationSize=1)
