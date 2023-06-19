@@ -109,6 +109,7 @@ public class GroupbuyFormController {
 		}
 	}
 	
+	
 	@RequestMapping("/groupbuy/confirmGroupbuy.do")
 	protected ModelAndView confirmGroupbuy( //auction 등록 확인 
 			@ModelAttribute("groupbuyForm") GroupbuyForm groupbuyForm, 
