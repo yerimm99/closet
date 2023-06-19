@@ -113,7 +113,7 @@
                             <c:choose>
                                 <c:when test="${bid.bidResult==0}">
                                     입찰 중<br>
-                                    <a href="<c:url value='/auction/editAuction.do'>
+                                    <a href="<c:url value='/bid/editBid.do'>
                                         <c:param name='productId' value='${prod.productId}'/>
                                         </c:url>" class="btn">입찰가 수정</a>
                                 </c:when>

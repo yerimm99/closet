@@ -89,7 +89,7 @@
 				<table>
 					<tr>
 						<th>상품명</th>
-						<td>&lt; ${product.categoryId} &gt; ${product.name}</td>
+						<td>${product.name}</td>
 					</tr>
 					<tr>
 						<th>상품정보</th>
