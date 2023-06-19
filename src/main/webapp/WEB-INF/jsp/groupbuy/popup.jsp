@@ -1,14 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 function showPopup() {
-    alert("»èÁ¦ÇÒ ¼ö ¾ø½À´Ï´Ù. ÇöÀç ¸ðÁýµÈ ÀÎ¿øÀÌ ÀÖ½À´Ï´Ù.");
+    alert("ì‚­ì œí•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤. í˜„ìž¬ ëª¨ì§‘ëœ ì¸ì›ì´ ìžˆìŠµë‹ˆë‹¤.");
 }
 
 <script>

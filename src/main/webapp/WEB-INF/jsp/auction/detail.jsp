@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,8 +35,8 @@
 		.info{float:left;padding:20px;margin:20px 40px 0px 20px;}
 		th{text-align:left;padding:2px 10px;width:170px}
 		td{padding:0px 10px}
-		.gobtn{text-align:center;font-size:20px;border-radius:10px;background-color:black;
-		border:1px solid black;width:100px;height:35px;color:white;margin-top:10px}
+		.gobtn{text-align:center;font-size:20px;border-radius:10px;background-color:#FF3366;
+		border:1px solid;width:100px;height:35px;color:white;margin-top:10px}
 		.gobtn2{text-align:center;font-size:20px;border-radius:10px;
 		border:1px solid black;width:100px;height:35px;color:white;margin-top:10px}
 		a{display:block}
@@ -64,13 +65,13 @@
       			</c:if>
       			
 				<ul id="imgholder" class="imgs">
-					<li><img src="<c:url value='${product.picture1}'/>"></li>
-					<li><img src="<c:url value='${product.picture2}'/>"></li>
+					<li><img src = "../../upload/${product.picture1}"></li>
+					<li><img src= "../../upload/${product.picture2}"></li>
 					<c:if test="${!empty product.picture3}" >
-						<li><img src="<c:url value='${product.picture3}'/>"></li>
+						<li><img src= "../../upload/${product.picture3}"></li>
 					</c:if>
 					<c:if test="${!empty product.picture4}" >
-						<li><img src="<c:url value='${product.picture4}'/>"></li>
+						<li><img src="../../upload/${product.picture4}"></li>
 					</c:if>
 				</ul>
 				<div class="bullets">
@@ -89,7 +90,7 @@
 				<table>
 					<tr>
 						<th>상품명</th>
-						<td>&lt; ${product.categoryId} &gt; ${product.name}</td>
+						<td>${product.name}</td>
 					</tr>
 					<tr>
 						<th>상품정보</th>
@@ -111,9 +112,15 @@
 						<th>상품최소가</th>
 						<td>${product.startPrice}</td>
 					</tr>
+					<c:if test = "${!empty product.price}">
 					<tr>
 						<th>현재최고가</th>
 						<td>${product.price}</td>
+					</tr>
+					</c:if>
+					<tr>
+  						<th>마감 날짜</th>
+ 						<td><fmt:formatDate value="${product.endDate}" pattern="yyyy-MM-dd" /></td>
 					</tr>
 					<tr>
 						<td colspan = "2" class = "gobtn">
