@@ -12,13 +12,13 @@ import com.ssp.closet.dto.Product;
 import com.ssp.closet.repository.ProductRepository;
 
 @RestController
-@RequestMapping("/rank/rank.jsp")
+@RequestMapping("/rank/rankForm.do")
 public class RankController {
 	 @Autowired
 	 private RankService rankService;
 	 private ProductRepository productRepository;
 
-	    @GetMapping("/ranked")
+	    @GetMapping("/rank")
 	    public List<Product> getRankedProducts() {
 	        // 랭킹을 계산합니다.
 	    	rankService.calculateRankingByViews();

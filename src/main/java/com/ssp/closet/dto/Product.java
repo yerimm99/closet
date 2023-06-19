@@ -78,8 +78,9 @@ public class Product implements Serializable {
 	private Integer price;
 	@Column(name = "DTYPE", insertable=false, updatable=false)
 	private String DTYPE;
-	
-	@Column(name = "RANK")
+
+	@Column(name = "RANK")//랭킹 관련 코드
+
 	@OrderBy("rank DESC")
 	private int rank;
 	@Column(name = "VIEWS")
