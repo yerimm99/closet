@@ -92,6 +92,11 @@ public class ClosetImpl implements ClosetFacade{
 		 return aucRepository.findByAccount(account, pageable);
 	}
 	
+	//나현추가
+	public List<Auction> findTop4AuctionOrderByRegisterDate(){
+		return aucRepository.findTop4OrderByRegisterDate();
+	}
+	
 	@Transactional
 	public Page<Auction> getAuctionList(Pageable pageable) {
 		return aucRepository.findAll(pageable);//페이징 객체만들어서 반환

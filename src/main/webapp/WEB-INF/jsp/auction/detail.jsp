@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -111,13 +112,15 @@
 						<th>상품최소가</th>
 						<td>${product.startPrice}</td>
 					</tr>
+					<c:if test = "${!empty product.price}">
 					<tr>
 						<th>현재최고가</th>
 						<td>${product.price}</td>
 					</tr>
+					</c:if>
 					<tr>
-						<th>마감 날짜</th>
-						<td>${product.endDate}</td>
+  						<th>마감 날짜</th>
+ 						<td><fmt:formatDate value="${product.endDate}" pattern="yyyy-MM-dd" /></td>
 					</tr>
 					<tr>
 						<td colspan = "2" class = "gobtn">

@@ -79,12 +79,11 @@
 				<td>종료 날짜</td>
  				<td>
  					<c:if test="${auctionForm.newAuction}">
-						<form:input path = "auction.endDate" class = "inp" placeholder = "xxxx/xx/xx형식으로 입력해주세요."/>
+ 						<form:input type = "date" path = "auction.endDate" class = "inp"/>
 					</c:if>
 					<c:if test="${!auctionForm.newAuction}">
 						<c:out value="${auctionForm.auction.endDate}" />
 					</c:if>
- 					<!--<form:input type = "date" path = "auction.endDate" class = "inp" value = "2023/06/20"/>-->
  					<hr>
  				</td> 
 			</tr>

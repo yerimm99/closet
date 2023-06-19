@@ -67,7 +67,7 @@
 				<td>가격</td>
 				<td>
 					<c:if test="${groupbuyForm.newGroupbuy}">
-						<form:input path = "groupbuy.price" class = "inp" placeholder = "xxxx/xx/xx형식으로 입력해주세요."/>
+						<form:input path = "groupbuy.price" class = "inp"/>
 					</c:if>
 					<c:if test="${!groupbuyForm.newGroupbuy}">
 						<c:out value="${groupbuyForm.groupbuy.price}" />
@@ -79,12 +79,11 @@
 				<td>종료 날짜</td>
  				<td>
  					<c:if test="${groupbuyForm.newGroupbuy}">
-						<form:input path = "groupbuy.endDate" class = "inp" placeholder = "xxxx/xx/xx형식으로 입력해주세요."/>
+						<form:input type = "date" path = "groupbuy.endDate" class = "inp"/>
 					</c:if>
 					<c:if test="${!groupbuyForm.newGroupbuy}">
 						<c:out value="${groupbuyForm.groupbuy.endDate}" />
 					</c:if>
- 					<!--<form:input type = "date" path = "groupbuy.endDate" class = "inp" value = "2023/06/20"/>-->
  					<hr>
  				</td> 
 			</tr>
@@ -92,7 +91,7 @@
 				<td>참여자 수</td>
 				<td>
 					<c:if test="${groupbuyForm.newGroupbuy}">
-						<form:input path = "groupbuy.peopleNum" class = "inp" placeholder = "xxxx/xx/xx형식으로 입력해주세요."/>
+						<form:input path = "groupbuy.peopleNum" class = "inp"/>
 					</c:if>
 					<c:if test="${!groupbuyForm.newGroupbuy}">
 						<c:out value="${groupbuyForm.groupbuy.peopleNum}" />
@@ -117,7 +116,7 @@
 			<tr>
 				<td>사진첨부</td>
 				<td>
-					<input type = "file" name = "file" multiple/>
+					<input type = "file" name = "imageFile" multiple/>
 				</td>
 			</tr>
 			<tr>
