@@ -26,6 +26,10 @@ public class AccountForm implements Serializable {
 	public Account getAccount() {
 		return account;
 	}
+	
+	public void setAccount(Account account) {
+        this.account = account;
+    }
 
 	public boolean isNewAccount() {
 		return newAccount;
@@ -38,4 +42,5 @@ public class AccountForm implements Serializable {
 	public String getRepeatedPassword() {
 		return repeatedPassword;
 	}
+
 }
