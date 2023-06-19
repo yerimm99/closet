@@ -1,23 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="EUC-KR">
+	<meta charset="UTF-8">
 	<title>회원가입폼</title>
-	<style type = "text/css">
-		body{margin:0}
-		.layout{margin:0px auto;width:1180px;padding:10px}
-		table, td{border:none;border-collapse:collapse;}
-		table{margin:50px auto 0px auto}
-		td{height:40px;padding: 0px 15px;}
-		input{border:none;width:600px;height:35px}
-		.address{width:300px;}
-		.btn{display:block;margin:0px auto;text-align:center;font-size:20px;border-radius:10px;background-color:black;
-		border:1px solid black;width:510px;height:35px;color:white;margin-top:5px}
+	<style type="text/css">
+		body { margin: 0; }
+		.layout { margin: 0px auto; width: 1180px; padding: 10px; }
+		table, td { border: none; border-collapse: collapse; }
+		table { margin: 50px auto 0px auto; }
+		td { height: 40px; padding: 0px 15px; }
+		input { border: none; width: 600px; height: 35px; }
+		.address { width: 300px; }
+		.btn { display: block; margin: 0px auto; text-align: center; font-size: 20px; border-radius: 10px; background-color: black; border: 1px solid black; width: 510px; height: 35px; color: white; margin-top: 5px; }
 	</style>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
@@ -34,15 +32,15 @@
 	
 	                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
 	                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-	                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+	                if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
 	                    extraRoadAddr += data.bname;
 	                }
 	                // 건물명이 있고, 공동주택일 경우 추가한다.
-	                if(data.buildingName !== '' && data.apartment === 'Y'){
+	                if (data.buildingName !== '' && data.apartment === 'Y') {
 	                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
 	                }
 	                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-	                if(extraRoadAddr !== ''){
+	                if (extraRoadAddr !== '') {
 	                    extraRoadAddr = ' (' + extraRoadAddr + ')';
 	                }
 	
@@ -52,7 +50,7 @@
 	                document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
 	                
 	                // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
-	                if(roadAddr !== ''){
+	                if (roadAddr !== '') {
 	                    document.getElementById("sample4_extraAddress").value = extraRoadAddr;
 	                } else {
 	                    document.getElementById("sample4_extraAddress").value = '';
@@ -60,12 +58,12 @@
 	
 	                var guideTextBox = document.getElementById("guide");
 	                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-	                if(data.autoRoadAddress) {
+	                if (data.autoRoadAddress) {
 	                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
 	                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
 	                    guideTextBox.style.display = 'block';
 	
-	                } else if(data.autoJibunAddress) {
+	                } else if (data.autoJibunAddress) {
 	                    var expJibunAddr = data.autoJibunAddress;
 	                    guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
 	                    guideTextBox.style.display = 'block';
@@ -80,80 +78,71 @@
 </head>
 <body>
 	<!-- 메뉴바 -->
-	<jsp:include page = "../menu.jsp"/>
+	<jsp:include page="../menu.jsp" />
 	<hr>
 	
-	<div class = "layout">
-		<form:form modelAttribute = "accountForm" action = "POST" >
-		<table>
-			<tr>
-				<td style="text-align:center;font-size:24px" colspan = "2">회원가입<br><br><br></td>
-			</tr>
-			<tr>
-				<td>이름</td>
-				<td><form:input path = "account.name"/></td>
-			</tr>
-			<tr>
-				<th colspan = "2"><hr></th>
-			</tr>
-			<tr>
-				<td>아이디</td>
-				<td>
-					<form:input path = "account.userId"/>
-				</td>
-			</tr>
-			<tr>
-				<th colspan = "2"><hr></th>
-			</tr>
-			<tr>
-				<td>비밀번호</td>
-				<td>
-					<form:input path = "account.password" showPassword = "false"/>
-				</td>
-			</tr>
-			<tr>
-				<th colspan = "2"><hr></th>
-			</tr>
-			<tr>
-				<td>주소</td>
-				<td>
-					<input type="text" id="sample4_postcode" placeholder="우편번호" class = "address">
-					<input type = "button" onclick = "sample4_execDaumPostcode()"
-						value = "우편번호 찾기" class = "address"/><br>
-					<input type = "text" id = "sample4_roadAddress" placeholder = "도로명주소" name = "address1" class = "address"/>
-					<input type = "text" id = "sample4_jibunAddress" placeholder = "지번주소" class = "address"/><br>
-					<span id = "guide" style = "color:#999;display:none"></span>
-					<input type = "text" id = "sample4_detailAddress" placeholder = "상세주소" name = "address2" class = "address"/>
-					<input type = "text" id = "sample4_extraAddress" placeholder = "참고항목" class = "address"/>
-				</td>
-			</tr>
-			<tr>
-				<th colspan = "2"><hr></th>
-			</tr>
-			<tr>
-				<td>전화번호</td>
-				<td>
-					<form:input path = "account.phone" placeholder = "xxx-xxxx-xxxx형식으로 입력해주세요."/>
-				</td>
-			</tr>
-			<tr>
-				<th colspan = "2"><hr></th>
-			</tr>
-			<tr>
-				<td>이메일</td>
-				<td>
-					<form:input path = "account.email"/>
-				</td>
-			</tr>
-			<tr>
-				<th colspan = "2"><hr></th>
-			</tr>
-			<tr>
-				<td colspan = "2">
-					<input type="submit" value="가입하기"class="btn">
-				</td>
-			</tr>
-		</table>
+	<div class="layout">
+		<form:form modelAttribute="accountForm" method="post" action="/account/registerForm.do">
+			<table>
+				<tr>
+					<td style="text-align: center; font-size: 24px;" colspan="2">회원가입<br><br><br></td>
+				</tr>
+				<tr>
+					<td>이름</td>
+					<td><form:input path="account.username" /></td>
+				</tr>
+				<tr>
+					<th colspan="2"><hr></th>
+				</tr>
+				<tr>
+					<td>아이디</td>
+					<td><form:input path="account.userId" /></td>
+				</tr>
+				<tr>
+					<th colspan="2"><hr></th>
+				</tr>
+				<tr>
+					<td>비밀번호</td>
+					<td><form:input path="account.password" showPassword="false" /></td>
+				</tr>
+				<tr>
+					<th colspan="2"><hr></th>
+				</tr>
+				<tr>
+					<td>주소</td>
+					<td>
+						<input type="text" id="sample4_postcode" placeholder="우편번호" class="address">
+						<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="address"><br>
+						<input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="address1" class="address">
+						<input type="text" id="sample4_jibunAddress" placeholder="지번주소" class="address"><br>
+						<span id="guide" style="color:#999;display:none"></span>
+						<input type="text" id="sample4_detailAddress" placeholder="상세주소" name="address2" class="address">
+						<input type="text" id="sample4_extraAddress" placeholder="참고항목" class="address">
+					</td>
+				</tr>
+				<tr>
+					<th colspan="2"><hr></th>
+				</tr>
+				<tr>
+					<td>전화번호</td>
+					<td><form:input path="account.phone" placeholder="xxx-xxxx-xxxx 형식으로 입력해주세요." /></td>
+				</tr>
+				<tr>
+					<th colspan="2"><hr></th>
+				</tr>
+				<tr>
+					<td>이메일</td>
+					<td><form:input path="account.email" /></td>
+				</tr>
+				<tr>
+					<th colspan="2"><hr></th>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input type="submit" value="가입하기" class="btn">
+					</td>
+				</tr>
+			</table>
 		</form:form>
 	</div>
 </body>
