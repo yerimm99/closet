@@ -39,6 +39,7 @@ public class BidFormController {
 		return new BidForm();
 	}
 	
+	
 	@RequestMapping({"/bid/newBid.do","/bid/editBid.do"})
 	public ModelAndView initBid(HttpServletRequest request,
 			@RequestParam("productId") int productId,
