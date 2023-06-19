@@ -32,7 +32,7 @@ public class AccountFormController {
 	public void setCloset(ClosetFacade closet) {
 		this.closet = closet;
 	}
-
+ 
 	@Autowired
 	private AccountFormValidator validator;
 	public void setValidator(AccountFormValidator validator) {
