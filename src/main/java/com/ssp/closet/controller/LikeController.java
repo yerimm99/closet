@@ -17,6 +17,7 @@ public class LikeController {
 	                product.incrementLikes();
 	                System.out.println(productName + " 상품에 좋아요를 눌렀습니다.");
 	                return;
+	                
 	            }
 	        }
 	        System.out.println(productName + " 상품을 찾을 수 없습니다.");

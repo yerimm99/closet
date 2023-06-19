@@ -13,6 +13,7 @@ import com.ssp.closet.repository.ProductRepository;
 
 @RestController
 @RequestMapping("/rank/rank.do")
+
 public class RankController {
 	 @Autowired
 	 private RankService rankService;
