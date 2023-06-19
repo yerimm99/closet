@@ -6,17 +6,17 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.ssp.closet.dao.AccountDao;
 import com.ssp.closet.dao.AuctionDao;
 import com.ssp.closet.dao.BookmarkDao;
 import com.ssp.closet.dao.GroupbuyDao;
-import com.ssp.closet.dao.MeetDao;
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
 import com.ssp.closet.dto.Bid;
-import com.ssp.closet.dto.BidId;
 import com.ssp.closet.dto.Bookmark;
 import com.ssp.closet.dto.Category;
 import com.ssp.closet.dto.Groupbuy;
@@ -27,9 +27,11 @@ import com.ssp.closet.dto.Review;
 
 import com.ssp.closet.repository.AuctionRepository;
 import com.ssp.closet.repository.BidRepository;
+import com.ssp.closet.repository.DeliveryRepository;
 import com.ssp.closet.repository.GroupbuyRepository;
 import com.ssp.closet.repository.MeetRepository;
 import com.ssp.closet.repository.ProductRepository;
+
 @Service
 @Transactional
 public class ClosetImpl implements ClosetFacade{
@@ -68,12 +70,12 @@ public class ClosetImpl implements ClosetFacade{
 		aucRepository.updatePrice(productId, findMaxPrice(productId).getBidPrice());
 	}
 	
-	public List<Auction> getAuctionByCategoryId(String categoryId) {
-        return aucRepository.findByCategoryId(categoryId);
+	public Page<Auction> getAuctionByCategoryId(String categoryId, Pageable pageable) {
+        return aucRepository.findByCategoryId(categoryId, pageable);
     }
 	
-	public List<Auction> findSellAuctionByAccount(Account account){
-		 return aucRepository.findByAccount(account);
+	public Page<Auction> findSellAuctionByAccount(Account account, Pageable pageable){
+		 return aucRepository.findByAccount(account, pageable);
 	}
 	
 	public Auction findBuyAuctionByProductId(int productId) {
@@ -82,6 +84,11 @@ public class ClosetImpl implements ClosetFacade{
 	
 	public void deleteAuctionByProductId(int productId) {
 		aucRepository.deleteByProductId(productId);
+	}
+	
+	@Transactional
+	public Page<Auction> getAuctionList(Pageable pageable) {
+		return aucRepository.findAll(pageable);//페이징 객체만들어서 반환
 	}
 	
 	@Autowired
@@ -157,8 +164,8 @@ public class ClosetImpl implements ClosetFacade{
 		groupbuyRepository.save(groupbuy);
 	}
 	
-	public List<Groupbuy> getGroupbuyByCategoryId(String categoryId) {
-        return groupbuyRepository.findByCategoryId(categoryId);
+	public Page<Groupbuy> getGroupbuyByCategoryId(String categoryId, Pageable pageable) {
+        return groupbuyRepository.findByCategoryId(categoryId, pageable);
     }
 	
 	public Groupbuy getGroupbuyDetail(int productId) {
@@ -169,12 +176,17 @@ public class ClosetImpl implements ClosetFacade{
 		groupbuyRepository.deleteByProductId(productId);
 	}
 	
-	public List<Groupbuy> findSellGroupbuyByAccount(Account account){
-		return groupbuyRepository.findByAccount(account);
+	public Page<Groupbuy> findSellGroupbuyByAccount(Account account, Pageable pageable){
+		return groupbuyRepository.findByAccount(account, pageable);
 	}
 	
 	public Groupbuy findBuyGroupbuyByProductId(int productId){
 		return groupbuyRepository.findByProductId(productId);
+	}
+	
+	@Transactional
+	public Page<Groupbuy> getGroupbuyList(Pageable pageable) {
+		return groupbuyRepository.findAll(pageable);//페이징 객체만들어서 반환
 	}
 
 	
@@ -213,32 +225,14 @@ public class ClosetImpl implements ClosetFacade{
 	public void deleteByUserIdAndProductId(String userId, int productId) {
 		meetRepository.deleteByUserIdAndProductId(userId, productId);
 	}
-
-
 	
 	@Autowired
-	@Qualifier("jpaMeetDao")
-	private MeetDao meetDao;
-
-//
-//	public int countPeopleNum(int productId) {
-//		return meetDao.countPeopleNum(productId);
-//	}
-//
-//	public Meet getMeetDetail(int meetId) {
-//		return meetDao.getMeetDetail(meetId);
-//	}
-//
-//	public List<Account> getMeetList(int productId) {
-//		return meetDao.getMeetList(productId);
-//	}
-	
-	
-	@Override
-	public void insertOrder(Delivery order) {
-		// TODO Auto-generated method stub
-
+	private DeliveryRepository deliveryRepository;
+	public void createDelivery(Delivery delivery) {
+		deliveryRepository.save(delivery);
 	}
+	
+	
 	@Override
 	public List<Delivery> getBuyList(String userId) {
 		// TODO Auto-generated method stub
