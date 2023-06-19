@@ -1,94 +1,43 @@
-/*
- * package com.ssp.closet.controller;
- * 
- * import org.springframework.stereotype.Controller; import
- * org.springframework.ui.Model; import
- * org.springframework.validation.BindingResult; import
- * org.springframework.web.bind.annotation.ModelAttribute; import
- * org.springframework.web.bind.annotation.RequestMapping; import
- * org.springframework.web.bind.annotation.RequestMethod;
- * 
- * import com.ssp.closet.service.ReviewService; import
- * com.ssp.closet.service.ReviewFormValidator;
- * 
- * @Controller
- * 
- * @RequestMapping("/reviews") public class ReviewController {
- * 
- * private ReviewService reviewService;
- * 
- * public ReviewController(ReviewService reviewService) { this.reviewService =
- * reviewService; }
- * 
- * // GET 요청 처리 - 리뷰 작성 폼 보여주기
- * 
- * @RequestMapping(value = "/new", method = RequestMethod.GET) public String
- * showReviewForm(Model model) { ReviewCommand reviewCommand = new
- * ReviewCommand(); model.addAttribute("reviewCommand", reviewCommand); return
- * "reviewForm"; // 리뷰 작성 폼 JSP 파일 이름 }
- * 
- * // POST 요청 처리 - 리뷰 데이터 저장
- * 
- * @RequestMapping(value = "/new", method = RequestMethod.POST) public String
- * submitReviewForm(@ModelAttribute("reviewCommand") ReviewCommand
- * reviewCommand, BindingResult result, Model model) { new
- * ReviewFormValidator().validate(reviewCommand, result);
- * 
- * if (result.hasErrors()) { // 오류가 있을 경우 폼을 다시 보여주고 오류 메시지 전달 return
- * "reviewForm"; } else { // 리뷰 생성 및 저장
- * reviewService.createReview(reviewCommand);
- * 
- * // 성공 페이지로 이동 return "successPage"; // 리뷰 작성 성공 시 보여줄 JSP 파일 이름 } }
- * 
- * // 기타 메서드 및 의존성 주입 등 생략 }
- */
+package com.ssp.closet.controller;
 
-//package com.ssp.closet.controller;
-//
-//import org.springframework.stereotype.Controller;
-//import org.springframework.ui.Model;
-//import org.springframework.validation.BindingResult;
-//import org.springframework.web.bind.annotation.ModelAttribute;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RequestMethod;
-//
-//import com.ssp.closet.service.ReviewService;
-//import com.ssp.closet.service.ReviewFormValidator;
-//
-//@Controller
-//@RequestMapping("/reviews")
-//public class ReviewController {
-//    
-//	private ReviewService reviewService;
-//    
-//    public ReviewController(ReviewService reviewService) {
-//        this.reviewService = reviewService;
-//    }
-//    
-//    // GET 요청 처리 - 리뷰 작성 폼 보여주기
-//    @RequestMapping(value = "/new", method = RequestMethod.GET)
-//    public String showReviewForm(Model model) {
-//        ReviewCommand reviewCommand = new ReviewCommand();
-//        model.addAttribute("reviewCommand", reviewCommand);
-//        return "reviewForm"; // 리뷰 작성 폼 JSP 파일 이름
-//    }
-//    
-//    // POST 요청 처리 - 리뷰 데이터 저장
-//    @RequestMapping(value = "/new", method = RequestMethod.POST)
-//    public String submitReviewForm(@ModelAttribute("reviewCommand") ReviewCommand reviewCommand, BindingResult result, Model model) {
-//        new ReviewFormValidator().validate(reviewCommand, result);
-//        
-//        if (result.hasErrors()) {
-//            // 오류가 있을 경우 폼을 다시 보여주고 오류 메시지 전달
-//            return "reviewForm";
-//        } else {
-//            // 리뷰 생성 및 저장
-//            reviewService.createReview(reviewCommand);
-//            
-//            // 성공 페이지로 이동
-//            return "successPage"; // 리뷰 작성 성공 시 보여줄 JSP 파일 이름
-//        }
-//    }
-//    
-//    // 기타 메서드 및 의존성 주입 등 생략
-//}
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import com.ssp.closet.dto.Review;
+
+public class ReviewController {
+	private List<Review> reviews;
+
+    public ReviewController() {
+        this.reviews = new ArrayList<>();
+    }
+    
+	public void writeReview() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("상품 ID를 입력하세요:");
+        String productId = scanner.nextLine();
+
+        System.out.println("사용자 ID를 입력하세요:");
+        String userId = scanner.nextLine();
+
+        System.out.println("리뷰 내용을 입력하세요:");
+        String content = scanner.nextLine();
+
+        System.out.println("별점을 입력하세요 (1부터 5까지):");
+        int rating = scanner.nextInt();
+
+        Review newReview = new Review(productId, userId, content, rating);
+        reviews.add(newReview);
+
+        System.out.println("리뷰가 작성되었습니다.");
+        
+        scanner.close();
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+    // 추가적인 필드 또는 메서드가 필요한 경우 이곳에 작성할 수 있습니다.
+}
