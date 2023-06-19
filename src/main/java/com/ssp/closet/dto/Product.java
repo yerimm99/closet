@@ -24,6 +24,8 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.OrderBy;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -76,8 +78,16 @@ public class Product implements Serializable {
 	private Integer price;
 	@Column(name = "DTYPE", insertable=false, updatable=false)
 	private String DTYPE;
+	
+	@Column(name = "RANK")
+	@OrderBy("rank DESC")
+	private int rank;
+	@Column(name = "VIEWS")
+    private int views; 
+	public int getViews() { return views;}
 
 	@ManyToOne
 	@JoinColumn(name = "USERID", referencedColumnName = "USERID")
 	private Account account;
+
 }
