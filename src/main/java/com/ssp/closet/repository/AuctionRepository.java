@@ -37,4 +37,9 @@ public interface AuctionRepository extends JpaRepository<Auction, Integer> {
 
 	Page<Auction> findByAccount(Account account, Pageable pageable);
 	
+	//나현 추가
+	
+	@Query("SELECT a FROM Auction a WHERE rownum <= 4 Order by a.registerDate desc")
+	List<Auction> findTop4OrderByRegisterDate();
+	
 }

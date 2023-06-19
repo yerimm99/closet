@@ -112,10 +112,12 @@
 						<th>상품최소가</th>
 						<td>${product.startPrice}</td>
 					</tr>
+					<c:if test = "${!empty product.price}">
 					<tr>
 						<th>현재최고가</th>
 						<td>${product.price}</td>
 					</tr>
+					</c:if>
 					<tr>
   						<th>마감 날짜</th>
  						<td><fmt:formatDate value="${product.endDate}" pattern="yyyy-MM-dd" /></td>
