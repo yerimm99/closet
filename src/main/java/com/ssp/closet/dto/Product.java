@@ -89,16 +89,8 @@ public class Product implements Serializable {
     private int views; 
 	public int getViews() { return views;}
 	
-	private int likes; //관심상품
-	public Product(String name, String description, Integer price) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.likes = 0;
-    }
-	 public void incrementLikes() {
-	        likes++;
-	}
+	private int likes = 0; //관심상품
+	public void incrementLikes() {likes++;}
 
 	@ManyToOne
 	@JoinColumn(name = "USERID", referencedColumnName = "USERID")

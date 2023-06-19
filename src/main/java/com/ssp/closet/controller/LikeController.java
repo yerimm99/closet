@@ -22,4 +22,6 @@ public class LikeController {
 	        }
 	        System.out.println(productName + " 상품을 찾을 수 없습니다.");
 	    }
+	    
+	    
 }
