@@ -24,7 +24,7 @@ public class AuctionFormValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "size", "SIZE_REQUIRED", "Size is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "color", "COLOR_REQUIRED", "Color is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "startPrice", "START_PRICE_REQUIRED", "StartPrice is required.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "endDate", "ENDDATE_REQUIRED", "EndDate is required.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "endDate", "END_DATE_REQUIRED", "EndDate is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "categoryId", "CATEGORY_REQUIRED", "Category is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "DESCRIPTION_REQUIRED", "Description is required.");
 		errors.setNestedPath("");

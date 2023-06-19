@@ -12,6 +12,7 @@ import com.ssp.closet.dto.Bookmark;
 import com.ssp.closet.dto.Category;
 import com.ssp.closet.dto.Groupbuy;
 import com.ssp.closet.dto.Meet;
+import com.ssp.closet.dto.Product;
 import com.ssp.closet.dto.Delivery;
 import com.ssp.closet.dto.Review;
 
@@ -20,23 +21,28 @@ public interface ClosetFacade {
 	List<Category> getCategoryList();
 	Category getCategory(String categoryId);
 
+	List<Product> searchProductList(String keywords);
+	List<Product> getProductList(int type, int status);
 
 	void insertAuction(Auction auction);
 	Auction getAuction(int productId);
 	void updateMaxPrice(int productId);
 	List<Auction> getAuctionList();
+
 	Page<Auction> getAuctionByCategoryId(String categoryId, Pageable pageable);
 	Page<Auction> findSellAuctionByAccount(Account account, Pageable pageable);
 	Auction findBuyAuctionByProductId(int productId);
 	void deleteAuctionByProductId(int productId);
+
+	void scheduleAuctionEnd(Auction auction);
+	void closedAuctionBySupp(Auction auction);
+
 	Page<Auction> getAuctionList(Pageable pageable);
 
 	void createBid(Bid bid);
-	void updateBidPrice(int productId, String userId, int newPrice);
 	boolean isBidPriceExists(int productId, int bidPrice);
 	void deleteBid(int productId);
-	//	void updateSuccessResult(BidId bidId);
-	//	void updateFailResult(BidId bidId);
+	void updateResult(String userId);
 	Bid findMaxPrice(int productId);		 	  
 	//	List<Bid> getBidResultList(String userId);
 	List<Bid> getBid(String userId);

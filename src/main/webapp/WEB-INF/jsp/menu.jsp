@@ -8,9 +8,9 @@
 	<meta charset="utf-8">
 	<title>메뉴바</title>
 	<style type = "text/css">
-		.layout{margin:0px auto;width:1180px;height:58px;padding:10px}
-		.logo{font-weight:bold;width:240px;height48px;font-size:40px;float:left;margin:5px 0px 4px 0px}
-		.navitool{float:left;width:600px;height:40px;padding:0px;margin:10px 0px 10px 20px}
+		.layout{margin:0px auto;width:1180px;height:58px;padding:10px;font-family: 'Noto Sans', Arial, sans-serif;}
+		.logo{font-weight:bold;width:240px;height:58px;font-size:40px;float:left;margin:5px 0px 4px 0px; font-family: 'Pacifico', cursive;}
+		.navitool{float:left;width:600px;height:40px;padding:0px;margin:10px 0px 10px 20px;}
 		.navi{float:left;width:90px;padding:10px;height:20px;font-size:18px;text-align:center;margin:5px 0px 10px 0px;}
 		.login{float:right;width:200px;padding:10px;height:20px;font-size:18px;text-align:center;margin:15px 0px 10px 0px;}
 		a{display:block}
@@ -23,10 +23,12 @@
 		.mypage{float:left;margin-left:20px}
 		.mypageImg{width:22px; height:22px}
 	</style>
+	<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 	<div class = "layout">
-		<div class = "logo">&amp;closet</div>
+		<div class = "logo"><a href="<c:url value="/closet/index.do" />">&amp;closet</a></div>
 		<div class = "navitool">
 			<div class = "navi"><a href="<c:url value="/closet/auction.do" />">경매</a></div>
 			<div class = "navi"><a href="<c:url value='/closet/groupbuy.do' />">공동구매</a></div>
