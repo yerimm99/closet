@@ -101,6 +101,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+	<!-- 메뉴바 -->
+	<jsp:include page = "../menu.jsp"/>
+	<hr>
   <div class="container">
     <h3>입찰하기</h3>
     <div class="product-info">
