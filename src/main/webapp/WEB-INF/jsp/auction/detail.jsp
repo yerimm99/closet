@@ -116,6 +116,10 @@
 						<td>${product.price}</td>
 					</tr>
 					<tr>
+						<th>마감 날짜</th>
+						<td>${product.endDate}</td>
+					</tr>
+					<tr>
 						<td colspan = "2" class = "gobtn">
 							<a href = "<c:url value='/bid/newBid.do'>
 									<c:param name = 'productId' value='${product.productId}' />
