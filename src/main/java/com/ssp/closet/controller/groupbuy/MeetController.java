@@ -40,24 +40,26 @@ public class MeetController {
 		if (userSession != null) {
 			Account account = closet.getAccount(userSession.getAccount().getUserId());
 			Groupbuy groupbuy = closet.getGroupbuyDetail(productId);
-			Meet existingMeet = closet.findMeetByUserIdAndProductId(account.getUserId(), productId);
-			if (existingMeet != null) {
-			} else {
-				Meet meet = new Meet();
-				meet.initMeet(account, groupbuy);
-				closet.createMeet(meet);
-				groupbuy.setPeopleSum(groupbuy.getPeopleSum() + 1);
-				closet.insertGroupbuy(groupbuy); //변경사항 저장
-
-				if(groupbuy.getPeopleSum() == groupbuy.getPeopleNum()) {
-					groupbuy.setStatus(0);
+			if(groupbuy.getStatus() == 1) {
+				Meet existingMeet = closet.findMeetByUserIdAndProductId(account.getUserId(), productId);
+				if (existingMeet != null) {
+				} else {
+					Meet meet = new Meet();
+					meet.initMeet(account, groupbuy);
+					closet.createMeet(meet);
+					groupbuy.setPeopleSum(groupbuy.getPeopleSum() + 1);
 					closet.insertGroupbuy(groupbuy); //변경사항 저장
 
-					List<Meet> meets = closet.findMeetByProductId(productId);
-					for (Meet m : meets) {
-						m.setMeetResult(1); // 값을 1로 변경
-						// 변경된 엔티티 저장
-						closet.createMeet(m);
+					if(groupbuy.getPeopleSum() == groupbuy.getPeopleNum()) {
+						groupbuy.setStatus(0);
+						closet.insertGroupbuy(groupbuy); //변경사항 저장
+
+						List<Meet> meets = closet.findMeetByProductId(productId);
+						for (Meet m : meets) {
+							m.setMeetResult(1); // 값을 1로 변경
+							// 변경된 엔티티 저장
+							closet.createMeet(m);
+						}
 					}
 				}
 			}
@@ -79,7 +81,7 @@ public class MeetController {
 			Account account = closet.getAccount(userSession.getAccount().getUserId());
 			Groupbuy groupbuy = closet.getGroupbuyDetail(productId);
 			closet.deleteByUserIdAndProductId(account.getUserId(), productId);
-			
+
 			groupbuy.setPeopleSum(groupbuy.getPeopleSum() - 1);
 			closet.insertGroupbuy(groupbuy); //변경사항 저장
 		}

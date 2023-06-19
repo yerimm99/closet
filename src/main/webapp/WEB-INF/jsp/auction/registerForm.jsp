@@ -4,6 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<c:set var="targetUrl"><c:url value="/auction/confirmAuction.do" /></c:set>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +32,7 @@
 	<hr>
 	
 	<div class = "layout">
-		<form:form modelAttribute = "auctionForm" method="post" >
+		<form:form modelAttribute = "auctionForm" action="${targetUrl}" method="post" >
 		<table>
 			<tr>
 				<c:if test="${auctionForm.newAuction}">
