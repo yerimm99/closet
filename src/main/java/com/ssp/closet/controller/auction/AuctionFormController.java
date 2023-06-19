@@ -106,6 +106,7 @@ public class AuctionFormController {
 		}
 	}
 	
+	
 	@RequestMapping("/auction/confirmAuction.do")
 	protected ModelAndView confirmAuction( //auction 등록 확인 
 			@ModelAttribute("auctionForm") AuctionForm auctionForm, 
@@ -116,9 +117,37 @@ public class AuctionFormController {
 		if (result.hasErrors()) return mav1;
 		
 		closet.insertAuction(auctionForm.getAuction()); //등록 
+		closet.scheduleAuctionEnd(auctionForm.getAuction());
 		ModelAndView mav2 = new ModelAndView("auction/detail");
 		mav2.addObject("product", auctionForm.getAuction());
 		status.setComplete();  // remove session
 		return mav2;
 	}
+	
+	@RequestMapping("/auction/delete.do")
+	public String removeAuction(HttpServletRequest request,
+			@RequestParam("productId") int productId
+			) throws Exception {
+		UserSession userSession = 
+				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
+		if (userSession != null) {
+			if(closet.countBidByProductId(productId) == 0) {
+				closet.deleteAuctionByProductId(productId);
+			}
+			else {
+				return "redirect:/popup/deleteAuction.do";
+			}
+		}
+		else {
+			return "redirect:/account/SignonForm.do";
+		}
+		return "redirect:/closet/mypage.do";
+	}
+
+	@RequestMapping("/popup/deleteAuction.do")
+	public String showPopup() {
+		return "groupbuy/popup";
+	}
+	
+	
 }

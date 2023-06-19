@@ -35,7 +35,12 @@
 		<form:form modelAttribute = "auctionForm" action="${targetUrl}" method="post" >
 		<table>
 			<tr>
-				<td style="text-align:center;font-size:24px" colspan = "2">경매 상품 등록<br><br></td>
+				<c:if test="${auctionForm.newAuction}">
+					<td style="text-align:center;font-size:24px" colspan = "2">경매 상품 등록<br><br></td>
+				</c:if>
+				<c:if test="${!auctionForm.newAuction}">
+					<td style="text-align:center;font-size:24px" colspan = "2">경매 상품 수정<br><br></td>
+				</c:if>
 			</tr>
 			<tr>
 				<td>상품명</td>
@@ -61,15 +66,24 @@
 			<tr>
 				<td>최소 가격</td>
 				<td>
-					<form:input path = "auction.startPrice"  class = "inp"/>
+					<c:if test="${auctionForm.newAuction}">
+						<form:input path = "auction.startPrice" class = "inp"/>
+					</c:if>
+					<c:if test="${!auctionForm.newAuction}">
+						<c:out value="${auctionForm.auction.startPrice}" />
+					</c:if>
 					<hr>
 				</td>
 			</tr>
 			<tr>
 				<td>종료 날짜</td>
  				<td>
- 					<form:input path = "auction.endDate"  class = "inp" placeholder = "xxxx/xx/xx형식으로 입력해주세요."/>
- 					<!--<form:input type = "date" path = "auction.endDate" class = "inp" value = "2023/06/20"/>-->
+ 					<c:if test="${auctionForm.newAuction}">
+ 						<form:input type = "date" path = "auction.endDate" class = "inp"/>
+					</c:if>
+					<c:if test="${!auctionForm.newAuction}">
+						<c:out value="${auctionForm.auction.endDate}" />
+					</c:if>
  					<hr>
  				</td> 
 			</tr>

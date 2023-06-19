@@ -1,7 +1,12 @@
 package com.ssp.closet.repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -13,18 +18,23 @@ public interface AuctionRepository extends JpaRepository<Auction, Integer> {
 	//List<Auction> getAuctionResultList (String userId);
 	
 	Auction findByProductId(int productId);
+	List<Auction> findByAccount(Account account);
 	
 	@Modifying
+	@Transactional
 	@Query("update Auction a " + 
 			"set a.price = :maxPrice " +
 			"where a.productId = :productId")
 	void updatePrice(@Param("productId")int productId, @Param("maxPrice")int price);
 	
-	List<Auction> findByCategoryId(String categoryId);
+	Page<Auction> findByCategoryId(String categoryId, Pageable pageable);
 	
 	void deleteByProductId(int productId);
 	
-	List<Auction> findByAccount(Account account);
+
+	@Query("SELECT a FROM Auction a WHERE a.endDate <= :currentTime")
+    List<Auction> findEndedAuctions(@Param("currentTime") LocalDateTime currentTime);
+
+	Page<Auction> findByAccount(Account account, Pageable pageable);
 	
-	Auction findByProductId(Integer productId);
 }

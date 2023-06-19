@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,8 +34,8 @@
 		.info{float:left;padding:20px;margin:20px 40px 0px 20px;}
 		th{text-align:left;padding:2px 10px;width:170px}
 		td{padding:0px 10px}
-		.gobtn{text-align:center;font-size:20px;border-radius:10px;background-color:black;
-		border:1px solid black;width:100px;height:35px;color:white;margin-top:10px}
+		.gobtn{text-align:center;font-size:20px;border-radius:10px;background-color:#3366FF;
+		border:1px solid;width:100px;height:35px;color:white;margin-top:10px}
 		.gobtn2{text-align:center;font-size:20px;border-radius:10px;
 		border:1px solid black;width:100px;height:35px;color:white;margin-top:10px}
 		a{display:block}
@@ -111,6 +112,10 @@
 						<td>${product.peopleNum}</td>
 					</tr>
 					<tr>
+  						<th>마감 날짜</th>
+ 						<td><fmt:formatDate value="${product.endDate}" pattern="yyyy-MM-dd" /></td>
+					</tr>
+					<tr>
 						<td colspan = "2" class = "gobtn">
 							<a href = "<c:url value='/groupbuy/enjoy.do'>
 									<c:param name = 'productId' value='${product.productId}'/>
@@ -123,16 +128,6 @@
 							<a href = "<c:url value='/bookmark/create.do'>
 									<c:param name = 'productId' value='${product.productId}' />
 									</c:url>"><b style = "font-size:18px">관심상품</b>
-							</a>
-						</td>
-					</tr>
-					
-					
-					<tr>
-						<td colspan = "2" class = "gobtn3">
-							<a href = "<c:url value='/order/registerForm.do'>
-									<c:param name = 'productId' value='${product.productId}' />
-									</c:url>"><b style = "font-size:18px">주문버튼 임시구현</b>
 							</a>
 						</td>
 					</tr>

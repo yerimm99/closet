@@ -58,9 +58,8 @@ public class Product implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date registerDate; // 등록 날짜
 	@Column(name="ENDDATE")
-	@Temporal(TemporalType.DATE)
-	//@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date endDate; // 등록 날짜
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date endDate;
 	@Column(name="COLOR")
 	private String color;
 	@Column(name="PSIZE")
@@ -81,6 +80,4 @@ public class Product implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "USERID", referencedColumnName = "USERID")
 	private Account account;
-
-
 }
