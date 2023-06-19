@@ -38,6 +38,8 @@ public interface ClosetFacade {
 	void closedAuctionBySupp(Auction auction);
 
 	Page<Auction> getAuctionList(Pageable pageable);
+	
+	List<Auction> findTop4AuctionOrderByRegisterDate();
 
 	void createBid(Bid bid);
 	boolean isBidPriceExists(int productId, int bidPrice);
