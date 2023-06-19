@@ -106,6 +106,7 @@ public class AuctionFormController {
 		}
 	}
 	
+	
 	@RequestMapping("/auction/confirmAuction.do")
 	protected ModelAndView confirmAuction( //auction 등록 확인 
 			@ModelAttribute("auctionForm") AuctionForm auctionForm, 

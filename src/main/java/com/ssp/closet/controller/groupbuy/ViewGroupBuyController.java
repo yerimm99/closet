@@ -1,6 +1,5 @@
 package com.ssp.closet.controller.groupbuy;
 
-import org.springframework.beans.support.PagedListHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -14,9 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -113,39 +110,39 @@ public class ViewGroupBuyController {
 	}
 
 	//내가 구매 신청한 공동구매 상품 리스트 보기
-	@RequestMapping("/myPage/buyGroupbuy.do")
-	public String handleRequest4(@PageableDefault(size = 2, sort = "status", direction = Direction.DESC) Pageable pageable,
-			HttpServletRequest request,
-			ModelMap model
-			) throws Exception {
-		UserSession userSession = 
-				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
-		if (userSession != null) {
-			Account account = closet.getAccount(userSession.getAccount().getUserId());
-			List<Meet> meet = this.closet.findMeetByUserId(account.getUserId());
-			List<Groupbuy> productGroupbuys = new ArrayList<>();
-			for (Meet m : meet) {
-				Groupbuy groupbuy = this.closet.findBuyGroupbuyByProductId(m.getProductId());
-				if (groupbuy != null) {
-					productGroupbuys.add(groupbuy);
+		@RequestMapping("/myPage/buyGroupbuy.do")
+		public String handleRequest4(@PageableDefault(size = 2, sort = "status", direction = Direction.DESC) Pageable pageable,
+				HttpServletRequest request,
+				ModelMap model
+				) throws Exception {
+			UserSession userSession = 
+					(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
+			if (userSession != null) {
+				Account account = closet.getAccount(userSession.getAccount().getUserId());
+				List<Meet> meet = this.closet.findMeetByUserId(account.getUserId());
+				List<Groupbuy> productGroupbuys = new ArrayList<>();
+				for (Meet m : meet) {
+					Groupbuy groupbuy = this.closet.findBuyGroupbuyByProductId(m.getProductId());
+					if (groupbuy != null) {
+						productGroupbuys.add(groupbuy);
+					}
 				}
+				final int start = (int)pageable.getOffset();
+				final int end = Math.min((start + pageable.getPageSize()), productGroupbuys.size());
+				Page<Groupbuy> pageList = new PageImpl<>(productGroupbuys.subList(start, end), pageable, productGroupbuys.size());
+				List<Groupbuy> productList = pageList.getContent();//페이징 객체에 있는 내용물들
+				PagingVO paging = pagingService.pagingInfoG(pageList);
+				
+				model.put("productList", productList);
+				model.put("paging", paging);
+				model.put("preview", paging.getPreviousPageGroupOfPage());
+				model.put("next", paging.getNextPageGroupOfPage());
+				model.put("meetList", meet);
+				return "groupbuy/buyResultList";
+			} else {
+				return "redirect:/account/SignonForm.do";
 			}
-			final int start = (int)pageable.getOffset();
-			final int end = Math.min((start + pageable.getPageSize()), productGroupbuys.size());
-			Page<Groupbuy> pageList = new PageImpl<>(productGroupbuys.subList(start, end), pageable, productGroupbuys.size());
-			List<Groupbuy> productList = pageList.getContent();//페이징 객체에 있는 내용물들
-			PagingVO paging = pagingService.pagingInfoG(pageList);
-			
-			model.put("productList", productList);
-			model.put("paging", paging);
-			model.put("preview", paging.getPreviousPageGroupOfPage());
-			model.put("next", paging.getNextPageGroupOfPage());
-			model.put("meetList", meet);
-			return "groupbuy/buyResultList";
-		} else {
-			return "redirect:/account/SignonForm.do";
 		}
-	}
 
 	@RequestMapping("/groupbuy/detail.do")
 	public void detailGroupbuy(
