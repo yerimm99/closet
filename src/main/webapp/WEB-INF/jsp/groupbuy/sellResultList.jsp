@@ -10,8 +10,12 @@
 	<style type = "text/css">
 		body{margin:0}
 		.layout{margin:0px auto;width:1180px;padding:10px;font-size:18px}
+		.layout{margin:0px auto;width:1180px;padding:10px;font-size:18px}
 		.page{text-align:center;font-size:24px;margin-top:60px;margin-bottom:30px}
+		table{width:100%}
 		th,td{border-top:1px solid gray;}
+		.text-center{margin-top:60px;text-align:center;}
+		.text-center a{margin:0px 20px; display:inline-block}
 		
 	</style>
 </head>
@@ -24,7 +28,6 @@
 		<div class = "page">판매 내역 조회</div>
 		<c:set value="${paging}" var="paging"></c:set>
 		<div class="row">
-		<hr>
 		<table>
 			<tr>
 				<th colspan = "2">상품명</th>
@@ -32,16 +35,16 @@
 			</tr>
 			<c:forEach items="${productList}" var="prod">
 				<tr>
-					<td>
+					<td width = "250px" height = "250px">
 						<img src="<c:url value='${prod.picture1}'/>" width="250px" height="250px" />
 					</td>
 					<td>
-						${prod.name}<br><br>
-						${prod.color}<br>
-						${prod.size}<br>
-						${prod.description}
+						&nbsp;&nbsp;<b>${prod.name}</b><br><br>
+						&nbsp;&nbsp;${prod.color}<br>
+						&nbsp;&nbsp;${prod.size}<br>
+						&nbsp;&nbsp;${prod.price}원
 					</td>
-					<td>
+					<td style = "text-align:center" width = "300px">
 						<a href = "<c:url value='/groupbuy/detail.do'>
 								<c:param name = 'productId' value='${prod.productId}' />
 								</c:url>"><b style = "font-size:18px">상세보기</b>
