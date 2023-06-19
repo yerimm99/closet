@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -100,10 +101,8 @@ public class AuctionFormController {
 				auctionForm.setAuction(existingAuction);
 				auctionForm.setNewAuction(false);
 			}
-			return "auction/registerForm";
-		} else {
-			return "redirect:/account/SignonForm.do";
 		}
+		return "auction/registerForm";
 	}
 	
 	@RequestMapping("/auction/confirmAuction.do")
@@ -133,19 +132,13 @@ public class AuctionFormController {
 			if(closet.countBidByProductId(productId) == 0) {
 				closet.deleteAuctionByProductId(productId);
 			}
-			else {
-				return "redirect:/popup/deleteAuction.do";
-			}
 		}
-		else {
-			return "redirect:/account/SignonForm.do";
-		}
-		return "redirect:/closet/mypage.do";
+		return "redirect:/myPage/sellAuction.do";
 	}
 
 	@RequestMapping("/popup/deleteAuction.do")
 	public String showPopup() {
-		return "groupbuy/popup";
+	    return "redirect:/myPage/sellAuction.do";
 	}
 	
 	

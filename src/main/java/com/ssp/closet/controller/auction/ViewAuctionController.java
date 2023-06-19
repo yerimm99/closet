@@ -84,8 +84,7 @@ public class ViewAuctionController {
 		@RequestMapping("/myPage/sellAuction.do")
 		public String handleRequest3(@PageableDefault(size = 2, sort = "status", direction = Direction.DESC) Pageable pageable,
 				HttpServletRequest request,
-				ModelMap model
-				) throws Exception {
+				ModelMap model) throws Exception {
 			UserSession userSession = 
 					(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
 			if (userSession != null) {
@@ -99,10 +98,8 @@ public class ViewAuctionController {
 				model.put("paging", paging);
 				model.put("preview", paging.getPreviousPageGroupOfPage());
 				model.put("next", paging.getNextPageGroupOfPage());
-				return "auction/sellResultList";
-			} else {
-				return "redirect:/account/SignonForm.do";
 			}
+			return "auction/sellResultList";
 		}
 		
 		//내가 구매 신청한 경매 상품 리스트 보기
@@ -135,10 +132,8 @@ public class ViewAuctionController {
 				model.put("preview", paging.getPreviousPageGroupOfPage());
 				model.put("next", paging.getNextPageGroupOfPage());
 				model.put("bidList", bid);
-				return "auction/buyResultList";
-			} else {
-				return "redirect:/account/SignonForm.do";
-			}
+			} 
+			return "auction/buyResultList";
 		}
 		
 		@RequestMapping("/auction/detail.do")

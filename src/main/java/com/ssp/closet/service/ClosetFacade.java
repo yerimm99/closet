@@ -41,7 +41,7 @@ public interface ClosetFacade {
 
 	void createBid(Bid bid);
 	boolean isBidPriceExists(int productId, int bidPrice);
-	void deleteBid(int productId);
+	void deleteBid(int productId, String userId);
 	void updateResult(String userId);
 	Bid findMaxPrice(int productId);		 	  
 	//	List<Bid> getBidResultList(String userId);

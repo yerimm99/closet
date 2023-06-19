@@ -18,7 +18,7 @@ public interface BidRepository extends JpaRepository<Bid, BidId>{
 			"WHERE b.productId = :productId AND b.bidPrice = :bidPrice")
 	boolean existsByProductIdAndBidPrice(@Param("productId") int productId, @Param("bidPrice") int bidPrice);
 
-	void deleteByProductId(int productId);
+	void deleteByProductIdAndUserId(int productId, String userId);
 	  
 	@Query("update Bid b " + 
 			"set b.bidResult = 1 " +

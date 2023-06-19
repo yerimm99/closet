@@ -169,8 +169,8 @@ public class ClosetImpl implements ClosetFacade{
 	public boolean isBidPriceExists(int productId, int bidPrice) {
 		return bidRepository.existsByProductIdAndBidPrice(productId, bidPrice);
 	}
-	public void deleteBid(int productId) {
-		bidRepository.deleteByProductId(productId);
+	public void deleteBid(int productId, String userId) {
+		bidRepository.deleteByProductIdAndUserId(productId, userId);
 	}
 	public Integer countBidByProductId(int productId) {
 		return bidRepository.countByProductId(productId);
