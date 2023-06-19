@@ -47,7 +47,7 @@ public class ClosetImpl implements ClosetFacade{
 	private ProductRepository productRepository;
 	
 	public List<Product> getProductList(int type, int status) {
-		return productRepository.findByTypeAndStatus(type, status);
+		return productRepository.findByPtypeAndStatus(type, status);
 	}
 	
 	public List<Product> getProductList() {
@@ -87,6 +87,14 @@ public class ClosetImpl implements ClosetFacade{
 	public Page<Auction> getAuctionByCategoryId(String categoryId, Pageable pageable) {
         return aucRepository.findByCategoryId(categoryId, pageable);
     }
+	
+	//추가
+	public Page<Auction> getAuctionByUsed(int used, Pageable pageable){
+		return aucRepository.findByUsed(used, pageable);
+	}
+	public Page<Auction> getAuctionByCategoryIdAndUsed(String categoryId, int used, Pageable pageable){
+		return aucRepository.findByCategoryIdAndUsed(categoryId, used, pageable);
+	}
 	
 	public Page<Auction> findSellAuctionByAccount(Account account, Pageable pageable){
 		 return aucRepository.findByAccount(account, pageable);
