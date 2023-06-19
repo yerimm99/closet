@@ -1,6 +1,10 @@
 package com.ssp.closet.controller.order;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import com.ssp.closet.dto.Delivery;
 
@@ -24,5 +28,22 @@ public class OrderForm implements Serializable{
 	}
 	public boolean isNewOrder() {
 		return newOrder;
+	}
+	
+	
+	
+	public String convertToFormattedDate(String date) {
+		DateFormat inputFormat = new SimpleDateFormat("MM/yyyy");
+        DateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date parsedDate = null;
+		try {
+			parsedDate = inputFormat.parse(date);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        String formattedDate = outputFormat.format(parsedDate);
+
+	    return formattedDate;
 	}
 }

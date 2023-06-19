@@ -39,9 +39,5 @@ public class ReviewController {
     public List<Review> getReviews() {
         return reviews;
     }
-    
-    
-
-
     // 추가적인 필드 또는 메서드가 필요한 경우 이곳에 작성할 수 있습니다.
 }
