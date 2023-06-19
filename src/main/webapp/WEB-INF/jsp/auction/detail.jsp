@@ -34,8 +34,8 @@
 		.info{float:left;padding:20px;margin:20px 40px 0px 20px;}
 		th{text-align:left;padding:2px 10px;width:170px}
 		td{padding:0px 10px}
-		.gobtn{text-align:center;font-size:20px;border-radius:10px;background-color:black;
-		border:1px solid black;width:100px;height:35px;color:white;margin-top:10px}
+		.gobtn{text-align:center;font-size:20px;border-radius:10px;background-color:#FF3366;
+		border:1px solid;width:100px;height:35px;color:white;margin-top:10px}
 		.gobtn2{text-align:center;font-size:20px;border-radius:10px;
 		border:1px solid black;width:100px;height:35px;color:white;margin-top:10px}
 		a{display:block}

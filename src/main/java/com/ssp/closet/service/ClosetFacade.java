@@ -19,15 +19,19 @@ public interface ClosetFacade {
 	List<Category> getCategoryList();
 	Category getCategory(String categoryId);
 
+	List<Product> searchProductList(String keywords);
+	List<Product> getProductList(int type, int status);
 
 	void insertAuction(Auction auction);
 	Auction getAuction(int productId);
 	void updateMaxPrice(int productId);
 	List<Auction> getAuctionList();
 	List<Auction> getAuctionByCategoryId(String categoryId);
-	List<Auction> findAuctionByUserId(String suppId);
+	List<Auction> findAuctionByAccount(Account account);
 	void deleteAuctionByProductId(int productId);
-
+	void scheduleAuctionEnd(Auction auction);
+	void closedAuctionBySupp(Auction auction);
+	
 	void createBid(Bid bid);
 	boolean isBidPriceExists(int productId, int bidPrice);
 	void deleteBid(int productId);

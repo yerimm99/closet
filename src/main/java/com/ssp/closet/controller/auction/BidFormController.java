@@ -24,6 +24,7 @@ import com.ssp.closet.dto.BidId;
 import com.ssp.closet.service.ClosetFacade;
 
 @Controller
+@SessionAttributes("bidForm")
 public class BidFormController {
 	@Autowired
 	private ClosetFacade closet;
@@ -92,7 +93,7 @@ public class BidFormController {
 			return mav;
 		}
 		closet.createBid(bid);
-
+		bid.getAuction().setPrice(bid.getBidPrice());
 		ModelAndView mav = new ModelAndView("auction/detail");
 		mav.addObject("product", bid.getAuction());
 		status.setComplete();  // remove session

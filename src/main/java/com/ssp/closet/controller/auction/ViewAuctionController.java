@@ -68,7 +68,7 @@ public class ViewAuctionController {
 					(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
 			if (userSession != null) {
 				Account account = closet.getAccount(userSession.getAccount().getUserId());
-				PagedListHolder<Auction> productList = new PagedListHolder<Auction>(closet.findAuctionByUserId(account.getUserId()));
+				PagedListHolder<Auction> productList = new PagedListHolder<Auction>(closet.findAuctionByAccount(account));
 				productList.setPageSize(4);
 				model.put("productList", productList);
 				return "auction/sellResultList";
@@ -110,5 +110,16 @@ public class ViewAuctionController {
 				ModelMap model) throws Exception {
 			Auction product = closet.getAuction(productId);
 			model.put("product", product);
+		}
+		
+		@RequestMapping("/myPage/myAuction.do")
+		public String handleRequest5(HttpServletRequest request,
+				@RequestParam("productId") int productId) throws Exception {
+			
+			Auction auction = closet.getAuction(productId);
+			closet.closedAuctionBySupp(auction);
+
+			return "auction/sellResultList";
+			
 		}
 }

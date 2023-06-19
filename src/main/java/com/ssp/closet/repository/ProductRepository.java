@@ -33,7 +33,8 @@ public interface ProductRepository extends JpaRepository<Product, Integer>{
 //	    		"AND EXISTS (SELECT g FROM GroupBuy g WHERE g.productId = p.productId AND g.peopleNum = 1)")
 //		void deleteByProductIdIfGroupBuyPeopleNumIsOne( @Param("productId") int productId);
 		
-		//List<Product> findByTypeAndStatus(int type, int status);
+		List<Product> findByTypeAndStatus(int type, int status);
+		List<Product> findByNameIgnoreCaseContaining(String keywords);
 		//List<Product> findAll();
 		
 //		Product findByProductId(int productId);

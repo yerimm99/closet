@@ -1,44 +1,126 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:set var="targetUrl"><c:url value='/bid/confirmBid.do' /></c:set>
-
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="EUC-KR">
-	<title>ÀÔÂû ÆäÀÌÁö</title>
-	<style type = "text/css">
-		body{margin:0}
-		.layout{margin:0px auto;width:1180px;padding:10px}
-	</style>
+  <meta charset="UTF-8">
+  <title>ì…ì°° í˜ì´ì§€</title>
+  <style>
+    /* KREAM ì»¬ëŸ¬ íŒ”ë ˆíŠ¸ */
+    :root {
+      --kream-primary-color: #FF3366;
+      --kream-secondary-color: #333333;
+      --kream-tertiary-color: #F5F5F5;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Noto Sans', Arial, sans-serif;
+      background-color: var(--kream-tertiary-color);
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h3 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: var(--kream-secondary-color);
+      text-align: center;
+      font-family: 'Pacifico', cursive;
+    }
+
+    .product-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .product-image {
+      width: 200px;
+      height: 200px;
+      margin-right: 20px;
+      background-color: var(--kream-tertiary-color);
+      border: 1px solid #ccc;
+    }
+
+    .product-details {
+      flex: 1;
+    }
+
+    .bid-form {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .bid-input-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    .bid-input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      width: 150px;
+      margin-right: 10px;
+      text-align: right;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .bid-input:focus {
+      outline: none;
+      border-color: var(--kream-primary-color);
+      box-shadow: 0 0 0 2px rgba(255, 51, 102, 0.5);
+    }
+
+    .submit-button {
+      padding: 10px 20px;
+      background-color: var(--kream-primary-color);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    .error-message {
+      color: red;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-	<!-- ¸Ş´º¹Ù -->
-	<jsp:include page = "../menu.jsp"/>
-	<hr>
-	
-	<div class = "layout">
-		<h3>ÀÔÂûÇÏ±â</h3>
-		<div>
-			<div class = "prodInfo">
-				<!--  ÀÌ¹ÌÁö ±¸ÇöµÇ¸é »ç¿ë<img src="<c:url value='${product.picture1}'/>">-->
-				<b>${product.name}</b><br>
-				${product.color}<br>
-				${product.size}<br><br>
-			</div>
-			<hr>
-			<div>
-			±¸¸Å Èñ¸Á°¡
-			<form:form modelAttribute = "bidForm" method="POST" action="${targetUrl}">
-				<form:input placeholder="Èñ¸Á°¡ÀÔ·Â" path="bid.bidPrice" />
-				 <B><form:errors path="bidPrice" cssClass="error" /></B>
-				<input type = "submit" value = "ÀÔÂûÇÏ±â">
-			</form:form>
-			</div>
-		</div>
-	</div>
+  <div class="container">
+    <h3>ì…ì°°í•˜ê¸°</h3>
+    <div class="product-info">
+      <div class="product-image"></div>
+      <div class="product-details">
+        <b>ìƒí’ˆëª… ${product.name}</b><br>
+        ìƒ‰ìƒ ${product.color}<br>
+        ì‚¬ì´ì¦ˆ ${product.size} <br><br>
+      </div>
+    </div>
+    <hr>
+    <div>
+      <form:form class="bid-form" modelAttribute="bidForm" method="POST" action="${targetUrl}">
+        <div class="bid-input-container">
+        <B>êµ¬ë§¤ í¬ë§ê°€</B> &nbsp;&nbsp;&nbsp; <form:input class="bid-input" placeholder="í¬ë§ê°€ì…ë ¥" path="bid.bidPrice"/> <B>ì›</B>
+        </div>
+        <B><form:errors path="bidPrice" class="error-message" /></B>
+        <br><br><input class="submit-button" type="submit" value="ì…ì°°í•˜ê¸°">
+      </form:form>
+    </div>
+  </div>
 </body>
 </html>

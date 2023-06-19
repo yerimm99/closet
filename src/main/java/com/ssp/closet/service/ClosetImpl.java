@@ -1,12 +1,14 @@
 package com.ssp.closet.service;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -39,14 +41,18 @@ public class ClosetImpl implements ClosetFacade{
 
 	@Autowired  
 	private ProductRepository productRepository;
-//	public List<Product> getProductListByType(int type, int status) {
-//		return productRepository.findByTypeAndStatus(type, status);
-//	}
+	
+	public List<Product> getProductList(int type, int status) {
+		return productRepository.findByTypeAndStatus(type, status);
+	}
 	
 	public List<Product> getProductList() {
 		return productRepository.findAll();
 	}
 
+	public List<Product> searchProductList(String keywords) {
+		return productRepository.findByNameIgnoreCaseContaining(keywords);
+	}
 //	public Product getProductDetail(int productId) {
 //		return productRepository.findByProductId(productId);
 //	}
@@ -68,38 +74,76 @@ public class ClosetImpl implements ClosetFacade{
 	}
 	public void updateMaxPrice(int productId) {
 		aucRepository.updatePrice(productId, findMaxPrice(productId).getBidPrice());
-		//aucRepository.save(getAuction(productId));
 	}
 	
 	public List<Auction> getAuctionByCategoryId(String categoryId) {
         return aucRepository.findByCategoryId(categoryId);
     }
 	
-	public List<Auction> findAuctionByUserId(String suppId){
-		 return aucRepository.findByUserId(suppId);
+	public List<Auction> findAuctionByAccount(Account account){
+		 return aucRepository.findByAccount(account);
 	}
 	
 	public void deleteAuctionByProductId(int productId) {
 		aucRepository.deleteByProductId(productId);
 	}
 	
-	@Scheduled(fixedDelay = 60000) // 경매 종료 확인 주기 (1분마다 실행)
-    public void checkAuctionEnd() {
-        // 경매 종료 시간이 현재 시간보다 이전인 경매 조회
-        List<Auction> endedAuctions = aucRepository.findEndedAuctions(LocalDateTime.now());
-        
-        // 각 경매에 대해 최고 입찰가 확인
-        for (Auction auction : endedAuctions) {
-            Bid highestBid = findMaxPrice(auction.getProductId());
-            if (highestBid != null) {
-                // 낙찰 처리
-                auction.setWinner(highestBid.getUserId());
-                auction.setStatus(0);
-                aucRepository.save(auction);
-                updateResult(auction.getWinner());
-            }
+	@Autowired
+	private TaskScheduler scheduler;
+
+	public void scheduleAuctionEnd(Auction auction) {
+	    Date closingTime = auction.getEndDate(); // 경매 종료 시간을 가져옴
+
+	    Runnable auctionEndTask = new Runnable() {
+	        @Override
+	        public void run() {
+	        	Bid highestBid = findMaxPrice(auction.getProductId());
+	            if (highestBid != null && auction.getStatus() != 0) {
+	                // 낙찰 처리
+	                auction.setWinner(highestBid.getUserId());
+	                updateResult(auction.getWinner());
+	            }
+	            auction.setStatus(0);
+            	aucRepository.save(auction);
+	        }
+	    };
+
+	    // 스케줄 생성: closingTime에 auctionEndTask 실행
+	    scheduler.schedule(auctionEndTask, closingTime);
+	    System.out.println("Auction end task has been scheduled to execute at " + closingTime);
+	}
+	
+//	@Scheduled(fixedDelay = 60000) // 경매 종료 확인 주기 (1분마다 실행)
+//    public void checkAuctionEnd() {
+//        // 경매 종료 시간이 현재 시간보다 이전인 경매 조회
+//        List<Auction> endedAuctions = aucRepository.findEndedAuctions(LocalDateTime.now());
+//        
+//        // 각 경매에 대해 최고 입찰가 확인
+//        for (Auction auction : endedAuctions) {
+//            Bid highestBid = findMaxPrice(auction.getProductId());
+//            if (highestBid != null) {
+//                // 낙찰 처리
+//                auction.setWinner(highestBid.getUserId());
+//                auction.setStatus(0);
+//                aucRepository.save(auction);
+//                updateResult(auction.getWinner());
+//            }else {
+//            	auction.setStatus(0);
+//            	aucRepository.save(auction);
+//            }
+//        }
+//    }
+	
+	public void closedAuctionBySupp(Auction auction) {
+		auction.setStatus(0);
+		Bid highestBid = findMaxPrice(auction.getProductId());
+		if (highestBid != null) {
+           // 낙찰 처리
+           auction.setWinner(highestBid.getUserId());
+           updateResult(auction.getWinner());
         }
-    }
+        aucRepository.save(auction);
+	}
 	
 	@Autowired
 	private BidRepository bidRepository;

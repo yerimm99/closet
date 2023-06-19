@@ -116,6 +116,7 @@ public class AuctionFormController {
 		if (result.hasErrors()) return mav1;
 		
 		closet.insertAuction(auctionForm.getAuction()); //등록 
+		closet.scheduleAuctionEnd(auctionForm.getAuction());
 		ModelAndView mav2 = new ModelAndView("auction/detail");
 		mav2.addObject("product", auctionForm.getAuction());
 		status.setComplete();  // remove session
@@ -146,4 +147,6 @@ public class AuctionFormController {
 	public String showPopup() {
 		return "groupbuy/popup";
 	}
+	
+	
 }

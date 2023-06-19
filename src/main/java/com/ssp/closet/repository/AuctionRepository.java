@@ -10,12 +10,13 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
 public interface AuctionRepository extends JpaRepository<Auction, Integer> {
 	//List<Auction> getAuctionResultList (String userId);
 	
 	Auction findByProductId(int productId);
-	List<Auction> findByUserId(String suppId);
+	List<Auction> findByAccount(Account account);
 	
 	@Modifying
 	@Transactional
