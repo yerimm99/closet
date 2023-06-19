@@ -2,16 +2,18 @@ package com.ssp.closet.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
 import com.ssp.closet.dto.Bid;
-import com.ssp.closet.dto.BidId;
 import com.ssp.closet.dto.Bookmark;
 import com.ssp.closet.dto.Category;
 import com.ssp.closet.dto.Groupbuy;
 import com.ssp.closet.dto.Meet;
-import com.ssp.closet.dto.Delivery;
 import com.ssp.closet.dto.Product;
+import com.ssp.closet.dto.Delivery;
 import com.ssp.closet.dto.Review;
 
 public interface ClosetFacade {
@@ -26,12 +28,17 @@ public interface ClosetFacade {
 	Auction getAuction(int productId);
 	void updateMaxPrice(int productId);
 	List<Auction> getAuctionList();
-	List<Auction> getAuctionByCategoryId(String categoryId);
-	List<Auction> findAuctionByAccount(Account account);
+
+	Page<Auction> getAuctionByCategoryId(String categoryId, Pageable pageable);
+	Page<Auction> findSellAuctionByAccount(Account account, Pageable pageable);
+	Auction findBuyAuctionByProductId(int productId);
 	void deleteAuctionByProductId(int productId);
+
 	void scheduleAuctionEnd(Auction auction);
 	void closedAuctionBySupp(Auction auction);
-	
+
+	Page<Auction> getAuctionList(Pageable pageable);
+
 	void createBid(Bid bid);
 	boolean isBidPriceExists(int productId, int bidPrice);
 	void deleteBid(int productId);
@@ -46,11 +53,11 @@ public interface ClosetFacade {
 	void insertGroupbuy(Groupbuy groupbuy);
 	Groupbuy getGroupbuyDetail(int productId);
 	List<Groupbuy> getGroupbuyList();
-	List<Groupbuy> getGroupbuyByCategoryId(String categoryId);
-	List<Groupbuy> findSellGroupbuyByAccount(Account account);
-	public Groupbuy findBuyGroupbuyByProductId(int productId);
+	Page<Groupbuy> getGroupbuyByCategoryId(String categoryId, Pageable pageable);
+	Page<Groupbuy> findSellGroupbuyByAccount(Account account, Pageable pageable);
+	Groupbuy findBuyGroupbuyByProductId(int productId);
 	void deleteGroupbuyByProductId(int productId);
-	
+	Page<Groupbuy> getGroupbuyList(Pageable pageable);
 
 	void createMeet(Meet meet);
 	Meet findMeetByUserIdAndProductId(String userId, int productId);
@@ -62,7 +69,7 @@ public interface ClosetFacade {
 	void createMark(Bookmark bookmark);
 	void deleteMark(String userId, int productId);
 
-	void insertOrder(Delivery order);
+	public void createDelivery(Delivery delivery);
 	List<Delivery> getBuyList(String userId);
 	List<Delivery> getSellList(String userId);
 

@@ -48,7 +48,7 @@ public class Delivery implements Serializable {
 	@Column(name = "PRICE")
 	private int price; // 결제 금액
 
-	@Column(name = "BILLTONMAE")
+	@Column(name = "BILLTONAME")
 	private String billToName;
 
 	@Column(name = "SHIPTONAME")

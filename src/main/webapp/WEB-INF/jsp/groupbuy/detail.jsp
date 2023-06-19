@@ -111,6 +111,10 @@
 						<td>${product.peopleNum}</td>
 					</tr>
 					<tr>
+						<th>마감 날짜</th>
+						<td>${product.endDate}</td>
+					</tr>
+					<tr>
 						<td colspan = "2" class = "gobtn">
 							<a href = "<c:url value='/groupbuy/enjoy.do'>
 									<c:param name = 'productId' value='${product.productId}'/>
@@ -123,16 +127,6 @@
 							<a href = "<c:url value='/bookmark/create.do'>
 									<c:param name = 'productId' value='${product.productId}' />
 									</c:url>"><b style = "font-size:18px">관심상품</b>
-							</a>
-						</td>
-					</tr>
-					
-					
-					<tr>
-						<td colspan = "2" class = "gobtn3">
-							<a href = "<c:url value='/order/registerForm.do'>
-									<c:param name = 'productId' value='${product.productId}' />
-									</c:url>"><b style = "font-size:18px">주문버튼 임시구현</b>
 							</a>
 						</td>
 					</tr>
