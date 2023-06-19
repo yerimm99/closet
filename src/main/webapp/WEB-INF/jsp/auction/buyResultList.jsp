@@ -11,8 +11,13 @@
 		body{margin:0}
 		.layout{margin:0px auto;width:1180px;padding:10px;font-size:18px}
 		.page{text-align:center;font-size:24px;margin-top:60px;margin-bottom:30px}
+		table{width:100%}
 		th,td{border-top:1px solid gray;}
+		.btn{text-align:center;border-radius:10px;line-height:30px;
+			border:1px solid black;width:100px;height:30px;margin:15px auto 0px auto;}
 		
+		.text-center{margin-top:60px;text-align:center;}
+		.text-center a{margin:0px 20px; display:inline-block}
 	</style>
 </head>
 <body>
@@ -22,7 +27,6 @@
 	
 	<div class = "layout">
 		<div class = "page">구매 내역 조회</div>
-		<hr>
 		<c:set value="${paging}" var="paging"></c:set>
 		<div class="row">
 		<table>
@@ -34,24 +38,30 @@
 			<c:forEach items="${bidList}" var="bid" varStatus="bidStatus">
    			<c:if test="${prodStatus.index == bidStatus.index}">
 				<tr>
-					<td>
+					<td width = "250px" height = "250px">
 						<img src="<c:url value='${prod.picture1}'/>" width="250px" height="250px" />
 					</td>
 					<td>
-						${prod.name}<br><br>
-						${prod.color}<br>
-						${prod.size}<br>
-						${prod.description}
+						&nbsp;&nbsp;<b>${prod.name}</b><br><br>
+						&nbsp;&nbsp;${prod.color}<br>
+						&nbsp;&nbsp;${prod.size}<br>
+						&nbsp;&nbsp;${prod.price}원
 					</td>
-					<td>
+					<td style = "text-align:center" width = "300px">
 						<c:if test = "${bid.bidResult==0}">
 							입찰 중
+							<a href = "<c:url value='/auction/editAuction.do'>
+								<c:param name = 'productId' value='${prod.productId}' />
+								</c:url>" class = "btn">입찰가 수정
+							</a>	
 						</c:if>
 						<c:if test = "${bid.bidResult==1}">
+							낙찰
 							<a href = "<c:url value='/order/registerForm.do'>
 								<c:param name = 'productId' value='${prod.productId}' />
-								</c:url>"><b style = "font-size:18px">주문 하기</b>
-							</a>							</c:if>
+								</c:url>" class = "btn">주문 하기
+							</a>							
+						</c:if>
 						<c:if test = "${bid.bidResult==2}">
 							낙찰 실패
 						</c:if>

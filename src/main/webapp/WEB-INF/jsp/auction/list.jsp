@@ -11,6 +11,9 @@
 	<title>경매상품 리스트</title>
 	<style type="text/css">
 		table, td{border:1px solid black;border-collapse:collapse;}
+		.text-center{margin-top:60px;text-align:center;}
+		.text-center a{margin:0px 20px; display:inline-block}
+		.row{width:100%;}
 	</style>
 </head>
 <body>
@@ -54,25 +57,26 @@
 		<div class="text-center">
 			<!-- 이전 페이지 그룹 있나? -->
 			<c:if test="${paging.hasPrevious==true }">
-				<a href="?page=${preview}"><i
-					class="fas fa-lg fa-angle-double-left"></i></a>
-					&nbsp;
-				</c:if>
+				<a href="?page=${preview}&categoryId=${categoryId}">
+					<i class="fas fa-lg fa-angle-double-left"></i>
+				</a>
+				&nbsp;
+			</c:if>
 			<!-- 페이지 번호 표시 -->
-			<c:forEach var="pagingNumber"
-				begin="${paging.nowPageGroupStartPage }"
-				end="${paging.nowPageGroupEndPage }">
+			<c:forEach var="pagingNumber" begin="${paging.nowPageGroupStartPage }" end="${paging.nowPageGroupEndPage }">
 				<c:choose>
 					<c:when test="${pagingNumber==paging.nowPage }">
-						<i class="fas fa-lg fa-sort-numeric-up-alt"> <a
-							href="?page=${pagingNumber-1 }"
-							class="board-number-change-color abncc">${pagingNumber}</a>
+						<i class="fas fa-lg fa-sort-numeric-up-alt">
+							<a href="?page=${pagingNumber-1 }&categoryId=${categoryId}"
+								class="board-number-change-color abncc">${pagingNumber}
+							</a>
 						</i>
 							&nbsp;
 						</c:when>
 					<c:otherwise>
-						<i class="fas fa-lg fa-sort-numeric-up-alt"> <a
-							href="?page=${pagingNumber-1 }" class="board-number-change-color">${pagingNumber}</a>
+						<i class="fas fa-lg fa-sort-numeric-up-alt">
+							<a href="?page=${pagingNumber-1 }&categoryId=${categoryId}"
+								class="board-number-change-color">${pagingNumber}</a>
 						</i>
 							&nbsp;
 						</c:otherwise>
@@ -80,8 +84,9 @@
 			</c:forEach>
 			<!-- 다음 페이지 그룹 있나? -->
 			<c:if test="${paging.hasNext==true}">
-				<a href="?page=${requestScope.next}"><i
-					class="fas fa-lg fa-angle-double-right"></i></a>
+				<a href="?page=${requestScope.next}&categoryId=${categoryId}">
+					<i class="fas fa-lg fa-angle-double-right"></i>
+				</a>
 			</c:if>
 		</div>
 	</div>
