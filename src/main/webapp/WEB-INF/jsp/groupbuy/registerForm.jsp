@@ -30,10 +30,15 @@
 	<hr>
 	
 	<div class = "layout">
-		<form:form modelAttribute = "groupbuyForm" action="/groupbuy/confirmGroupbuy.do" method="post" >
+		<form:form modelAttribute = "groupbuyForm" method="post" >
 		<table>
 			<tr>
-				<td style="text-align:center;font-size:24px" colspan = "2">공동구매 상품 등록<br><br></td>
+				<c:if test="${groupbuyForm.newGroupbuy}">
+					<td style="text-align:center;font-size:24px" colspan = "2">공동구매 상품 등록<br><br></td>
+				</c:if>
+				<c:if test="${!groupbuyForm.newGroupbuy}">
+					<td style="text-align:center;font-size:24px" colspan = "2">공동구매 상품 수정<br><br></td>
+				</c:if>
 			</tr>
 			<tr>
 				<td>상품명</td>
@@ -59,14 +64,24 @@
 			<tr>
 				<td>가격</td>
 				<td>
-					<form:input path = "groupbuy.price"  class = "inp"/>
+					<c:if test="${groupbuyForm.newGroupbuy}">
+						<form:input path = "groupbuy.price" class = "inp" placeholder = "xxxx/xx/xx형식으로 입력해주세요."/>
+					</c:if>
+					<c:if test="${!groupbuyForm.newGroupbuy}">
+						<c:out value="${groupbuyForm.groupbuy.price}" />
+					</c:if>
 					<hr>
 				</td>
 			</tr>
 			<tr>
 				<td>종료 날짜</td>
  				<td>
- 					<form:input path = "groupbuy.endDate"  class = "inp" placeholder = "xxxx/xx/xx형식으로 입력해주세요."/>
+ 					<c:if test="${groupbuyForm.newGroupbuy}">
+						<form:input path = "groupbuy.endDate" class = "inp" placeholder = "xxxx/xx/xx형식으로 입력해주세요."/>
+					</c:if>
+					<c:if test="${!groupbuyForm.newGroupbuy}">
+						<c:out value="${groupbuyForm.groupbuy.endDate}" />
+					</c:if>
  					<!--<form:input type = "date" path = "groupbuy.endDate" class = "inp" value = "2023/06/20"/>-->
  					<hr>
  				</td> 
@@ -74,8 +89,12 @@
 			<tr>
 				<td>참여자 수</td>
 				<td>
-					<!-- 왜자꾸 0이 기본값으로 들어가는지 모르겠음 -->
-					<form:input path = "groupbuy.peopleNum" class = "inp"/>
+					<c:if test="${groupbuyForm.newGroupbuy}">
+						<form:input path = "groupbuy.peopleNum" class = "inp" placeholder = "xxxx/xx/xx형식으로 입력해주세요."/>
+					</c:if>
+					<c:if test="${!groupbuyForm.newGroupbuy}">
+						<c:out value="${groupbuyForm.groupbuy.peopleNum}" />
+					</c:if>
 					<hr>
 				</td>
 			</tr>
