@@ -52,7 +52,7 @@ public class Product implements Serializable {
 	@Column(name="PDESCRIPTION")
 	private String description; // 상품 설명
 	@Column(name="PTYPE")
-	private int type; // 경매? 공동구매?
+	private int ptype; // 경매? 공동구매?
 	@Column(name="STATUS")
 	private int status; // 판매 상태
 	@Column(name="REGISTERDATE")
@@ -60,9 +60,8 @@ public class Product implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date registerDate; // 등록 날짜
 	@Column(name="ENDDATE")
-	@Temporal(TemporalType.DATE)
-	//@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date endDate; // 등록 날짜
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date endDate;
 	@Column(name="COLOR")
 	private String color;
 	@Column(name="PSIZE")
