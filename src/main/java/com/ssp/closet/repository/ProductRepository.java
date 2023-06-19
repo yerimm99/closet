@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import com.ssp.closet.dto.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Integer>{
+	List<Product> findByOrderByRank();
 	
 //		@Modifying
 //		@Query("UPDATE Product p SET " +
