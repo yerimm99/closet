@@ -105,7 +105,7 @@ public class ClosetImpl implements ClosetFacade{
 	@Autowired
 	private TaskScheduler scheduler;
 
-	public void scheduleAuctionEnd(Auction auction) {
+	public void scheduleAuctionEnd(Auction auction) { //낙찰처리
 	    Date closingTime = auction.getEndDate(); // 경매 종료 시간을 가져옴
 
 	    Runnable auctionEndTask = new Runnable() {
