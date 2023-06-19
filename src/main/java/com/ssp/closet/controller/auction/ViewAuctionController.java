@@ -47,7 +47,6 @@ public class ViewAuctionController {
 			List<Auction> productList = pageList.getContent();//페이징 객체에 있는 내용물들
 			//게시판 리스트에서 페이지 숫자 및 화살표 표시해주기 위한 정보를 담은 객체
 			PagingVO paging = pagingService.pagingInfoA(pageList);
-			
 			model.put("productList", productList);
 			model.put("paging", paging);
 			model.put("preview", paging.getPreviousPageGroupOfPage());

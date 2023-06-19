@@ -122,7 +122,7 @@ public class AuctionFormController {
 		if (result.hasErrors()) return mav1;
 		//이미지가 저장되는 경로
 		String absolutePath = System.getProperty("user.dir")+
-				"/src/main/resources/upload/";
+				"/src/main/webapp/upload/";
 		File nfile = new File(absolutePath);
 		
 		//경로에 폴더가 존재 안해?
@@ -132,6 +132,7 @@ public class AuctionFormController {
 			if(!makeDirStatus) System.out.println("디렉토리 생성실패");
 		}
 		List<String> picturePaths = new ArrayList<>(files.size()); // 파일 경로 리스트 초기화
+		List<String> filee = new ArrayList<>();
 
 		// 최소 2개 이상의 이미지를 업로드했는지 확인
 	    if (files.size() < 2) {
@@ -150,6 +151,7 @@ public class AuctionFormController {
 
 	                // 파일 경로 저장
 	                picturePaths.add(filePath);
+	                filee.add(fileName);
 
 	            } catch (IOException e) {
 	                // 파일 저장 중 오류 발생
@@ -166,11 +168,11 @@ public class AuctionFormController {
 	    Auction product = auctionForm.getAuction();
 	    
 	    if (picturePaths.size() >= 2) {
-	    	product.setPicture1(picturePaths.get(0));
-	        product.setPicture2(picturePaths.get(1));
+	    	product.setPicture1(filee.get(0));
+	        product.setPicture2(filee.get(1));
 	    }
-	    product.setPicture3(picturePaths.size() >= 3 ? picturePaths.get(2) : null);
-	    product.setPicture4(picturePaths.size() >= 4 ? picturePaths.get(3) : null);
+	    product.setPicture3(picturePaths.size() >= 3 ? filee.get(2) : null);
+	    product.setPicture4(picturePaths.size() >= 4 ? filee.get(3) : null);
 
 	    closet.insertAuction(product); // 등록 
 	    closet.scheduleAuctionEnd(product);
