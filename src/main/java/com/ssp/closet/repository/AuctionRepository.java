@@ -15,8 +15,7 @@ import org.springframework.data.repository.query.Param;
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
 public interface AuctionRepository extends JpaRepository<Auction, Integer> {
-	//List<Auction> getAuctionResultList (String userId);
-	
+
 	Auction findByProductId(int productId);
 	List<Auction> findByAccount(Account account);
 	
@@ -36,5 +35,10 @@ public interface AuctionRepository extends JpaRepository<Auction, Integer> {
     List<Auction> findEndedAuctions(@Param("currentTime") LocalDateTime currentTime);
 
 	Page<Auction> findByAccount(Account account, Pageable pageable);
+	
+	//나현 추가
+	
+	@Query("SELECT a FROM Auction a WHERE rownum <= 4 Order by a.registerDate desc")
+	List<Auction> findTop4OrderByRegisterDate();
 	
 }

@@ -103,10 +103,15 @@ public class BidFormController {
 
 	
 	@RequestMapping("/bid/deleteBid.do")
-	public String removeBid(
+	public String removeBid(HttpServletRequest request,
 			@RequestParam("productId") int productId
 		) throws Exception {
-		closet.deleteBid(productId);
-		return "main/myPage";
+		UserSession userSession = 
+				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
+		if (userSession != null) {
+			Account account = closet.getAccount(userSession.getAccount().getUserId());
+			closet.deleteBid(productId, account.getUserId());
+		}
+		return "redirect:/myPage/buyAuction.do";
 	}
 }

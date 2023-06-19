@@ -84,16 +84,17 @@ public class ClosetImpl implements ClosetFacade{
 		aucRepository.deleteByProductId(productId);
 	}
 	
-	public Auction findBuyAuctionByProductId(int productId){
-		return aucRepository.findByProductId(productId);
-	}
-	
 	public Page<Auction> getAuctionByCategoryId(String categoryId, Pageable pageable) {
         return aucRepository.findByCategoryId(categoryId, pageable);
     }
 	
 	public Page<Auction> findSellAuctionByAccount(Account account, Pageable pageable){
 		 return aucRepository.findByAccount(account, pageable);
+	}
+	
+	//나현추가
+	public List<Auction> findTop4AuctionOrderByRegisterDate(){
+		return aucRepository.findTop4OrderByRegisterDate();
 	}
 	
 	@Transactional
@@ -169,8 +170,8 @@ public class ClosetImpl implements ClosetFacade{
 	public boolean isBidPriceExists(int productId, int bidPrice) {
 		return bidRepository.existsByProductIdAndBidPrice(productId, bidPrice);
 	}
-	public void deleteBid(int productId) {
-		bidRepository.deleteByProductId(productId);
+	public void deleteBid(int productId, String userId) {
+		bidRepository.deleteByProductIdAndUserId(productId, userId);
 	}
 	public Integer countBidByProductId(int productId) {
 		return bidRepository.countByProductId(productId);

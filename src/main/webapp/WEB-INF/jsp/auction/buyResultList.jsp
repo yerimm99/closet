@@ -47,7 +47,7 @@
             vertical-align: middle;
         }
 
-        .btn {
+        .changeBtn, .deleteBtn {
             display: inline-block;
             padding: 8px 16px;
             border-radius: 4px;
@@ -59,8 +59,11 @@
             font-size: 14px;
         }
 
-        .btn:hover {
+        .changeBtn:hover {
             background-color: #45a049;
+        }
+        .deleteBtn:hover {
+            background-color: red;
         }
 
         .text-center {
@@ -115,7 +118,10 @@
                                     입찰 중<br>
                                     <a href="<c:url value='/bid/editBid.do'>
                                         <c:param name='productId' value='${prod.productId}'/>
-                                        </c:url>" class="btn">입찰가 수정</a>
+                                        </c:url>" class="changeBtn">입찰가 수정</a>
+                                    <a href="<c:url value='/bid/deleteBid.do'>
+                                        <c:param name='productId' value='${prod.productId}'/>
+                                        </c:url>" class="deleteBtn">입찰 취소</a>
                                 </c:when>
                                 <c:when test="${bid.bidResult==1}">
                                     낙찰<br>

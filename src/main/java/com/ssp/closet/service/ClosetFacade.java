@@ -31,17 +31,18 @@ public interface ClosetFacade {
 
 	Page<Auction> getAuctionByCategoryId(String categoryId, Pageable pageable);
 	Page<Auction> findSellAuctionByAccount(Account account, Pageable pageable);
-	Auction findBuyAuctionByProductId(int productId);
 	void deleteAuctionByProductId(int productId);
 
 	void scheduleAuctionEnd(Auction auction);
 	void closedAuctionBySupp(Auction auction);
 
 	Page<Auction> getAuctionList(Pageable pageable);
+	
+	List<Auction> findTop4AuctionOrderByRegisterDate();
 
 	void createBid(Bid bid);
 	boolean isBidPriceExists(int productId, int bidPrice);
-	void deleteBid(int productId);
+	void deleteBid(int productId, String userId);
 	void updateResult(String userId);
 	Bid findMaxPrice(int productId);		 	  
 	//	List<Bid> getBidResultList(String userId);

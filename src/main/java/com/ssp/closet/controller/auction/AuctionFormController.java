@@ -1,5 +1,8 @@
 package com.ssp.closet.controller.auction;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,12 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.util.ResourceUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ModelAndViewDefiningException;
 import org.springframework.web.util.WebUtils;
@@ -100,28 +106,79 @@ public class AuctionFormController {
 				auctionForm.setAuction(existingAuction);
 				auctionForm.setNewAuction(false);
 			}
-			return "auction/registerForm";
-		} else {
-			return "redirect:/account/SignonForm.do";
 		}
+		return "auction/registerForm";
 	}
 	
 	
 	@RequestMapping("/auction/confirmAuction.do")
 	protected ModelAndView confirmAuction( //auction 등록 확인 
 			@ModelAttribute("auctionForm") AuctionForm auctionForm, 
+			@RequestParam("files") List<MultipartFile> files,
 			SessionStatus status, BindingResult result) {
 
 		validator.validateAuctionForm(auctionForm.getAuction(), result);
 		ModelAndView mav1 = new ModelAndView("auction/registerForm");
 		if (result.hasErrors()) return mav1;
+		//이미지가 저장되는 경로
+		String absolutePath = System.getProperty("user.dir")+
+				"/src/main/resources/upload/";
+		File nfile = new File(absolutePath);
 		
-		closet.insertAuction(auctionForm.getAuction()); //등록 
-		closet.scheduleAuctionEnd(auctionForm.getAuction());
-		ModelAndView mav2 = new ModelAndView("auction/detail");
-		mav2.addObject("product", auctionForm.getAuction());
-		status.setComplete();  // remove session
-		return mav2;
+		//경로에 폴더가 존재 안해?
+		if(!nfile.exists()) {
+			//그럼 그경로로 모든 폴더 만들어
+			boolean makeDirStatus = nfile.mkdirs();
+			if(!makeDirStatus) System.out.println("디렉토리 생성실패");
+		}
+		List<String> picturePaths = new ArrayList<>(files.size()); // 파일 경로 리스트 초기화
+
+		// 최소 2개 이상의 이미지를 업로드했는지 확인
+	    if (files.size() < 2) {
+	        ModelAndView mav = new ModelAndView("auction/registerForm");
+	        return mav;
+	    }
+	    
+	    // 업로드된 파일 처리
+	    for (MultipartFile file : files) {
+	        if (!file.isEmpty()) {
+	            try {
+	                // 파일 저장
+	                String fileName = file.getOriginalFilename();
+	                String filePath = absolutePath + fileName;
+	                file.transferTo(new File(filePath));
+
+	                // 파일 경로 저장
+	                picturePaths.add(filePath);
+
+	            } catch (IOException e) {
+	                // 파일 저장 중 오류 발생
+	                e.printStackTrace();
+	                // 오류 처리
+	                // ...
+	                ModelAndView mav = new ModelAndView("index");
+	    	        return mav;
+	            }
+	        }
+	    }
+	    
+	 // 파일 경로들을 Product 엔티티의 picture1, picture2, picture3, picture4에 할당
+	    Auction product = auctionForm.getAuction();
+	    
+	    if (picturePaths.size() >= 2) {
+	    	product.setPicture1(picturePaths.get(0));
+	        product.setPicture2(picturePaths.get(1));
+	    }
+	    product.setPicture3(picturePaths.size() >= 3 ? picturePaths.get(2) : null);
+	    product.setPicture4(picturePaths.size() >= 4 ? picturePaths.get(3) : null);
+
+	    closet.insertAuction(product); // 등록 
+	    closet.scheduleAuctionEnd(product);
+
+	    ModelAndView mav = new ModelAndView("auction/detail");
+	    mav.addObject("product", product);
+	    status.setComplete();  // remove session
+	    return mav;
 	}
 	
 	@RequestMapping("/auction/delete.do")
@@ -131,22 +188,20 @@ public class AuctionFormController {
 		UserSession userSession = 
 				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
 		if (userSession != null) {
-			if(closet.countBidByProductId(productId) == 0) {
-				closet.deleteAuctionByProductId(productId);
+			Auction auction = closet.getAuction(productId);
+			if(auction.getPrice() != null) {
+				return "redirect:/popup/deleteGroupbuy.do";
 			}
 			else {
-				return "redirect:/popup/deleteAuction.do";
+				closet.deleteAuctionByProductId(productId);
 			}
 		}
-		else {
-			return "redirect:/account/SignonForm.do";
-		}
-		return "redirect:/closet/mypage.do";
+		return "redirect:/myPage/sellAuction.do";
 	}
 
 	@RequestMapping("/popup/deleteAuction.do")
 	public String showPopup() {
-		return "groupbuy/popup";
+	    return "redirect:/myPage/sellAuction.do";
 	}
 	
 	
