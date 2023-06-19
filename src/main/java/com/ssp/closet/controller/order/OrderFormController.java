@@ -76,8 +76,24 @@ public class OrderFormController {
 		}
 	}
 	
-	@RequestMapping("/order/confirmOrder.do")
-	protected ModelAndView confirmGroupbuy( //auction 등록 확인 
+//	@RequestMapping("/order/confirmOrder.do")
+//	protected ModelAndView confirmGroupbuy( //auction 등록 확인 
+//			@ModelAttribute("orderForm") OrderForm orderForm, 
+//			SessionStatus status, BindingResult result) {
+//
+////		validator.validateGroupbuyForm(orderForm.getOrder(), result);
+////		ModelAndView mav1 = new ModelAndView("order/registerForm");
+////		if (result.hasErrors()) return mav1;
+//		
+//		closet.insertOrder(orderForm.getOrder()); //등록 
+//		ModelAndView mav2 = new ModelAndView("order/detail");
+//		mav2.addObject("product", orderForm.getOrder());
+//		status.setComplete();  // remove session
+//		return mav2;
+//	}
+	
+	@RequestMapping("/order/register.do")
+	protected String confirmGroupbuy( //auction 등록 확인 
 			@ModelAttribute("orderForm") OrderForm orderForm, 
 			SessionStatus status, BindingResult result) {
 
@@ -85,10 +101,10 @@ public class OrderFormController {
 //		ModelAndView mav1 = new ModelAndView("order/registerForm");
 //		if (result.hasErrors()) return mav1;
 		
-		closet.insertOrder(orderForm.getOrder()); //등록 
-		ModelAndView mav2 = new ModelAndView("order/detail");
-		mav2.addObject("product", orderForm.getOrder());
+		closet.createDelivery(orderForm.getOrder()); //등록 
+//		ModelAndView mav2 = new ModelAndView("order/detail");
+//		mav2.addObject("product", orderForm.getOrder());
 		status.setComplete();  // remove session
-		return mav2;
+		return "redirect:/closet/mypage.do";
 	}
 }

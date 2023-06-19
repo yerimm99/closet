@@ -14,8 +14,10 @@
 	</style>
 </head>
 <body>
+	<c:set value="${paging}" var="paging"></c:set>
+	<div class="row">
 	<c:choose>
-		<c:when test = "${productList.getSource() == null}">
+		<c:when test = "${productList == null}">
 			<div class = "sell">
 				경매 상품이 하나도 없습니다.
 			</div>
@@ -24,7 +26,7 @@
 			<c:set var="i" value="0" />
 			<c:set var="j" value="4" />
 			<table border="1">
-			<c:forEach items="${productList.getSource()}" var="prod">
+			<c:forEach items="${productList}" var="prod">
 				<c:if test="${i%j == 0 }">
 			    	<tr>
 			    </c:if>
@@ -48,5 +50,40 @@
 			</table>
 		</c:otherwise>
 	</c:choose>
+	<!-- 페이징 처리 -->
+		<div class="text-center">
+			<!-- 이전 페이지 그룹 있나? -->
+			<c:if test="${paging.hasPrevious==true }">
+				<a href="?page=${preview}"><i
+					class="fas fa-lg fa-angle-double-left"></i></a>
+					&nbsp;
+				</c:if>
+			<!-- 페이지 번호 표시 -->
+			<c:forEach var="pagingNumber"
+				begin="${paging.nowPageGroupStartPage }"
+				end="${paging.nowPageGroupEndPage }">
+				<c:choose>
+					<c:when test="${pagingNumber==paging.nowPage }">
+						<i class="fas fa-lg fa-sort-numeric-up-alt"> <a
+							href="?page=${pagingNumber-1 }"
+							class="board-number-change-color abncc">${pagingNumber}</a>
+						</i>
+							&nbsp;
+						</c:when>
+					<c:otherwise>
+						<i class="fas fa-lg fa-sort-numeric-up-alt"> <a
+							href="?page=${pagingNumber-1 }" class="board-number-change-color">${pagingNumber}</a>
+						</i>
+							&nbsp;
+						</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<!-- 다음 페이지 그룹 있나? -->
+			<c:if test="${paging.hasNext==true}">
+				<a href="?page=${requestScope.next}"><i
+					class="fas fa-lg fa-angle-double-right"></i></a>
+			</c:if>
+		</div>
+	</div>
 </body>
 </html>
