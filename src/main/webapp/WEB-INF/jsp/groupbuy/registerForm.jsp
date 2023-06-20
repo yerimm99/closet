@@ -4,6 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<c:set var="targetUrl"><c:url value="/groupbuy/confirmGroupbuy.do" /></c:set>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,10 +32,15 @@
 	<hr>
 	
 	<div class = "layout">
-		<form:form modelAttribute = "groupbuyForm" action="/groupbuy/confirmGroupbuy.do" method="post" >
+		<form:form modelAttribute = "groupbuyForm" action="${targetUrl}" method="post" >
 		<table>
 			<tr>
-				<td style="text-align:center;font-size:24px" colspan = "2">공동구매 상품 등록<br><br></td>
+				<c:if test="${groupbuyForm.newGroupbuy}">
+					<td style="text-align:center;font-size:24px" colspan = "2">공동구매 상품 등록<br><br></td>
+				</c:if>
+				<c:if test="${!groupbuyForm.newGroupbuy}">
+					<td style="text-align:center;font-size:24px" colspan = "2">공동구매 상품 수정<br><br></td>
+				</c:if>
 			</tr>
 			<tr>
 				<td>상품명</td>
@@ -59,23 +66,36 @@
 			<tr>
 				<td>가격</td>
 				<td>
-					<form:input path = "groupbuy.price"  class = "inp"/>
+					<c:if test="${groupbuyForm.newGroupbuy}">
+						<form:input path = "groupbuy.price" class = "inp"/>
+					</c:if>
+					<c:if test="${!groupbuyForm.newGroupbuy}">
+						<c:out value="${groupbuyForm.groupbuy.price}" />
+					</c:if>
 					<hr>
 				</td>
 			</tr>
 			<tr>
 				<td>종료 날짜</td>
  				<td>
- 					<form:input path = "groupbuy.endDate"  class = "inp" placeholder = "xxxx/xx/xx형식으로 입력해주세요."/>
- 					<!--<form:input type = "date" path = "groupbuy.endDate" class = "inp" value = "2023/06/20"/>-->
+ 					<c:if test="${groupbuyForm.newGroupbuy}">
+						<form:input type = "date" path = "groupbuy.endDate" class = "inp"/>
+					</c:if>
+					<c:if test="${!groupbuyForm.newGroupbuy}">
+						<c:out value="${groupbuyForm.groupbuy.endDate}" />
+					</c:if>
  					<hr>
  				</td> 
 			</tr>
 			<tr>
 				<td>참여자 수</td>
 				<td>
-					<!-- 왜자꾸 0이 기본값으로 들어가는지 모르겠음 -->
-					<form:input path = "groupbuy.peopleNum" class = "inp"/>
+					<c:if test="${groupbuyForm.newGroupbuy}">
+						<form:input path = "groupbuy.peopleNum" class = "inp"/>
+					</c:if>
+					<c:if test="${!groupbuyForm.newGroupbuy}">
+						<c:out value="${groupbuyForm.groupbuy.peopleNum}" />
+					</c:if>
 					<hr>
 				</td>
 			</tr>
@@ -96,7 +116,7 @@
 			<tr>
 				<td>사진첨부</td>
 				<td>
-					<input type = "file" name = "file" multiple/>
+					<input type = "file" name = "imageFile" multiple/>
 				</td>
 			</tr>
 			<tr>
