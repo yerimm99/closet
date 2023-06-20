@@ -79,5 +79,19 @@ public interface ClosetFacade {
 	void insertAccount(Account account);
 
 	void updateAccount(Account account);
-
+	
+	/*
+	 * public static final List<Account> accountList = null;
+	 * 
+	 * public static Account getAccountByUserId(String userId) { // userId에 해당하는 계정을
+	 * accountList에서 검색하여 반환 for (Account account : accountList) { if
+	 * (account.getUserId().equals(userId)) { return account; } } return null; //
+	 * 검색된 계정이 없는 경우 null 반환 }
+	 * 
+	 * public static Account getAccountByEmail(String email) { // email에 해당하는 계정을
+	 * accountList에서 검색하여 반환 for (Account account : accountList) { if
+	 * (account.getEmail().equals(email)) { return account; } } return null; // 검색된
+	 * 계정이 없는 경우 null 반환 }
+	 */
+	List<Product> getTopRankingProducts();
 }
