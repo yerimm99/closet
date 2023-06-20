@@ -113,6 +113,7 @@ public class ViewAuctionController {
 		if (userSession != null) {
 			Account account = closet.getAccount(userSession.getAccount().getUserId());
 			PagedListHolder<Auction> productList = new PagedListHolder<Auction>(closet.findSellAuctionByAccount(account));
+
 			productList.setPageSize(5);
 			model.put("productList", productList);
 			return "auction/sellResultList";
@@ -158,8 +159,10 @@ public class ViewAuctionController {
 				}
 			}
 			PagedListHolder<Auction> productList = new PagedListHolder<Auction>(productAuctions);
+
 			productList.setPageSize(5);
 			PagedListHolder<Bid> bidList = new PagedListHolder<Bid>(bid);
+
 			bidList.setPageSize(5);
 
 			model.put("productList", productList);

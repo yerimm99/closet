@@ -79,7 +79,7 @@
                                 <img src="../../upload/${prod.picture1}" alt="Product Image">
                                 <h3>${prod.name}</h3>
                                 <p> 
-                                <br> 가격: ${prod.price}원<br> 현재모인 인원수: ${prod.peopleSum} / ${prod.peopleNum}
+                                <br>${prod.price}원<br> 모집인원: ${prod.peopleSum} / ${prod.peopleNum}
                                 </p>
                             </a>
                         </div>

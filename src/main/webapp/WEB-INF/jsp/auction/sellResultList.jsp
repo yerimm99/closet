@@ -10,7 +10,6 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
         }
 
         .container {
@@ -28,6 +27,7 @@
         }
 
         table {
+        	text-align: center;
             width: 100%;
             background-color: #fff;
             border-collapse: collapse;
@@ -36,7 +36,7 @@
         th,
         td {
             padding: 10px;
-            text-align: left;
+        	text-align: center;
             border-bottom: 1px solid #ddd;
         }
 
@@ -49,39 +49,33 @@
             height: auto;
         }
 
-        .btn-group {
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        .btn-group a {
+       .detailBtn, .reBtn, .deleteBtn {
             display: inline-block;
-            padding: 10px 20px;
-            margin-right: 10px;
-            background-color: #333;
-            color: #fff;
+            padding: 8px 16px;
+            border-radius: 4px;
             text-decoration: none;
-        }
-
-        .btn-group a:hover {
-            background-color: #555;
-        }
-
-        .btn-group button {
-            display: inline-block;
-            padding: 10px 20px;
-            margin-right: 10px;
-            background-color: #ccc;
-            color: #999;
+            background-color: lightgray;
+            color: #ffffff;
             border: none;
-            cursor: not-allowed;
+            transition: background-color 0.3s;
+            font-size: 14px;
+        }
+
+        .detailBtn:hover {
+            background-color: #fff9a6;
+        }
+        .reBtn:hover {
+            background-color: #99cd89;
+        }
+        .deleteBtn:hover {
+            background-color: #C24E4E;
         }
 
         .product-info {
+        	justify-content: center;
             display: flex;
             align-items: center;
         }
-
         .product-info img {
             margin-right: 10px;
         }
@@ -109,16 +103,16 @@
                 <tr>
                     <th>상품 이미지</th>
                     <th>상품 정보</th>
-                    <th>기능</th>
+                    <th></th>
                 </tr>
                 <c:forEach items="${productList.pageList}" var="prod">
                     <tr>
                         <td width = "250px" height = "250px">
-						<img src = "../../upload/${prod.picture1}">/><br>
+						<img src = "../../upload/${prod.picture1}"><br>
 					</td>
                         <td>
-                            <div class="product-info">
-                                <div>
+                            <div class="product-info" >
+                                <div class ="pro">
                                     <strong>${prod.name}</strong><br>
                                     ${prod.color}<br>
                                     ${prod.size}<br>
@@ -132,22 +126,22 @@
                                     <c:when test="${!empty prod.price}">
                                         <a href="<c:url value='/auction/detail.do'>
                                             <c:param name='productId' value='${prod.productId}' />
-                                        </c:url>">상세보기</a>
+                                        </c:url>" class = "detailBtn">상세보기</a>
                                         <a href="<c:url value='/auction/update.do'>
                                             <c:param name='productId' value='${prod.productId}' />
-                                        </c:url>">수정하기</a>
+                                        </c:url>" class = "reBtn">수정하기</a>
                                         <button disabled>삭제하기</button>
                                     </c:when>
                                     <c:otherwise>
                                         <a href="<c:url value='/auction/detail.do'>
                                             <c:param name='productId' value='${prod.productId}' />
-                                        </c:url>">상세보기</a>
+                                        </c:url>" class = "detailBtn">상세보기</a>
                                         <a href="<c:url value='/auction/update.do'>
                                             <c:param name='productId' value='${prod.productId}' />
-                                        </c:url>">수정하기</a>
+                                        </c:url>" class = "reBtn">수정하기</a>
                                         <a href="<c:url value='/auction/delete.do'>
                                             <c:param name='productId' value='${prod.productId}' />
-                                        </c:url>">삭제하기</a>
+                                        </c:url>" class = "deleteBtn">삭제하기</a>
                                     </c:otherwise>
                                 </c:choose>
                             </div>
