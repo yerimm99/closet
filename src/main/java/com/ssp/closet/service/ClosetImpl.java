@@ -33,7 +33,7 @@ import com.ssp.closet.dto.Meet;
 import com.ssp.closet.dto.Delivery;
 import com.ssp.closet.dto.Product;
 import com.ssp.closet.dto.Review;
-
+import com.ssp.closet.repository.AccountRepository;
 import com.ssp.closet.repository.AuctionRepository;
 import com.ssp.closet.repository.BidRepository;
 import com.ssp.closet.repository.DeliveryRepository;
@@ -316,6 +316,8 @@ public class ClosetImpl implements ClosetFacade{
 	
 	@Autowired
 	private AccountDao accountDao;
+	@Autowired
+	private AccountRepository accountRepo;
 	
 	@Override
 	public Account getAccount(String name) {
@@ -327,13 +329,12 @@ public class ClosetImpl implements ClosetFacade{
 	}
 	@Override
 	public void insertAccount(Account account) {
-		// TODO Auto-generated method stub
+		accountRepo.save(account);
 
 	}
 	@Override
 	public void updateAccount(Account account) {
-		// TODO Auto-generated method stub
-
+		accountRepo.save(account);
 	}
 	
 	private final ProductDao productDao;

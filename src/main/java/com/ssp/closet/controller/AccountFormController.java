@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,13 +20,13 @@ import com.ssp.closet.service.AccountFormValidator;
 import com.ssp.closet.service.ClosetFacade;
 
 @Controller
-@RequestMapping("/account/registerForm.do")
+@RequestMapping({"/account/registerForm.do","/account/updateForm.do"})
 public class AccountFormController {
 
-    @Value("${form.view.name}") // 수정: properties 파일에 form.view.name 값 설정 필요
+    @Value("account/registerForm") // 수정: properties 파일에 form.view.name 값 설정 필요
     private String formViewName;
     
-    @Value("${success.view.name}") // 수정: properties 파일에 success.view.name 값 설정 필요
+    @Value("index") // 수정: properties 파일에 success.view.name 값 설정 필요
     private String successViewName;
 
     private final ClosetFacade closet;
@@ -54,20 +55,56 @@ public class AccountFormController {
 
     @PostMapping
     public String onSubmit(HttpServletRequest request, HttpSession session,
-            @ModelAttribute("accountForm") AccountForm accountForm, BindingResult result, Model model,
+            @ModelAttribute("accountForm") AccountForm accountForm,
+            @RequestParam("sample4_postcode") String postCode,
+            @RequestParam("address1") String address1,
+            @RequestParam("address2") String address2,
+            BindingResult result, Model model,
             SessionStatus sessionStatus) throws Exception {
 
-        System.out.println("command" + accountForm);
-
-        validator.validate(accountForm, result);
-
-        if (result.hasErrors()) {
-            return formViewName;
-        }
-
-        Account user = accountForm.getAccount();
-        closet.insertAccount(user);
-        model.addAttribute("userid", user);
+        System.out.println("command" + accountForm); //한번 확인
+        
+        try {
+			if (accountForm.isNewAccount()) {
+				String sAddress = postCode + " " + address1 + " " + address2;
+		        accountForm.getAccount().setAddress(sAddress);
+		        accountForm.getAccount().setRating(0);
+		        
+		        validator.validate(accountForm, result);
+		        if (result.hasErrors()) {
+		            return formViewName;
+		        }
+		        
+				closet.insertAccount(accountForm.getAccount());
+			}
+			else {
+		        if(postCode.length() > 0) {
+		        	String sAddress = postCode + " " + address1 + " " + address2;
+			        accountForm.getAccount().setAddress(sAddress);
+		        }
+		       
+		        validator.validate(accountForm, result);
+		        if (result.hasErrors()) {
+		            return formViewName;
+		        }
+		        
+				closet.updateAccount(accountForm.getAccount());
+				
+				UserSession userSession = 
+						(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
+				if (userSession != null) {
+					Account account = closet.getAccount(userSession.getAccount().getUserId());
+					model.addAttribute("account", account);
+					return "/main/myPage";
+				} else {
+					return "redirect:/account/SignonForm.do";
+				}
+			}
+		}catch (DataIntegrityViolationException ex) {
+			result.rejectValue("account.userId", "USER_ID_ALREADY_EXISTS",
+					"User ID already exists: choose a different ID.");
+			return formViewName; 
+		}
 
         return successViewName;
     }

@@ -20,7 +20,6 @@ public class AccountFormValidator implements Validator {
 		Account account = accountForm.getAccount();
 
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.userId", "USER_ID_REQUIRED", "User ID is required.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.password", "USER_ID_PASSWORD", "User Password is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.email", "EMAIL_REQUIRED", "Email address is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.phone", "PHONE_REQUIRED", "Phone number is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.address", "ADDRESS_REQUIRED", "Address (1) is required.");
@@ -33,6 +32,7 @@ public class AccountFormValidator implements Validator {
 		}
 		else if (account.getPassword() != null && account.getPassword().length() > 0) {
 			if (!account.getPassword().equals(accountForm.getRepeatedPassword())) {
+				System.out.println("패스워드 문제");
 				errors.reject("PASSWORD_MISMATCH", "비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
 			}
 		}
