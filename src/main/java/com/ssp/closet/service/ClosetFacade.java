@@ -29,17 +29,15 @@ public interface ClosetFacade {
 	void updateMaxPrice(int productId);
 	List<Auction> getAuctionList();
 
-	Page<Auction> getAuctionByCategoryId(String categoryId, Pageable pageable);
+	List<Auction> getAuctionByCategoryId(String categoryId);
 	//추가
-	Page<Auction> getAuctionByUsed(int used, Pageable pageable);
-	Page<Auction> getAuctionByCategoryIdAndUsed(String categoryId, int used, Pageable pageable);
-	Page<Auction> findSellAuctionByAccount(Account account, Pageable pageable);
+	List<Auction> getAuctionByUsed(int used);
+	List<Auction> getAuctionByCategoryIdAndUsed(String categoryId, int used);
+	List<Auction> findSellAuctionByAccount(Account account);
 	void deleteAuctionByProductId(int productId);
 
 	void scheduleAuctionEnd(Auction auction);
 	void closedAuctionBySupp(Auction auction);
-
-	Page<Auction> getAuctionList(Pageable pageable);
 	
 	List<Auction> findTop4AuctionOrderByRegisterDate();
 
@@ -57,11 +55,11 @@ public interface ClosetFacade {
 	void insertGroupbuy(Groupbuy groupbuy);
 	Groupbuy getGroupbuyDetail(int productId);
 	List<Groupbuy> getGroupbuyList();
-	Page<Groupbuy> getGroupbuyByCategoryId(String categoryId, Pageable pageable);
-	Page<Groupbuy> findSellGroupbuyByAccount(Account account, Pageable pageable);
+	List<Groupbuy> getGroupbuyByCategoryId(String categoryId);
+	List<Groupbuy> findSellGroupbuyByAccount(Account account);
 	Groupbuy findBuyGroupbuyByProductId(int productId);
 	void deleteGroupbuyByProductId(int productId);
-	Page<Groupbuy> getGroupbuyList(Pageable pageable);
+
 
 	void createMeet(Meet meet);
 	Meet findMeetByUserIdAndProductId(String userId, int productId);
@@ -105,5 +103,5 @@ public interface ClosetFacade {
 	 * (account.getEmail().equals(email)) { return account; } } return null; // 검색된
 	 * 계정이 없는 경우 null 반환 }
 	 */
-	//List<Product> getTopRankingProducts();
+	/* List<Product> getTopRankingProducts(); */
 }

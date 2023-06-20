@@ -1,15 +1,15 @@
 package com.ssp.closet.repository;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Groupbuy;
 
 public interface GroupbuyRepository extends JpaRepository<Groupbuy, Integer>{
-	Page<Groupbuy> findByCategoryId(String categoryId, Pageable pageable);
+	List<Groupbuy> findByCategoryId(String categoryId);
 	void deleteByProductId(int productId);
-	Page<Groupbuy> findByAccount(Account account, Pageable pageable);
+	List<Groupbuy> findByAccount(Account account);
 	Groupbuy findByProductId(Integer productId);
 }

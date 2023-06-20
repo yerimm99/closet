@@ -44,7 +44,12 @@ public class MybatisProductDao implements ProductDao {
 		Product product = productMapper.getProductDetail(productId);
 		return product;
 	}
-	
+
+	//@Override
+	/*public List<Product> getTopRankingProducts() {
+		// TODO Auto-generated method stub
+		return null;
+	}*/
 	
 	//상품 검색
 }
