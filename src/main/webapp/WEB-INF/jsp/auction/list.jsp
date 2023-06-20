@@ -63,9 +63,16 @@
 		<div class="text-center">
 			<!-- 이전 페이지 그룹 있나? -->
 			<c:if test="${paging.hasPrevious==true }">
-				<a href="?page=${preview}&categoryId=${categoryId}">
-					<i class="fas fa-lg fa-angle-double-left"></i>
-				</a>
+				<c:if test="${empty used}">
+					<a href="?page=${preview}&categoryId=${categoryId}">
+						<i class="fas fa-lg fa-angle-double-left"></i>
+					</a>
+				</c:if>
+				<c:if test="${!empty used}">
+					<a href="/auction/list2.do?page=${preview}&categoryId=${categoryId}&used=${used}">
+						<i class="fas fa-lg fa-angle-double-left"></i>
+					</a>
+				</c:if>
 				&nbsp;
 			</c:if>
 			<!-- 페이지 번호 표시 -->
@@ -73,16 +80,29 @@
 				<c:choose>
 					<c:when test="${pagingNumber==paging.nowPage }">
 						<i class="fas fa-lg fa-sort-numeric-up-alt">
+							<c:if test="${empty used}">
 							<a href="?page=${pagingNumber-1 }&categoryId=${categoryId}"
 								class="board-number-change-color abncc">${pagingNumber}
 							</a>
+							</c:if>
+							<c:if test="${!empty used}">
+							<a href="/auction/list2.do?page=${pagingNumber-1 }&categoryId=${categoryId}&used=${used}"
+								class="board-number-change-color abncc">${pagingNumber}
+							</a>
+							</c:if>
 						</i>
 							&nbsp;
 						</c:when>
 					<c:otherwise>
 						<i class="fas fa-lg fa-sort-numeric-up-alt">
+							<c:if test="${empty used}">
 							<a href="?page=${pagingNumber-1 }&categoryId=${categoryId}"
 								class="board-number-change-color">${pagingNumber}</a>
+							</c:if>
+							<c:if test="${!empty used}">
+							<a href="/auction/list2.do?page=${pagingNumber-1 }&categoryId=${categoryId}&used=${used}"
+								class="board-number-change-color">${pagingNumber}</a>
+							</c:if>
 						</i>
 							&nbsp;
 						</c:otherwise>
@@ -90,9 +110,16 @@
 			</c:forEach>
 			<!-- 다음 페이지 그룹 있나? -->
 			<c:if test="${paging.hasNext==true}">
+				<c:if test="${empty used}">
 				<a href="?page=${requestScope.next}&categoryId=${categoryId}">
 					<i class="fas fa-lg fa-angle-double-right"></i>
 				</a>
+				</c:if>
+				<c:if test="${!empty used}">
+				<a href="/auction/list2.do?page=${requestScope.next}&categoryId=${categoryId}&used=${used}">
+					<i class="fas fa-lg fa-angle-double-right"></i>
+				</a>
+				</c:if>
 			</c:if>
 		</div>
 	</div>

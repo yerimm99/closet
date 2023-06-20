@@ -30,6 +30,9 @@ public interface ClosetFacade {
 	List<Auction> getAuctionList();
 
 	Page<Auction> getAuctionByCategoryId(String categoryId, Pageable pageable);
+	//추가
+	Page<Auction> getAuctionByUsed(int used, Pageable pageable);
+	Page<Auction> getAuctionByCategoryIdAndUsed(String categoryId, int used, Pageable pageable);
 	Page<Auction> findSellAuctionByAccount(Account account, Pageable pageable);
 	void deleteAuctionByProductId(int productId);
 
