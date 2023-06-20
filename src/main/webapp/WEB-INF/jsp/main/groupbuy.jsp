@@ -51,21 +51,7 @@
 		</div>
 		<!-- 중복선택가능 -->
 		<div class = "categories">
-			<script>
-				document.frm.submit();
-			</script>
-			<form class = "cFrom" method = "POST" action="<c:url value='/groupbuy/list' />">
-				<label>카테고리</label><br><br>
-				<input type = "checkbox" name = "categoryId" value = "전체">전체<br>
-				<input type = "checkbox" name = "categoryId" value = "신발">신발<br>
-				<input type = "checkbox" name = "categoryId" value = "아우터">아우터<br>
-				<input type = "checkbox" name = "categoryId" value = "상의">상의<br>
-				<input type = "checkbox" name = "categoryId" value = "하의">하의<br>
-				<input type = "checkbox" name = "categoryId" value = "가방">가방<br>
-				<input type = "checkbox" name = "categoryId" value = "지갑">지갑<br>
-				<input type = "checkbox" name = "categoryId" value = "시계">시계<br>
-				<input type = "checkbox" name = "categoryId" value = "패션잡화">패션잡화<br>
-			</form>
+			
 		</div>
 		<!-- 해당 상품 리스트 -->
 		<div class = "list">

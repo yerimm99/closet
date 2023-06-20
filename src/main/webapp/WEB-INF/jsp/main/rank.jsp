@@ -34,46 +34,38 @@
 	
 	<div class = "layout">
 		<br>
-		<a href = "<c:url value='/rank/list.do'>
+		<a href = "<c:url value='/rank/auctionList.do'>
 			<c:param name = 'DTYPE' value='Auction'/>
 			</c:url>">경매 상품
 		</a>
-		<a href = "<c:url value='/rank/list.do'>
-			<c:param name = 'DTYPE' value='Auction'/>
-			</c:url>">경매 상품
+		<a href = "<c:url value='/rank/groupbuyList.do'>
+			<c:param name = 'DTYPE' value='Groupbuy'/>
+			</c:url>">공동구매 상품
 		</a>
 		<br>
 		<hr>
 		
 		<!-- 카테고리 -->
 		<div class = "category">
-			<c:if test = "${empty DTYPE}">
-				<a href="<c:url value='/rank/list.do?categoryId=전체' />">전체</a>
-				<a href="<c:url value='/rank/list.do?categoryId=신발' />">신발</a>
-				<a href="<c:url value='/rank/list.do?categoryId=아우터' />">아우터</a>
-				<a href="<c:url value='/rank/list.do?categoryId=상의' />">상의</a>
-				<a href="<c:url value='/rank/list.do?categoryId=하의' />">하의</a>
-				<a href="<c:url value='/rank/list.do?categoryId=가방' />">가방</a>
-				<a href="<c:url value='/rank/list.do?categoryId=지갑' />">지갑</a>
-				<a href="<c:url value='/rank/list.do?categoryId=시계' />">시계</a>
-				<a href="<c:url value='/rank/list.do?categoryId=패션잡화' />">패션잡화</a>
-			</c:if>
-			<c:if test = "${not empty DTYPE}">
-				<a href="<c:url value='/rank/list.do?DTYPE=${DTYPE}&categoryId=전체' />">전체</a>
-				<a href="<c:url value='/rank/list.do?DTYPE=${DTYPE}&categoryId=신발' />">신발</a>
-				<a href="<c:url value='/rank/list.do?DTYPE=${DTYPE}&categoryId=아우터' />">아우터</a>
-				<a href="<c:url value='/rank/list.do?DTYPE=${DTYPE}&categoryId=상의' />">상의</a>
-				<a href="<c:url value='/rank/list.do?DTYPE=${DTYPE}&categoryId=하의' />">하의</a>
-				<a href="<c:url value='/rank/list.do?DTYPE=${DTYPE}&categoryId=가방' />">가방</a>
-				<a href="<c:url value='/rank/list.do?DTYPE=${DTYPE}&categoryId=지갑' />">지갑</a>
-				<a href="<c:url value='/rank/list.do?DTYPE=${DTYPE}&categoryId=시계' />">시계</a>
-				<a href="<c:url value='/rank/list.do?DTYPE=${DTYPE}&categoryId=패션잡화' />">패션잡화</a>
-			</c:if>
+				<a href="<c:url value='?DTYPE=${DTYPE}&categoryId=전체' />">전체</a>
+				<a href="<c:url value='?DTYPE=${DTYPE}&categoryId=신발' />">신발</a>
+				<a href="<c:url value='?DTYPE=${DTYPE}&categoryId=아우터' />">아우터</a>
+				<a href="<c:url value='?DTYPE=${DTYPE}&categoryId=상의' />">상의</a>
+				<a href="<c:url value='?DTYPE=${DTYPE}&categoryId=하의' />">하의</a>
+				<a href="<c:url value='?DTYPE=${DTYPE}&categoryId=가방' />">가방</a>
+				<a href="<c:url value='?DTYPE=${DTYPE}&categoryId=지갑' />">지갑</a>
+				<a href="<c:url value='?DTYPE=${DTYPE}&categoryId=시계' />">시계</a>
+				<a href="<c:url value='?DTYPE=${DTYPE}&categoryId=패션잡화' />">패션잡화</a>
 		</div>
 		
 		<!-- 해당 상품 리스트 -->
 		<div class = "list">
-			<jsp:include page = "../rank/list.jsp"/>
+			<c:if test = "${DTYPE eq 'Auction'}">
+				<jsp:include page = "../rank/auctionList.jsp"/>
+			</c:if>
+			<c:if test = "${DTYPE eq 'Groupbuy'}">
+				<jsp:include page = "../rank/groupbuyList.jsp"/>
+			</c:if>
 		</div>
 	</div>
 	
