@@ -79,19 +79,19 @@ public class ClosetImpl implements ClosetFacade{
 	}
 	
 	public List<Auction> getAuctionByCategoryId(String categoryId) {
-        return aucRepository.findByCategoryId(categoryId);
+        return aucRepository.findByCategoryIdOrderByRegisterDateDesc(categoryId);
     }
 	
 	//추가
 	public List<Auction> getAuctionByUsed(int used){
-		return aucRepository.findByUsed(used);
+		return aucRepository.findByUsedOrderByRegisterDateDesc(used);
 	}
 	public List<Auction> getAuctionByCategoryIdAndUsed(String categoryId, int used){
-		return aucRepository.findByCategoryIdAndUsed(categoryId, used);
+		return aucRepository.findByCategoryIdAndUsedOrderByRegisterDateDesc(categoryId, used);
 	}
 	
 	public List<Auction> findSellAuctionByAccount(Account account){
-		 return aucRepository.findByAccount(account);
+		 return aucRepository.findByAccountOrderByRegisterDateDesc(account);
 	}
 	
 	//나현추가
@@ -99,8 +99,8 @@ public class ClosetImpl implements ClosetFacade{
 		return aucRepository.findTop4OrderByRegisterDate();
 	}
 	
-	public Page<Auction> getAuctionList(Pageable pageable) {
-		return aucRepository.findAll(pageable);//페이징 객체만들어서 반환
+	public List<Auction> getAuctionList() {
+		return aucRepository.findAllByOrderByRegisterDateDesc();
 	}
 	
 	@Autowired
@@ -205,14 +205,6 @@ public class ClosetImpl implements ClosetFacade{
 		bookmarkDao.deleteMark(userId, productId);
 	}
 	
-	@Autowired
-	@Qualifier("jpaAuctionDao")
-	private AuctionDao auctionDao;
-	
-	public List<Auction> getAuctionList() {
-		return auctionDao.getAuctionList();
-	}
-	
 	
 	@Autowired
 	private GroupbuyRepository groupbuyRepository;
@@ -222,7 +214,7 @@ public class ClosetImpl implements ClosetFacade{
 	}
 	
 	public List<Groupbuy> getGroupbuyByCategoryId(String categoryId) {
-        return groupbuyRepository.findByCategoryId(categoryId);
+        return groupbuyRepository.findByCategoryIdOrderByRegisterDateDesc(categoryId);
     }
 	
 	public Groupbuy getGroupbuyDetail(int productId) {
@@ -234,21 +226,17 @@ public class ClosetImpl implements ClosetFacade{
 	}
 	
 	public List<Groupbuy> findSellGroupbuyByAccount(Account account){
-		return groupbuyRepository.findByAccount(account);
+		return groupbuyRepository.findByAccountOrderByRegisterDateDesc(account);
 	}
 	
 	public Groupbuy findBuyGroupbuyByProductId(int productId){
 		return groupbuyRepository.findByProductId(productId);
 	}
-
 	
-	@Autowired
-	@Qualifier("jpaGroupbuyDao")
-	private GroupbuyDao groupbuyDao;
-	
-	public List<Groupbuy> getGroupbuyList(){
-		return groupbuyDao.getGroupbuyList();
+	public List<Groupbuy> getGroupbuyList() {
+		return groupbuyRepository.findAllByOrderByRegisterDateDesc();
 	}
+
 	
 	
 	@Autowired
