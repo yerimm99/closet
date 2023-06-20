@@ -78,6 +78,7 @@ public class ViewAuctionController {
 		model.put("productList", productList);
 		return "main/auction"; 
 	}
+	
 
 	//경매 상품 리스트 선택보기
 	@RequestMapping("/auction/list2.do")

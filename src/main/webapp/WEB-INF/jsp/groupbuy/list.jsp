@@ -73,7 +73,7 @@
                 <c:otherwise>
                     <c:forEach var="prod" items="${productList.pageList}">
                         <div class="product-card">
-                            <a href="<c:url value='/auction/detail.do'>
+                            <a href="<c:url value='/groupbuy/detail.do'>
                                 <c:param name='productId' value='${prod.productId}' />
                             </c:url>">
                                 <img src="../../upload/${prod.picture1}" alt="Product Image">
