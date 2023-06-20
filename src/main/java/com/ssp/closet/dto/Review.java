@@ -53,4 +53,11 @@ public class Review {
 	public void setRating(double rating) {
 		this.rating = rating;
 	}
+	
+	public Review(String productId, String userId, String content, int rating) {
+        this.productId = productId;
+        this.userId = userId;
+        this.content = content;
+        this.rating = rating;
+    }
 }

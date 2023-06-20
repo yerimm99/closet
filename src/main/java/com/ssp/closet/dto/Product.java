@@ -24,8 +24,11 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.OrderBy;
+
 import lombok.Getter;
 import lombok.Setter;
+import lombok.Data;
 
 @SuppressWarnings("serial")
 @Entity
@@ -35,6 +38,7 @@ import lombok.Setter;
 @Table(name = "PRODUCT")
 @Inheritance(strategy=InheritanceType.JOINED)
 @DiscriminatorColumn(name = "DTYPE") // 하위 테이블의 구분 컬럼 생성(default = DTYPE)
+@Data
 public class Product implements Serializable {
 
 	/* Private Fields */
@@ -50,7 +54,7 @@ public class Product implements Serializable {
 	@Column(name="PDESCRIPTION")
 	private String description; // 상품 설명
 	@Column(name="PTYPE")
-	private int type; // 경매? 공동구매?
+	private int ptype; // 경매? 공동구매?
 	@Column(name="STATUS")
 	private int status; // 판매 상태
 	@Column(name="REGISTERDATE")
@@ -76,8 +80,19 @@ public class Product implements Serializable {
 	private Integer price;
 	@Column(name = "DTYPE", insertable=false, updatable=false)
 	private String DTYPE;
+	
+//	@Column(name = "RANK")//랭킹 관련 코드
+//	@OrderBy("rank DESC")
+//	private int rank;
+//	@Column(name = "VIEWS")
+//    private int views; 
+//	public int getViews() { return views;}
+	
+//	private int likes = 0; //관심상품
+//	public void incrementLikes() {likes++;}
 
 	@ManyToOne
 	@JoinColumn(name = "USERID", referencedColumnName = "USERID")
 	private Account account;
+
 }

@@ -20,6 +20,9 @@ import com.ssp.closet.dao.AccountDao;
 import com.ssp.closet.dao.AuctionDao;
 import com.ssp.closet.dao.BookmarkDao;
 import com.ssp.closet.dao.GroupbuyDao;
+import com.ssp.closet.dao.ProductDao;
+import com.ssp.closet.dao.MeetDao;
+
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
 import com.ssp.closet.dto.Bid;
@@ -47,7 +50,7 @@ public class ClosetImpl implements ClosetFacade{
 	private ProductRepository productRepository;
 	
 	public List<Product> getProductList(int type, int status) {
-		return productRepository.findByTypeAndStatus(type, status);
+		return productRepository.findByPtypeAndStatus(type, status);
 	}
 	
 	public List<Product> getProductList() {
@@ -88,6 +91,14 @@ public class ClosetImpl implements ClosetFacade{
         return aucRepository.findByCategoryId(categoryId, pageable);
     }
 	
+	//추가
+	public Page<Auction> getAuctionByUsed(int used, Pageable pageable){
+		return aucRepository.findByUsed(used, pageable);
+	}
+	public Page<Auction> getAuctionByCategoryIdAndUsed(String categoryId, int used, Pageable pageable){
+		return aucRepository.findByCategoryIdAndUsed(categoryId, used, pageable);
+	}
+	
 	public Page<Auction> findSellAuctionByAccount(Account account, Pageable pageable){
 		 return aucRepository.findByAccount(account, pageable);
 	}
@@ -105,7 +116,7 @@ public class ClosetImpl implements ClosetFacade{
 	@Autowired
 	private TaskScheduler scheduler;
 
-	public void scheduleAuctionEnd(Auction auction) {
+	public void scheduleAuctionEnd(Auction auction) { //낙찰처리
 	    Date closingTime = auction.getEndDate(); // 경매 종료 시간을 가져옴
 
 	    Runnable auctionEndTask = new Runnable() {
@@ -355,4 +366,24 @@ public class ClosetImpl implements ClosetFacade{
 		// TODO Auto-generated method stub
 
 	}
+	
+	private final ProductDao productDao;
+
+    public ClosetImpl(ProductDao productDao) {
+        this.productDao = productDao;
+    }
+
+ //   @Override
+ //   public List<Product> getTopRankingProducts() {
+        // Implement the logic to retrieve the top ranking products
+        // Example:
+        // 1. Use the productDao to fetch the top ranking products
+        //    based on your ranking criteria (e.g., sales, ratings, views).
+        //    Adjust the method name and parameters based on your productDao implementation.
+  //      List<Product> topRankingProducts = productDao.getTopRankingProducts();
+        
+        // 2. Return the list of top ranking products
+  //      return topRankingProducts;
+ //   }
+
 }
