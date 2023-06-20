@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,8 +64,8 @@
       			</c:if>
       			
 				<ul id="imgholder" class="imgs">
-					<li><img src ='${product.getPicture1()}'></li>
-					<li><img src= '${product.getPicture2()}'></li>
+					<li><img src="<c:url value='${product.picture1}'/>"></li>
+					<li><img src="<c:url value='${product.picture2}'/>"></li>
 					<c:if test="${!empty product.picture3}" >
 						<li><img src="<c:url value='${product.picture3}'/>"></li>
 					</c:if>
@@ -112,15 +111,13 @@
 						<th>상품최소가</th>
 						<td>${product.startPrice}</td>
 					</tr>
-					<c:if test = "${!empty product.price}">
 					<tr>
 						<th>현재최고가</th>
 						<td>${product.price}</td>
 					</tr>
-					</c:if>
 					<tr>
-  						<th>마감 날짜</th>
- 						<td><fmt:formatDate value="${product.endDate}" pattern="yyyy-MM-dd" /></td>
+						<th>마감 날짜</th>
+						<td>${product.endDate}</td>
 					</tr>
 					<tr>
 						<td colspan = "2" class = "gobtn">
