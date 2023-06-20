@@ -1,7 +1,6 @@
 package com.ssp.closet.controller.auction;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -205,6 +204,4 @@ public class AuctionFormController {
 	public String showPopup() {
 	    return "redirect:/myPage/sellAuction.do";
 	}
-	
-	
 }
