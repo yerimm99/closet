@@ -40,7 +40,7 @@ public class ViewGroupBuyController {
 	public String handleRequest1(
 			ModelMap model) {
 		PagedListHolder<Groupbuy> productList = new PagedListHolder<Groupbuy>(closet.getGroupbuyList());//경매게시글에 대한 페이징 객체
-		productList.setPageSize(4);
+		productList.setPageSize(9);
 		model.put("productList", productList);
 		return "main/groupbuy";
 	}
@@ -60,7 +60,6 @@ public class ViewGroupBuyController {
 		return "main/groupbuy";
 	}
 
-
 	//공동구매 상품 리스트 선택보기
 	@RequestMapping("/groupbuy/list.do")
 	public String handleRequest2(
@@ -74,14 +73,15 @@ public class ViewGroupBuyController {
 		else {
 			productList = new PagedListHolder<Groupbuy>(closet.getGroupbuyByCategoryId(categoryId));
 		}
-		productList.setPageSize(4);
+		productList.setPageSize(9);
 
 		model.put("categoryId", categoryId);
 		model.put("productList", productList);
 
 		return "main/groupbuy"; 
 	}
-
+	
+	
 	//내가 판매 중인 공동구매 상품 리스트 보기
 	@RequestMapping("/myPage/sellGroupbuy.do")
 	public String handleRequest3(
@@ -93,14 +93,14 @@ public class ViewGroupBuyController {
 		if (userSession != null) {
 			Account account = closet.getAccount(userSession.getAccount().getUserId());
 			PagedListHolder<Groupbuy> productList = new PagedListHolder<Groupbuy>(closet.findSellGroupbuyByAccount(account));
-			productList.setPageSize(4);
+			productList.setPageSize(5);
 			model.put("productList", productList);
 			return "groupbuy/sellResultList";
 		} else {
 			return "redirect:/account/SignonForm.do";
 		}
 	}
-
+	
 	//내가 판매 중인 공동구매 상품 리스트 보기
 	@RequestMapping("/myPage/sellGroupbuy2.do")
 	public String handleRequest33(
@@ -137,9 +137,9 @@ public class ViewGroupBuyController {
 				}
 			}
 			PagedListHolder<Groupbuy> productList = new PagedListHolder<Groupbuy>(productGroupbuys);
-			productList.setPageSize(4);
+			productList.setPageSize(5);
 			PagedListHolder<Meet> meetList = new PagedListHolder<Meet>(meet);
-			meetList.setPageSize(4);
+			meetList.setPageSize(5);
 
 			model.put("productList", productList);
 			model.put("meetList", meetList);
@@ -148,13 +148,13 @@ public class ViewGroupBuyController {
 			return "redirect:/account/SignonForm.do";
 		}
 	}
-
+	
 	//내가 판매 중인 공동구매 상품 리스트 보기
 	@RequestMapping("/myPage/buyGroupbuy2.do")
 	public String handleRequest44(
 			HttpServletRequest request,
-			@ModelAttribute("productList") PagedListHolder<Auction> productList,
-			@ModelAttribute("meetList") PagedListHolder<Bid> meetList,
+			@ModelAttribute("productList") PagedListHolder<Groupbuy> productList,
+			@ModelAttribute("meetList") PagedListHolder<Meet> meetList,
 			@RequestParam("pageName") String page, 
 			ModelMap model) throws Exception {
 		if ("next".equals(page)) {

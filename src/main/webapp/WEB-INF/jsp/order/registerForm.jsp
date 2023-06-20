@@ -80,7 +80,7 @@
 	<div class = "layout">
 		<div class = "page">주문/결제</div>
 		<div class = "prodInfo">
-				<img src="<c:url value='${prod.picture1}'/>" width="200px" height="200px" />
+				<img src = "../../upload/${prod.picture1}'>" width="200px" height="200px" />
 				${product.name}<br>
 				${product.color}<br>
 				${product.size}<br>

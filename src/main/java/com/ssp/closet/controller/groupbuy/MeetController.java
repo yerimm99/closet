@@ -46,7 +46,7 @@ public class MeetController {
 				} else {
 					Meet meet = new Meet();
 					meet.initMeet(account, groupbuy);
-					closet.createMeet(meet);
+					closet.insertMeet(meet);
 					groupbuy.setPeopleSum(groupbuy.getPeopleSum() + 1);
 					closet.insertGroupbuy(groupbuy); //변경사항 저장
 
@@ -58,7 +58,7 @@ public class MeetController {
 						for (Meet m : meets) {
 							m.setMeetResult(1); // 값을 1로 변경
 							// 변경된 엔티티 저장
-							closet.createMeet(m);
+							closet.insertMeet(m);
 						}
 					}
 				}

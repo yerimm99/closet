@@ -18,7 +18,7 @@ import com.ssp.closet.dto.Product;
 public interface AuctionRepository extends JpaRepository<Auction, Integer> {
 
 	Auction findByProductId(int productId);
-	List<Auction> findByAccount(Account account);
+	List<Auction> findByAccountOrderByRegisterDateDesc(Account account);
 	
 	@Modifying
 	@Transactional
@@ -27,7 +27,9 @@ public interface AuctionRepository extends JpaRepository<Auction, Integer> {
 			"where a.productId = :productId")
 	void updatePrice(@Param("productId")int productId, @Param("maxPrice")int price);
 	
-	List<Auction> findByCategoryId(String categoryId);
+	List<Auction> findByCategoryIdOrderByRegisterDateDesc(String categoryId);
+	
+	List<Auction> findAllByOrderByRegisterDateDesc();
 	
 	void deleteByProductId(int productId);
 	
@@ -43,4 +45,7 @@ public interface AuctionRepository extends JpaRepository<Auction, Integer> {
 	List<Auction> findByUsed(int used);
 	List<Auction> findByCategoryIdAndUsed(String categoryId, int used);
 	List<Auction> findByNameIgnoreCaseContaining(String keywords);
+
+	List<Auction> findByUsedOrderByRegisterDateDesc(int used);
+	List<Auction> findByCategoryIdAndUsedOrderByRegisterDateDesc(String categoryId, int used);
 }

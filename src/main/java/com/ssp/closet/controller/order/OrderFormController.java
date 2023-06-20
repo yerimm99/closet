@@ -23,6 +23,7 @@ import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Groupbuy;
 import com.ssp.closet.dto.Meet;
 import com.ssp.closet.service.ClosetFacade;
+import com.ssp.closet.service.OrderFormValidator;
 
 @Controller
 @SessionAttributes("orderForm")
@@ -50,11 +51,11 @@ public class OrderFormController {
 		return creditCardTypes;			
 	}
 	
-//	@Autowired
-//	private OrderValidator validator;
-//	public void setValidator(OrderValidator validator) {
-//		this.validator = validator;
-//	}
+	@Autowired
+	private OrderFormValidator validator;
+	public void setValidator(OrderFormValidator validator) {
+		this.validator = validator;
+	}
 	
 	@RequestMapping("/order/registerForm.do")  //order 등록 
 	public String initNewOrder(HttpServletRequest request,
@@ -77,38 +78,23 @@ public class OrderFormController {
 		}
 	}
 	
-//	@RequestMapping("/order/confirmOrder.do")
-//	protected ModelAndView confirmGroupbuy( //auction 등록 확인 
-//			@ModelAttribute("orderForm") OrderForm orderForm, 
-//			SessionStatus status, BindingResult result) {
-//
-////		validator.validateGroupbuyForm(orderForm.getOrder(), result);
-////		ModelAndView mav1 = new ModelAndView("order/registerForm");
-////		if (result.hasErrors()) return mav1;
-//		
-//		closet.insertOrder(orderForm.getOrder()); //등록 
-//		ModelAndView mav2 = new ModelAndView("order/detail");
-//		mav2.addObject("product", orderForm.getOrder());
-//		status.setComplete();  // remove session
-//		return mav2;
-//	}
-	
 	@RequestMapping("/order/register.do")
-	protected String confirmGroupbuy( //auction 등록 확인 
+	protected ModelAndView confirmGroupbuy( //auction 등록 확인 
 			@ModelAttribute("orderForm") OrderForm orderForm, 
 			SessionStatus status, BindingResult result) {
 
-//		validator.validateGroupbuyForm(orderForm.getOrder(), result);
-//		ModelAndView mav1 = new ModelAndView("order/registerForm");
-//		if (result.hasErrors()) return mav1;
+		validator.validateOrderForm(orderForm.getOrder(), result);
+		ModelAndView mav1 = new ModelAndView("order/registerForm");
+		if (result.hasErrors()) return mav1;
 		orderForm.getOrder().setExpiryDate(orderForm.convertToFormattedDate(orderForm.getOrder().getExpiryDate()));
 		closet.createDelivery(orderForm.getOrder()); //등록 
 		Meet meet = closet.findMeetByUserIdAndProductId(orderForm.getOrder().getUserId(), orderForm.getOrder().getProductId());
 		meet.setMeetResult(3);
-		closet.createMeet(meet);
-//		ModelAndView mav2 = new ModelAndView("order/detail");
-//		mav2.addObject("product", orderForm.getOrder());
+		closet.insertMeet(meet);
+		
+		ModelAndView mav2 = new ModelAndView("order/detail");
+		mav2.addObject("order", orderForm.getOrder());
 		status.setComplete();  // remove session
-		return "redirect:/closet/mypage.do";
+		return mav2;
 	}
 }

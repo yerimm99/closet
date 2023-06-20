@@ -78,6 +78,7 @@ public class ViewAuctionController {
 		model.put("productList", productList);
 		return "main/auction"; 
 	}
+	
 
 	//경매 상품 리스트 선택보기
 	@RequestMapping("/auction/list2.do")
@@ -112,7 +113,8 @@ public class ViewAuctionController {
 		if (userSession != null) {
 			Account account = closet.getAccount(userSession.getAccount().getUserId());
 			PagedListHolder<Auction> productList = new PagedListHolder<Auction>(closet.findSellAuctionByAccount(account));
-			productList.setPageSize(9);
+
+			productList.setPageSize(5);
 			model.put("productList", productList);
 			return "auction/sellResultList";
 		} else {
@@ -120,6 +122,7 @@ public class ViewAuctionController {
 		}
 	}
 
+	
 	//내가 판매 중인 경매 상품 리스트 보기
 	@RequestMapping("/myPage/sellAuction2.do")
 	public String handleRequest33(
@@ -156,9 +159,11 @@ public class ViewAuctionController {
 				}
 			}
 			PagedListHolder<Auction> productList = new PagedListHolder<Auction>(productAuctions);
-			productList.setPageSize(6);
+
+			productList.setPageSize(5);
 			PagedListHolder<Bid> bidList = new PagedListHolder<Bid>(bid);
-			bidList.setPageSize(6);
+
+			bidList.setPageSize(5);
 
 			model.put("productList", productList);
 			model.put("bidList", bidList);

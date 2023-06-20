@@ -152,16 +152,23 @@
                 </table>
             </c:otherwise>
         </c:choose>
-        <!-- 이전 페이지, 다음 페이지 버튼 -->
+   
+    <!-- 이전 페이지 버튼 -->
+    <c:if test="${productList.page > 0}">
         <form action="/myPage/buyAuction2.do?pageName=previous" method="get">
             <input type="hidden" name="pageName" value="previous">
             <input type="submit" value="Previous">
         </form>
-
+    </c:if>
+    
+    ${productList.page + 1}
+    <!-- 다음 페이지 버튼 -->
+    <c:if test="${productList.page + 1 < productList.pageCount}">
         <form action="/myPage/buyAuction2.do?pageName=next" method="get">
             <input type="hidden" name="pageName" value="next">
             <input type="submit" value="Next">
         </form>
-    </div>
+    </c:if>
+</div>
 </body>
 </html>
