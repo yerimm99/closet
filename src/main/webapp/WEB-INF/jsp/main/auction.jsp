@@ -18,7 +18,7 @@
 		width:100px;padding:10px;float:left}
 		.categories input{margin-bottom:15px}
 		.list{background-color:white;height:60px;margin-left:250px;margin-top:80px;height:600px}
-		.notNew{margin-top:5px}
+		.notNew{margin-top:10px}
 		a{display:block}
 	 	a:link{text-decoration:none;color:black}
 		a:visited{text-decoration:none;color:black}
@@ -57,41 +57,9 @@
 			<a href="<c:url value='/auction/list2.do?categoryId=전체&used=0' />">새상품</a>
 			<a href="<c:url value='/auction/list2.do?categoryId=전체&used=1' />" class = "notNew">중고 상품</a>
 			</c:if>
-			<c:if test = "${categoryId eq '전체'}">
-				<a href="<c:url value='/auction/list2.do?categoryId=전체&used=0' />">새상품</a>
-				<a href="<c:url value='/auction/list2.do?categoryId=전체&used=1' />" class = "notNew">중고 상품</a>
-			</c:if>
-			<c:if test = "${categoryId eq '신발'}">
-				<a href="<c:url value='/auction/list2.do?categoryId=신발&used=0' />">새상품</a>
-				<a href="<c:url value='/auction/list2.do?categoryId=신발&used=1' />" class = "notNew">중고 상품</a>
-			</c:if>
-			<c:if test = "${categoryId eq '아우터'}">
-				<a href="<c:url value='/auction/list2.do?categoryId=아우터&used=0' />">새상품</a>
-				<a href="<c:url value='/auction/list2.do?categoryId=아우터&used=1' />" class = "notNew">중고 상품</a>
-			</c:if>
-			<c:if test = "${categoryId eq '상의'}">
-				<a href="<c:url value='/auction/list2.do?categoryId=상의&used=0' />">새상품</a>
-				<a href="<c:url value='/auction/list2.do?categoryId=상의&used=1' />" class = "notNew">중고 상품</a>
-			</c:if>
-			<c:if test = "${categoryId eq '하의'}">
-				<a href="<c:url value='/auction/list2.do?categoryId=하의&used=0' />">새상품</a>
-				<a href="<c:url value='/auction/list2.do?categoryId=하의&used=1' />" class = "notNew">중고 상품</a>
-			</c:if>
-			<c:if test = "${categoryId eq '가방'}">
-				<a href="<c:url value='/auction/list2.do?categoryId=가방&used=0' />">새상품</a>
-				<a href="<c:url value='/auction/list2.do?categoryId=가방&used=1' />" class = "notNew">중고 상품</a>
-			</c:if>
-			<c:if test = "${categoryId eq '지갑'}">
-				<a href="<c:url value='/auction/list2.do?categoryId=지갑&used=0' />">새상품</a>
-				<a href="<c:url value='/auction/list2.do?categoryId=지갑&used=1' />" class = "notNew">중고 상품</a>
-			</c:if>
-			<c:if test = "${categoryId eq '시계'}">
-				<a href="<c:url value='/auction/list2.do?categoryId=시계&used=0' />">새상품</a>
-				<a href="<c:url value='/auction/list2.do?categoryId=시계&used=1' />" class = "notNew">중고 상품</a>
-			</c:if>
-			<c:if test = "${categoryId eq '패션잡화'}">
-				<a href="<c:url value='/auction/list2.do?categoryId=패션잡화&used=0' />">새상품</a>
-				<a href="<c:url value='/auction/list2.do?categoryId=패션잡화&used=1' />" class = "notNew">중고 상품</a>
+			<c:if test = "${!empty categoryId}">
+				<a href="<c:url value='/auction/list2.do?categoryId=${categoryId}&used=0' />">새상품</a>
+				<a href="<c:url value='/auction/list2.do?categoryId=${categoryId}&used=1' />" class = "notNew">중고 상품</a>
 			</c:if>
 		</div>
 				<!-- 해당 상품 리스트 -->

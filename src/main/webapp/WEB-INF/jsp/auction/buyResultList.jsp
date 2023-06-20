@@ -109,7 +109,11 @@
                             <c:if test="${prodStatus.index == bidStatus.index}">
                                 <tr>
                                     <td width="250px" height="250px">
-                                        <img src="../../upload/${prod.picture1}" class="product-image" />
+                                    	<a href="<c:url value='/auction/detail.do'>
+                                			<c:param name='productId' value='${prod.productId}' />
+                            				</c:url>">
+                                        	<img src="../../upload/${prod.picture1}" class="product-image" />
+                                        </a>
                                     </td>
                                     <td>
                                         <div class="product-info">

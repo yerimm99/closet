@@ -108,8 +108,12 @@
                 <c:forEach items="${productList.pageList}" var="prod">
                     <tr>
                         <td width = "250px" height = "250px">
-						<img src = "../../upload/${prod.picture1}"><br>
-					</td>
+                        	<a href="<c:url value='/auction/detail.do'>
+                                <c:param name='productId' value='${prod.productId}' />
+                            </c:url>">
+								<img src = "../../upload/${prod.picture1}">
+							</a>
+						</td>
                         <td>
                             <div class="product-info" >
                                 <div class ="pro">
