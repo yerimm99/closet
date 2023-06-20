@@ -20,7 +20,7 @@ public class RankController {
         this.closetFacade = closetFacade;
     }
     
-    @GetMapping("/rank")
+    @GetMapping("/rank/rank.do")
     public String getRanking(Model model) {
         List<Product> topRankingProducts = closetFacade.getTopRankingProducts();
         model.addAttribute("topRankingProducts", topRankingProducts);

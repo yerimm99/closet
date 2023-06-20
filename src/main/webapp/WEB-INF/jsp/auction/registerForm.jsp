@@ -32,10 +32,15 @@
 	<hr>
 	
 	<div class = "layout">
-		<form:form modelAttribute = "auctionForm" action="${targetUrl}" method="post" >
+		<form:form modelAttribute = "auctionForm" action="${targetUrl}" method="post" enctype="multipart/form-data">
 		<table>
 			<tr>
-				<td style="text-align:center;font-size:24px" colspan = "2">경매 상품 등록<br><br></td>
+				<c:if test="${auctionForm.newAuction}">
+					<td style="text-align:center;font-size:24px" colspan = "2">경매 상품 등록<br><br></td>
+				</c:if>
+				<c:if test="${!auctionForm.newAuction}">
+					<td style="text-align:center;font-size:24px" colspan = "2">경매 상품 수정<br><br></td>
+				</c:if>
 			</tr>
 			<tr>
 				<td>상품명</td>
@@ -61,15 +66,24 @@
 			<tr>
 				<td>최소 가격</td>
 				<td>
-					<form:input path = "auction.startPrice"  class = "inp"/>
+					<c:if test="${auctionForm.newAuction}">
+						<form:input path = "auction.startPrice" class = "inp"/>
+					</c:if>
+					<c:if test="${!auctionForm.newAuction}">
+						<c:out value="${auctionForm.auction.startPrice}" />
+					</c:if>
 					<hr>
 				</td>
 			</tr>
 			<tr>
 				<td>종료 날짜</td>
  				<td>
- 					<form:input path = "auction.endDate"  class = "inp" placeholder = "xxxx/xx/xx형식으로 입력해주세요."/>
- 					<!--<form:input type = "date" path = "auction.endDate" class = "inp" value = "2023/06/20"/>-->
+ 					<c:if test="${auctionForm.newAuction}">
+ 						<form:input type = "date" path = "auction.endDate" class = "inp"/>
+					</c:if>
+					<c:if test="${!auctionForm.newAuction}">
+						<c:out value="${auctionForm.auction.endDate}" />
+					</c:if>
  					<hr>
  				</td> 
 			</tr>
@@ -98,20 +112,14 @@
 				</td>
 			</tr>
 			<tr>
-				<td>사진첨부</td>
-				<td>
-					<input type = "file" name = "file" multiple/>
-				</td>
-			</tr>
-			<tr>
 				<td colspan = "2"><hr></td>
 			</tr>
 			<tr>
 				<td>사진첨부(나중에삭제)</td>
 				<td><!-- form:form태그에 file url업로드 기능 없음. requestParam으로 가져가야함 -->
 					최소 1개 최대 4개의 사진을 업로드해주세요<br>
-					<form:input path = "auction.picture1" placeholder = "사진1" class = "inp"/><br>
-					<form:input path = "auction.picture2" placeholder = "사진2" class = "inp"/>
+					    
+					<input type="file" name="files" accept="image/*" multiple />
 					<!-- <input type = "file" name = "picture1" id = "picture1" multiple> -->
 				</td>
 			</tr>

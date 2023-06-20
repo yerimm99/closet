@@ -1,6 +1,8 @@
 package com.ssp.closet.controller.groupbuy;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ModelAndViewDefiningException;
 import org.springframework.web.util.WebUtils;
@@ -109,6 +112,7 @@ public class GroupbuyFormController {
 		}
 	}
 	
+	
 	@RequestMapping("/groupbuy/confirmGroupbuy.do")
 	protected ModelAndView confirmGroupbuy( //auction 등록 확인 
 			@ModelAttribute("groupbuyForm") GroupbuyForm groupbuyForm, 
@@ -124,4 +128,32 @@ public class GroupbuyFormController {
 		status.setComplete();  // remove session
 		return mav2;
 	}
+	
+	
+//	@RequestMapping("/groupbuy/confirmGroupbuy.do")
+//	protected ModelAndView confirmGroupbuy( //auction 등록 확인 
+//			@ModelAttribute("groupbuyForm") GroupbuyForm groupbuyForm, 
+//			@RequestParam("imageFile") MultipartFile imageFile,
+//			SessionStatus status, BindingResult result) {
+//
+//		validator.validateGroupbuyForm(groupbuyForm.getGroupbuy(), result);
+//		ModelAndView mav1 = new ModelAndView("groupbuy/registerForm");
+//		if (result.hasErrors()) return mav1;
+//		if (!imageFile.isEmpty()) {
+//		    try {
+//		      byte[] imageData = imageFile.getBytes();
+//		      String image = Base64.getEncoder().encodeToString(imageData);
+//		      groupbuyForm.getGroupbuy().setPicture1(image);
+//		    } catch (IOException e) {
+//		      e.printStackTrace();
+//		      // 파일 처리 예외 처리
+//		    }
+//		  }
+//		
+//		closet.insertGroupbuy(groupbuyForm.getGroupbuy()); //등록 
+//		ModelAndView mav2 = new ModelAndView("groupbuy/detail");
+//		mav2.addObject("product", groupbuyForm.getGroupbuy());
+//		status.setComplete();  // remove session
+//		return mav2;
+//	}
 }

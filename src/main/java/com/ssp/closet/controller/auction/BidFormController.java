@@ -39,10 +39,6 @@ public class BidFormController {
 		return new BidForm();
 	}
 	
-	@RequestMapping(method = RequestMethod.GET)
-	public String showForm() {
-		return "bid/bidForm";
-	}
 	
 	@RequestMapping({"/bid/newBid.do","/bid/editBid.do"})
 	public ModelAndView initBid(HttpServletRequest request,
@@ -97,22 +93,8 @@ public class BidFormController {
 			mav.addObject("product", bid.getAuction());
 			return mav;
 		}
-
-//		try {
-			if (bidForm.isNewBid()) {
-				bidForm.setBidPrice(bid.getBidPrice());
-				closet.createBid(bid);
-			}
-			else {
-				closet.updateBidPrice(bid.getProductId(), bid.getUserId(), bid.getBidPrice());
-			}
-//		}
-//		catch (DataIntegrityViolationException ex) {
-//				ModelAndView mav = new ModelAndView("bid/bidForm");
-//				mav.addObject("product", bid.getAuction());
-//				return mav;
-//			
-//		}
+		closet.createBid(bid);
+		bid.getAuction().setPrice(bid.getBidPrice());
 		ModelAndView mav = new ModelAndView("auction/detail");
 		mav.addObject("product", bid.getAuction());
 		status.setComplete();  // remove session
@@ -121,10 +103,15 @@ public class BidFormController {
 
 	
 	@RequestMapping("/bid/deleteBid.do")
-	public String removeBid(
+	public String removeBid(HttpServletRequest request,
 			@RequestParam("productId") int productId
 		) throws Exception {
-		closet.deleteBid(productId);
-		return "main/myPage";
+		UserSession userSession = 
+				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
+		if (userSession != null) {
+			Account account = closet.getAccount(userSession.getAccount().getUserId());
+			closet.deleteBid(productId, account.getUserId());
+		}
+		return "redirect:/myPage/buyAuction.do";
 	}
 }
