@@ -3,6 +3,7 @@ package com.ssp.closet.dto;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
@@ -41,5 +42,6 @@ public class Auction extends Product implements Serializable {
 		super.setRegisterDate(new Date());
 		super.setAccount(account);
 	}
+
 
 }

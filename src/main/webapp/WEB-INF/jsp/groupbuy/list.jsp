@@ -15,74 +15,36 @@
 	</style>
 </head>
 <body>
-	<c:set value="${paging}" var="paging"></c:set>
-	<div class="row">
 		<c:choose>
-			<c:when test="${productList == null}">
+			<c:when test="${productList.getSource() == null}">
 				<div class="sell">공동구매 상품이 하나도 없습니다.</div>
 			</c:when>
 			<c:otherwise>
-				<c:set var="i" value="0" />
-				<c:set var="j" value="4" />
 				<table border="1">
-					<c:forEach items="${productList}" var="prod">
-						<c:if test="${i%j == 0 }">
-							<tr>
-						</c:if>
-						<td><a
-							href="<c:url value='/groupbuy/detail.do'>
+					<c:forEach var="prod" items="${productList.pageList}">
+					<tr bgcolor="#FFFF88"><td>
+						<a href="<c:url value='/groupbuy/detail.do'>
  							<c:param name = 'productId' value='${prod.productId}' />
  							</c:url>">
-								<img src="<c:url value='${prod.picture1}'/>" width="250px"
-								height="250px" /><br>
+								<img src = "../../upload/${prod.picture1}">/><br>
 							<b> ${prod.name}</b><br> ${prod.description}<br> color:
 								${prod.color} || size:${prod.size}<br>
 							<br> 가격: ${prod.price}원<br> 현재모인 인원수: ${prod.peopleSum} / ${prod.peopleNum}
-						</a></td>
-						<c:if test="${i%j == j-1 }">
-							</tr>
-						</c:if>
-						<c:set var="i" value="${i+1 }" />
+						</a>
+						</td>
 					</c:forEach>
 				</table>
 			</c:otherwise>
 		</c:choose>
-		<!-- 페이징 처리 -->
-		<div class="text-center">
-			<!-- 이전 페이지 그룹 있나? -->
-			<c:if test="${paging.hasPrevious==true }">
-				<a href="?page=${preview}&categoryId=${categoryId}">
-					<i class="fas fa-lg fa-angle-double-left"></i>
-				</a>
-				&nbsp;
-			</c:if>
-			<!-- 페이지 번호 표시 -->
-			<c:forEach var="pagingNumber" begin="${paging.nowPageGroupStartPage }" end="${paging.nowPageGroupEndPage }">
-				<c:choose>
-					<c:when test="${pagingNumber==paging.nowPage }">
-						<i class="fas fa-lg fa-sort-numeric-up-alt">
-							<a href="?page=${pagingNumber-1 }&categoryId=${categoryId}"
-								class="board-number-change-color abncc">${pagingNumber}
-							</a>
-						</i>
-							&nbsp;
-						</c:when>
-					<c:otherwise>
-						<i class="fas fa-lg fa-sort-numeric-up-alt">
-							<a href="?page=${pagingNumber-1 }&categoryId=${categoryId}"
-								class="board-number-change-color">${pagingNumber}</a>
-						</i>
-							&nbsp;
-						</c:otherwise>
-				</c:choose>
-			</c:forEach>
-			<!-- 다음 페이지 그룹 있나? -->
-			<c:if test="${paging.hasNext==true}">
-				<a href="?page=${requestScope.next}&categoryId=${categoryId}">
-					<i class="fas fa-lg fa-angle-double-right"></i>
-				</a>
-			</c:if>
-		</div>
-	</div>
+		<!-- 이전 페이지, 다음 페이지 버튼 -->
+    <form action="/closet/groupbuy2.do?pageName=previous" method="get">
+        <input type="hidden" name="pageName" value="previous">
+        <input type="submit" value="Previous">
+    </form>
+
+    <form action="/closet/groupbuy2.do?pageName=next" method="get">
+        <input type="hidden" name="pageName" value="next">
+        <input type="submit" value="Next">
+    </form>
 </body>
 </html>
