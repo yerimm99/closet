@@ -26,8 +26,8 @@ public class ViewIndexController {
 	public String handleRequest(HttpServletRequest request,
 			ModelMap model
 			) throws Exception {
-		List<Auction> productList = closet.findTop4AuctionOrderByRegisterDate();
-		model.put("productList", productList);
+		//List<Auction> productList = closet.findTop4AuctionOrderByRegisterDate();
+		//model.put("productList", productList);
 		return "/index";
 	}
 }

@@ -152,9 +152,9 @@
 	<div class = "layout">
 		<div class = "recent">
 			<div class = "name">최신 경매 상품</div>
-			<div class = "list">
-				<jsp:include page = "auction/list.jsp"/>
-			</div>
+<!-- 			<div class = "list"> -->
+<%-- 				<jsp:include page = "auction/list.jsp"/> --%>
+<!-- 			</div> -->
 		</div>
 	</div>
 </body>

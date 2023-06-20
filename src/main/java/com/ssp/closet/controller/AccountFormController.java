@@ -72,4 +72,3 @@ public class AccountFormController {
         return successViewName;
     }
 }
-

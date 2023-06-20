@@ -34,7 +34,7 @@ public class ViewAuctionController {
 	@Autowired
 	public void setCloset(ClosetFacade closet) {
 		this.closet = closet;
-	}
+	} 
 
 	@Autowired
 	private PagingService pagingService;

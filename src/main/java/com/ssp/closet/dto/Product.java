@@ -81,15 +81,15 @@ public class Product implements Serializable {
 	@Column(name = "DTYPE", insertable=false, updatable=false)
 	private String DTYPE;
 	
-	@Column(name = "RANK")//랭킹 관련 코드
-	@OrderBy("rank DESC")
-	private int rank;
-	@Column(name = "VIEWS")
-    private int views; 
-	public int getViews() { return views;}
+//	@Column(name = "RANK")//랭킹 관련 코드
+//	@OrderBy("rank DESC")
+//	private int rank;
+//	@Column(name = "VIEWS")
+//    private int views; 
+//	public int getViews() { return views;}
 	
-	private int likes = 0; //관심상품
-	public void incrementLikes() {likes++;}
+//	private int likes = 0; //관심상품
+//	public void incrementLikes() {likes++;}
 
 	@ManyToOne
 	@JoinColumn(name = "USERID", referencedColumnName = "USERID")
