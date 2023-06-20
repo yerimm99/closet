@@ -14,6 +14,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
+import com.ssp.closet.dto.Product;
 public interface AuctionRepository extends JpaRepository<Auction, Integer> {
 
 	Auction findByProductId(int productId);
@@ -41,4 +42,5 @@ public interface AuctionRepository extends JpaRepository<Auction, Integer> {
 	
 	List<Auction> findByUsed(int used);
 	List<Auction> findByCategoryIdAndUsed(String categoryId, int used);
+	List<Auction> findByNameIgnoreCaseContaining(String keywords);
 }

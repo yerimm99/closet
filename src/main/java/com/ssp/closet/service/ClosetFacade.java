@@ -21,15 +21,14 @@ public interface ClosetFacade {
 	List<Category> getCategoryList();
 	Category getCategory(String categoryId);
 
-	List<Product> searchProductList(String keywords);
 	List<Product> getProductList(int type, int status);
 
 	void insertAuction(Auction auction);
 	Auction getAuction(int productId);
 	void updateMaxPrice(int productId);
 	List<Auction> getAuctionList();
-
 	List<Auction> getAuctionByCategoryId(String categoryId);
+	List<Auction> searchAuctionList(String keywords);
 	//추가
 	List<Auction> getAuctionByUsed(int used);
 	List<Auction> getAuctionByCategoryIdAndUsed(String categoryId, int used);
@@ -59,7 +58,7 @@ public interface ClosetFacade {
 	List<Groupbuy> findSellGroupbuyByAccount(Account account);
 	Groupbuy findBuyGroupbuyByProductId(int productId);
 	void deleteGroupbuyByProductId(int productId);
-
+	List<Groupbuy> searchGroupbuyList(String keywords);
 
 	void createMeet(Meet meet);
 	Meet findMeetByUserIdAndProductId(String userId, int productId);

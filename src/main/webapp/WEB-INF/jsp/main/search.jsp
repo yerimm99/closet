@@ -82,12 +82,12 @@
         <div class="search-recommendations">
             <b>추천 검색어</b>
             <ul>
-                <li>나이키</li>
-                <li>아디다스</li>
-                <li>빈폴</li>
-                <li>디젤</li>
-                <li>스투시</li>
-                <li>반팔</li>
+                <li><a href="<c:url value='/closet/searchResult.do?keyword=나이키' />">나이키</a></li>
+                <li><a href="<c:url value='/closet/searchResult.do?keyword=아디다스' />">아디다스</a></li>
+                <li><a href="<c:url value='/closet/searchResult.do?keyword=빈폴' />">빈폴</a></li>
+                <li><a href="<c:url value='/closet/searchResult.do?keyword=디젤' />">디젤</a></li>
+                <li><a href="<c:url value='/closet/searchResult.do?keyword=스투시' />">스투시</a></li>
+                <li><a href="<c:url value='/closet/searchResult.do?keyword=반팔' />">반팔</a></li>
             </ul>
         </div>
 

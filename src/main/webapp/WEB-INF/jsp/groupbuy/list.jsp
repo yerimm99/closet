@@ -73,13 +73,13 @@
                 <c:otherwise>
                     <c:forEach var="prod" items="${productList.pageList}">
                         <div class="product-card">
-                            <a href="<c:url value='/auction/detail.do'>
+                            <a href="<c:url value='/groupbuy/detail.do'>
                                 <c:param name='productId' value='${prod.productId}' />
                             </c:url>">
                                 <img src="../../upload/${prod.picture1}" alt="Product Image">
                                 <h3>${prod.name}</h3>
                                 <p> 
-                                <br> 가격: ${prod.price}원<br> 현재모인 인원수: ${prod.peopleSum} / ${prod.peopleNum}
+                                <br>${prod.price}원<br> 모집인원: ${prod.peopleSum} / ${prod.peopleNum}
                                 </p>
                             </a>
                         </div>
