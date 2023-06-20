@@ -24,6 +24,7 @@ public interface ProductDao {
 	//상품 상세보기
 	Product getProductDetail(int productId) throws DataAccessException;
 	
-	//랭킹 코드
-	List<Product> getTopRankingProducts();
+	/*
+	 * //랭킹 코드 List<Product> getTopRankingProducts();
+	 */
 }

@@ -105,5 +105,5 @@ public interface ClosetFacade {
 	 * (account.getEmail().equals(email)) { return account; } } return null; // 검색된
 	 * 계정이 없는 경우 null 반환 }
 	 */
-	List<Product> getTopRankingProducts();
+	/* List<Product> getTopRankingProducts(); */
 }

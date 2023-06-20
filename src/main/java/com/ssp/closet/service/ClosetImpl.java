@@ -373,17 +373,15 @@ public class ClosetImpl implements ClosetFacade{
         this.productDao = productDao;
     }
 
-    @Override
-    public List<Product> getTopRankingProducts() {
-        // Implement the logic to retrieve the top ranking products
-        // Example:
-        // 1. Use the productDao to fetch the top ranking products
-        //    based on your ranking criteria (e.g., sales, ratings, views).
-        //    Adjust the method name and parameters based on your productDao implementation.
-        List<Product> topRankingProducts = productDao.getTopRankingProducts();
-        
-        // 2. Return the list of top ranking products
-        return topRankingProducts;
-    }
+	/*
+	 * @Override public List<Product> getTopRankingProducts() { // Implement the
+	 * logic to retrieve the top ranking products // Example: // 1. Use the
+	 * productDao to fetch the top ranking products // based on your ranking
+	 * criteria (e.g., sales, ratings, views). // Adjust the method name and
+	 * parameters based on your productDao implementation. List<Product>
+	 * topRankingProducts = productDao.getTopRankingProducts();
+	 * 
+	 * // 2. Return the list of top ranking products return topRankingProducts; }
+	 */
 
 }
