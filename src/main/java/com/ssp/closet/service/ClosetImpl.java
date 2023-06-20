@@ -20,6 +20,9 @@ import com.ssp.closet.dao.AccountDao;
 import com.ssp.closet.dao.AuctionDao;
 import com.ssp.closet.dao.BookmarkDao;
 import com.ssp.closet.dao.GroupbuyDao;
+import com.ssp.closet.dao.ProductDao;
+import com.ssp.closet.dao.MeetDao;
+
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
 import com.ssp.closet.dto.Bid;
@@ -363,4 +366,24 @@ public class ClosetImpl implements ClosetFacade{
 		// TODO Auto-generated method stub
 
 	}
+	
+	private final ProductDao productDao;
+
+    public ClosetImpl(ProductDao productDao) {
+        this.productDao = productDao;
+    }
+
+    @Override
+    public List<Product> getTopRankingProducts() {
+        // Implement the logic to retrieve the top ranking products
+        // Example:
+        // 1. Use the productDao to fetch the top ranking products
+        //    based on your ranking criteria (e.g., sales, ratings, views).
+        //    Adjust the method name and parameters based on your productDao implementation.
+        List<Product> topRankingProducts = productDao.getTopRankingProducts();
+        
+        // 2. Return the list of top ranking products
+        return topRankingProducts;
+    }
+
 }
