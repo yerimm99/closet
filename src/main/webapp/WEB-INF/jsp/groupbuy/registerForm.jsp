@@ -114,12 +114,6 @@
 				</td>
 			</tr>
 			<tr>
-				<td>사진첨부</td>
-				<td>
-					<input type = "file" name = "imageFile" multiple/>
-				</td>
-			</tr>
-			<tr>
 				<td colspan = "2"><hr></td>
 			</tr>
 			<tr>
