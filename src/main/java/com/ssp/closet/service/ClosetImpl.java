@@ -60,16 +60,7 @@ public class ClosetImpl implements ClosetFacade{
 	public List<Product> searchProductList(String keywords) {
 		return productRepository.findByNameIgnoreCaseContaining(keywords);
 	}
-//	public Product getProductDetail(int productId) {
-//		return productRepository.findByProductId(productId);
-//	}
-//
-//	public void updateProduct(String description, String picture1, String picture2, String picture3, String picture4, int productId) {
-//		productRepository.updateByProductId(description, picture1, picture2, picture3, picture4, productId);
-//	};
-//	public void deleteProduct(int productId) {
-//		productRepository.deleteByProductIdIfGroupBuyPeopleNumIsOne(productId);
-//	};
+
 	@Autowired
 	private AuctionRepository aucRepository;
 
@@ -195,10 +186,6 @@ public class ClosetImpl implements ClosetFacade{
 	public Bid findMaxPrice(int productId) {
 		return bidRepository.findTopByProductIdOrderByBidPriceDesc(productId);
 	}	 
-	  
-//	public List<Bid> getBidResultList(String userId) {
-//		return bidRepository.findResultByBidder(userId);
-//	}
 	
 	public List<Bid> getBid(String userId) {
 		return bidRepository.findByUserId(userId);
@@ -377,5 +364,4 @@ public class ClosetImpl implements ClosetFacade{
 	 * 
 	 * // 2. Return the list of top ranking products return topRankingProducts; }
 	 */
-
 }
