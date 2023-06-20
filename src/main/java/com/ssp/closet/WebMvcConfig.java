@@ -33,7 +33,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	}
 	
 	 @Bean
-	    public TaskScheduler threadPoolTaskScheduler(){
+	 public TaskScheduler threadPoolTaskScheduler(){
 	        final ThreadPoolTaskScheduler scheduler = new ThreadPoolTaskScheduler();
 	        scheduler.setPoolSize(10);
 	        scheduler.setThreadNamePrefix("threadPoolTaskScheduler");

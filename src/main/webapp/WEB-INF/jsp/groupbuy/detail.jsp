@@ -89,7 +89,7 @@
 				<table>
 					<tr>
 						<th>상품명</th>
-						<td>&lt;${product.categoryId}&gt; ${product.name}</td>
+						<td>${product.name}</td>
 					</tr>
 					<tr>
 						<th>상품정보</th>
@@ -114,6 +114,10 @@
 					<tr>
   						<th>마감 날짜</th>
  						<td><fmt:formatDate value="${product.endDate}" pattern="yyyy-MM-dd" /></td>
+					</tr>
+					<tr>
+						<th>판매자</th>
+						<td>${product.account.userId}</td>
 					</tr>
 					<tr>
 						<td colspan = "2" class = "gobtn">

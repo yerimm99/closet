@@ -1,6 +1,7 @@
 package com.ssp.closet.controller.auction;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import com.ssp.closet.dto.Auction;
 
@@ -13,7 +14,6 @@ import lombok.Setter;
 public class AuctionForm implements Serializable {
 
 	private Auction auction;
-
 	private boolean newAuction;
 	
 	public AuctionForm(Auction auction) {

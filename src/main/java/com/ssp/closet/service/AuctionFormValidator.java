@@ -20,13 +20,14 @@ public class AuctionFormValidator implements Validator {
 
 	public void validateAuctionForm(Auction auction, Errors errors) {
 		errors.setNestedPath("auction");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "NAME_REQUIRED", "Name is required.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "size", "SIZE_REQUIRED", "Size is required.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "color", "COLOR_REQUIRED", "Color is required.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "startPrice", "START_PRICE_REQUIRED", "StartPrice is required.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "endDate", "END_DATE_REQUIRED", "EndDate is required.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "categoryId", "CATEGORY_REQUIRED", "Category is required.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "DESCRIPTION_REQUIRED", "Description is required.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "NAME_REQUIRED", "상품명을 입력해주세요.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "size", "SIZE_REQUIRED", "사이즈를 입력해주세요.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "color", "COLOR_REQUIRED", "색상을 입력해주세요.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "startPrice", "START_PRICE_REQUIRED", "경매 시작가를 입력해주세요.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "endDate", "END_DATE_REQUIRED", "종료일을 입력해주세요.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "categoryId", "CATEGORY_REQUIRED", "카테고리를 입력해주세요.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "DESCRIPTION_REQUIRED", "상품 설명을 입력해주세요.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "picture1", "PICTURE_REQUIRED", "사진을 첨부해주세요.");
 		errors.setNestedPath("");
 	}
 

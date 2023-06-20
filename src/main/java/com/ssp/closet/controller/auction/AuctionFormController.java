@@ -2,7 +2,10 @@ package com.ssp.closet.controller.auction;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,8 +37,6 @@ import com.ssp.closet.service.ClosetFacade;
 @SessionAttributes("auctionForm")
 public class AuctionFormController {
 	
-//	@Value("auction/registerForm")
-//	private String formViewName;
 	@Autowired
 	private ClosetFacade closet;
 	
@@ -54,10 +55,6 @@ public class AuctionFormController {
 		return new AuctionForm();
 	}
 	
-//	@RequestMapping(method = RequestMethod.GET)
-//	public String showForm() {
-//		return formViewName;
-//	}
 	
 	@ModelAttribute("categories")
 	public List<String> referenceData2() {
@@ -124,9 +121,7 @@ public class AuctionFormController {
 				"/src/main/webapp/upload/";
 		File nfile = new File(absolutePath);
 		
-		//경로에 폴더가 존재 안해?
 		if(!nfile.exists()) {
-			//그럼 그경로로 모든 폴더 만들어
 			boolean makeDirStatus = nfile.mkdirs();
 			if(!makeDirStatus) System.out.println("디렉토리 생성실패");
 		}
@@ -172,7 +167,7 @@ public class AuctionFormController {
 	    }
 	    product.setPicture3(picturePaths.size() >= 3 ? filee.get(2) : null);
 	    product.setPicture4(picturePaths.size() >= 4 ? filee.get(3) : null);
-
+	    
 	    closet.insertAuction(product); // 등록 
 	    closet.scheduleAuctionEnd(product);
 

@@ -59,6 +59,40 @@
             font-size: 16px;
             color: #FF4E50;
         }
+
+		.page-button {
+		  border: none;
+		  background: none;
+		  color: inherit;
+		  cursor: pointer;
+		  padding: 0;
+		}
+
+        .page-buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .page-buttons button {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+            margin: 0 5px;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            color: #333;
+            text-decoration: none;
+        }
+        
+        .page-buttons button:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .page-buttons .current {
+            color: #333;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -96,23 +130,40 @@
                 </c:otherwise>
             </c:choose>
         </div>
-    </div>
-    <!-- 이전 페이지 버튼 -->
-    <c:if test="${productList.page > 0}">
-        <form action="/closet/auction2.do?pageName=previous" method="get">
-            <input type="hidden" name="pageName" value="previous">
-            <input type="submit" value="Previous">
-        </form>
-    </c:if>
-    
-    ${productList.page + 1}
 
-    <!-- 다음 페이지 버튼 -->
-    <c:if test="${productList.page + 1 < productList.pageCount}">
-        <form action="/closet/auction2.do?pageName=next" method="get">
-            <input type="hidden" name="pageName" value="next">
-            <input type="submit" value="Next">
-        </form>
-    </c:if>
+        <div class="page-buttons">
+            <!-- 이전 페이지 버튼 -->
+            <c:if test="${productList.page > 0}">
+                <form action="/closet/auction2.do?pageName=previous" method="get" style="display: inline;">
+                    <input type="hidden" name="pageName" value="previous">
+                    <button type="submit">
+                        &lt;
+                    </button>
+                </form>
+            </c:if>
+
+            <c:forEach var="pageNum" begin="1" end="${productList.pageCount}">
+			    <c:choose>
+			        <c:when test="${pageNum == productList.page + 1}">
+			            <span class="current">${pageNum}</span>
+			        </c:when>
+			        <c:otherwise>
+			              ${pageNum}
+			        </c:otherwise>
+			    </c:choose>
+			</c:forEach>
+			
+
+            <!-- 다음 페이지 버튼 -->
+            <c:if test="${productList.page + 1 < productList.pageCount}">
+                <form action="/closet/auction2.do?pageName=next" method="get" style="display: inline;">
+                    <input type="hidden" name="pageName" value="next">
+                    <button type="submit">
+                        &gt;
+                    </button>
+                </form>
+            </c:if>
+        </div>
+    </div>
 </body>
 </html>
