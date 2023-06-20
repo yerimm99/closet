@@ -92,20 +92,19 @@
 
 <div class="layout">
     <div class="page">구매 내역 조회</div>
-    <c:set value="${paging}" var="paging"></c:set>
     <table>
         <tr>
             <th>상품 사진</th>
             <th>상품 정보</th>
             <th>결과</th>
         </tr>
-        <c:forEach items="${productList}" var="prod" varStatus="prodStatus">
-            <c:forEach items="${bidList}" var="bid" varStatus="bidStatus">
+        <c:forEach items="${productList.pageList}" var="prod" varStatus="prodStatus">
+            <c:forEach items="${bidList.pageList}" var="bid" varStatus="bidStatus">
                 <c:if test="${prodStatus.index == bidStatus.index}">
                     <tr>
-                        <td>
-                            <img src="<c:url value='${prod.picture1}'/>" class="product-image" alt="Product Image">
-                        </td>
+                       <td width = "250px" height = "250px">
+						<img src = "../../upload/${prod.picture1}">/><br>
+					</td>
                         <td>
                             <strong>${prod.name}</strong><br>
                             ${prod.color}<br>
@@ -142,28 +141,16 @@
             </c:forEach>
         </c:forEach>
     </table>
-    <!-- 페이징 처리 -->
-    <div class="text-center">
-        <!-- 이전 페이지 그룹 있나? -->
-        <c:if test="${paging.hasPrevious==true}">
-            <a href="?page=${preview}"><i class="fas fa-lg fa-angle-double-left"></i></a>&nbsp;
-        </c:if>
-        <!-- 페이지 번호 표시 -->
-        <c:forEach var="pagingNumber" begin="${paging.nowPageGroupStartPage}" end="${paging.nowPageGroupEndPage}">
-            <c:choose>
-                <c:when test="${pagingNumber==paging.nowPage}">
-                    <strong>${pagingNumber}</strong>&nbsp;
-                </c:when>
-                <c:otherwise>
-                    <a href="?page=${pagingNumber-1}">${pagingNumber}</a>&nbsp;
-                </c:otherwise>
-            </c:choose>
-        </c:forEach>
-        <!-- 다음 페이지 그룹 있나? -->
-        <c:if test="${paging.hasNext==true}">
-            <a href="?page=${requestScope.next}"><i class="fas fa-lg fa-angle-double-right"></i></a>
-        </c:if>
-    </div>
+    <!-- 이전 페이지, 다음 페이지 버튼 -->
+    <form action="/myPage/buyAuction2.do?pageName=previous" method="get">
+        <input type="hidden" name="pageName" value="previous">
+        <input type="submit" value="Previous">
+    </form>
+
+    <form action="/myPage/buyAuction2.do?pageName=next" method="get">
+        <input type="hidden" name="pageName" value="next">
+        <input type="submit" value="Next">
+    </form>
 </div>
 </body>
 </html>

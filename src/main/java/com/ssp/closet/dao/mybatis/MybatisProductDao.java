@@ -45,12 +45,11 @@ public class MybatisProductDao implements ProductDao {
 		return product;
 	}
 
-	@Override
+	//@Override
 	/*public List<Product> getTopRankingProducts() {
 		// TODO Auto-generated method stub
 		return null;
 	}*/
-	
 	
 	//상품 검색
 }

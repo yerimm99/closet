@@ -1,18 +1,16 @@
 package com.ssp.closet.controller.auction;
 
 import java.util.ArrayList;
+import org.springframework.beans.support.PagedListHolder;
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -22,12 +20,10 @@ import com.ssp.closet.controller.UserSession;
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
 import com.ssp.closet.dto.Bid;
-import com.ssp.closet.dto.PagingVO;
 import com.ssp.closet.service.ClosetFacade;
-import com.ssp.closet.service.PagingService;
 
 @Controller
-@SessionAttributes()
+@SessionAttributes({"productList", "bidList"})
 public class ViewAuctionController {
 	private ClosetFacade closet;
 
@@ -36,100 +32,115 @@ public class ViewAuctionController {
 		this.closet = closet;
 	} 
 
-	@Autowired
-	private PagingService pagingService;
-
 	//경매 상품 리스트 보기
 	@RequestMapping("/closet/auction.do")
-	public String handleRequest1(@PageableDefault(size = 2, sort = "status", direction = Direction.DESC) Pageable pageable,
-			ModelMap model) {//@PageableDefault -> size: 한페이지에 게시물수 / sort: 정렬 기준 / direction: 정렬 방법
-		Page<Auction> pageList = closet.getAuctionList(pageable);//경매게시글에 대한 페이징 객체
-		List<Auction> productList = pageList.getContent();//페이징 객체에 있는 내용물들
-		//게시판 리스트에서 페이지 숫자 및 화살표 표시해주기 위한 정보를 담은 객체
-		PagingVO paging = pagingService.pagingInfoA(pageList);
-		model.put("productList", productList);
-		model.put("paging", paging);
-		model.put("preview", paging.getPreviousPageGroupOfPage());
-		model.put("next", paging.getNextPageGroupOfPage());
+	public String handleRequest1(
+			ModelMap model) {
+		PagedListHolder<Auction> productList = new PagedListHolder<Auction>(closet.getAuctionList());
+		productList.setPageSize(4);
 
+		model.put("productList", productList);
+
+		return "main/auction";
+	}
+
+
+	@RequestMapping("/closet/auction2.do")
+	public String handleRequest11(
+			@ModelAttribute("productList") PagedListHolder<Auction> productList,
+			@RequestParam("pageName") String page, 
+			ModelMap model) throws Exception {
+		if ("next".equals(page)) {
+			productList.nextPage();
+		}
+		else if ("previous".equals(page)) {
+			productList.previousPage();
+		}
+		model.put("productList", productList);
 		return "main/auction";
 	}
 
 	//경매 상품 리스트 선택보기
 	@RequestMapping("/auction/list.do")
-	public String handleRequest2(@PageableDefault(size = 2, sort = "status", direction = Direction.DESC) Pageable pageable,
+	public String handleRequest2(
 			@RequestParam("categoryId") String categoryId,
 			ModelMap model
 			) throws Exception {
-		Page<Auction> pageList;
+		PagedListHolder<Auction> productList;
 		if(categoryId.equals("전체")) {
-			pageList = closet.getAuctionList(pageable);
+			productList = new PagedListHolder<Auction>(closet.getAuctionList());
 		}
 		else {
-			pageList =closet.getAuctionByCategoryId(categoryId, pageable);
+			productList = new PagedListHolder<Auction>(closet.getAuctionByCategoryId(categoryId));
 		}
-		List<Auction> productList = pageList.getContent();//페이징 객체에 있는 내용물들
-		PagingVO paging = pagingService.pagingInfoA(pageList);
+		productList.setPageSize(4);
 
 		model.put("categoryId", categoryId);
 		model.put("productList", productList);
-		model.put("paging", paging);
-		model.put("preview", paging.getPreviousPageGroupOfPage());
-		model.put("next", paging.getNextPageGroupOfPage());
 		return "main/auction"; 
 	}
 
 	//경매 상품 리스트 선택보기
 	@RequestMapping("/auction/list2.do")
-	public String handleRequest22(@PageableDefault(size = 2, sort = "status", direction = Direction.DESC) Pageable pageable,
+	public String handleRequest22(
 			@RequestParam("categoryId") String categoryId,
 			@RequestParam("used") int used,
 			ModelMap model
 			) throws Exception {
-		Page<Auction> pageList;
+		PagedListHolder<Auction> productList;
 		if(categoryId.equals("전체")) {
-			pageList = closet.getAuctionByUsed(used, pageable);
+			productList = new PagedListHolder<Auction>(closet.getAuctionByUsed(used));
 		}
 		else {
-			pageList =closet.getAuctionByCategoryIdAndUsed(categoryId, used, pageable);
+			productList = new PagedListHolder<Auction>(closet.getAuctionByCategoryIdAndUsed(categoryId, used));
 		}
-		List<Auction> productList = pageList.getContent();//페이징 객체에 있는 내용물들
-		PagingVO paging = pagingService.pagingInfoA(pageList);
+		productList.setPageSize(4);
 
 		model.put("categoryId", categoryId);
 		model.put("used", used);
 		model.put("productList", productList);
-		model.put("paging", paging);
-		model.put("preview", paging.getPreviousPageGroupOfPage());
-		model.put("next", paging.getNextPageGroupOfPage());
 		return "main/auction"; 
 	}
 
+
 	//내가 판매 중인 경매 상품 리스트 보기
 	@RequestMapping("/myPage/sellAuction.do")
-	public String handleRequest3(@PageableDefault(size = 2, sort = "status", direction = Direction.DESC) Pageable pageable,
+	public String handleRequest3(
 			HttpServletRequest request,
 			ModelMap model) throws Exception {
 		UserSession userSession = 
 				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
 		if (userSession != null) {
 			Account account = closet.getAccount(userSession.getAccount().getUserId());
-
-			Page<Auction> pageList = closet.findSellAuctionByAccount(account, pageable);
-			List<Auction> productList = pageList.getContent();//페이징 객체에 있는 내용물들
-			PagingVO paging = pagingService.pagingInfoA(pageList);
-
+			PagedListHolder<Auction> productList = new PagedListHolder<Auction>(closet.findSellAuctionByAccount(account));
+			productList.setPageSize(4);
 			model.put("productList", productList);
-			model.put("paging", paging);
-			model.put("preview", paging.getPreviousPageGroupOfPage());
-			model.put("next", paging.getNextPageGroupOfPage());
+			return "auction/sellResultList";
+		} else {
+			return "redirect:/account/SignonForm.do";
 		}
+	}
+
+	//내가 판매 중인 경매 상품 리스트 보기
+	@RequestMapping("/myPage/sellAuction2.do")
+	public String handleRequest33(
+			HttpServletRequest request,
+			@ModelAttribute("productList") PagedListHolder<Auction> productList,
+			@RequestParam("pageName") String page, 
+			ModelMap model) throws Exception {
+		if ("next".equals(page)) {
+			productList.nextPage();
+		}
+		else if ("previous".equals(page)) {
+			productList.previousPage();
+		}
+		model.put("productList", productList);
 		return "auction/sellResultList";
 	}
 
 	//내가 구매 신청한 경매 상품 리스트 보기
 	@RequestMapping("/myPage/buyAuction.do")
-	public String handleRequest4(@PageableDefault(size = 2, sort = "status", direction = Direction.DESC) Pageable pageable,
+	public String handleRequest4(
 			HttpServletRequest request,
 			ModelMap model
 			) throws Exception {
@@ -145,21 +156,36 @@ public class ViewAuctionController {
 					productAuctions.add(auction);
 				}
 			}
-
-			final int start = (int)pageable.getOffset();
-			final int end = Math.min((start + pageable.getPageSize()), productAuctions.size());
-			Page<Auction> pageList = new PageImpl<>(productAuctions.subList(start, end), pageable, productAuctions.size());
-			List<Auction> productList = pageList.getContent();//페이징 객체에 있는 내용물들
-			PagingVO paging = pagingService.pagingInfoA(pageList);
+			PagedListHolder<Auction> productList = new PagedListHolder<Auction>(productAuctions);
+			productList.setPageSize(4);
+			PagedListHolder<Bid> bidList = new PagedListHolder<Bid>(bid);
+			bidList.setPageSize(4);
 
 			model.put("productList", productList);
-			model.put("paging", paging);
-			model.put("preview", paging.getPreviousPageGroupOfPage());
-			model.put("next", paging.getNextPageGroupOfPage());
-			model.put("bidList", bid);
+			model.put("bidList", bidList);
 		} 
 		return "auction/buyResultList";
 	}
+
+	//내가 판매 중인 경매 상품 리스트 보기
+	@RequestMapping("/myPage/buyAuction2.do")
+	public String handleRequest44(
+			HttpServletRequest request,
+			@ModelAttribute("productList") PagedListHolder<Auction> productList,
+			@ModelAttribute("bidList") PagedListHolder<Bid> bidList,
+			@RequestParam("pageName") String page, 
+			ModelMap model) throws Exception {
+		if ("next".equals(page)) {
+			productList.nextPage();
+		}
+		else if ("previous".equals(page)) {
+			productList.previousPage();
+		}
+		model.put("productList", productList);
+		model.put("bidList", bidList);
+		return "auction/buyResultList";
+	}
+
 
 	@RequestMapping("/auction/detail.do")
 	public void detailAuction(

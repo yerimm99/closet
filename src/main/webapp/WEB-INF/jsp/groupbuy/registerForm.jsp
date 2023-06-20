@@ -32,7 +32,7 @@
 	<hr>
 	
 	<div class = "layout">
-		<form:form modelAttribute = "groupbuyForm" action="${targetUrl}" method="post" >
+		<form:form modelAttribute = "groupbuyForm" action="${targetUrl}" method="post" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<c:if test="${groupbuyForm.newGroupbuy}">
@@ -114,20 +114,14 @@
 				</td>
 			</tr>
 			<tr>
-				<td>사진첨부</td>
-				<td>
-					<input type = "file" name = "imageFile" multiple/>
-				</td>
-			</tr>
-			<tr>
 				<td colspan = "2"><hr></td>
 			</tr>
 			<tr>
-				<td>사진첨부(나중에삭제)</td>
+				<td>사진첨부</td>
 				<td><!-- form:form태그에 file url업로드 기능 없음. requestParam으로 가져가야함 -->
 					최소 1개 최대 4개의 사진을 업로드해주세요<br>
-					<form:input path = "groupbuy.picture1" placeholder = "사진1" class = "inp"/><br>
-					<form:input path = "groupbuy.picture2" placeholder = "사진2" class = "inp"/>
+					    
+					<input type="file" name="files" accept="image/*" multiple />
 					<!-- <input type = "file" name = "picture1" id = "picture1" multiple> -->
 				</td>
 			</tr>

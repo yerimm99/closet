@@ -26,17 +26,16 @@
 	
 	<div class = "layout">
 		<div class = "page">판매 내역 조회</div>
-		<c:set value="${paging}" var="paging"></c:set>
 		<div class="row">
 		<table>
 			<tr>
 				<th colspan = "2">상품명</th>
 				<th>기능</th>
 			</tr>
-			<c:forEach items="${productList}" var="prod">
+			 <c:forEach items="${productList.pageList}" var="prod">
 				<tr>
 					<td width = "250px" height = "250px">
-						<img src="<c:url value='${prod.picture1}'/>" width="250px" height="250px" />
+						<img src = "../../upload/${prod.picture1}">/><br>
 					</td>
 					<td>
 						&nbsp;&nbsp;<b>${prod.name}</b><br><br>
@@ -61,41 +60,17 @@
 				</tr>
 			</c:forEach>
 		</table>
-		<!-- 페이징 처리 -->
-		<div class="text-center">
-			<!-- 이전 페이지 그룹 있나? -->
-			<c:if test="${paging.hasPrevious==true }">
-				<a href="?page=${preview}"><i
-					class="fas fa-lg fa-angle-double-left"></i></a>
-					&nbsp;
-				</c:if>
-			<!-- 페이지 번호 표시 -->
-			<c:forEach var="pagingNumber"
-				begin="${paging.nowPageGroupStartPage }"
-				end="${paging.nowPageGroupEndPage }">
-				<c:choose>
-					<c:when test="${pagingNumber==paging.nowPage }">
-						<i class="fas fa-lg fa-sort-numeric-up-alt"> <a
-							href="?page=${pagingNumber-1 }"
-							class="board-number-change-color abncc">${pagingNumber}</a>
-						</i>
-							&nbsp;
-						</c:when>
-					<c:otherwise>
-						<i class="fas fa-lg fa-sort-numeric-up-alt"> <a
-							href="?page=${pagingNumber-1 }" class="board-number-change-color">${pagingNumber}</a>
-						</i>
-							&nbsp;
-						</c:otherwise>
-				</c:choose>
-			</c:forEach>
-			<!-- 다음 페이지 그룹 있나? -->
-			<c:if test="${paging.hasNext==true}">
-				<a href="?page=${requestScope.next}"><i
-					class="fas fa-lg fa-angle-double-right"></i></a>
-			</c:if>
-			</div>
-		</div>
+		 <!-- 이전 페이지, 다음 페이지 버튼 -->
+    <form action="/myPage/sellGroupbuy2.do?pageName=previous" method="get">
+        <input type="hidden" name="pageName" value="previous">
+        <input type="submit" value="Previous">
+    </form>
+
+    <form action="/myPage/sellGroupbuy2.do?pageName=next" method="get">
+        <input type="hidden" name="pageName" value="next">
+        <input type="submit" value="Next">
+    </form>
+	</div>
 	</div>
 </body>
 </html>

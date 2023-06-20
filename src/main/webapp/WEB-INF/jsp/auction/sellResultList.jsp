@@ -100,9 +100,8 @@
 
 <div class="container">
     <h1>판매 내역 조회</h1>
-    <c:set value="${paging}" var="paging" />
     <c:choose>
-        <c:when test="${empty productList}">
+        <c:when test="${empty productList.getSource()}">
             <p class="no-data">등록된 판매 내역이 없습니다.</p>
         </c:when>
         <c:otherwise>
@@ -112,9 +111,11 @@
                     <th>상품 정보</th>
                     <th>기능</th>
                 </tr>
-                <c:forEach items="${productList}" var="prod">
+                <c:forEach items="${productList.pageList}" var="prod">
                     <tr>
-                        <td><img src="<c:url value='${prod.picture1}' />" alt="${prod.name}" /></td>
+                        <td width = "250px" height = "250px">
+						<img src = "../../upload/${prod.picture1}">/><br>
+					</td>
                         <td>
                             <div class="product-info">
                                 <div>
@@ -154,27 +155,18 @@
                     </tr>
                 </c:forEach>
             </table>
-            <!-- 페이징 처리 -->
-            <div class="btn-group">
-                <c:if test="${paging.hasPrevious == true}">
-                    <a href="?page=${preview}">&lt;&lt; 이전</a>
-                </c:if>
-                <c:forEach var="pagingNumber" begin="${paging.nowPageGroupStartPage}" end="${paging.nowPageGroupEndPage}">
-                    <c:choose>
-                        <c:when test="${pagingNumber == paging.nowPage}">
-                            <strong>${pagingNumber}</strong>
-                        </c:when>
-                        <c:otherwise>
-                            <a href="?page=${pagingNumber - 1}">${pagingNumber}</a>
-                        </c:otherwise>
-                    </c:choose>
-                </c:forEach>
-                <c:if test="${paging.hasNext == true}">
-                    <a href="?page=${requestScope.next}">다음 &gt;&gt;</a>
-                </c:if>
-            </div>
         </c:otherwise>
     </c:choose>
+    <!-- 이전 페이지, 다음 페이지 버튼 -->
+    <form action="/myPage/sellAuction2.do?pageName=previous" method="get">
+        <input type="hidden" name="pageName" value="previous">
+        <input type="submit" value="Previous">
+    </form>
+
+    <form action="/myPage/sellAuction2.do?pageName=next" method="get">
+        <input type="hidden" name="pageName" value="next">
+        <input type="submit" value="Next">
+    </form>
 </div>
 </body>
 </html>
