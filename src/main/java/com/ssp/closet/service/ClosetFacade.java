@@ -61,7 +61,7 @@ public interface ClosetFacade {
 	void deleteGroupbuyByProductId(int productId);
 
 
-	void createMeet(Meet meet);
+	void insertMeet(Meet meet);
 	Meet findMeetByUserIdAndProductId(String userId, int productId);
 	List<Meet> findMeetByProductId(int productId);
 	List<Meet> findMeetByUserId(String userId);

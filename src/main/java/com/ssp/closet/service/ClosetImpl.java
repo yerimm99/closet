@@ -267,7 +267,7 @@ public class ClosetImpl implements ClosetFacade{
 	@Autowired
 	private MeetRepository meetRepository;
 	
-	public void createMeet(Meet meet) {
+	public void insertMeet(Meet meet) {
 		meetRepository.save(meet);
 	}
 	
