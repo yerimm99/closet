@@ -51,6 +51,5 @@ public class MybatisProductDao implements ProductDao {
 		return null;
 	}*/
 	
-	
 	//상품 검색
 }

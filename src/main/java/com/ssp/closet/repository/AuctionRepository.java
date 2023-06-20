@@ -26,21 +26,19 @@ public interface AuctionRepository extends JpaRepository<Auction, Integer> {
 			"where a.productId = :productId")
 	void updatePrice(@Param("productId")int productId, @Param("maxPrice")int price);
 	
-	Page<Auction> findByCategoryId(String categoryId, Pageable pageable);
+	List<Auction> findByCategoryId(String categoryId);
 	
 	void deleteByProductId(int productId);
 	
 
 	@Query("SELECT a FROM Auction a WHERE a.endDate <= :currentTime")
     List<Auction> findEndedAuctions(@Param("currentTime") LocalDateTime currentTime);
-
-	Page<Auction> findByAccount(Account account, Pageable pageable);
 	
 	//나현 추가
 	
 	@Query("SELECT a FROM Auction a WHERE rownum <= 4 Order by a.registerDate desc")
 	List<Auction> findTop4OrderByRegisterDate();
 	
-	Page<Auction> findByUsed(int used, Pageable pageable);
-	Page<Auction> findByCategoryIdAndUsed(String categoryId, int used, Pageable pageable);
+	List<Auction> findByUsed(int used);
+	List<Auction> findByCategoryIdAndUsed(String categoryId, int used);
 }

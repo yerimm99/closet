@@ -87,20 +87,20 @@ public class ClosetImpl implements ClosetFacade{
 		aucRepository.deleteByProductId(productId);
 	}
 	
-	public Page<Auction> getAuctionByCategoryId(String categoryId, Pageable pageable) {
-        return aucRepository.findByCategoryId(categoryId, pageable);
+	public List<Auction> getAuctionByCategoryId(String categoryId) {
+        return aucRepository.findByCategoryId(categoryId);
     }
 	
 	//추가
-	public Page<Auction> getAuctionByUsed(int used, Pageable pageable){
-		return aucRepository.findByUsed(used, pageable);
+	public List<Auction> getAuctionByUsed(int used){
+		return aucRepository.findByUsed(used);
 	}
-	public Page<Auction> getAuctionByCategoryIdAndUsed(String categoryId, int used, Pageable pageable){
-		return aucRepository.findByCategoryIdAndUsed(categoryId, used, pageable);
+	public List<Auction> getAuctionByCategoryIdAndUsed(String categoryId, int used){
+		return aucRepository.findByCategoryIdAndUsed(categoryId, used);
 	}
 	
-	public Page<Auction> findSellAuctionByAccount(Account account, Pageable pageable){
-		 return aucRepository.findByAccount(account, pageable);
+	public List<Auction> findSellAuctionByAccount(Account account){
+		 return aucRepository.findByAccount(account);
 	}
 	
 	//나현추가
@@ -108,7 +108,6 @@ public class ClosetImpl implements ClosetFacade{
 		return aucRepository.findTop4OrderByRegisterDate();
 	}
 	
-	@Transactional
 	public Page<Auction> getAuctionList(Pageable pageable) {
 		return aucRepository.findAll(pageable);//페이징 객체만들어서 반환
 	}
@@ -235,8 +234,8 @@ public class ClosetImpl implements ClosetFacade{
 		groupbuyRepository.save(groupbuy);
 	}
 	
-	public Page<Groupbuy> getGroupbuyByCategoryId(String categoryId, Pageable pageable) {
-        return groupbuyRepository.findByCategoryId(categoryId, pageable);
+	public List<Groupbuy> getGroupbuyByCategoryId(String categoryId) {
+        return groupbuyRepository.findByCategoryId(categoryId);
     }
 	
 	public Groupbuy getGroupbuyDetail(int productId) {
@@ -247,17 +246,12 @@ public class ClosetImpl implements ClosetFacade{
 		groupbuyRepository.deleteByProductId(productId);
 	}
 	
-	public Page<Groupbuy> findSellGroupbuyByAccount(Account account, Pageable pageable){
-		return groupbuyRepository.findByAccount(account, pageable);
+	public List<Groupbuy> findSellGroupbuyByAccount(Account account){
+		return groupbuyRepository.findByAccount(account);
 	}
 	
 	public Groupbuy findBuyGroupbuyByProductId(int productId){
 		return groupbuyRepository.findByProductId(productId);
-	}
-	
-	@Transactional
-	public Page<Groupbuy> getGroupbuyList(Pageable pageable) {
-		return groupbuyRepository.findAll(pageable);//페이징 객체만들어서 반환
 	}
 
 	
