@@ -17,13 +17,17 @@
 		table, td{border:none;border-collapse:collapse;}
 		td{padding: 0px 15px}
 		.inp{width:600px;height:35px}
-		.inpText{width:800px;height:80px;font-size:18px}
+		.inpText{width:600px;height:80px;font-size:18px}
 		.category{padding:0px}
 		.btn{display:block;margin:0px auto;text-align:center;font-size:20px;border-radius:10px;background-color:black;
 		border:1px solid black;width:510px;height:35px;color:white;margin-top:10px}
 		table{margin:50px auto 0px auto}
 		td{height:40px}
 		input{border:none;}
+		form .error-message {
+		    font-size: 14px;
+		    color: red;
+		}
 	</style>
 </head>
 <body>
@@ -47,6 +51,7 @@
 				<td>
 					<form:input path = "groupbuy.name" class = "inp"/>
 					<hr>
+					<form:errors path="groupbuy.name" cssClass="error-message"/>
 				</td>
 			</tr>
 			<tr>
@@ -54,6 +59,7 @@
 				<td>
 					<form:input path = "groupbuy.size" class = "inp"/>
 					<hr>
+					<form:errors path="groupbuy.size" cssClass="error-message"/>
 				</td>
 			</tr>
 			<tr>
@@ -61,6 +67,7 @@
 				<td>
 					<form:input path = "groupbuy.color" class = "inp"/>
 					<hr>
+					<form:errors path="groupbuy.color" cssClass="error-message"/>
 				</td>
 			</tr>
 			<tr>
@@ -73,6 +80,7 @@
 						<c:out value="${groupbuyForm.groupbuy.price}" />
 					</c:if>
 					<hr>
+					<form:errors path="groupbuy.price" cssClass="error-message"/>
 				</td>
 			</tr>
 			<tr>
@@ -85,6 +93,7 @@
 						<c:out value="${groupbuyForm.groupbuy.endDate}" />
 					</c:if>
  					<hr>
+					<form:errors path="groupbuy.endDate" cssClass="error-message"/>
  				</td> 
 			</tr>
 			<tr>
@@ -97,24 +106,24 @@
 						<c:out value="${groupbuyForm.groupbuy.peopleNum}" />
 					</c:if>
 					<hr>
+					<form:errors path="groupbuy.peopleNum" cssClass="error-message"/>
 				</td>
 			</tr>
 		 	<tr>
 				<td>상품 카테고리</td>
 				<td>
 					<form:radiobuttons path="groupbuy.categoryId" items = "${categories}" class = "category"/>
+					<form:errors path="groupbuy.categoryId" cssClass="error-message"/>
 				</td>
-			</tr>
 			<tr>
+			<td>상품 설명</td>
 				<td colspan = "2">
-					<hr>
+				<br>
 					<form:textarea path = "groupbuy.description" class = "inpText"
 						 placeholder = "올릴 상품에 대한 설명을 작성해주세요."/>
-					<hr>
+					<br>
+					<form:errors path="groupbuy.description" cssClass="error-message"/>
 				</td>
-			</tr>
-			<tr>
-				<td colspan = "2"><hr></td>
 			</tr>
 			<tr>
 				<td>사진첨부</td>
@@ -122,12 +131,12 @@
 					최소 1개 최대 4개의 사진을 업로드해주세요<br>
 					    
 					<input type="file" name="files" accept="image/*" multiple />
-					<!-- <input type = "file" name = "picture1" id = "picture1" multiple> -->
+					<form:errors path="groupbuy.picture1" cssClass="error-message"/>
 				</td>
 			</tr>
 			<tr>
 				<td colspan = "2">
-					<hr>
+					<br>
 					<input type="submit" value="등록하기" class = "btn">
 					<br><br><br>
 				</td>

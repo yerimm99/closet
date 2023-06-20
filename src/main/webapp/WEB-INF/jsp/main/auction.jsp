@@ -54,12 +54,12 @@
 		<div class = "categories">
 			<b>상품 유형</b><br><br>
 			<c:if test = "${empty categoryId}">
-			<a href="<c:url value='/auction/list2.do?categoryId=전체&used=0' />">새상품</a>
-			<a href="<c:url value='/auction/list2.do?categoryId=전체&used=1' />" class = "notNew">중고 상품</a>
+			<a href="<c:url value='/auction/list2.do?categoryId=전체&used=0' />">- 새상품</a>
+			<a href="<c:url value='/auction/list2.do?categoryId=전체&used=1' />" class = "notNew">- 중고 상품</a>
 			</c:if>
 			<c:if test = "${!empty categoryId}">
-				<a href="<c:url value='/auction/list2.do?categoryId=${categoryId}&used=0' />">새상품</a>
-				<a href="<c:url value='/auction/list2.do?categoryId=${categoryId}&used=1' />" class = "notNew">중고 상품</a>
+				<a href="<c:url value='/auction/list2.do?categoryId=${categoryId}&used=0' />">- 새상품</a>
+				<a href="<c:url value='/auction/list2.do?categoryId=${categoryId}&used=1' />" class = "notNew">- 중고 상품</a>
 			</c:if>
 		</div>
 				<!-- 해당 상품 리스트 -->

@@ -59,7 +59,7 @@ public class Product implements Serializable {
 	private int status; // 판매 상태
 	@Column(name="REGISTERDATE")
 	@CreatedDate
-	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date registerDate; // 등록 날짜
 	@Column(name="ENDDATE")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")

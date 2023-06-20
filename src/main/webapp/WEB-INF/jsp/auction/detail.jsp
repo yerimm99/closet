@@ -93,11 +93,11 @@
 					</tr>
 					<tr>
 						<th>상품정보</th>
-						<td>&lt;<c:choose>
+						<td><%-- &lt;<c:choose>
 									<c:when test="${product.used==0}">새상품</c:when>
 									<c:otherwise>중고상품</c:otherwise>
 								</c:choose>
-							&gt;${product.description}</td>
+							&gt; --%>${product.description}</td>
 					</tr>
 					<tr>
 						<th>사이즈</th>
@@ -118,6 +118,10 @@
 					<tr>
 						<th>마감 날짜</th>
 						<td>${product.endDate}</td>
+					</tr>
+					<tr>
+						<th>판매자</th>
+						<td>${product.account.userId}</td>
 					</tr>
 					<tr>
 						<td colspan = "2" class = "gobtn">
