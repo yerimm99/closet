@@ -2,6 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,28 +83,54 @@
 	<hr>
 	
 	<div class="layout">
-		<form:form modelAttribute="accountForm" method="post" action="/account/registerForm.do">
+		<form:form modelAttribute="accountForm" method="post" name = "form">
 			<table>
 				<tr>
+					<c:if test="${auctionForm.newAuction}">
 					<td style="text-align: center; font-size: 24px;" colspan="2">회원가입<br><br><br></td>
+					</c:if>
+					<c:if test="${!auctionForm.newAuction}">
+					<td style="text-align: center; font-size: 24px;" colspan="2">회원정보 수정<br><br><br></td>
+					</c:if>
 				</tr>
 				<tr>
 					<td>이름</td>
-					<td><form:input path="account.username" /></td>
+					<td>
+						<c:if test="${accountForm.newAccount}">
+							<form:input path="account.username" />
+						</c:if>
+						<c:if test="${!accountForm.newAccount}">
+			            	<c:out value="${accountForm.account.username}" />
+			            </c:if>
+					</td>
 				</tr>
 				<tr>
 					<th colspan="2"><hr></th>
 				</tr>
 				<tr>
 					<td>아이디</td>
-					<td><form:input path="account.userId" /></td>
+					<td>
+						<c:if test="${accountForm.newAccount}">
+							<form:input path="account.userId" />
+						</c:if>
+						<c:if test="${!accountForm.newAccount}">
+							<c:out value="${accountForm.account.userId}" />
+						</c:if>
+						</td>
 				</tr>
 				<tr>
 					<th colspan="2"><hr></th>
 				</tr>
 				<tr>
 					<td>비밀번호</td>
-					<td><form:input path="account.password" showPassword="false" /></td>
+					<td><form:password path="account.password" placeholder="필수 항목입니다."/></td>
+				</tr>
+				<tr>
+					<th colspan="2"><hr></th>
+				</tr>
+				<tr>
+					<td>비밀번호 확인</td>
+					<td><form:password path="repeatedPassword" placeholder="필수 항목입니다."/> </td>
 				</tr>
 				<tr>
 					<th colspan="2"><hr></th>
@@ -111,10 +138,10 @@
 				<tr>
 					<td>주소</td>
 					<td>
-						<input type="text" id="sample4_postcode" placeholder="우편번호" class="address">
+						<input type="text" id="sample4_postcode" placeholder="우편번호" class="address" name = "sample4_postcode">
 						<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="address"><br>
 						<input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="address1" class="address">
-						<input type="text" id="sample4_jibunAddress" placeholder="지번주소" class="address"><br>
+						<input type="text" id="sample4_jibunAddress" placeholder="지번주소" class="address" style="display:none"><br>
 						<span id="guide" style="color:#999;display:none"></span>
 						<input type="text" id="sample4_detailAddress" placeholder="상세주소" name="address2" class="address">
 						<input type="text" id="sample4_extraAddress" placeholder="참고항목" class="address">
