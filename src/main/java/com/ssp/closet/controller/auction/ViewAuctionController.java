@@ -38,7 +38,6 @@ public class ViewAuctionController {
 			ModelMap model) {
 		PagedListHolder<Auction> productList = new PagedListHolder<Auction>(closet.getAuctionList());
 		productList.setPageSize(4);
-
 		model.put("productList", productList);
 
 		return "main/auction";
