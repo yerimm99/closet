@@ -129,7 +129,7 @@
                         <td>
                             <div class="btn-group">
                                 <c:choose>
-                                    <c:when test="${empty prod.price}">
+                                    <c:when test="${!empty prod.price}">
                                         <a href="<c:url value='/auction/detail.do'>
                                             <c:param name='productId' value='${prod.productId}' />
                                         </c:url>">상세보기</a>
