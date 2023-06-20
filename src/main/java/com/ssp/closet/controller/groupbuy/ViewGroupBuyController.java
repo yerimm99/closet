@@ -153,8 +153,8 @@ public class ViewGroupBuyController {
 	@RequestMapping("/myPage/buyGroupbuy2.do")
 	public String handleRequest44(
 			HttpServletRequest request,
-			@ModelAttribute("productList") PagedListHolder<Auction> productList,
-			@ModelAttribute("meetList") PagedListHolder<Bid> meetList,
+			@ModelAttribute("productList") PagedListHolder<Groupbuy> productList,
+			@ModelAttribute("meetList") PagedListHolder<Meet> meetList,
 			@RequestParam("pageName") String page, 
 			ModelMap model) throws Exception {
 		if ("next".equals(page)) {
