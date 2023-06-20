@@ -1,61 +1,96 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Search Page</title>
+    <title>&Closet Search</title>
     <style>
-    
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        
+        .search-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px;
+        }
+        
         .search-form {
-            text-align: center;
-            margin-top: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
         }
+        
         .search-form input[type="text"] {
-            width: 300px;
+            width: 500px;
             padding: 10px;
-            font-size: 16px;
+            font-size: 20px;
+            border: none;
+            border-radius: 4px;
+            border-bottom: 1px solid #ddd; /* 밑줄 추가 */
         }
+        
         .search-form input[type="submit"] {
             padding: 10px 20px;
             font-size: 16px;
-            background-color: #337ab7;
+            background-color: #333;
             color: #fff;
             border: none;
+            border-radius: 4px;
             cursor: pointer;
+            margin-left: 10px;
         }
         
-        .search-results {
-            margin-top: 50px;
-            text-align: center;
+        .search-recommendations {
+            text-align: left;
+            margin-bottom: 20px;
+            margin-right: 190px;
         }
-        .search-results ul {
+        
+        .search-recommendations ul {
             list-style-type: none;
             padding: 0;
         }
-        .search-results li {
-            font-size: 18px;
-            margin-bottom: 10px;
+        
+        .search-recommendations li {
+            display: inline-block;
+            margin: 5px;
+            padding: 5px 10px;
+            background-color: #E2E2E2;
+            color: #7C7876;
+            border-radius: 20px;
+            cursor: pointer;
         }
+        
     </style>
 </head>
 <body>
-    <div class="search-form">
-        <h1>Search Page</h1>
-        <form action="searchProcess.jsp" method="POST">
-            <input type="text" name="query" placeholder="Enter your search query" required>
-            <br><br>
+<!-- 메뉴바 -->
+	<jsp:include page = "../menu.jsp"/>
+	<hr>
+	
+    <div class="search-container">
+        <form class="search-form" action="<c:url value='/closet/searchResult.do'/>" method="POST">
+            <input type="text" name="keyword" placeholder="상품명" required>
             <input type="submit" value="Search">
         </form>
-    </div>
-    
-    <div class="search-results">
-        <h2>Search Results</h2>
-        <ul>
-            <%-- 검색 결과를 동적으로 생성할 경우 아래 코드를 반복문 등을 사용하여 처리할 수 있습니다. --%>
-            <li>Result 1</li>
-            <li>Result 2</li>
-            <li>Result 3</li>
-        </ul>
+        <div class="search-recommendations">
+            <b>추천 검색어</b>
+            <ul>
+                <li>나이키</li>
+                <li>아디다스</li>
+                <li>빈폴</li>
+                <li>디젤</li>
+                <li>스투시</li>
+                <li>반팔</li>
+            </ul>
+        </div>
+
     </div>
 </body>
 </html>

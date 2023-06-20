@@ -41,7 +41,7 @@ public class ViewAuctionController {
 
 	//경매 상품 리스트 보기
 	@RequestMapping("/closet/auction.do")
-	public String handleRequest1(@PageableDefault(size = 2, sort = "status", direction = Direction.DESC) Pageable pageable,
+	public String handleRequest1(@PageableDefault(size = 16, sort = "status", direction = Direction.DESC) Pageable pageable,
 			ModelMap model) {//@PageableDefault -> size: 한페이지에 게시물수 / sort: 정렬 기준 / direction: 정렬 방법
 		Page<Auction> pageList = closet.getAuctionList(pageable);//경매게시글에 대한 페이징 객체
 		List<Auction> productList = pageList.getContent();//페이징 객체에 있는 내용물들
@@ -57,7 +57,7 @@ public class ViewAuctionController {
 
 	//경매 상품 리스트 선택보기
 	@RequestMapping("/auction/list.do")
-	public String handleRequest2(@PageableDefault(size = 2, sort = "status", direction = Direction.DESC) Pageable pageable,
+	public String handleRequest2(@PageableDefault(size = 16, sort = "status", direction = Direction.DESC) Pageable pageable,
 			@RequestParam("categoryId") String categoryId,
 			ModelMap model
 			) throws Exception {
@@ -66,7 +66,7 @@ public class ViewAuctionController {
 			pageList = closet.getAuctionList(pageable);
 		}
 		else {
-			pageList =closet.getAuctionByCategoryId(categoryId, pageable);
+			pageList = closet.getAuctionByCategoryId(categoryId, pageable);
 		}
 		List<Auction> productList = pageList.getContent();//페이징 객체에 있는 내용물들
 		PagingVO paging = pagingService.pagingInfoA(pageList);

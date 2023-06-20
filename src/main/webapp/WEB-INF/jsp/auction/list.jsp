@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="EUC-KR">
+	<meta charset="UTF-8">
 	<title>경매상품 리스트</title>
 	<style type="text/css">
 		table, td{border:1px solid black;border-collapse:collapse;}
@@ -38,9 +38,7 @@
 							<c:param name = 'productId' value='${prod.productId}' />
 							</c:url>">
 				   			<img src="<c:url value='${prod.picture1}'/>" width="250px" height="250px"/><br>
-				    	  		<b>${prod.name}</b><br>
-				      			${prod.description}<br>
-				      			color: ${prod.color} || size: ${prod.size}<br><br>
+				    	  		<b>${prod.name}</b><br><br>
 				      			<c:choose>
 								  <c:when test="${empty prod.price}">
 								    상품 최소가 : ${prod.startPrice}원

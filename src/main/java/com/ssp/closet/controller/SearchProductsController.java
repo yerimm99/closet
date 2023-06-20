@@ -28,6 +28,7 @@ public class SearchProductsController {
 		return "main/search";
 	}
 	
+	@RequestMapping("/closet/searchResult.do")
 	public ModelAndView handleRequest(HttpServletRequest request,
 			@RequestParam(value="keyword", required=false) String keyword,
 			@RequestParam(value="page", required=false) String page

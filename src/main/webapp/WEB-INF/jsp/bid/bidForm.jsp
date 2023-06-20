@@ -91,6 +91,7 @@
       color: #fff;
       border: none;
       cursor: pointer;
+      border-radius:10px;
     }
 
     .error-message {
@@ -107,7 +108,7 @@
   <div class="container">
     <h3>입찰하기</h3>
     <div class="product-info">
-      <div class="product-image"></div>
+      <div class="product-image"><img src = "../../upload/${product.picture1}"></div>
       <div class="product-details">
         <b>상품명 ${product.name}</b><br>
         색상 ${product.color}<br>
