@@ -25,15 +25,15 @@ public interface BidRepository extends JpaRepository<Bid, BidId>{
 	@Transactional
 	@Query("update Bid b " + 
 			"set b.bidResult = 1 " +
-			"where b.userId = :userId")
-	void updateSuccessResult(String userId);
+			"where b.userId = :userId And b.productId = :productId")
+	void updateSuccessResult(String userId, int productId);
 	  
 	@Modifying
 	@Transactional
 	@Query("update Bid b " + 
 			"set b.bidResult = 2 " +
-			"where b.userId != :userId")
-	void updateFailResult(String userId); 
+			"where b.userId != :userId And b.productId = :productId")
+	void updateFailResult(String userId, int productId); 
 	  
 	Bid findTopByProductIdOrderByBidPriceDesc(int productId);
 

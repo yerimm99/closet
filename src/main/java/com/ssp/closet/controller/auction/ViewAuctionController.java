@@ -206,14 +206,16 @@ public class ViewAuctionController {
 		model.put("product", product);
 	}
 
-	@RequestMapping("/myPage/myAuction.do")
-	public String viewAuctionListMyComplete(HttpServletRequest request,
-			@RequestParam("productId") int productId) throws Exception {
-
-		Auction auction = closet.getAuction(productId);
-		closet.closedAuctionBySupp(auction);
-
-		return "auction/sellResultList";
-
+	@RequestMapping({"/auction/successBySupp.do","/myPage/myAuction.do"})
+	public String successBySupp(HttpServletRequest request,
+			@RequestParam("productId") int productId
+			) throws Exception {
+		UserSession userSession = 
+				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
+		if (userSession != null) {
+			Auction auction = closet.getAuction(productId);
+			closet.closedAuctionBySupp(auction);
+		}
+		return "redirect:/myPage/sellAuction.do";
 	}
 }
