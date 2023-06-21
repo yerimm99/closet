@@ -203,6 +203,7 @@ public class ViewAuctionController {
 		if(userSession != null) {
 			supp = userSession.getAccount().getUserId();
 		}
+		
 		model.put("supp", supp);
 		model.put("product", product);
 	}

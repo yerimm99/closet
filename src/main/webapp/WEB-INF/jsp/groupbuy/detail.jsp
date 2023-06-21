@@ -132,6 +132,7 @@
 								</a>
 							</td>
 						</c:if>
+						
 						<c:if test="${product.account.userId eq supp}" >
 							<td class = "gobtn" style="width:50%">
 								<a href="<c:url value='/groupbuy/update.do'>

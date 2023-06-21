@@ -180,6 +180,7 @@ public class ViewGroupBuyController {
 		if(userSession != null) {
 			supp = userSession.getAccount().getUserId();
 		}
+		
 		model.put("supp", supp);
 		model.put("product", product);
 	}
