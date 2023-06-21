@@ -154,8 +154,8 @@
          <div class="page-buttons">
             <!-- 이전 페이지 버튼 -->
             <c:if test="${productList.AuctionList.page > 0}">
-                <form action="/closet/searchResult.do?pageName=previous" method="get" style="display: inline;">
-                    <input type="hidden" name="pageName" value="previous">
+                <form action="/closet/searchResult2.do?pageName=previousA" method="get" style="display: inline;">
+                    <input type="hidden" name="pageName" value="previousA">
                     <button type="submit">
                         &lt;
                     </button>
@@ -176,8 +176,8 @@
 
             <!-- 다음 페이지 버튼 -->
             <c:if test="${productList.AuctionList.page + 1 < productList.AuctionList.pageCount}">
-                <form action="/closet/searchResult.do?pageName=next" method="get" style="display: inline;">
-                    <input type="hidden" name="pageName" value="next">
+                <form action="/closet/searchResult2.do?pageName=nextA" method="get" style="display: inline;">
+                    <input type="hidden" name="pageName" value="nextA">
                     <button type="submit">
                         &gt;
                     </button>
@@ -203,8 +203,8 @@
          <div class="page-buttons">
             <!-- 이전 페이지 버튼 -->
             <c:if test="${productList.GroupbuyList.page > 0}">
-                <form action="/closet/searchResult.do?pageName=previous" method="get" style="display: inline;">
-                    <input type="hidden" name="pageName" value="previous">
+                <form action="/closet/searchResult2.do?pageName=previousG" method="get" style="display: inline;">
+                    <input type="hidden" name="pageName" value="previousG">
                     <button type="submit">
                         &lt;
                     </button>
@@ -225,8 +225,8 @@
 
             <!-- 다음 페이지 버튼 -->
             <c:if test="${productList.GroupbuyList.page + 1 < productList.GroupbuyList.pageCount}">
-                <form action="/closet/searchResult.do?pageName=next" method="get" style="display: inline;">
-                    <input type="hidden" name="pageName" value="next">
+                <form action="/closet/searchResult2.do?pageName=nextG" method="get" style="display: inline;">
+                    <input type="hidden" name="pageName" value="nextG">
                     <button type="submit">
                         &gt;
                     </button>
