@@ -92,7 +92,7 @@ public class AuctionFormController {
 	}
 	
 	@RequestMapping("/auction/update.do")
-	public String editNewAuction(HttpServletRequest request,
+	public String editAuction(HttpServletRequest request,
 			@RequestParam("productId") int productId,
 			@ModelAttribute("auctionForm") AuctionForm auctionForm
 			) throws ModelAndViewDefiningException {
@@ -203,9 +203,7 @@ public class AuctionFormController {
 				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
 		if (userSession != null) {
 			closet.deleteAuctionByProductId(productId);
-			
 		}
 		return "redirect:/myPage/sellAuction.do";
 	}
-
 }

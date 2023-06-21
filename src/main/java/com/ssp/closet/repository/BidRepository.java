@@ -3,13 +3,11 @@ package com.ssp.closet.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.ssp.closet.dto.Bid;
 import com.ssp.closet.dto.BidId;
-import com.ssp.closet.dto.Meet;
 
 public interface BidRepository extends JpaRepository<Bid, BidId>{
 

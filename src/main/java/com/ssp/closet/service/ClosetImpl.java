@@ -56,7 +56,9 @@ public class ClosetImpl implements ClosetFacade{
 	public List<Product> getProductList() {
 		return productRepository.findAll();
 	}
-
+	
+	
+	//경매
 	@Autowired
 	private AuctionRepository aucRepository;
 
@@ -157,6 +159,8 @@ public class ClosetImpl implements ClosetFacade{
         aucRepository.save(auction);
 	}
 	
+	
+	//입찰
 	@Autowired
 	private BidRepository bidRepository;
 	
@@ -191,7 +195,9 @@ public class ClosetImpl implements ClosetFacade{
 	public Bid getBid(String userId, int productId) {
 		return bidRepository.findByUserIdAndProductId(userId, productId);
 	}
-
+	
+	
+	//관심상품
 	@Autowired
 	private BookmarkDao bookmarkDao;
 
@@ -203,6 +209,7 @@ public class ClosetImpl implements ClosetFacade{
 	}
 	
 	
+	//공동구매
 	@Autowired
 	private GroupbuyRepository groupbuyRepository;
 	
@@ -238,7 +245,7 @@ public class ClosetImpl implements ClosetFacade{
 	}
 
 	
-	
+	//공구참여
 	@Autowired
 	private MeetRepository meetRepository;
 	
@@ -266,23 +273,25 @@ public class ClosetImpl implements ClosetFacade{
 		meetRepository.deleteByUserIdAndProductId(userId, productId);
 	}
 	
+	
+	//주문
 	@Autowired
 	private DeliveryRepository deliveryRepository;
+	
 	public void createDelivery(Delivery delivery) {
 		deliveryRepository.save(delivery);
 	}
 	
+	public List<Delivery> getOrderList(String userId) {
+		return deliveryRepository.findAllByUserId(userId);
+	}
 	
-	@Override
-	public List<Delivery> getBuyList(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Delivery getOrder(int orderId) {
+		return deliveryRepository.findByOrderId(orderId);
 	}
-	@Override
-	public List<Delivery> getSellList(String userId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
+	
+	//리뷰
 	@Override
 	public void insertReview(Review review) {
 		// TODO Auto-generated method stub
@@ -303,6 +312,9 @@ public class ClosetImpl implements ClosetFacade{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
+	//카테고리
 	@Override
 	public List<Category> getCategoryList() {
 		// TODO Auto-generated method stub
@@ -314,6 +326,9 @@ public class ClosetImpl implements ClosetFacade{
 		return null;
 	}
 	
+	
+	
+	//계정
 	@Autowired
 	private AccountDao accountDao;
 	@Autowired

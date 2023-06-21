@@ -123,7 +123,7 @@
 				<div style = "margin:10px"><b>사용자리뷰관리</b></div>
 				<hr>
 				<div class = "func">
-					<a href="<c:url value='/review/.do'></c:url>">
+					<a href="<c:url value='/myPage/myOrderList.do'></c:url>">
 						<img border="0" src="../../images/click.png" class = "clickImg"
 							width = "40" height = "40"/>
 						<span>리뷰작성</span>

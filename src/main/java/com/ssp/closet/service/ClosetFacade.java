@@ -17,12 +17,15 @@ import com.ssp.closet.dto.Delivery;
 import com.ssp.closet.dto.Review;
 
 public interface ClosetFacade {
-
+	
+	//카테고리
 	List<Category> getCategoryList();
 	Category getCategory(String categoryId);
 
 	List<Product> getProductList(int type, int status);
-
+	
+	
+	//경매
 	void insertAuction(Auction auction);
 	Auction getAuction(int productId);
 	void updateMaxPrice(int productId);
@@ -39,7 +42,9 @@ public interface ClosetFacade {
 	void closedAuctionBySupp(Auction auction);
 	
 	List<Auction> findTop4AuctionOrderByRegisterDate();
-
+	
+	
+	//입찰
 	void createBid(Bid bid);
 	boolean isBidPriceExists(int productId, int bidPrice);
 	void deleteBid(int productId, String userId);
@@ -50,7 +55,8 @@ public interface ClosetFacade {
 	Bid getBid(String userId, int productId);
 	Integer countBidByProductId(int productId);
 
-
+	
+	//공동구매
 	void insertGroupbuy(Groupbuy groupbuy);
 	Groupbuy getGroupbuyDetail(int productId);
 	List<Groupbuy> getGroupbuyList();
@@ -59,34 +65,38 @@ public interface ClosetFacade {
 	Groupbuy findBuyGroupbuyByProductId(int productId);
 	void deleteGroupbuyByProductId(int productId);
 	List<Groupbuy> searchGroupbuyList(String keywords);
-
+	
+	//공구참여
 	void insertMeet(Meet meet);
 	Meet findMeetByUserIdAndProductId(String userId, int productId);
 	List<Meet> findMeetByProductId(int productId);
 	List<Meet> findMeetByUserId(String userId);
 	Integer getMeetCountByProductId(int productId);
 	void deleteByUserIdAndProductId(String userId, int productId);
-
+	
+	
+	//관심상품
 	void createMark(Bookmark bookmark);
 	void deleteMark(String userId, int productId);
-
+	
+	
+	//주문
 	public void createDelivery(Delivery delivery);
-	List<Delivery> getBuyList(String userId);
-	List<Delivery> getSellList(String userId);
-
+	List<Delivery> getOrderList(String userId);
+	Delivery getOrder(int orderId);
+	
+	
+	//리뷰
 	void insertReview(Review review);
 	void deleteReview(int orderId);
 	List<Review> readReviewListByMe();
 	List<Review> readReviewListToMe();
 
-	//Account Connect
-
+	
+	//계정
 	Account getAccount(String userId);
-
 	Account getAccount(String userId, String password);
-
 	void insertAccount(Account account);
-
 	void updateAccount(Account account);
 	
 	/*
