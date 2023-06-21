@@ -123,7 +123,7 @@
     <div class="layout">
         <div class="page">주문/결제</div>
         <div class="prodInfo">
-            <img src="../../upload/${prod.picture1}" width="200px" height="200px" /><br>
+            <img src="../../upload/${product.picture1}" width="200px" height="200px" /><br>
             ${product.name}<br>
             ${product.color}<br>
             ${product.size}<br>
@@ -138,8 +138,7 @@
                     <tr>
                         <td>주문하시는 분</td>
                         <td>
-                            <form:input path="order.billToName" class="input-field" />
-                            <form:errors path="order.billToName" cssClass="error-message"/>
+                            <c:out value="${orderForm.order.billToName}" />
                         </td>
                     </tr>
                     <tr>
@@ -185,7 +184,7 @@
                     </tr>
                     <tr>
                         <td>총 결제 금액</td>
-                        <td>${product.price}</td>
+                        <td><c:out value="${orderForm.order.price}" /></td>
                     </tr>
                     <tr>
                         <td colspan="2">

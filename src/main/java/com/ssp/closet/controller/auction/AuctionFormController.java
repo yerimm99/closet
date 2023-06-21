@@ -39,10 +39,10 @@ import com.ssp.closet.service.ClosetFacade;
 @Controller
 @SessionAttributes("auctionForm")
 public class AuctionFormController {
-	
+
 	@Autowired
 	private ClosetFacade closet;
-	
+
 	@Autowired
 	public void setClosetStore(ClosetFacade closet) {
 		this.closet = closet;
@@ -52,13 +52,13 @@ public class AuctionFormController {
 	public void setValidator(AuctionFormValidator validator) {
 		this.validator = validator;
 	}
-	
+
 	@ModelAttribute("auctionForm")
 	public AuctionForm createAuctionForm() {
 		return new AuctionForm();
 	}
-	
-	
+
+
 	@ModelAttribute("categories")
 	public List<String> referenceData2() {
 		ArrayList<String> categories = new ArrayList<String>();
@@ -72,13 +72,13 @@ public class AuctionFormController {
 		categories.add("패션잡화");
 		return categories;			
 	}
-	
-	
+
+
 	@RequestMapping("/auction/newAuction.do")
 	public String initNewAuction(HttpServletRequest request,
 			@ModelAttribute("auctionForm") AuctionForm auctionForm
 			) throws Exception {
-		
+
 		UserSession userSession = 
 				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
 		if (userSession != null) {
@@ -90,7 +90,7 @@ public class AuctionFormController {
 			return "redirect:/account/SignonForm.do";
 		}
 	}
-	
+
 	@RequestMapping("/auction/update.do")
 	public String editAuction(HttpServletRequest request,
 			@RequestParam("productId") int productId,
@@ -109,8 +109,8 @@ public class AuctionFormController {
 		}
 		return "auction/registerForm";
 	}
-	
-	
+
+
 	@RequestMapping("/auction/confirmAuction.do")
 	protected ModelAndView confirmAuction( //auction 등록 확인 
 			@ModelAttribute("auctionForm") AuctionForm auctionForm, 
@@ -124,7 +124,7 @@ public class AuctionFormController {
 		String absolutePath = System.getProperty("user.dir")+
 				"/src/main/webapp/upload/";
 		File nfile = new File(absolutePath);
-		
+
 		if(!nfile.exists()) {
 			boolean makeDirStatus = nfile.mkdirs();
 			if(!makeDirStatus) System.out.println("디렉토리 생성실패");
@@ -133,23 +133,19 @@ public class AuctionFormController {
 		List<String> filee = new ArrayList<>();
 
 		// 최소 2개 이상의 이미지를 업로드했는지 확인
-	    if (files.size() < 2) {
-	        ModelAndView mav = new ModelAndView("auction/registerForm");
-	        return mav;
-	    }
-	    
-	    // 업로드된 파일 처리
-	    for (MultipartFile file : files) {
-	        if (!file.isEmpty()) {
-	            try {
-	                // 파일 저장
-	                String fileName = file.getOriginalFilename();
-	                String filePath = absolutePath + fileName;
-	                file.transferTo(new File(filePath));
+		if (files.size() < 2) {
+			ModelAndView mav = new ModelAndView("auction/registerForm");
+			return mav;
+		}
 
-	                // 파일 경로 저장
-	                picturePaths.add(filePath);
-	                filee.add(fileName);
+		// 업로드된 파일 처리
+		for (MultipartFile file : files) {
+			if (!file.isEmpty()) {
+				try {
+					// 파일 저장
+					String fileName = file.getOriginalFilename();
+					String filePath = absolutePath + fileName;
+					file.transferTo(new File(filePath));
 
 	            } catch (IOException e) {
 	                // 파일 저장 중 오류 발생
@@ -181,7 +177,7 @@ public class AuctionFormController {
 	    status.setComplete();  // remove session
 	    return mav;
 	}
-	
+
 	@RequestMapping("/auction/delete.do")
 	public String removeAuction(HttpServletRequest request,
 			@RequestParam("productId") int productId
@@ -193,5 +189,5 @@ public class AuctionFormController {
 		}
 		return "redirect:/myPage/sellAuction.do";
 	}
-	
+
 }

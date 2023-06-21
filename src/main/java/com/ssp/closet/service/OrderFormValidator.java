@@ -17,7 +17,8 @@ public class OrderFormValidator implements Validator {
 		validateOrderForm((Delivery) obj, errors);
 	}
 
-	public void validateOrderForm(Delivery Order, Errors errors) {
+
+	public void validateOrderForm(Delivery order, Errors errors) {
 		errors.setNestedPath("order");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "billToName", "BILLTONAME_REQUIRED", "BillToName is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "shipToName", "SHIPTONAME_REQUIRED", "ShipToName is required.");
@@ -25,6 +26,11 @@ public class OrderFormValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cardType", "CARDTYPE_REQUIRED", "CardType is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "creditCard", "CREDITCARD_REQUIRED", "CreditCard is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "expiryDate", "EXPIRYDATE_REQUIRED", "ExpiryDate is required.");
+		
+		if (!order.getCreditCard().equals("") && !order.getCreditCard().matches("\\d{4}-\\d{4}-\\d{4}-\\d{4}")) {
+            errors.rejectValue("creditCard", "INVALID_CREDITCARD", "Invalid CreditCard format.");
+        }
+		
 		errors.setNestedPath("");
 	}
 }

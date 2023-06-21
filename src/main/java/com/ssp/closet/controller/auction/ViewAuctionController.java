@@ -195,7 +195,6 @@ public class ViewAuctionController {
 		return "auction/buyResultList";
 	}
 
-
 	@RequestMapping("/auction/detail.do")
 	public void detailAuction(HttpServletRequest request,
 			@RequestParam("productId") int productId,
