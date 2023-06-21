@@ -24,6 +24,7 @@ import com.ssp.closet.dto.Auction;
 import com.ssp.closet.dto.Bid;
 import com.ssp.closet.dto.Groupbuy;
 import com.ssp.closet.dto.Meet;
+import com.ssp.closet.dto.Product;
 import com.ssp.closet.service.ClosetFacade;
 import com.ssp.closet.service.OrderFormValidator;
 
@@ -94,7 +95,6 @@ public class OrderFormController {
 		} return "order/registerForm";
 	}
 	
-
 	@RequestMapping("/order/register.do")
 	protected ModelAndView confirmOrder(
 			@ModelAttribute("orderForm") OrderForm orderForm, 
@@ -106,6 +106,7 @@ public class OrderFormController {
 		validator.validateOrderForm(orderForm.getOrder(), result);
 		ModelAndView mav1 = new ModelAndView("order/registerForm");
 		if (result.hasErrors()) return mav1;
+		
 		orderForm.getOrder().setExpiryDate(orderForm.convertToFormattedDate(orderForm.getOrder().getExpiryDate()));
 		String sAddress = postCode + " " + address1 + " " + address2;
 		orderForm.getOrder().setShipAddress(sAddress);

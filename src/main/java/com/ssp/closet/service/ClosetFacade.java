@@ -87,9 +87,10 @@ public interface ClosetFacade {
 	
 	
 	//주문
-	public void createDelivery(Delivery delivery);
+	void createDelivery(Delivery delivery);
 	List<Delivery> getOrderList(String userId);
 	Delivery getOrder(int orderId);
+	Delivery getOrderByUserIdAndProductId(String userId, int productId);
 	
 	
 	//리뷰

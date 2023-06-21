@@ -24,6 +24,7 @@ public class ReviewController {
         // Add any necessary logic to populate the model
         return "review/index";
     }
+    
 
     @GetMapping("/menu")
     public String getMenuPage(Model model) {

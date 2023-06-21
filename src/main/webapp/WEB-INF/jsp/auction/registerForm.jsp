@@ -90,7 +90,8 @@
  						<form:input type= "date" path = "auction.endDate" class = "inp"/>
 					</c:if>
 					<c:if test="${!auctionForm.newAuction}">
-						<c:out value="${auctionForm.auction.endDate}" />
+<%-- 						<c:out value="${auctionForm.auction.endDate}" /> --%>
+							<fmt:formatDate value="${auctionForm.auction.endDate}" pattern="yyyy-MM-dd" />
 					</c:if>
  					<hr>
  					<form:errors path="auction.endDate" cssClass="error-message"/>
