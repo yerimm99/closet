@@ -112,7 +112,7 @@
                </tr>
                <tr>
                   <th>필요참가인원</th>
-                  <td>${product.peopleNum}</td>
+                  <td>${product.peopleSum} / ${product.peopleNum}</td>
                </tr>
                <tr>
                     <th>마감 날짜</th>
