@@ -65,7 +65,9 @@
         .changeBtn:hover {
             background-color: #fff9a6;
         }
-
+		.deleteBtn:hover {
+            background-color: #C24E4E;
+        }
         .btn-group {
             display: inline-block;
             padding: 8px 16px;
