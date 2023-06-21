@@ -17,6 +17,10 @@
 		input { border: none; width: 600px; height: 35px; }
 		.address { width: 300px; }
 		.btn { display: block; margin: 0px auto; text-align: center; font-size: 20px; border-radius: 10px; background-color: black; border: 1px solid black; width: 510px; height: 35px; color: white; margin-top: 5px; }
+		form .error-message {
+		    font-size: 14px;
+		    color: red;
+		}
 	</style>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
@@ -105,7 +109,7 @@
 					</td>
 				</tr>
 				<tr>
-					<th colspan="2"><hr></th>
+					<td colspan="2"><hr><form:errors path="account.username" cssClass="error-message"/></td>
 				</tr>
 				<tr>
 					<td>아이디</td>
@@ -119,21 +123,23 @@
 						</td>
 				</tr>
 				<tr>
-					<th colspan="2"><hr></th>
+					<td colspan="2"><hr><form:errors path="account.userId" cssClass="error-message"/></td>
 				</tr>
 				<tr>
 					<td>비밀번호</td>
-					<td><form:password path="account.password" placeholder="필수 항목입니다."/></td>
+					<td><form:password path="account.password" placeholder="필수 항목입니다."/>
+					</td>
 				</tr>
 				<tr>
-					<th colspan="2"><hr></th>
+					<td colspan="2"><hr><form:errors path="account.password" cssClass="error-message" /></td>
 				</tr>
 				<tr>
 					<td>비밀번호 확인</td>
-					<td><form:password path="repeatedPassword" placeholder="필수 항목입니다."/> </td>
+					<td><form:password path="repeatedPassword" placeholder="필수 항목입니다."/> 
+					</td>
 				</tr>
 				<tr>
-					<th colspan="2"><hr></th>
+					<td colspan="2"><hr><form:errors path="account.password" cssClass="error-message" /></td>
 				</tr>
 				<tr>
 					<td>주소</td>
@@ -148,21 +154,23 @@
 					</td>
 				</tr>
 				<tr>
-					<th colspan="2"><hr></th>
+					<td colspan="2"><hr><form:errors path="account.address" cssClass="error-message" /></td>
 				</tr>
 				<tr>
 					<td>전화번호</td>
-					<td><form:input path="account.phone" placeholder="xxx-xxxx-xxxx 형식으로 입력해주세요." /></td>
+					<td><form:input path="account.phone" placeholder="xxx-xxxx-xxxx 형식으로 입력해주세요." />
+					</td>
 				</tr>
 				<tr>
-					<th colspan="2"><hr></th>
+					<td colspan="2"><hr><form:errors path="account.phone" cssClass="error-message" /></td>
 				</tr>
 				<tr>
 					<td>이메일</td>
-					<td><form:input path="account.email" /></td>
+					<td><form:input path="account.email" />
+					</td>
 				</tr>
 				<tr>
-					<th colspan="2"><hr></th>
+					<td colspan="2"><hr><form:errors path="account.email" cssClass="error-message" /></td>
 				</tr>
 				<tr>
 					<td colspan="2">
