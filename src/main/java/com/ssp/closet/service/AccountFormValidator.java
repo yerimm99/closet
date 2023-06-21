@@ -19,13 +19,14 @@ public class AccountFormValidator implements Validator {
 		AccountForm accountForm = (AccountForm)obj; 
 		Account account = accountForm.getAccount();
 
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.userId", "USER_ID_REQUIRED", "User ID is required.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.email", "EMAIL_REQUIRED", "Email address is required.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.phone", "PHONE_REQUIRED", "Phone number is required.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.address", "ADDRESS_REQUIRED", "Address (1) is required.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.username", "USER_NAME_REQUIRED", "사용자명를 입력해주세요.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.email", "EMAIL_REQUIRED", "이메일을 입력해주세요.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.phone", "PHONE_REQUIRED", "전화번호를 입력해주세요.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.address", "ADDRESS_REQUIRED", "주소를 입력해주세요.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.password", "PASSWORD_REQUIRED", "비밀번호를 입력해주세요.");
 
 		if (accountForm.isNewAccount()) {
-			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.userId", "USER_ID_REQUIRED", "User ID is required.");
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.userId", "USER_ID_REQUIRED", "사용자 아이디를 입력해주세요.");
 			if (account.getPassword() == null || account.getPassword().length() < 1 || !account.getPassword().equals(accountForm.getRepeatedPassword())) {
 				errors.reject("USER_MISMATCH","사용자가 일치하지 않습니다. 다시 입력해주세요.");
 			}
