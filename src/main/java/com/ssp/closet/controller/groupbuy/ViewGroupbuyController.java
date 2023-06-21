@@ -157,9 +157,11 @@ public class ViewGroupbuyController {
 			ModelMap model) throws Exception {
 		if ("next".equals(page)) {
 			productList.nextPage();
+			meetList.nextPage();
 		}
 		else if ("previous".equals(page)) {
 			productList.previousPage();
+			meetList.previousPage();
 		}
 		model.put("productList", productList);
 		model.put("meetList", meetList);
