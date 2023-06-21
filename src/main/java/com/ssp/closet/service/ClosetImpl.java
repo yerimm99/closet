@@ -109,7 +109,7 @@ public class ClosetImpl implements ClosetFacade{
 
 	public void scheduleAuctionEnd(Auction auction) { //낙찰처리
 	    Date closingTime = auction.getEndDate(); // 경매 종료 시간을 가져옴
-	    
+	    System.out.println(closingTime);
 	    Runnable auctionEndTask = new Runnable() {
 	        @Override
 	        public void run() {
@@ -130,23 +130,23 @@ public class ClosetImpl implements ClosetFacade{
 	    System.out.println("Auction end task has been scheduled to execute at " + closingTime);
 	}
 	
-	@Scheduled(cron = "10 * * * * *") // 경매 종료 확인 주기
-    public void checkAuctionEnd() {
-        // 경매 종료 시간이 현재 시간보다 이전인 경매 조회
-        List<Auction> endedAuctions = aucRepository.findEndedAuctions(LocalDateTime.now());
-        
-        // 각 경매에 대해 최고 입찰가 확인
-        for (Auction auction : endedAuctions) {
-            Bid highestBid = findMaxPrice(auction.getProductId());
-            if (highestBid != null) {
-                // 낙찰 처리
-                auction.setWinner(highestBid.getUserId());
-                updateResult(auction.getWinner());
-            }
-            auction.setStatus(0);
-            aucRepository.save(auction);
-        }
-    }
+//	@Scheduled(cron = "10 * * * * *") // 경매 종료 확인 주기
+//    public void checkAuctionEnd() {
+//        // 경매 종료 시간이 현재 시간보다 이전인 경매 조회
+//        List<Auction> endedAuctions = aucRepository.findEndedAuctions(LocalDateTime.now());
+//        
+//        // 각 경매에 대해 최고 입찰가 확인
+//        for (Auction auction : endedAuctions) {
+//            Bid highestBid = findMaxPrice(auction.getProductId());
+//            if (highestBid != null) {
+//                // 낙찰 처리
+//                auction.setWinner(highestBid.getUserId());
+//                updateResult(auction.getWinner());
+//            }
+//            auction.setStatus(0);
+//            aucRepository.save(auction);
+//        }
+//    }
 	
 	public void closedAuctionBySupp(Auction auction) {
 		auction.setStatus(0);

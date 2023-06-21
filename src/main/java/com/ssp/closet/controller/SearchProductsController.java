@@ -41,8 +41,8 @@ public class SearchProductsController {
 			}
 			PagedListHolder<Auction> AuctionList = new PagedListHolder<Auction>(this.closet.searchAuctionList(keyword.toLowerCase()));
 			PagedListHolder<Groupbuy> GroupbuyList = new PagedListHolder<Groupbuy>(this.closet.searchGroupbuyList(keyword.toLowerCase()));
-			AuctionList.setPageSize(6);
-			GroupbuyList.setPageSize(6);
+			AuctionList.setPageSize(8);
+			GroupbuyList.setPageSize(8);
 			model.put("GroupbuyList", GroupbuyList);
 			model.put("AuctionList", AuctionList);
 			model.put("keyword", keyword);
@@ -62,9 +62,11 @@ public class SearchProductsController {
 			}
 			if ("next".equals(page)) {
 				AuctionList.nextPage();
+				GroupbuyList.nextPage();
 			}
 			else if ("previous".equals(page)) {
 				AuctionList.previousPage();
+				GroupbuyList.previousPage();
 			}
 			return new ModelAndView("SearchProducts", "productList", model);
 		}

@@ -167,10 +167,20 @@ public class ViewGroupbuyController {
 	}
 
 	@RequestMapping("/groupbuy/detail.do")
-	public void detailGroupbuy(
-			@RequestParam("productId") int productId,
-			ModelMap model) throws Exception {
-		Groupbuy product = this.closet.getGroupbuyDetail(productId);
-		model.put("product", product);
-	}
+	   public void detailGroupbuy(
+	         HttpServletRequest request,
+	         @RequestParam("productId") int productId,
+	         ModelMap model) throws Exception {
+	      Groupbuy product = this.closet.getGroupbuyDetail(productId);
+	      
+	      UserSession userSession = 
+	            (UserSession) WebUtils.getSessionAttribute(request, "userSession");
+	      String supp = "";
+	      if(userSession != null) {
+	         supp = userSession.getAccount().getUserId();
+	      }
+	      model.put("supp", supp);
+	      
+	      model.put("product", product);
+	   }
 }

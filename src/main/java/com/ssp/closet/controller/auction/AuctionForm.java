@@ -25,9 +25,6 @@ public class AuctionForm implements Serializable {
 		this.auction = new Auction();
 	}
 
-	public Auction getAuction() {
-		return auction;
-	}
 	public boolean isNewAuction() {
 		return newAuction;
 	}

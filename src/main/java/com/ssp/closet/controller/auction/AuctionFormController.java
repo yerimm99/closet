@@ -11,10 +11,13 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ResourceUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -69,6 +72,7 @@ public class AuctionFormController {
 		categories.add("패션잡화");
 		return categories;			
 	}
+	
 	
 	@RequestMapping("/auction/newAuction.do")
 	public String initNewAuction(HttpServletRequest request,
@@ -184,13 +188,20 @@ public class AuctionFormController {
 		UserSession userSession = 
 				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
 		if (userSession != null) {
-			Auction auction = closet.getAuction(productId);
-			if(auction.getPrice() == null) {
-				closet.deleteAuctionByProductId(productId);
-			}
+			closet.deleteAuctionByProductId(productId);
 		}
-		else {
-			return "redirect:/account/SignonForm.do";
+		return "redirect:/myPage/sellAuction.do";
+	}
+	
+	@RequestMapping("/auction/successBySupp.do")
+	public String successBySupp(HttpServletRequest request,
+			@RequestParam("productId") int productId
+			) throws Exception {
+		UserSession userSession = 
+				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
+		if (userSession != null) {
+			Auction auction = closet.getAuction(productId);
+			closet.closedAuctionBySupp(auction);
 		}
 		return "redirect:/myPage/sellAuction.do";
 	}

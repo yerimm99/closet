@@ -44,17 +44,12 @@ public class SignonController {
 			Model model) throws Exception {
 		Account account = closetStore.getAccount(userId, password);
 		if (account == null) {
-//			return new ModelAndView("Error", "message", 
-//					"Invalid username or password.  Signon failed.");
-			return new ModelAndView(formViewName);
+			return new ModelAndView("account/SignonForm", "message", 
+					"잘못된 아이디나 패스워드입니다.");
 		}
 
 		else {
 			UserSession userSession = new UserSession(account);
-			//PagedListHolder<Product> myList = new PagedListHolder<Product>(this.closetStore.getProductListByCategory(account.getFavouriteCategoryId()));
-			//myList.setPageSize(4);
-			//userSession.setMyList(myList);
-			
 			
 			model.addAttribute("userSession", userSession);
 			if (forwardAction != null) 

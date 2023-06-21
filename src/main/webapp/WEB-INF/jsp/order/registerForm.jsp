@@ -9,10 +9,52 @@
 	<meta charset="EUC-KR">
 	<title>주문 페이지</title>
 	<style type = "text/css">
-		body{margin:0}
-		.layout{margin:0px auto;width:1180px;padding:10px;font-size:18px}
-		.page{text-align:center;font-size:24px;margin-top:60px;margin-bottom:30px}
-		.address{width:300px;}
+		body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        .layout {
+            margin: 0 auto;
+            width: 800px;
+            padding: 10px;
+            font-size: 18px;
+            text-align: center;
+        }
+        
+        .page {
+            font-size: 24px;
+            margin-top: 60px;
+            margin-bottom: 30px;
+        }
+        
+        .prodInfo {
+            margin-bottom: 30px;
+        }
+        
+        .address {
+            width: 300px;
+        }
+        
+        table {
+            margin: 0 auto;
+            text-align: left;
+            margin-top: 20px;
+        }
+        
+        td {
+            padding: 5px;
+        }
+        
+        .btn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+        }
+        form .error-message {
+		    font-size: 14px;
+		    color: red;
+		}
 	</style>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
@@ -74,77 +116,85 @@
 	</script>
 </head>
 <body>
-	<!-- 메뉴바 -->
-	<jsp:include page = "../menu.jsp"/>
-	<hr>
-	
-	<div class = "layout">
-		<div class = "page">주문/결제</div>
-		<div class = "prodInfo">
-				<img src = "../../upload/${prod.picture1}'>" width="200px" height="200px" />
-				${product.name}<br>
-				${product.color}<br>
-				${product.size}<br>
-				${product.price}<br>
-		</div>
-		<hr>
-		<div class = "order">
-			<form:form modelAttribute = "orderForm" action="/order/register.do" method="post" >
-			<table>
-				<tr>
-					<td style="text-align:center;font-size:20px" colspan = "2">주문 정보<br><br></td>
-				</tr>
-				<tr>
-					<td>주문하시는 분</td>
-					<td>
-						<form:input path = "order.billToName" />
-					</td>
-				</tr>
-				<tr>
-					<td>받으시는 분</td>
-					<td>
-						<form:input path = "order.shipToName" />
-					</td>
-				</tr>
-				<tr>
-					<td>주소</td>
-					<td>
-						<input type="text" id="sample4_postcode" placeholder="우편번호" class="address" name = "sample4_postcode">
-						<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="address"><br>
-						<input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="address1" class="address">
-						<input type="text" id="sample4_jibunAddress" placeholder="지번주소" class="address" style="display:none"><br>
-						<span id="guide" style="color:#999;display:none"></span>
-						<input type="text" id="sample4_detailAddress" placeholder="상세주소" name="address2" class="address">
-						<input type="text" id="sample4_extraAddress" placeholder="참고항목" class="address">
-					</td>
-				</tr>
-				<tr>
-				    <td>카드 타입</td>
-				    <td>
-				    	<form:select path="order.cardType" items="${creditCardTypes}" />
-				    </td>
-			    </tr>
-			    <tr>
-				    <td>카드 번호</td>
-				    <td>
-				    	<form:input path="order.creditCard" /> 
-				    </td>
-			    </tr>
-			    <tr>
-			    	<td>만료 기간</td>
-			    	<td><form:input path="order.expiryDate" placeholder = "MM/YYYY" /> 
-			    	</td>
-			    </tr>
-			    <tr>
-			    	<td colspan = "2">
-			    		<input type="submit" value="주문하기" class = "btn">
-			    	</td>
-			    </tr>
-			</table>
-			</form:form>
-		</div>
-	
-	
-	</div>
+    <!-- 메뉴바 -->
+    <%@ include file="../menu.jsp" %>
+    <hr>
+    
+    <div class="layout">
+        <div class="page">주문/결제</div>
+        <div class="prodInfo">
+            <img src="../../upload/${prod.picture1}" width="200px" height="200px" /><br>
+            ${product.name}<br>
+            ${product.color}<br>
+            ${product.size}<br>
+        </div>
+        <hr>
+        <div class="order">
+            <form:form modelAttribute="orderForm" action="/order/register.do" method="post">
+                <table>
+                    <tr>
+                        <td style="text-align: center; font-size: 20px;" colspan="2">주문 정보</td>
+                    </tr>
+                    <tr>
+                        <td>주문하시는 분</td>
+                        <td>
+                            <form:input path="order.billToName" class="input-field" />
+                            <form:errors path="order.billToName" cssClass="error-message"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>받으시는 분</td>
+                        <td>
+                            <form:input path="order.shipToName" class="input-field" />
+                            <form:errors path="order.shipToName" cssClass="error-message"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>주소</td>
+                        <td>
+                            <input type="text" id="sample4_postcode" placeholder="우편번호" class="address" name="sample4_postcode">
+                            <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="address"><br>
+                            <input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="address1" class="address">
+                            <input type="text" id="sample4_jibunAddress" placeholder="지번주소" class="address" style="display:none"><br>
+                            <span id="guide" style="color: #999; display:none;"></span>
+                            <input type="text" id="sample4_detailAddress" placeholder="상세주소" name="address2" class="address">
+                            <input type="text" id="sample4_extraAddress" placeholder="참고항목" class="address">
+                            <form:errors path="order.shipAddress" cssClass="error-message"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>카드 타입</td>
+                        <td>
+                            <form:select path="order.cardType" items="${creditCardTypes}" class="input-field" />
+                            <form:errors path="order.cardType" cssClass="error-message"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>카드 번호</td>
+                        <td>
+                            <form:input path="order.creditCard" class="input-field" /> 
+                            <form:errors path="order.creditCard" cssClass="error-message"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>만료 기간</td>
+                        <td>
+                            <form:input path="order.expiryDate" placeholder="MM/YYYY" class="input-field" /> 
+                            <form:errors path="order.expiryDate" cssClass="error-message"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>총 결제 금액</td>
+                        <td>${product.price}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="submit" value="주문하기" class="btn">
+                        </td>
+                    </tr>
+                </table>
+            </form:form>
+        </div>
+    </div>
 </body>
 </html>

@@ -39,7 +39,6 @@ public class Auction extends Product implements Serializable {
 	public void initAuction(Account account) {
 		super.setPtype(1);
 		super.setStatus(1);
-		super.setRegisterDate(new Date());
 		super.setAccount(account);
 	}
 
