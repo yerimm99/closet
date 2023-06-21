@@ -90,7 +90,8 @@
 						<form:input type = "date" path = "groupbuy.endDate" class = "inp"/>
 					</c:if>
 					<c:if test="${!groupbuyForm.newGroupbuy}">
-						<c:out value="${groupbuyForm.groupbuy.endDate}" />
+<%-- 						<c:out value="${groupbuyForm.groupbuy.endDate}" /> --%>
+							<fmt:formatDate value="${groupbuyForm.groupbuy.endDate}" pattern="yyyy-MM-dd" />
 					</c:if>
  					<hr>
 					<form:errors path="groupbuy.endDate" cssClass="error-message"/>
