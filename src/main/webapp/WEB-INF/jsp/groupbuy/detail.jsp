@@ -10,7 +10,7 @@
    <style type = "text/css">
       body{margin:0}
       .layout{margin:0px auto;width:1180px;padding:10px}
-      .slider{float:left;width: 480px;height: 360px;position: relative;margin: 0 auto;border:1px solid black;
+      .slider{float:left;width: 480px;height: 360px;position: relative;margin: 0 auto;
           overflow: hidden;margin:50px 20px 0px 40px}
       .slider input[type=radio]{display: none;}
       ul.imgs{padding: 0;margin: 0;list-style: none;}
@@ -46,6 +46,11 @@
       .gobtn3{text-align:center;font-size:20px;border-radius:10px;background-color:lightblue;
       border:1px solid;width:100px;height:35px;color:white;margin-top:10px}
       .dis{border:none;background-color:lightblue;height:35px;line-text:lightpink;color:white;font-size:20px;}
+		
+		img {
+            max-width: 100%;
+            height:100%;
+        }   
    </style>
 </head>
 <body>
