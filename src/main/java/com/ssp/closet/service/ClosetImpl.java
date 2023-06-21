@@ -252,6 +252,9 @@ public class ClosetImpl implements ClosetFacade{
 		return groupbuyRepository.findAllByOrderByStatusDescRegisterDateDesc();
 	}
 
+	public List<Groupbuy> findTop4GroupbuyOrderByRegisterDate(){
+		return groupbuyRepository.findTop4OrderByRegisterDate();
+	}
 	
 	//공구참여
 	@Autowired
