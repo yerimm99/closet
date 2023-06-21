@@ -90,10 +90,10 @@
 		<form:form modelAttribute="accountForm" method="post" name = "form">
 			<table>
 				<tr>
-					<c:if test="${auctionForm.newAuction}">
+					<c:if test="${accountForm.newAccount}">
 					<td style="text-align: center; font-size: 24px;" colspan="2">회원가입<br><br><br></td>
 					</c:if>
-					<c:if test="${!auctionForm.newAuction}">
+					<c:if test="${!accountForm.newAccount}">
 					<td style="text-align: center; font-size: 24px;" colspan="2">회원정보 수정<br><br><br></td>
 					</c:if>
 				</tr>
