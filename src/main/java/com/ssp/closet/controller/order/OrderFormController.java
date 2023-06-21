@@ -20,6 +20,7 @@ import org.springframework.web.util.WebUtils;
 
 import com.ssp.closet.controller.UserSession;
 import com.ssp.closet.dto.Account;
+import com.ssp.closet.dto.Auction;
 import com.ssp.closet.dto.Groupbuy;
 import com.ssp.closet.dto.Meet;
 import com.ssp.closet.service.ClosetFacade;
@@ -70,12 +71,26 @@ public class OrderFormController {
 			Account account = closet.getAccount(userSession.getAccount().getUserId());
 			Groupbuy groupbuy = closet.getGroupbuyDetail(productId);
 			orderForm.getOrder().initOrder(account, groupbuy);
-			Groupbuy product = closet.getGroupbuyDetail(productId);
-			model.put("product", product);
-			return "order/registerForm";
-		} else {
-			return "redirect:/account/SignonForm.do";
-		}
+			model.put("product", groupbuy);
+			
+		} return "order/registerForm";
+	}
+	@RequestMapping("/order/registerForm2.do")  //order 등록 
+	public String initNewAuctionOrder(HttpServletRequest request,
+			@RequestParam("productId") int productId,
+			@ModelAttribute("orderForm") OrderForm orderForm,
+			ModelMap model
+			) throws ModelAndViewDefiningException {
+		
+		UserSession userSession = 
+				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
+		if (userSession != null) {
+			Account account = closet.getAccount(userSession.getAccount().getUserId());
+			Auction auction = closet.getAuction(productId);
+			orderForm.getOrder().initOrder(account, auction);
+			model.put("product", auction);
+			
+		} return "order/registerForm";
 	}
 	
 	@RequestMapping("/order/register.do")

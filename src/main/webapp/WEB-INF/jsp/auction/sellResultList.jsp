@@ -62,10 +62,10 @@
         }
 
         .detailBtn:hover {
-            background-color: #fff9a6;
+            background-color: #99cd89;
         }
         .reBtn:hover {
-            background-color: #99cd89;
+            background-color: #fff9a6;
         }
         .deleteBtn:hover {
             background-color: #C24E4E;
@@ -161,18 +161,14 @@
                             <div class="btn-group">
                                 <c:choose>
                                     <c:when test="${!empty prod.price}">
-                                        <a href="<c:url value='/auction/detail.do'>
-                                            <c:param name='productId' value='${prod.productId}' />
-                                        </c:url>" class = "detailBtn">상세보기</a>
-                                        <a href="<c:url value='/auction/update.do'>
+                                    	<a href="<c:url value='/auction/update.do'>
                                             <c:param name='productId' value='${prod.productId}' />
                                         </c:url>" class = "reBtn">수정하기</a>
-                                        <button disabled>삭제하기</button>
+                                        <a href="<c:url value='/auction/successBySupp.do'>
+                                            <c:param name='productId' value='${prod.productId}' />
+                                        </c:url>" class = "detailBtn">낙찰하기</a>
                                     </c:when>
                                     <c:otherwise>
-                                        <a href="<c:url value='/auction/detail.do'>
-                                            <c:param name='productId' value='${prod.productId}' />
-                                        </c:url>" class = "detailBtn">상세보기</a>
                                         <a href="<c:url value='/auction/update.do'>
                                             <c:param name='productId' value='${prod.productId}' />
                                         </c:url>" class = "reBtn">수정하기</a>
