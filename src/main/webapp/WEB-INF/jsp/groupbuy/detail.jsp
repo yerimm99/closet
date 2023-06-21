@@ -147,7 +147,7 @@
                                             <c:param name='productId' value='${product.productId}' />
                                         </c:url>"><b style = "color:white;font-size:18px">수정하기</b></a>
                    			</td>
-                     	</c:when>
+                     	</c:when> 
                      	<c:otherwise> 
                      		<td colspan = "2" class = "gobtn" style="width:100%">
                      			<a href="<c:url value='/groupbuy/update.do'>
