@@ -128,14 +128,7 @@
 				<div style = "margin:10px"><b>사용자리뷰관리</b></div>
 				<hr>
 				<div class = "func">
-					<a href="<c:url value='/myPage/myOrderList.do'></c:url>">
-						<img border="0" src="../../images/click.png" class = "clickImg"
-							width = "40" height = "40"/>
-						<span>리뷰작성</span>
-					</a>
-				</div>
-				<div class = "func">
-					<a href="<c:url value='/review/.do'></c:url>">
+					<a href="<c:url value='/review/list.do'></c:url>">
 						<img border="0" src="../../images/click.png" class = "clickImg"
 							width = "40" height = "40"/>
 						<span>내가 받은 리뷰 리스트</span>
