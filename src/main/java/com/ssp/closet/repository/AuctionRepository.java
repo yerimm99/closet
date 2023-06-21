@@ -24,9 +24,9 @@ public interface AuctionRepository extends JpaRepository<Auction, Integer> {
 			"where a.productId = :productId")
 	void updatePrice(@Param("productId")int productId, @Param("maxPrice")int price);
 	
-	List<Auction> findByCategoryIdOrderByRegisterDateDesc(String categoryId);
+	List<Auction> findByCategoryIdOrderByStatusDescRegisterDateDesc(String categoryId);
 	
-	List<Auction> findAllByOrderByRegisterDateDesc();
+	List<Auction> findAllByOrderByStatusDescRegisterDateDesc();
 	
 	void deleteByProductId(int productId);
 	
@@ -39,10 +39,8 @@ public interface AuctionRepository extends JpaRepository<Auction, Integer> {
 	@Query("SELECT a FROM Auction a WHERE rownum <= 4 Order by a.registerDate desc")
 	List<Auction> findTop4OrderByRegisterDate();
 	
-	List<Auction> findByUsed(int used);
-	List<Auction> findByCategoryIdAndUsed(String categoryId, int used);
-	List<Auction> findByNameIgnoreCaseContaining(String keywords);
+	List<Auction> findByNameIgnoreCaseContainingOrderByStatusDescRegisterDateDesc(String keywords);
 
-	List<Auction> findByUsedOrderByRegisterDateDesc(int used);
+	List<Auction> findByUsedOrderByStatusDescRegisterDateDesc(int used);
 	List<Auction> findByCategoryIdAndUsedOrderByRegisterDateDesc(String categoryId, int used);
 }

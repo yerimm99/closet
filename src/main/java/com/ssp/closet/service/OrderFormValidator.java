@@ -21,6 +21,7 @@ public class OrderFormValidator implements Validator {
 		errors.setNestedPath("order");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "billToName", "BILLTONAME_REQUIRED", "BillToName is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "shipToName", "SHIPTONAME_REQUIRED", "ShipToName is required.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "shipAddress", "SHIPADDRESS_REQUIRED", "ShipAddress is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cardType", "CARDTYPE_REQUIRED", "CardType is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "creditCard", "CREDITCARD_REQUIRED", "CreditCard is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "expiryDate", "EXPIRYDATE_REQUIRED", "ExpiryDate is required.");
