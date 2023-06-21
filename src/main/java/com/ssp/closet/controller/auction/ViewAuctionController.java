@@ -22,6 +22,7 @@ import com.ssp.closet.controller.UserSession;
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
 import com.ssp.closet.dto.Bid;
+import com.ssp.closet.dto.Groupbuy;
 import com.ssp.closet.service.ClosetFacade;
 
 @Controller
@@ -224,12 +225,14 @@ public class ViewAuctionController {
 	}
 	
 	@GetMapping("/closet/index.do")
-	public ModelAndView newAuctionList(
+	public ModelAndView newProductList(
 			ModelMap model) {
-		PagedListHolder<Auction> productList = new PagedListHolder<Auction>(closet.findTop4AuctionOrderByRegisterDate());
-		productList.setPageSize(4);
-		model.addAttribute("productList", productList);
-
+		PagedListHolder<Auction> AuctionList = new PagedListHolder<Auction>(this.closet.findTop4AuctionOrderByRegisterDate());
+		PagedListHolder<Groupbuy> GroupbuyList = new PagedListHolder<Groupbuy>(this.closet.findTop4GroupbuyOrderByRegisterDate());
+		AuctionList.setPageSize(4);
+		GroupbuyList.setPageSize(4);
+		model.addAttribute("GroupbuyList", GroupbuyList);
+		model.addAttribute("AuctionList", AuctionList);
 	    return new ModelAndView("index", model);
 	}
 }

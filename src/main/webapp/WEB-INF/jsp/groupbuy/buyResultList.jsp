@@ -49,6 +49,22 @@
             max-width: 100px;
             height: auto;
         }
+        
+        .changeBtn, .deleteBtn, .orderBtn {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            background-color: lightgray;
+            color: #ffffff;
+            border: none;
+            transition: background-color 0.3s;
+            font-size: 14px;
+        }
+
+        .changeBtn:hover {
+            background-color: #fff9a6;
+        }
 
         .btn-group {
             display: inline-block;
@@ -183,7 +199,10 @@
 									주문 실패
 								</c:if>
 								<c:if test = "${meet.meetResult==3}">
-									주문 완료
+									주문 완료<br>
+									<a href="<c:url value='/review/registerForm.do'>
+										<c:param name='productId' value='${prod.productId}' /></c:url>"
+                                             class="changeBtn">판매자 리뷰 작성하기</a>
 								</c:if>
 							</td>
 						</tr>

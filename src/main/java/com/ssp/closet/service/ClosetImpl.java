@@ -273,7 +273,10 @@ public class ClosetImpl implements ClosetFacade{
 		System.out.println("Groupbuy end task has been scheduled to execute at " + closingTime);
 	}
 
-
+	public List<Groupbuy> findTop4GroupbuyOrderByRegisterDate(){
+		return groupbuyRepository.findTop4OrderByRegisterDate();
+	}
+	
 	//공구참여
 	@Autowired
 	private MeetRepository meetRepository;
