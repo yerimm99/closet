@@ -173,22 +173,12 @@ public class GroupbuyFormController {
 		status.setComplete();  // remove session
 		return mav2;
 	}
-	
+
 	@RequestMapping("/groupbuy/delete.do")
 	public String removeGroupbuy(HttpServletRequest request,
 			@RequestParam("productId") int productId
 			) throws Exception {
-		UserSession userSession = 
-				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
-		if (userSession != null) {
-			Groupbuy groupbuy = closet.getGroupbuyDetail(productId);
-			if(groupbuy.getPeopleSum() == 0) {
-				closet.deleteGroupbuyByProductId(productId);
-			}
-		}
-		else {
-			return "redirect:/account/SignonForm.do";
-		}
+		closet.deleteGroupbuyByProductId(productId);
 		return "redirect:/myPage/sellGroupbuy.do";
 	}
 }

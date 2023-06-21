@@ -178,6 +178,9 @@
                                                 <c:when test="${bid.bidResult == 2}">
                                                     낙찰 실패
                                                 </c:when>
+                                                <c:when test="${bid.bidResult == 3}">
+                                                    주문 완료
+                                                </c:when>
                                                 <c:when test="${prod.status == 0}">
                                                     주문 완료
                                                 </c:when>

@@ -21,6 +21,7 @@ import org.springframework.web.util.WebUtils;
 import com.ssp.closet.controller.UserSession;
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
+import com.ssp.closet.dto.Bid;
 import com.ssp.closet.dto.Groupbuy;
 import com.ssp.closet.dto.Meet;
 import com.ssp.closet.service.ClosetFacade;
@@ -29,10 +30,10 @@ import com.ssp.closet.service.OrderFormValidator;
 @Controller
 @SessionAttributes("orderForm")
 public class OrderFormController {
-	
+
 	@Autowired
 	private ClosetFacade closet;
-	
+
 	@Autowired
 	public void setClosetStore(ClosetFacade closet) {
 		this.closet = closet;
@@ -42,7 +43,7 @@ public class OrderFormController {
 	public OrderForm createOrderForm() {
 		return new OrderForm();
 	}
-	
+
 	@ModelAttribute("creditCardTypes")
 	public List<String> referenceData() {
 		ArrayList<String> creditCardTypes = new ArrayList<String>();
@@ -51,20 +52,20 @@ public class OrderFormController {
 		creditCardTypes.add("American Express");
 		return creditCardTypes;			
 	}
-	
+
 	@Autowired
 	private OrderFormValidator validator;
 	public void setValidator(OrderFormValidator validator) {
 		this.validator = validator;
 	}
-	
+
 	@RequestMapping("/order/registerForm.do")  //order 등록 
 	public String initNewOrder(HttpServletRequest request,
 			@RequestParam("productId") int productId,
 			@ModelAttribute("orderForm") OrderForm orderForm,
 			ModelMap model
 			) throws ModelAndViewDefiningException {
-		
+
 		UserSession userSession = 
 				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
 		if (userSession != null) {
@@ -72,7 +73,7 @@ public class OrderFormController {
 			Groupbuy groupbuy = closet.getGroupbuyDetail(productId);
 			orderForm.getOrder().initOrder(account, groupbuy);
 			model.put("product", groupbuy);
-			
+
 		} return "order/registerForm";
 	}
 	@RequestMapping("/order/registerForm2.do")  //order 등록 
@@ -81,7 +82,7 @@ public class OrderFormController {
 			@ModelAttribute("orderForm") OrderForm orderForm,
 			ModelMap model
 			) throws ModelAndViewDefiningException {
-		
+
 		UserSession userSession = 
 				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
 		if (userSession != null) {
@@ -89,16 +90,16 @@ public class OrderFormController {
 			Auction auction = closet.getAuction(productId);
 			orderForm.getOrder().initOrder(account, auction);
 			model.put("product", auction);
-			
+
 		} return "order/registerForm";
 	}
-	
+
 	@RequestMapping("/order/register.do")
 	protected ModelAndView confirmOrder(
 			@ModelAttribute("orderForm") OrderForm orderForm, 
 			@RequestParam("sample4_postcode") String postCode,
-            @RequestParam("address1") String address1,
-            @RequestParam("address2") String address2,
+			@RequestParam("address1") String address1,
+			@RequestParam("address2") String address2,
 			SessionStatus status, BindingResult result) {
 
 		validator.validateOrderForm(orderForm.getOrder(), result);
@@ -108,11 +109,17 @@ public class OrderFormController {
 		String sAddress = postCode + " " + address1 + " " + address2;
 		orderForm.getOrder().setShipAddress(sAddress);
 		closet.createDelivery(orderForm.getOrder()); //등록 
-		
-		Meet meet = closet.findMeetByUserIdAndProductId(orderForm.getOrder().getUserId(), orderForm.getOrder().getProductId());
-		meet.setMeetResult(3);
-		closet.insertMeet(meet);
-		
+
+		if(closet.getProduct(orderForm.getOrder().getProductId()).getDTYPE().equals("Groupbuy")) {
+			Meet meet = closet.findMeetByUserIdAndProductId(orderForm.getOrder().getUserId(), orderForm.getOrder().getProductId());
+			meet.setMeetResult(3);
+			closet.insertMeet(meet);
+		} else {
+			Bid bid = closet.getBid(orderForm.getOrder().getUserId(), orderForm.getOrder().getProductId());
+			bid.setBidResult(3);
+			closet.insertBid(bid);
+		}
+
 		ModelAndView mav2 = new ModelAndView("order/detail");
 		mav2.addObject("order", orderForm.getOrder());
 		status.setComplete();  // remove session

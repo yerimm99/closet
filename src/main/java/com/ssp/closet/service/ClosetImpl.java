@@ -57,6 +57,10 @@ public class ClosetImpl implements ClosetFacade{
 		return productRepository.findAll();
 	}
 	
+	public Product getProduct(int productId) {
+		return productRepository.findByProductId(productId);
+	}
+	
 	
 	//경매
 	@Autowired
@@ -77,15 +81,15 @@ public class ClosetImpl implements ClosetFacade{
 	}
 	
 	public List<Auction> getAuctionByCategoryId(String categoryId) {
-        return aucRepository.findByCategoryIdOrderByRegisterDateDesc(categoryId);
+        return aucRepository.findByCategoryIdOrderByStatusDescRegisterDateDesc(categoryId);
     }
 	public List<Auction> searchAuctionList(String keywords) {
-		return aucRepository.findByNameIgnoreCaseContaining(keywords);
+		return aucRepository.findByNameIgnoreCaseContainingOrderByStatusDescRegisterDateDesc(keywords);
 	}
 	
 	//추가
 	public List<Auction> getAuctionByUsed(int used){
-		return aucRepository.findByUsedOrderByRegisterDateDesc(used);
+		return aucRepository.findByUsedOrderByStatusDescRegisterDateDesc(used);
 	}
 	public List<Auction> getAuctionByCategoryIdAndUsed(String categoryId, int used){
 		return aucRepository.findByCategoryIdAndUsedOrderByRegisterDateDesc(categoryId, used);
@@ -101,7 +105,7 @@ public class ClosetImpl implements ClosetFacade{
 	}
 	
 	public List<Auction> getAuctionList() {
-		return aucRepository.findAllByOrderByRegisterDateDesc();
+		return aucRepository.findAllByOrderByStatusDescRegisterDateDesc();
 	}
 	
 	@Autowired
@@ -168,6 +172,10 @@ public class ClosetImpl implements ClosetFacade{
 		bidRepository.save(bid);
 		updateMaxPrice(bid.getProductId());
 	}
+	
+	public void insertBid(Bid bid) {
+		bidRepository.save(bid);
+	}
 
 	public boolean isBidPriceExists(int productId, int bidPrice) {
 		return bidRepository.existsByProductIdAndBidPrice(productId, bidPrice);
@@ -218,7 +226,7 @@ public class ClosetImpl implements ClosetFacade{
 	}
 	
 	public List<Groupbuy> getGroupbuyByCategoryId(String categoryId) {
-        return groupbuyRepository.findByCategoryIdOrderByRegisterDateDesc(categoryId);
+        return groupbuyRepository.findByCategoryIdOrderByStatusDescRegisterDateDesc(categoryId);
     }
 	
 	public Groupbuy getGroupbuyDetail(int productId) {
@@ -230,7 +238,7 @@ public class ClosetImpl implements ClosetFacade{
 	}
 	
 	public List<Groupbuy> findSellGroupbuyByAccount(Account account){
-		return groupbuyRepository.findByAccountOrderByRegisterDateDesc(account);
+		return groupbuyRepository.findByAccountOrderByStatusDescRegisterDateDesc(account);
 	}
 	
 	public Groupbuy findBuyGroupbuyByProductId(int productId){
@@ -238,10 +246,10 @@ public class ClosetImpl implements ClosetFacade{
 	}
 
 	public List<Groupbuy> searchGroupbuyList(String keywords) {
-		return groupbuyRepository.findByNameIgnoreCaseContaining(keywords);
+		return groupbuyRepository.findByNameIgnoreCaseContainingOrderByStatusDescRegisterDateDesc(keywords);
 	}	
 	public List<Groupbuy> getGroupbuyList() {
-		return groupbuyRepository.findAllByOrderByRegisterDateDesc();
+		return groupbuyRepository.findAllByOrderByStatusDescRegisterDateDesc();
 	}
 
 	

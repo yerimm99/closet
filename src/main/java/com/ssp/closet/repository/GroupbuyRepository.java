@@ -8,14 +8,11 @@ import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Groupbuy;
 
 public interface GroupbuyRepository extends JpaRepository<Groupbuy, Integer>{
+	List<Groupbuy> findByNameIgnoreCaseContainingOrderByStatusDescRegisterDateDesc(String keywords);
 
-	
-	List<Groupbuy> findByCategoryId(String categoryId);
-	List<Groupbuy> findByNameIgnoreCaseContaining(String keywords);
-
-	List<Groupbuy> findByCategoryIdOrderByRegisterDateDesc(String categoryId);
+	List<Groupbuy> findByCategoryIdOrderByStatusDescRegisterDateDesc(String categoryId);
 	void deleteByProductId(int productId);
-	List<Groupbuy> findByAccountOrderByRegisterDateDesc(Account account);
+	List<Groupbuy> findByAccountOrderByStatusDescRegisterDateDesc(Account account);
 	Groupbuy findByProductId(Integer productId);
-	List<Groupbuy> findAllByOrderByRegisterDateDesc();
+	List<Groupbuy> findAllByOrderByStatusDescRegisterDateDesc();
 }

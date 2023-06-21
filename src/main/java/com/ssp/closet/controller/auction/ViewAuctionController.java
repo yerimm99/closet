@@ -181,9 +181,11 @@ public class ViewAuctionController {
 			ModelMap model) throws Exception {
 		if ("next".equals(page)) {
 			productList.nextPage();
+			bidList.nextPage();
 		}
 		else if ("previous".equals(page)) {
 			productList.previousPage();
+			bidList.previousPage();
 		}
 		model.put("productList", productList);
 		model.put("bidList", bidList);

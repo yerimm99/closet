@@ -23,6 +23,7 @@ public interface ClosetFacade {
 	Category getCategory(String categoryId);
 
 	List<Product> getProductList(int type, int status);
+	Product getProduct(int productId);
 	
 	
 	//경매
@@ -46,6 +47,7 @@ public interface ClosetFacade {
 	
 	//입찰
 	void createBid(Bid bid);
+	void insertBid(Bid bid);
 	boolean isBidPriceExists(int productId, int bidPrice);
 	void deleteBid(int productId, String userId);
 	void updateResult(String userId, int productId);
