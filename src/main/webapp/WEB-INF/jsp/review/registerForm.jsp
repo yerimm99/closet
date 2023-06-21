@@ -125,18 +125,15 @@
 		</div>
 		<hr>
 		<div>
-			<form:form class="bid-form" modelAttribute="bidForm" method="POST"
-				action="${targetUrl}">
+			<form method="POST" action="/review/registerForm.do">
 				<div class="bid-input-container">
 					<B>별점</B> &nbsp;&nbsp;&nbsp;
-					<form:input class="bid-input" placeholder="5점이하의 실수 입력"
-						path="bid.bidPrice" />
+					<input type="text" class="bid-input" placeholder="5점이하의 실수 입력" name = "rating"/><br>
+					<b>한줄평</b> &nbsp;&nbsp;&nbsp;
+					<input type="text" class="bid-input" placeholder="간단하게 한줄평 써주세요." name = "content"/><br>
 				</div>
-				<B><form:errors path="bidPrice" class="error-message" /></B>
-				<br>
-				<br>
 				<input class="submit-button" type="submit" value="입찰하기">
-			</form:form>
+			</form>
 		</div>
 	</div>
 </body>
