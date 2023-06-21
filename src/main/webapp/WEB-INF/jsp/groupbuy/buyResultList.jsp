@@ -199,7 +199,8 @@
 									주문 실패
 								</c:if>
 								<c:if test = "${meet.meetResult==3}">
-									주문 완료<br>
+									<a href="<c:url value='/order/detail.do'><c:param name='productId' value='${prod.productId}' /></c:url>"
+                                         class="orderBtn">주문완료</a><br><br>
 									<a href="<c:url value='/review/registerForm.do'>
 										<c:param name='productId' value='${prod.productId}' /></c:url>"
                                              class="changeBtn">판매자 리뷰 작성하기</a>

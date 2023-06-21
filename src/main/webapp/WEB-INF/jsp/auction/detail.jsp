@@ -12,7 +12,7 @@
       body{margin:0}
       .layout{margin:0px auto;width:1180px;padding:10px}
       .slider{float:left;width: 480px;height:360px;position: relative;margin: 0 auto;
-          border:1px solid black;overflow: hidden;margin:50px 20px 0px 40px /* 현재 슬라이드 오른쪽에 위치한 나머지 슬라이드 들이 보이지 않도록 가림 */
+          overflow: hidden;margin:50px 20px 0px 40px; /* 현재 슬라이드 오른쪽에 위치한 나머지 슬라이드 들이 보이지 않도록 가림 */
       }
       .slider input[type=radio]{display: none;}
       ul.imgs{padding: 0;margin: 0;list-style: none;}
@@ -23,10 +23,10 @@
       .bullets label{display: inline-block;border-radius: 50%;background-color: rgba(0,0,0,0.55);width: 20px;
           height: 20px;cursor: pointer;}
       /* 현재 선택된 불릿 배경 흰색으로 구분 표시 */
-      .slider input[type=radio]:nth-child(1):checked~.bullets>label:nth-child(1){background-color: #fff;}
-      .slider input[type=radio]:nth-child(2):checked~.bullets>label:nth-child(2){background-color: #fff;}
-      .slider input[type=radio]:nth-child(3):checked~.bullets>label:nth-child(3){background-color: #fff;}
-      .slider input[type=radio]:nth-child(4):checked~.bullets>label:nth-child(4){background-color: #fff;}
+      .slider input[type=radio]:nth-child(1):checked~.bullets>label:nth-child(1){background-color: lightgray;}
+      .slider input[type=radio]:nth-child(2):checked~.bullets>label:nth-child(2){background-color: lightgray;}
+      .slider input[type=radio]:nth-child(3):checked~.bullets>label:nth-child(3){background-color: lightgray;}
+      .slider input[type=radio]:nth-child(4):checked~.bullets>label:nth-child(4){background-color: lightgray;}
       .slider input[type=radio]:nth-child(1):checked~ul.imgs>li:nth-child(1){left: 0;transition: 0.5s;z-index:1;}
       .slider input[type=radio]:nth-child(2):checked~ul.imgs>li:nth-child(2){left: 0;transition: 0.5s;z-index:1;}
       .slider input[type=radio]:nth-child(3):checked~ul.imgs>li:nth-child(3){left: 0;transition: 0.5s;z-index:1;}
@@ -48,6 +48,11 @@
       .gobtn3{text-align:center;font-size:20px;border-radius:10px;background-color:lightpink;
       border:1px solid;width:100px;height:35px;color:white;margin-top:10px}
       .dis{border:none;background-color:lightpink;height:35px;line-text:lightpink;color:white;font-size:20px;}
+      
+      img {
+            max-width: 100%;
+            height:100%;
+        }
    </style>
 </head>
 <body>
@@ -69,13 +74,13 @@
                </c:if>
                
             <ul id="imgholder" class="imgs">
-               <li><img src = "../../upload/${product.picture1}"></li>
-               <li><img src= "../../upload/${product.picture2}"></li>
+               <li><img src = "../../upload/${product.picture1}" alt="Product Image"></li>
+               <li><img src= "../../upload/${product.picture2}" alt="Product Image"></li>
                <c:if test="${!empty product.picture3}" >
-                  <li><img src= "../../upload/${product.picture3}"></li>
+                  <li><img src= "../../upload/${product.picture3}" alt="Product Image"></li>
                </c:if>
                <c:if test="${!empty product.picture4}" >
-                  <li><img src="../../upload/${product.picture4}"></li>
+                  <li><img src="../../upload/${product.picture4}" alt="Product Image"></li>
                </c:if>
             </ul>
             <div class="bullets">
