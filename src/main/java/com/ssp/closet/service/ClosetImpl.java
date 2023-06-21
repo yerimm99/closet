@@ -321,7 +321,10 @@ public class ClosetImpl implements ClosetFacade{
 	public Delivery getOrder(int orderId) {
 		return deliveryRepository.findByOrderId(orderId);
 	}
-
+	
+	public Delivery getOrderByUserIdAndProductId(String userId, int productId) {
+		return deliveryRepository.findByUserIdAndProductId(userId, productId);
+	}
 
 	//리뷰
 	@Override
