@@ -32,7 +32,7 @@
       
       table{width:480px;height:360px;}
       .info{float:left;padding:20px;margin:20px 40px 0px 20px;}
-      th{text-align:left;padding:2px 10px;width:170px}
+      th{text-align:left;padding:2px 10px;width:80px}
       td{padding:0px 10px}
       .gobtn{text-align:center;font-size:20px;border-radius:10px;background-color:#3366FF;
       border:1px solid;width:100px;height:35px;color:white;margin-top:10px}
@@ -140,25 +140,29 @@
                   </c:if>
                   
                   <c:if test="${product.account.userId eq supp}" >
-                     <td class = "gobtn" style="width:50%">
-                        <a href="<c:url value='/groupbuy/update.do'>
-                                            <c:param name='productId' value='${prod.productId}' />
+                  	<c:choose>
+                  		<c:when test="${product.peopleSum == 0 or product.status == 0}">
+                     		<td class = "gobtn" style="width:50%">
+                     			<a href="<c:url value='/groupbuy/update.do'>
+                                            <c:param name='productId' value='${product.productId}' />
                                         </c:url>"><b style = "color:white;font-size:18px">수정하기</b></a>
-                     </td>
-                        <c:if test="${!empty product.peopleSum}">
-                           <td class = "gobtn3" style="width:50%">
-                              <button disabled class = "dis"><b style = "color:white;font-size:18px">삭제하기</b></button>
-                           </td>
-                        </c:if>
-                        <c:choose>
-    					  <c:when test="${empty product.peopleSum or product.status == 0}">
+                   			</td>
+                     	</c:when>
+                     	<c:otherwise>
+                     		<td colspan = "2" class = "gobtn" style="width:100%">
+                     			<a href="<c:url value='/groupbuy/update.do'>
+                                            <c:param name='productId' value='${product.productId}' />
+                                        </c:url>"><b style = "color:white;font-size:18px">수정하기</b></a>
+                    		</td>
+                     	</c:otherwise>
+                     </c:choose>
+    					  <c:if test="${product.peopleSum == 0 or product.status == 0}">
                            <td class = "gobtn" style="width:50%">
                               <a href="<c:url value='/groupbuy/delete.do'>
-                                            <c:param name='productId' value='${prod.productId}' />
+                                            <c:param name='productId' value='${product.productId}' />
                                         </c:url>"><b style = "color:white;font-size:18px">삭제하기</b></a>
                            </td>
-                           </c:when>
-                     </c:choose>
+                           </c:if>
                   </c:if>
                </tr>
                <tr>
