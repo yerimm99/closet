@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import lombok.Data;
 
 @SuppressWarnings("serial")
@@ -27,8 +25,9 @@ public class LikeMark implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "USERID", referencedColumnName = "USERID")
-    private Account user;
+    private Account account;
 
     @Column(name = "MARK")
     private int mark;
+
 }

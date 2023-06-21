@@ -1,6 +1,7 @@
 package com.ssp.closet.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -12,6 +13,8 @@ import com.ssp.closet.dto.Product;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer>{
+	@Override
+    <S extends Product> S save(S entity);
 	//List<Product> findByOrderByRank();
 
 //		@Modifying
@@ -39,9 +42,13 @@ public interface ProductRepository extends JpaRepository<Product, Integer>{
 		List<Product> findByPtypeAndStatus(int ptype, int status);
 		List<Product> findByNameIgnoreCaseContaining(String keywords);
 		//List<Product> findAll();
+
+		Optional<Product> findByProductId(int productId);
+
+		List<Product> findTop10RankingProducts();
 		
-		@Query("SELECT p FROM Product p ORDER BY p.rank DESC")
-	    List<Product> findTopRankingProducts();
+		//@Query("SELECT p FROM Product p ORDER BY p.rank DESC")
+	   // List<Product> findTopRankingProducts();
 		
 //		Product findByProductId(int productId);
 }
