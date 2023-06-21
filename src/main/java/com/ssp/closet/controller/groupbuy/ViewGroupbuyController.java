@@ -17,8 +17,6 @@ import org.springframework.web.util.WebUtils;
 
 import com.ssp.closet.controller.UserSession;
 import com.ssp.closet.dto.Account;
-import com.ssp.closet.dto.Auction;
-import com.ssp.closet.dto.Bid;
 import com.ssp.closet.dto.Groupbuy;
 import com.ssp.closet.dto.Meet;
 import com.ssp.closet.service.ClosetFacade;
@@ -26,7 +24,7 @@ import com.ssp.closet.service.ClosetFacade;
 
 @Controller
 @SessionAttributes({"productList", "meetList"})
-public class ViewGroupBuyController { 
+public class ViewGroupbuyController { 
 	@Autowired
 	private ClosetFacade closet;
 
@@ -37,7 +35,7 @@ public class ViewGroupBuyController {
 
 	//공동구매 상품 리스트 보기
 	@RequestMapping("/closet/groupbuy.do")
-	public String handleRequest1(
+	public String viewAllGroupbuyList(
 			ModelMap model) {
 		PagedListHolder<Groupbuy> productList = new PagedListHolder<Groupbuy>(closet.getGroupbuyList());//경매게시글에 대한 페이징 객체
 		productList.setPageSize(9);
@@ -46,7 +44,7 @@ public class ViewGroupBuyController {
 	}
 
 	@RequestMapping("/closet/groupbuy2.do")
-	public String handleRequest11(
+	public String viewGroupbuyList_page(
 			@ModelAttribute("productList") PagedListHolder<Groupbuy> productList,
 			@RequestParam("pageName") String page, 
 			ModelMap model) throws Exception {
@@ -62,7 +60,7 @@ public class ViewGroupBuyController {
 
 	//공동구매 상품 리스트 선택보기
 	@RequestMapping("/groupbuy/list.do")
-	public String handleRequest2(
+	public String viewGroupbuyListByCategory(
 			@RequestParam("categoryId") String categoryId,
 			ModelMap model
 			) throws Exception {
@@ -84,7 +82,7 @@ public class ViewGroupBuyController {
 	
 	//내가 판매 중인 공동구매 상품 리스트 보기
 	@RequestMapping("/myPage/sellGroupbuy.do")
-	public String handleRequest3(
+	public String viewGroupbuyListMySell(
 			HttpServletRequest request,
 			ModelMap model
 			) throws Exception {
@@ -103,9 +101,9 @@ public class ViewGroupBuyController {
 	
 	//내가 판매 중인 공동구매 상품 리스트 보기
 	@RequestMapping("/myPage/sellGroupbuy2.do")
-	public String handleRequest33(
+	public String viewGroupbuyListMySell_page(
 			HttpServletRequest request,
-			@ModelAttribute("productList") PagedListHolder<Auction> productList,
+			@ModelAttribute("productList") PagedListHolder<Groupbuy> productList,
 			@RequestParam("pageName") String page, 
 			ModelMap model) throws Exception {
 		if ("next".equals(page)) {
@@ -120,7 +118,7 @@ public class ViewGroupBuyController {
 
 	//내가 구매 신청한 공동구매 상품 리스트 보기
 	@RequestMapping("/myPage/buyGroupbuy.do")
-	public String handleRequest4(
+	public String viewGroupbuyListMyBuy(
 			HttpServletRequest request,
 			ModelMap model
 			) throws Exception {
@@ -151,7 +149,7 @@ public class ViewGroupBuyController {
 	
 	//내가 판매 중인 공동구매 상품 리스트 보기
 	@RequestMapping("/myPage/buyGroupbuy2.do")
-	public String handleRequest44(
+	public String viewGroupbuyListMyBuy_page(
 			HttpServletRequest request,
 			@ModelAttribute("productList") PagedListHolder<Groupbuy> productList,
 			@ModelAttribute("meetList") PagedListHolder<Meet> meetList,

@@ -72,7 +72,7 @@ public class MeetController {
 
 	//url로 확인해봤는데 삭제 작동 잘 됩니다!
 	@RequestMapping("/myPage/deleteMeet.do")
-	public String removeBid(HttpServletRequest request,
+	public String removeMeet(HttpServletRequest request,
 			@RequestParam("productId") int productId
 			) throws Exception {
 		UserSession userSession = 
@@ -88,6 +88,6 @@ public class MeetController {
 		else {
 			return "redirect:/account/SignonForm.do";
 		}
-		return "redirect:/closet/mypage.do";
+		return "redirect:/myPage/buyGroupbuy.do";
 	}
 }

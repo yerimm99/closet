@@ -3,15 +3,12 @@ package com.ssp.closet.controller.groupbuy;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,12 +21,9 @@ import org.springframework.web.servlet.ModelAndViewDefiningException;
 import org.springframework.web.util.WebUtils;
 
 import com.ssp.closet.controller.UserSession;
-import com.ssp.closet.controller.auction.AuctionForm;
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
-import com.ssp.closet.dto.Bid;
 import com.ssp.closet.dto.Groupbuy;
-import com.ssp.closet.service.AuctionFormValidator;
 import com.ssp.closet.service.ClosetFacade;
 import com.ssp.closet.service.GroupbuyFormValidator;
 
@@ -56,11 +50,6 @@ public class GroupbuyFormController {
 	public void setValidator(GroupbuyFormValidator validator) {
 		this.validator = validator;
 	}
-
-	//	@RequestMapping(method = RequestMethod.GET)
-	//	public String showForm() {
-	//		return formViewName;
-	//	}
 
 	@ModelAttribute("categories")
 	public List<String> referenceData2() {
@@ -116,7 +105,7 @@ public class GroupbuyFormController {
 
 
 	@RequestMapping("/groupbuy/confirmGroupbuy.do")
-	protected ModelAndView confirmGroupbuy( //auction 등록 확인 
+	protected ModelAndView confirmGroupbuy(
 			@ModelAttribute("groupbuyForm") GroupbuyForm groupbuyForm, 
 			@RequestParam("files") List<MultipartFile> files,
 			SessionStatus status, BindingResult result) {
@@ -183,5 +172,23 @@ public class GroupbuyFormController {
 		mav2.addObject("product", groupbuyForm.getGroupbuy());
 		status.setComplete();  // remove session
 		return mav2;
+	}
+	
+	@RequestMapping("/groupbuy/delete.do")
+	public String removeGroupbuy(HttpServletRequest request,
+			@RequestParam("productId") int productId
+			) throws Exception {
+		UserSession userSession = 
+				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
+		if (userSession != null) {
+			Groupbuy groupbuy = closet.getGroupbuyDetail(productId);
+			if(groupbuy.getPeopleSum() == 0) {
+				closet.deleteGroupbuyByProductId(productId);
+			}
+		}
+		else {
+			return "redirect:/account/SignonForm.do";
+		}
+		return "redirect:/myPage/sellGroupbuy.do";
 	}
 }
