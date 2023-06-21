@@ -8,7 +8,10 @@
 	<meta charset="utf-8">
 	<title>메인 페이지</title>
 	<style type = "text/css">
-		body{margin:0}
+		body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
 		.layout{margin:0px auto;width:2320px;}
 		/* 초기화 */
 		#slide * {
@@ -33,7 +36,7 @@
 		  position: absolute;
 		  left: 0;
 		  top: 0;
-		  width: 2320px; /* 슬라이드할 사진과 마진 총 넓이 */
+		  width: 1200px; /* 슬라이드할 사진과 마진 총 넓이 */
 		  transition: 0.5s ease-out; /*ease-out: 처음에는 느렸다가 점점 빨라짐*/
 		} /* 첫 번째 슬라이드 가운데에 정렬하기위해 첫번째 슬라이드만 margin-left조정 */
 		.slides li:first-child {
@@ -73,8 +76,8 @@
 		.name{font-size:24px;margin-top:60px;margin-bottom:30px;margin-left:100px}
 		.list{margin-left:100px}
 		.text-center{display:none}
-		
-		.product-section {
+	
+        .product-section {
 			margin-bottom: 30px;
 		}
 
@@ -85,16 +88,12 @@
 		}
 
 		.product-list {
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: flex-start;
-			align-items: flex-start;
-			gap: 20px;
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			grid-gap: 20px;
 		}
 
 		.product-card {
-			flex: 1 1 calc(25% - 20px);
-			max-width: calc(25% - 20px);
 			background-color: #fff;
 			border-radius: 4px;
 			padding: 20px;
@@ -225,12 +224,12 @@
 	  	});
 
   	</script>
-  	
+  	<br><br><br><br>
 	<div class = "layout">
 		<div class="product-section">
-            <h2>최신 경매 상품</h2>
+            <h2><a href="<c:url value='/closet/auction.do' />">최신 경매 상품</a></h2>
             <div class="product-list">
-                <c:forEach var="prod" items="${productList.pageList}">
+                <c:forEach var="prod" items="${AuctionList.pageList}">
                     <div class="product-card">
                         <a href="<c:url value='/auction/detail.do'><c:param name='productId' value='${prod.productId}' /></c:url>">
                             <img src="../../upload/${prod.picture1}" alt="Product Image">
@@ -246,6 +245,23 @@
                                         현재 최고가
                                     </c:otherwise>
                                 </c:choose>
+                            </p>
+                        </a>
+                    </div>
+                </c:forEach>
+            </div>
+        </div>
+        <br><br><br>
+        <div class="product-section">
+            <h2><a href="<c:url value='/closet/groupbuy.do' />">공동구매 상품</a></h2>
+            <div class="product-list">
+                <c:forEach var="gprod" items="${GroupbuyList.pageList}">
+                    <div class="product-card">
+                        <a href="<c:url value='/groupbuy/detail.do'><c:param name='productId' value='${gprod.productId}' /></c:url>">
+                            <img src="../../upload/${gprod.picture1}" alt="Product Image">
+                            <h3>${gprod.name}</h3>
+                            <p> 
+                                <br>${gprod.price}원<br> 모집인원: ${gprod.peopleSum} / ${gprod.peopleNum}
                             </p>
                         </a>
                     </div>
