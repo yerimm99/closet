@@ -40,8 +40,13 @@
 		<div class = "accountInfo">
 			<table>
 				<tr>
-					<td rowspan = "4" width = "200"><img border="0" src="../../images/welcome.png" class = "img"/></td>
+					<td rowspan = "5" width = "200"><img border="0" src="../../images/welcome.png" class = "img"/></td>
 					<td colspan = "3" class = "name"><b>${account.username}님</b></td>
+				</tr>
+				<tr>
+					<td>아이디</td>
+					<td>${account.userId}</td>
+					<td></td>
 				</tr>
 				<tr>
 					<td width = "170">전화번호</td>

@@ -140,7 +140,7 @@
                      </td>
                   </c:if>
                   <c:if test="${product.account.userId eq supp}" >
-                     <td class = "gobtn" style="width:33%">
+                     <td class = "gobtn" style="width:50%">
                         <a href="<c:url value='/auction/update.do'>
                                                <c:param name='productId' value='${product.productId}' />
                                            </c:url>"><b style = "color:white;font-size:18px">수정하기</b></a>
@@ -148,23 +148,17 @@
                      
                      <c:choose>
                         <c:when test="${!empty product.price}">
-                           <td class = "gobtn3" style="width:33%">
-                              <button disabled class = "dis"><b style = "color:white;font-size:18px">삭제하기</b></button>
-                           </td>
-                           <td class = "gobtn" style="width:33%">
+                           <td class = "gobtn" style="width:50%">
                               <a href="<c:url value='/auction/successBySupp.do'>
                                                <c:param name='productId' value='${product.productId}' />
                                            </c:url>"><b style = "color:white;font-size:18px">낙찰하기</b></a>
                                    </td>
                         </c:when>
                         <c:otherwise>
-                           <td class = "gobtn" style="width:33%">
+                           <td class = "gobtn" style="width:50%">
                               <a href="<c:url value='/auction/delete.do'>
                                                <c:param name='productId' value='${product.productId}' />
                                            </c:url>"><b style = "color:white;font-size:18px">삭제하기</b></a>
-                                   </td>
-                                   <td class = "gobtn3" style="width:33%">
-                                      <button disabled class = "dis"><b style = "color:white;font-size:18px">낙찰하기</b></button>
                                    </td>
                         </c:otherwise>
                      </c:choose>
