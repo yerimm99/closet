@@ -63,11 +63,16 @@ public class ViewOrderController {
 	
 	
 	@RequestMapping("/order/detail.do")
-	public void detailOrder(
+	public void detailOrder(HttpServletRequest request,
 			ModelMap model,
-			@RequestParam("orderId") int orderId
+			@RequestParam("productId") int productId
 			) throws Exception {
-		Delivery order = closet.getOrder(orderId);
+		
+		UserSession userSession = 
+				(UserSession) WebUtils.getSessionAttribute(request, "userSession");	
+		Account account = closet.getAccount(userSession.getAccount().getUserId());
+		
+		Delivery order = closet.getOrderByUserIdAndProductId(account.getUserId(), productId);
 		model.put("order", order);
 	}
 }
