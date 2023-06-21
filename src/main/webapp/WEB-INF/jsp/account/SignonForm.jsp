@@ -16,6 +16,10 @@
 		td{height:40px}
 		.btn{text-align:center;font-size:20px;border-radius:10px;background-color:black;
 		border:1px solid black;width:510px;height:35px;color:white;margin-top:10px}
+		form .error-message {
+		    font-size: 14px;
+		    color: red;
+		}
 	</style>
 </head>
 <body>
@@ -50,8 +54,17 @@
 				<tr>
 					<td>
 						<input type = "submit" class = "btn" value = "로그인">
+						<form:errors path="message" cssClass="error-message"/>
 					</td>
 				</tr>
+				<%-- 에러 메시지가 있을 경우 출력 --%>
+                <c:if test="${not empty message}">
+                    <tr>
+                        <td>
+                            <div class="error-message">${message}</div>
+                        </td>
+                    </tr>
+                </c:if>
 			</table><br>
 			<!-- <div class = "btnBox">
 				<input type="submit" value="로그인" onClick="login()" class = "btn"> &nbsp;
