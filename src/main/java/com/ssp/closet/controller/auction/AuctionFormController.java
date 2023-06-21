@@ -11,10 +11,13 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ResourceUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -69,6 +72,7 @@ public class AuctionFormController {
 		categories.add("패션잡화");
 		return categories;			
 	}
+	
 	
 	@RequestMapping("/auction/newAuction.do")
 	public String initNewAuction(HttpServletRequest request,
@@ -168,6 +172,20 @@ public class AuctionFormController {
 	    product.setPicture3(picturePaths.size() >= 3 ? filee.get(2) : null);
 	    product.setPicture4(picturePaths.size() >= 4 ? filee.get(3) : null);
 	    
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date endDate;
+        try {
+            endDate = dateFormat.parse(auctionForm.getEndDate());
+        } catch (ParseException e) {
+            // 날짜 변환 오류 처리
+            // 오류 발생 시 적절한 예외 처리나 오류 메시지를 반환하면 됩니다.
+        	ModelAndView mav = new ModelAndView("index");
+	        return mav;
+        }
+
+        // endDate를 Auction 객체에 설정
+        product.setEndDate(endDate);
+        
 	    closet.insertAuction(product); // 등록 
 	    closet.scheduleAuctionEnd(product);
 
@@ -184,19 +202,10 @@ public class AuctionFormController {
 		UserSession userSession = 
 				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
 		if (userSession != null) {
-			Auction auction = closet.getAuction(productId);
-			if(auction.getPrice() != null) {
-				return "redirect:/popup/deleteGroupbuy.do";
-			}
-			else {
-				closet.deleteAuctionByProductId(productId);
-			}
+			closet.deleteAuctionByProductId(productId);
+			
 		}
 		return "redirect:/myPage/sellAuction.do";
 	}
 
-	@RequestMapping("/popup/deleteAuction.do")
-	public String showPopup() {
-	    return "redirect:/myPage/sellAuction.do";
-	}
 }

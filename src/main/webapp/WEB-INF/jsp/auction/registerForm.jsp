@@ -87,7 +87,7 @@
 				<td>종료 날짜</td>
  				<td>
  					<c:if test="${auctionForm.newAuction}">
- 						<form:input type= "date" path = "auction.endDate" class = "inp"/>
+ 						<form:input type= "date" path = "endDate" class = "inp"/>
 					</c:if>
 					<c:if test="${!auctionForm.newAuction}">
 						<c:out value="${auctionForm.auction.endDate}" />

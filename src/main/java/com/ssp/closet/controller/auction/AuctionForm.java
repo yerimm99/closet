@@ -1,7 +1,12 @@
 package com.ssp.closet.controller.auction;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.ssp.closet.dto.Auction;
 
@@ -15,6 +20,7 @@ public class AuctionForm implements Serializable {
 
 	private Auction auction;
 	private boolean newAuction;
+	private String endDate;
 	
 	public AuctionForm(Auction auction) {
 		this.auction = auction;
@@ -25,9 +31,6 @@ public class AuctionForm implements Serializable {
 		this.auction = new Auction();
 	}
 
-	public Auction getAuction() {
-		return auction;
-	}
 	public boolean isNewAuction() {
 		return newAuction;
 	}

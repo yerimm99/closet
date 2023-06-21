@@ -82,6 +82,39 @@
             font-size: 18px;
             font-weight: bold;
         }
+        .page-button {
+		  border: none;
+		  background: none;
+		  color: inherit;
+		  cursor: pointer;
+		  padding: 0;
+		}
+
+        .page-buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .page-buttons button {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+            margin: 0 5px;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            color: #333;
+            text-decoration: none;
+        }
+        
+        .page-buttons button:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .page-buttons .current {
+            color: #333;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -118,7 +151,39 @@
                 </c:forEach>
             </div>
         </div>
-        
+         <div class="page-buttons">
+            <!-- 이전 페이지 버튼 -->
+            <c:if test="${productList.AuctionList.page > 0}">
+                <form action="/closet/searchResult.do?pageName=previous" method="get" style="display: inline;">
+                    <input type="hidden" name="pageName" value="previous">
+                    <button type="submit">
+                        &lt;
+                    </button>
+                </form>
+            </c:if>
+
+            <c:forEach var="pageNum" begin="1" end="${productList.AuctionList.pageCount}">
+			    <c:choose>
+			        <c:when test="${pageNum == productList.AuctionList.page + 1}">
+			            <span class="current">${pageNum}</span>
+			        </c:when>
+			        <c:otherwise>
+			              ${pageNum}
+			        </c:otherwise>
+			    </c:choose>
+			</c:forEach>
+			
+
+            <!-- 다음 페이지 버튼 -->
+            <c:if test="${productList.AuctionList.page + 1 < productList.AuctionList.pageCount}">
+                <form action="/closet/searchResult.do?pageName=next" method="get" style="display: inline;">
+                    <input type="hidden" name="pageName" value="next">
+                    <button type="submit">
+                        &gt;
+                    </button>
+                </form>
+            </c:if>
+        </div>
         <div class="product-section">
             <h2>공동구매 상품</h2>
             <div class="product-list">
@@ -134,6 +199,39 @@
                     </div>
                 </c:forEach>
             </div>
+        </div>
+         <div class="page-buttons">
+            <!-- 이전 페이지 버튼 -->
+            <c:if test="${productList.GroupbuyList.page > 0}">
+                <form action="/closet/searchResult.do?pageName=previous" method="get" style="display: inline;">
+                    <input type="hidden" name="pageName" value="previous">
+                    <button type="submit">
+                        &lt;
+                    </button>
+                </form>
+            </c:if>
+
+            <c:forEach var="pageNum" begin="1" end="${productList.GroupbuyList.pageCount}">
+			    <c:choose>
+			        <c:when test="${pageNum == productList.GroupbuyList.page + 1}">
+			            <span class="current">${pageNum}</span>
+			        </c:when>
+			        <c:otherwise>
+			              ${pageNum}
+			        </c:otherwise>
+			    </c:choose>
+			</c:forEach>
+			
+
+            <!-- 다음 페이지 버튼 -->
+            <c:if test="${productList.GroupbuyList.page + 1 < productList.GroupbuyList.pageCount}">
+                <form action="/closet/searchResult.do?pageName=next" method="get" style="display: inline;">
+                    <input type="hidden" name="pageName" value="next">
+                    <button type="submit">
+                        &gt;
+                    </button>
+                </form>
+            </c:if>
         </div>
     </div>
 </body>
