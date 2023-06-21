@@ -139,7 +139,7 @@
                                         </c:url>"><b style = "color:white;font-size:18px">수정하기</b></a>
                      </td>
                      <c:choose>
-                        <c:when test="${!empty product.peopleNum}">
+                        <c:when test="${!empty product.peopleSum}">
                            <td class = "gobtn3" style="width:50%">
                               <button disabled class = "dis"><b style = "color:white;font-size:18px">삭제하기</b></button>
                            </td>

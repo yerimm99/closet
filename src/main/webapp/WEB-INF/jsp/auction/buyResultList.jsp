@@ -155,8 +155,8 @@
 			                                <div>
 			                                    <strong>${prod.name}</strong><br>
 			                                    ${prod.color}<br>
-			                                    ${prod.size}<br>
-			                                    ${prod.price}원
+			                                    ${prod.size}<br><br>
+			                                    현재 최고가 ${prod.price}원
 			                                </div>
 			                            </div>
                                     </td>
@@ -179,9 +179,6 @@
                                                     낙찰 실패
                                                 </c:when>
                                                 <c:when test="${bid.bidResult == 3}">
-                                                    주문 완료
-                                                </c:when>
-                                                <c:when test="${prod.status == 0}">
                                                     주문 완료
                                                 </c:when>
                                             </c:choose>
