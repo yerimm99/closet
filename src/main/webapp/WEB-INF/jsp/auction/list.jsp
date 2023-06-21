@@ -114,12 +114,12 @@
                                 <h3>${prod.name}</h3>
                                 <p>
                                     <c:choose>
+                                    	<c:when test="${prod.status == 0}">
+                                            <span>판매 종료</span><br>
+                                        </c:when>
                                         <c:when test="${empty prod.price}">
                                             <span>${prod.startPrice}원</span><br>
                                             경매 시작가
-                                        </c:when>
-                                        <c:when test="${prod.status == 0}">
-                                            <span>판매 종료</span><br>
                                         </c:when>
                                         <c:otherwise>
                                             <span>${prod.price}원</span><br>
