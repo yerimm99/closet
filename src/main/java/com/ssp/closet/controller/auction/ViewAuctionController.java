@@ -192,10 +192,18 @@ public class ViewAuctionController {
 
 
 	@RequestMapping("/auction/detail.do")
-	public void detailAuction(
+	public void detailAuction(HttpServletRequest request,
 			@RequestParam("productId") int productId,
 			ModelMap model) throws Exception {
 		Auction product = closet.getAuction(productId);
+		
+		UserSession userSession = 
+				(UserSession) WebUtils.getSessionAttribute(request, "userSession");
+		String supp = "";
+		if(userSession != null) {
+			supp = userSession.getAccount().getUserId();
+		}
+		model.put("supp", supp);
 		model.put("product", product);
 	}
 

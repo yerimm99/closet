@@ -9,7 +9,7 @@
 	<title>메인 페이지</title>
 	<style type = "text/css">
 		body{margin:0}
-		.layout{margin:0px auto;width:2320px;}
+		.layout{margin:0px auto;width:1180px;}
 		/* 초기화 */
 		#slide * {
 		  margin: 0;
@@ -23,7 +23,7 @@
 		#slideShow {
 		  /*전체 컨테이너*/
 		  width: 100%;
-		  height: 450px;
+		  height: 880px;
 		  position: relative;
 		  margin: 10px auto;
 		  overflow: hidden; /*리스트 형식으로 이미지를 일렬로 정렬할 것이기 때문에, 500px 밖으로 튀어 나간 이미지들은 hidden으로 숨겨줘야됨*/
@@ -33,11 +33,12 @@
 		  position: absolute;
 		  left: 0;
 		  top: 0;
-		  width: 2320px; /* 슬라이드할 사진과 마진 총 넓이 */
+		  width: 2230px; /* 슬라이드할 사진과 마진 총 넓이 */
+		  height:auto;
 		  transition: 0.5s ease-out; /*ease-out: 처음에는 느렸다가 점점 빨라짐*/
 		} /* 첫 번째 슬라이드 가운데에 정렬하기위해 첫번째 슬라이드만 margin-left조정 */
 		.slides li:first-child {
-		  margin-left: 0px;
+		  margin-left:0px;
 		} /* 슬라이드들 옆으로 정렬 */
 		.slides li:not(:last-child) {
 		  float: left;
@@ -83,11 +84,11 @@
 	<!-- 이벤트 배너 -->
 	<div id="slideShow">
 	    <ul class="slides">
-	      <li><img src="../../images/banner.png" alt="picture"  style="max-width: 100%; height: 450px;"></li>
-	      <li><img src="../../images/banner1.png" alt="picture" style="max-width: 100%; height: 450px;"></li>
-	      <li><img src="../../images/banner_2.png" alt="picture" style="max-width: 100%; height: 450px;"></li>
-	      <li><img src="../../images/banner_3.png" alt="picture" style="max-width: 100%; height: 450px;"></li>
-	      <li><img src="../../images/banner4.png" alt="picture" style="max-width: 100%; height: 450px;"></li>
+	      <li><img src="../../images/banner0.png" alt="picture"  style="max-width: 100%;height:100%"></li>
+	      <li><img src="../../images/banner1.png" alt="picture" style="max-width: 100%;height:100%"></li>
+	      <li><img src="../../images/banner_2.png" alt="picture" style="max-width: 100%;height:100%"></li>
+	      <li><img src="../../images/banner_3.png" alt="picture" style="max-width: 100%;height:100%"></li>
+	      <li><img src="../../images/banner4.png" alt="picture" style="max-width: 100%;height:100%"></li>
 	    </ul>
 	    <p class="controller">
 	      <!-- &lang: 왼쪽 방향 화살표 &rang: 오른쪽 방향 화살표 --> 
@@ -102,8 +103,8 @@
 	  	slideCount = slideImg.length;
 	  	prev = document.querySelector('.prev'); //이전 버튼
 	  	next = document.querySelector('.next'); //다음 버튼
-	  	slideWidth = slides.clientWidth; //슬라이드이미지 넓이
-	  	slideMargin = 0; //슬라이드 끼리의 마진값
+	  	slideWidth = 2320; //슬라이드이미지 넓이
+	  	slideMargin = 50; //슬라이드 끼리의 마진값
 	  	makeClone(); // 처음이미지와 마지막 이미지 복사 함수
 	  	initfunction(); //슬라이드 넓이와 위치값 초기화 함수
 	  	function makeClone() {

@@ -43,6 +43,10 @@
 		a:visited{text-decoration:none;color:black}
 		a:active{text-decoration:none;color:black}
 		a:hover{text-decoration:none;color:black}
+		
+		.gobtn3{text-align:center;font-size:20px;border-radius:10px;background-color:lightblue;
+		border:1px solid;width:100px;height:35px;color:white;margin-top:10px}
+		.dis{border:none;background-color:lightblue;height:35px;line-text:lightpink;color:white;font-size:20px;}
 	</style>
 </head>
 <body>
@@ -120,12 +124,35 @@
 						<td>${product.account.userId}</td>
 					</tr>
 					<tr>
-						<td colspan = "2" class = "gobtn">
-							<a href = "<c:url value='/groupbuy/enjoy.do'>
-									<c:param name = 'productId' value='${product.productId}'/>
-									</c:url>"><b style = "color:white;font-size:18px">공동구매 참가하기</b>
-							</a>
-						</td>
+						<c:if test="${product.account.userId ne supp}" >
+							<td colspan = "2" class = "gobtn">
+								<a href = "<c:url value='/groupbuy/enjoy.do'>
+										<c:param name = 'productId' value='${product.productId}'/>
+										</c:url>"><b style = "color:white;font-size:18px">공동구매 참가하기</b>
+								</a>
+							</td>
+						</c:if>
+						<c:if test="${product.account.userId eq supp}" >
+							<td class = "gobtn" style="width:50%">
+								<a href="<c:url value='/groupbuy/update.do'>
+                                            <c:param name='productId' value='${prod.productId}' />
+                                        </c:url>"><b style = "color:white;font-size:18px">수정하기</b></a>
+							</td>
+							<c:choose>
+								<c:when test="${!empty product.peopleNum}">
+									<td class = "gobtn3" style="width:50%">
+										<button disabled class = "dis"><b style = "color:white;font-size:18px">삭제하기</b></button>
+									</td>
+								</c:when>
+								<c:otherwise>
+									<td class = "gobtn" style="width:50%">
+										<a href="<c:url value='/groupbuy/delete.do'>
+                                            <c:param name='productId' value='${prod.productId}' />
+                                        </c:url>"><b style = "color:white;font-size:18px">삭제하기</b></a>
+									</td>
+								</c:otherwise>
+							</c:choose>
+						</c:if>
 					</tr>
 					<tr>
 						<td colspan = "2" class = "gobtn2">

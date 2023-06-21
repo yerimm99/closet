@@ -42,7 +42,11 @@
 	 	a:link{text-decoration:none;color:black}
 		a:visited{text-decoration:none;color:black}
 		a:active{text-decoration:none;color:black}
-		a:hover{text-decoration:none;color:black}
+		a:hover{text-decoration:none;color:black;}
+		
+		.gobtn3{text-align:center;font-size:20px;border-radius:10px;background-color:lightpink;
+		border:1px solid;width:100px;height:35px;color:white;margin-top:10px}
+		.dis{border:none;background-color:lightpink;height:35px;line-text:lightpink;color:white;font-size:20px;}
 	</style>
 </head>
 <body>
@@ -89,11 +93,11 @@
 				<table>
 					<tr>
 						<th>상품명</th>
-						<td>${product.name}</td>
+						<td colspan = "2">${product.name}</td>
 					</tr>
 					<tr>
 						<th>상품정보</th>
-						<td><%-- &lt;<c:choose>
+						<td colspan = "2"><%-- &lt;<c:choose>
 									<c:when test="${product.used==0}">새상품</c:when>
 									<c:otherwise>중고상품</c:otherwise>
 								</c:choose>
@@ -101,38 +105,71 @@
 					</tr>
 					<tr>
 						<th>사이즈</th>
-						<td>${product.size}</td>
+						<td colspan = "2">${product.size}</td>
 					</tr>
 					<tr>
 						<th>색상</th>
-						<td>${product.color}<br></td>
+						<td colspan = "2">${product.color}<br></td>
 					</tr>
 					<tr>
 						<th>상품최소가</th>
-						<td>${product.startPrice}</td>
+						<td colspan = "2">${product.startPrice}</td>
 					</tr>
-					<tr>
-						<th>현재최고가</th>
-						<td>${product.price}</td>
-					</tr>
+					<c:if test="${!empty product.price}" >
+						<tr>
+							<th>현재최고가</th>
+							<td colspan = "2">${product.price}</td>
+						</tr>
+					</c:if>
 					<tr>
 						<th>마감 날짜</th>
-						<td>${product.endDate}</td>
+						<td colspan = "2">${product.endDate}</td>
 					</tr>
 					<tr>
 						<th>판매자</th>
-						<td>${product.account.userId}</td>
+						<td colspan = "2">${product.account.userId}</td>
 					</tr>
 					<tr>
-						<td colspan = "2" class = "gobtn">
-							<a href = "<c:url value='/bid/newBid.do'>
-									<c:param name = 'productId' value='${product.productId}' />
-									</c:url>"><b style = "color:white;font-size:18px">경매 참가하기</b>
-							</a>
-						</td>
+						<c:if test="${product.account.userId ne supp}" >
+							<td colspan = "3" class = "gobtn">
+								<a href = "<c:url value='/bid/newBid.do'>
+										<c:param name = 'productId' value='${product.productId}' />
+										</c:url>"><b style = "color:white;font-size:18px">경매 참가하기</b>
+								</a>
+							</td>
+						</c:if>
+						<c:if test="${product.account.userId eq supp}" >
+							<td class = "gobtn" style="width:33%">
+								<a href="<c:url value='/auction/update.do'>
+	                                            <c:param name='productId' value='${product.productId}' />
+	                                        </c:url>"><b style = "color:white;font-size:18px">수정하기</b></a>
+							</td>
+							<c:choose>
+								<c:when test="${!empty product.price}">
+									<td class = "gobtn3" style="width:33%">
+										<button disabled class = "dis"><b style = "color:white;font-size:18px">삭제하기</b></button>
+									</td>
+									<td class = "gobtn" style="width:33%">
+										<a href="<c:url value='/auction/delete.do'>
+	                                            <c:param name='productId' value='${product.productId}' />
+	                                        </c:url>"><b style = "color:white;font-size:18px">낙찰하기</b></a>
+	                                </td>
+								</c:when>
+								<c:otherwise>
+									<td class = "gobtn" style="width:33%">
+										<a href="<c:url value='/auction/delete.do'>
+	                                            <c:param name='productId' value='${product.productId}' />
+	                                        </c:url>"><b style = "color:white;font-size:18px">삭제하기</b></a>
+	                                </td>
+	                                <td class = "gobtn3" style="width:33%">
+	                                	<button disabled class = "dis"><b style = "color:white;font-size:18px">낙찰하기</b></button>
+	                                </td>
+								</c:otherwise>
+							</c:choose>
+						</c:if>
 					</tr>
 					<tr>
-						<td colspan = "2" class = "gobtn2">
+						<td colspan = "3" class = "gobtn2">
 							<a href = "<c:url value='/bookmark/create.do'>
 									<c:param name = 'productId' value='${product.productId}' />
 									</c:url>"><b style = "font-size:18px">관심상품</b>
