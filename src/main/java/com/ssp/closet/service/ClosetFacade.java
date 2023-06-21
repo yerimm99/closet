@@ -66,6 +66,7 @@ public interface ClosetFacade {
 	Groupbuy findBuyGroupbuyByProductId(int productId);
 	void deleteGroupbuyByProductId(int productId);
 	List<Groupbuy> searchGroupbuyList(String keywords);
+	void scheduleGroupbuyEnd (Groupbuy groupbuy);
 	
 	//공구참여
 	void insertMeet(Meet meet);

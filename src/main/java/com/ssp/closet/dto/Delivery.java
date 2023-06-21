@@ -94,7 +94,7 @@ public class Delivery implements Serializable {
 		billToName = account.getUsername();
 
 		productId = auction.getProductId();
-		//price = auction.getMaxPrice();
+		price = auction.getPrice();
 	}
 
 	public void initOrder(Account account, Groupbuy groupBuy) {

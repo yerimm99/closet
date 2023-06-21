@@ -22,7 +22,6 @@ import org.springframework.web.util.WebUtils;
 
 import com.ssp.closet.controller.UserSession;
 import com.ssp.closet.dto.Account;
-import com.ssp.closet.dto.Auction;
 import com.ssp.closet.dto.Groupbuy;
 import com.ssp.closet.service.ClosetFacade;
 import com.ssp.closet.service.GroupbuyFormValidator;
@@ -168,8 +167,14 @@ public class GroupbuyFormController {
 		product.setPicture4(picturePaths.size() >= 4 ? filee.get(3) : null);
 
 		closet.insertGroupbuy(product); //등록 
+		closet.scheduleGroupbuyEnd(product);
+		
+		String supp = "";
+		supp = product.getAccount().getUserId();
+		
 		ModelAndView mav2 = new ModelAndView("groupbuy/detail");
 		mav2.addObject("product", groupbuyForm.getGroupbuy());
+		mav2.addObject("supp", supp);
 		status.setComplete();  // remove session
 		return mav2;
 	}
