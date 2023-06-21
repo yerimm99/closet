@@ -253,7 +253,7 @@
         </div>
         <br><br><br>
         <div class="product-section">
-            <h2><a href="<c:url value='/closet/groupbuy.do' />">공동구매 상품</a></h2>
+            <h2><a href="<c:url value='/closet/groupbuy.do' />">최신 공동구매 상품</a></h2>
             <div class="product-list">
                 <c:forEach var="gprod" items="${GroupbuyList.pageList}">
                     <div class="product-card">
