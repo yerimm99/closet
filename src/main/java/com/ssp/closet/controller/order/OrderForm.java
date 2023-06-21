@@ -39,7 +39,6 @@ public class OrderForm implements Serializable{
 		try {
 			parsedDate = inputFormat.parse(date);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         String formattedDate = outputFormat.format(parsedDate);

@@ -34,7 +34,7 @@ public class ViewAuctionController {
 
 	//경매 상품 리스트 보기
 	@RequestMapping("/closet/auction.do")
-	public String handleRequest1(
+	public String viewAllAuctionList(
 			ModelMap model) {
 		PagedListHolder<Auction> productList = new PagedListHolder<Auction>(closet.getAuctionList());
 		productList.setPageSize(9);
@@ -45,7 +45,7 @@ public class ViewAuctionController {
 
 
 	@RequestMapping("/closet/auction2.do")
-	public String handleRequest11(
+	public String viewAuctionList_page(
 			@ModelAttribute("productList") PagedListHolder<Auction> productList,
 			@RequestParam("pageName") String page, 
 			ModelMap model) throws Exception {
@@ -61,7 +61,7 @@ public class ViewAuctionController {
 
 	//경매 상품 리스트 선택보기
 	@RequestMapping("/auction/list.do")
-	public String handleRequest2(
+	public String viewAuctionListByCategory(
 			@RequestParam("categoryId") String categoryId,
 			ModelMap model
 			) throws Exception {
@@ -82,7 +82,7 @@ public class ViewAuctionController {
 
 	//경매 상품 리스트 선택보기
 	@RequestMapping("/auction/list2.do")
-	public String handleRequest22(
+	public String viewAuctionListByCategoryAndUsed(
 			@RequestParam("categoryId") String categoryId,
 			@RequestParam("used") int used,
 			ModelMap model
@@ -105,7 +105,7 @@ public class ViewAuctionController {
 
 	//내가 판매 중인 경매 상품 리스트 보기
 	@RequestMapping("/myPage/sellAuction.do")
-	public String handleRequest3(
+	public String viewAuctionListMySell(
 			HttpServletRequest request,
 			ModelMap model) throws Exception {
 		UserSession userSession = 
@@ -125,7 +125,7 @@ public class ViewAuctionController {
 	
 	//내가 판매 중인 경매 상품 리스트 보기
 	@RequestMapping("/myPage/sellAuction2.do")
-	public String handleRequest33(
+	public String viewAuctionListMySell_page(
 			HttpServletRequest request,
 			@ModelAttribute("productList") PagedListHolder<Auction> productList,
 			@RequestParam("pageName") String page, 
@@ -142,7 +142,7 @@ public class ViewAuctionController {
 
 	//내가 구매 신청한 경매 상품 리스트 보기
 	@RequestMapping("/myPage/buyAuction.do")
-	public String handleRequest4(
+	public String viewAuctionListMyBuy(
 			HttpServletRequest request,
 			ModelMap model
 			) throws Exception {
@@ -173,7 +173,7 @@ public class ViewAuctionController {
 
 	//내가 판매 중인 경매 상품 리스트 보기
 	@RequestMapping("/myPage/buyAuction2.do")
-	public String handleRequest44(
+	public String viewAuctionListMyBuy_page(
 			HttpServletRequest request,
 			@ModelAttribute("productList") PagedListHolder<Auction> productList,
 			@ModelAttribute("bidList") PagedListHolder<Bid> bidList,
@@ -200,7 +200,7 @@ public class ViewAuctionController {
 	}
 
 	@RequestMapping("/myPage/myAuction.do")
-	public String handleRequest5(HttpServletRequest request,
+	public String viewAuctionListMyComplete(HttpServletRequest request,
 			@RequestParam("productId") int productId) throws Exception {
 
 		Auction auction = closet.getAuction(productId);

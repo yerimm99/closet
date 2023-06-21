@@ -161,7 +161,7 @@
 					 <td>
                           <div class="btn-group">
                                 <c:choose>
-                                    <c:when test="${!empty prod.peopleSum}">
+                                    <c:when test="${prod.peopleSum > 0}">
                                         <a href="<c:url value='/groupbuy/detail.do'>
                                             <c:param name='productId' value='${prod.productId}' />
                                         </c:url>" class = "detailBtn">상세보기</a>

@@ -79,15 +79,21 @@ public class OrderFormController {
 	}
 	
 	@RequestMapping("/order/register.do")
-	protected ModelAndView confirmGroupbuy( //auction 등록 확인 
+	protected ModelAndView confirmOrder(
 			@ModelAttribute("orderForm") OrderForm orderForm, 
+			@RequestParam("sample4_postcode") String postCode,
+            @RequestParam("address1") String address1,
+            @RequestParam("address2") String address2,
 			SessionStatus status, BindingResult result) {
 
 		validator.validateOrderForm(orderForm.getOrder(), result);
 		ModelAndView mav1 = new ModelAndView("order/registerForm");
 		if (result.hasErrors()) return mav1;
 		orderForm.getOrder().setExpiryDate(orderForm.convertToFormattedDate(orderForm.getOrder().getExpiryDate()));
+		String sAddress = postCode + " " + address1 + " " + address2;
+		orderForm.getOrder().setShipAddress(sAddress);
 		closet.createDelivery(orderForm.getOrder()); //등록 
+		
 		Meet meet = closet.findMeetByUserIdAndProductId(orderForm.getOrder().getUserId(), orderForm.getOrder().getProductId());
 		meet.setMeetResult(3);
 		closet.insertMeet(meet);
