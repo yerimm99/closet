@@ -113,7 +113,6 @@ public class ClosetImpl implements ClosetFacade{
 
 	public void scheduleAuctionEnd(Auction auction) { //낙찰처리
 	    Date closingTime = auction.getEndDate(); // 경매 종료 시간을 가져옴
-	    System.out.println(closingTime);
 	    Runnable auctionEndTask = new Runnable() {
 	        @Override
 	        public void run() {

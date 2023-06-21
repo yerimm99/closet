@@ -174,8 +174,9 @@ public class AuctionFormController {
 	    
 	    closet.insertAuction(product); // 등록 
 	    closet.scheduleAuctionEnd(product);
-
+	    String supp = product.getAccount().getUserId();
 	    ModelAndView mav = new ModelAndView("auction/detail");
+	    mav.addObject("supp", supp);
 	    mav.addObject("product", product);
 	    status.setComplete();  // remove session
 	    return mav;

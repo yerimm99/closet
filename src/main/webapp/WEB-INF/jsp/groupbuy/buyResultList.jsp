@@ -187,10 +187,10 @@
 									모집 중
 								</c:if>
 								<c:if test = "${meet.meetResult==1}">
-									모집 완료
+									모집 완료<br>
 									<a href = "<c:url value='/order/registerForm.do'>
 										<c:param name = 'productId' value='${prod.productId}' />
-										</c:url>" class = "Orderbtn">주문 하기
+										</c:url>" class = "orderBtn">주문 하기
 									</a>							
 								</c:if>
 								<c:if test = "${meet.meetResult==2}">
@@ -210,7 +210,7 @@
 				</table>
 			</c:otherwise>
         </c:choose>
-  
+  <br><br>
     <div class="page-buttons">
             <!-- 이전 페이지 버튼 -->
             <c:if test="${productList.page > 0}">
@@ -244,6 +244,7 @@
                 </form>
             </c:if>
         </div>
+        <br><br><br><br>
 	</div>
 </body>
 </html>

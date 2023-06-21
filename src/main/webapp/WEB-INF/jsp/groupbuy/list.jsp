@@ -111,8 +111,14 @@
                             </c:url>">
                                 <img src="../../upload/${prod.picture1}" alt="Product Image">
                                 <h3>${prod.name}</h3>
-                                <p> 
-                                <br>${prod.price}원<br> 모집인원: ${prod.peopleSum} / ${prod.peopleNum}
+                                <p><c:choose>
+                                        <c:when test="${prod.status == 0}">
+                                            <span>판매 종료</span><br>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <br>${prod.price}원<br> 모집인원: ${prod.peopleSum} / ${prod.peopleNum}
+                                        </c:otherwise>
+                                    </c:choose>
                                 </p>
                             </a>
                         </div>
@@ -122,6 +128,7 @@
         </div>
     </div>
 	
+        <br>
         <div class="page-buttons">
             <!-- 이전 페이지 버튼 -->
             <c:if test="${productList.page > 0}">
@@ -154,6 +161,8 @@
                     </button>
                 </form>
             </c:if>
+            
+        <br><br><br><br><br>
         </div>
 </body>
 </html>

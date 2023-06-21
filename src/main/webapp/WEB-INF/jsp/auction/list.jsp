@@ -118,6 +118,9 @@
                                             <span>${prod.startPrice}원</span><br>
                                             경매 시작가
                                         </c:when>
+                                        <c:when test="${prod.status == 0}">
+                                            <span>판매 종료</span><br>
+                                        </c:when>
                                         <c:otherwise>
                                             <span>${prod.price}원</span><br>
                                             현재 최고가
@@ -130,7 +133,8 @@
                 </c:otherwise>
             </c:choose>
         </div>
-
+        <br>
+        <br>
         <div class="page-buttons">
             <!-- 이전 페이지 버튼 -->
             <c:if test="${productList.page > 0}">
@@ -164,6 +168,7 @@
                 </form>
             </c:if>
         </div>
+        <br><br><br><br>
     </div>
 </body>
 </html>

@@ -124,12 +124,14 @@
                </tr>
                <tr>
                   <c:if test="${product.account.userId ne supp}" >
+                  	<c:if test="${product.status != 0}" >
                      <td colspan = "2" class = "gobtn">
                         <a href = "<c:url value='/groupbuy/enjoy.do'>
                               <c:param name = 'productId' value='${product.productId}'/>
                               </c:url>"><b style = "color:white;font-size:18px">공동구매 참가하기</b>
                         </a>
                      </td>
+                     </c:if>
                   </c:if>
                   
                   <c:if test="${product.account.userId eq supp}" >
@@ -138,19 +140,19 @@
                                             <c:param name='productId' value='${prod.productId}' />
                                         </c:url>"><b style = "color:white;font-size:18px">수정하기</b></a>
                      </td>
-                     <c:choose>
-                        <c:when test="${!empty product.peopleSum}">
+                        <c:if test="${!empty product.peopleSum}">
                            <td class = "gobtn3" style="width:50%">
                               <button disabled class = "dis"><b style = "color:white;font-size:18px">삭제하기</b></button>
                            </td>
-                        </c:when>
-                        <c:otherwise>
+                        </c:if>
+                        <c:choose>
+    					  <c:when test="${empty product.peopleSum or product.status == 0}">
                            <td class = "gobtn" style="width:50%">
                               <a href="<c:url value='/groupbuy/delete.do'>
                                             <c:param name='productId' value='${prod.productId}' />
                                         </c:url>"><b style = "color:white;font-size:18px">삭제하기</b></a>
                            </td>
-                        </c:otherwise>
+                           </c:when>
                      </c:choose>
                   </c:if>
                </tr>

@@ -169,6 +169,8 @@ public class GroupbuyFormController {
 
 		closet.insertGroupbuy(product); //등록 
 		ModelAndView mav2 = new ModelAndView("groupbuy/detail");
+		String supp = product.getAccount().getUserId();
+		mav2.addObject("supp", supp);
 		mav2.addObject("product", groupbuyForm.getGroupbuy());
 		status.setComplete();  // remove session
 		return mav2;
