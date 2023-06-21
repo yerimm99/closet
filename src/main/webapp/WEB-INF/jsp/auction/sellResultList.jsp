@@ -160,25 +160,35 @@
                         </td>
                         <td>
                             <div class="btn-group">
-                                <c:choose>
-                                    <c:when test="${!empty prod.price}">
-                                    	<a href="<c:url value='/auction/update.do'>
-                                            <c:param name='productId' value='${prod.productId}' />
-                                        </c:url>" class = "reBtn">수정하기</a>
-                                        <a href="<c:url value='/auction/successBySupp.do'>
-                                            <c:param name='productId' value='${prod.productId}' />
-                                        </c:url>" class = "detailBtn">낙찰하기</a>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <a href="<c:url value='/auction/update.do'>
-                                            <c:param name='productId' value='${prod.productId}' />
-                                        </c:url>" class = "reBtn">수정하기</a>
-                                        <a href="<c:url value='/auction/delete.do'>
-                                            <c:param name='productId' value='${prod.productId}' />
-                                        </c:url>" class = "deleteBtn">삭제하기</a>
-                                    </c:otherwise>
-                                </c:choose>
-                            </div>
+						    <c:choose>
+						    <c:when test="${product.status == 0}">
+						        판매 종료<br>
+						        <a href="<c:url value='/auction/delete.do'>
+						            <c:param name='productId' value='${prod.productId}' />
+						        </c:url>" class="deleteBtn">삭제하기</a>
+						    </c:when>
+						    <c:when test="${product.status != 0}">
+						        <c:if test="${empty prod.price}">
+						            <a href="<c:url value='/auction/update.do'>
+						                <c:param name='productId' value='${prod.productId}' />
+						            </c:url>" class="reBtn">수정하기</a>
+						            <a href="<c:url value='/auction/delete.do'>
+						                <c:param name='productId' value='${prod.productId}' />
+						            </c:url>" class="deleteBtn">삭제하기</a>
+						        </c:if>
+						        <c:if test="${!empty prod.price}">
+						            <a href="<c:url value='/auction/update.do'>
+						                <c:param name='productId' value='${prod.productId}' />
+						            </c:url>" class="reBtn">수정하기</a>
+						            <a href="<c:url value='/auction/successBySupp.do'>
+						                <c:param name='productId' value='${prod.productId}' />
+						            </c:url>" class="detailBtn">낙찰하기</a>
+						        </c:if>
+						    </c:when>
+						</c:choose>
+
+						</div>
+
                         </td>
                     </tr>
                 </c:forEach>
