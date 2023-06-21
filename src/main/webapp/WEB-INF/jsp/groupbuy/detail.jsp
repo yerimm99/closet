@@ -142,19 +142,19 @@
                   <c:if test="${product.account.userId eq supp}" >
                      <td class = "gobtn" style="width:50%">
                         <a href="<c:url value='/groupbuy/update.do'>
-                                            <c:param name='productId' value='${prod.productId}' />
+                                            <c:param name='productId' value='${product.productId}' />
                                         </c:url>"><b style = "color:white;font-size:18px">수정하기</b></a>
                      </td>
-                        <c:if test="${!empty product.peopleSum}">
+                        <c:if test="${product.peopleSum > 0}">
                            <td class = "gobtn3" style="width:50%">
                               <button disabled class = "dis"><b style = "color:white;font-size:18px">삭제하기</b></button>
                            </td>
                         </c:if>
                         <c:choose>
-    					  <c:when test="${empty product.peopleSum or product.status == 0}">
+    					  <c:when test="${product.peopleSum == 0}">
                            <td class = "gobtn" style="width:50%">
                               <a href="<c:url value='/groupbuy/delete.do'>
-                                            <c:param name='productId' value='${prod.productId}' />
+                                            <c:param name='productId' value='${product.productId}' />
                                         </c:url>"><b style = "color:white;font-size:18px">삭제하기</b></a>
                            </td>
                            </c:when>
