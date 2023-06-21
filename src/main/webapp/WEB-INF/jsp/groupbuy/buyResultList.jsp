@@ -71,6 +71,21 @@
         .product-info img {
             margin-right: 10px;
         }
+        .orderBtn {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            background-color: lightgray;
+            color: #ffffff;
+            border: none;
+            transition: background-color 0.3s;
+            font-size: 14px;
+        }
+        
+        .orderBtn:hover{
+            background-color: #99cd89;
+        }
 
         .no-data {
             text-align: center;
@@ -159,7 +174,7 @@
 									모집 완료
 									<a href = "<c:url value='/order/registerForm.do'>
 										<c:param name = 'productId' value='${prod.productId}' />
-										</c:url>" class = "btn">주문 하기
+										</c:url>" class = "Orderbtn">주문 하기
 									</a>							
 								</c:if>
 								<c:if test = "${meet.meetResult==2}">

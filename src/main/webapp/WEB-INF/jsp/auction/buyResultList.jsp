@@ -49,7 +49,7 @@
             height: auto;
         }
 
-        .changeBtn, .deleteBtn {
+        .changeBtn, .deleteBtn, .orderBtn {
             display: inline-block;
             padding: 8px 16px;
             border-radius: 4px;
@@ -62,12 +62,14 @@
         }
 
         .changeBtn:hover {
-            background-color: #99cd89;
+            background-color: #fff9a6;
         }
         .deleteBtn:hover {
             background-color: #C24E4E;
         }
-
+		.orderBtn:hover{
+            background-color: #99cd89;
+        }
 
         .product-info {
         	justify-content: center;
@@ -170,8 +172,8 @@
                                                 </c:when>
                                                 <c:when test="${bid.bidResult == 1}">
                                                     낙찰<br>
-                                                    <a href="<c:url value='/order/registerForm.do'><c:param name='productId' value='${prod.productId}' /></c:url>"
-                                                        class="btn">주문 하기</a>
+                                                    <a href="<c:url value='/order/registerForm2.do'><c:param name='productId' value='${prod.productId}' /></c:url>"
+                                                        class="orderBtn">주문 하기</a>
                                                 </c:when>
                                                 <c:when test="${bid.bidResult == 2}">
                                                     낙찰 실패
