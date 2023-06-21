@@ -117,7 +117,7 @@ public class ClosetImpl implements ClosetFacade{
 	            if (highestBid != null && auction.getStatus() != 0) {
 	                // 낙찰 처리
 	                auction.setWinner(highestBid.getUserId());
-	                updateResult(auction.getWinner());
+	                updateResult(auction.getWinner(), auction.getProductId());
 	            }
 	            auction.setStatus(0);
             	aucRepository.save(auction);
@@ -154,7 +154,7 @@ public class ClosetImpl implements ClosetFacade{
 		if (highestBid != null) {
            // 낙찰 처리
            auction.setWinner(highestBid.getUserId());
-           updateResult(auction.getWinner());
+           updateResult(auction.getWinner(), auction.getProductId());
         }
         aucRepository.save(auction);
 	}
@@ -179,9 +179,9 @@ public class ClosetImpl implements ClosetFacade{
 		return bidRepository.countByProductId(productId);
 	}
 	  
-	public void updateResult(String userId) {
-		bidRepository.updateSuccessResult(userId);
-		bidRepository.updateFailResult(userId);
+	public void updateResult(String userId, int productId) {
+		bidRepository.updateSuccessResult(userId, productId);
+		bidRepository.updateFailResult(userId, productId);
 	}
 	  
 	public Bid findMaxPrice(int productId) {

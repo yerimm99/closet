@@ -193,16 +193,4 @@ public class AuctionFormController {
 		return "redirect:/myPage/sellAuction.do";
 	}
 	
-	@RequestMapping("/auction/successBySupp.do")
-	public String successBySupp(HttpServletRequest request,
-			@RequestParam("productId") int productId
-			) throws Exception {
-		UserSession userSession = 
-				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
-		if (userSession != null) {
-			Auction auction = closet.getAuction(productId);
-			closet.closedAuctionBySupp(auction);
-		}
-		return "redirect:/myPage/sellAuction.do";
-	}
 }
