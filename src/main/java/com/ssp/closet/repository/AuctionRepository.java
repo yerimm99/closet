@@ -29,7 +29,6 @@ public interface AuctionRepository extends JpaRepository<Auction, Integer> {
 	List<Auction> findAllByOrderByStatusDescRegisterDateDesc();
 	
 	void deleteByProductId(int productId);
-	
 
 	@Query("SELECT a FROM Auction a WHERE a.endDate <= :currentTime")
     List<Auction> findEndedAuctions(@Param("currentTime") LocalDateTime currentTime);

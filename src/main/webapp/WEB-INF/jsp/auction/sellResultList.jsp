@@ -153,7 +153,8 @@
                                     <strong>${prod.name}</strong><br>
                                     ${prod.color}<br>
                                     ${prod.size}<br>
-                                    ${prod.price}원
+                                    <c:if test="${!empty prod.price}">
+                                    <br>현재 최고가 ${prod.price}원</c:if>
                                 </div>
                             </div>
                         </td>
