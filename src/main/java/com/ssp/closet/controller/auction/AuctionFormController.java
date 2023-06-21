@@ -172,20 +172,6 @@ public class AuctionFormController {
 	    product.setPicture3(picturePaths.size() >= 3 ? filee.get(2) : null);
 	    product.setPicture4(picturePaths.size() >= 4 ? filee.get(3) : null);
 	    
-	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date endDate;
-        try {
-            endDate = dateFormat.parse(auctionForm.getEndDate());
-        } catch (ParseException e) {
-            // 날짜 변환 오류 처리
-            // 오류 발생 시 적절한 예외 처리나 오류 메시지를 반환하면 됩니다.
-        	ModelAndView mav = new ModelAndView("index");
-	        return mav;
-        }
-
-        // endDate를 Auction 객체에 설정
-        product.setEndDate(endDate);
-        
 	    closet.insertAuction(product); // 등록 
 	    closet.scheduleAuctionEnd(product);
 
@@ -203,6 +189,19 @@ public class AuctionFormController {
 				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
 		if (userSession != null) {
 			closet.deleteAuctionByProductId(productId);
+		}
+		return "redirect:/myPage/sellAuction.do";
+	}
+	
+	@RequestMapping("/auction/successBySupp.do")
+	public String successBySupp(HttpServletRequest request,
+			@RequestParam("productId") int productId
+			) throws Exception {
+		UserSession userSession = 
+				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
+		if (userSession != null) {
+			Auction auction = closet.getAuction(productId);
+			closet.closedAuctionBySupp(auction);
 		}
 		return "redirect:/myPage/sellAuction.do";
 	}
