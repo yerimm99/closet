@@ -19,7 +19,7 @@
 
     body {
       margin: 0;
-      font-family: 'Noto Sans', Arial, sans-serif;
+      font-family: Arial, sans-serif;
       background-color: var(--kream-tertiary-color);
     }
 
@@ -36,7 +36,6 @@
       margin-bottom: 20px;
       color: var(--kream-secondary-color);
       text-align: center;
-      font-family: 'Pacifico', cursive;
     }
 
     .product-info {
@@ -108,11 +107,11 @@
   <div class="container">
     <h3>입찰하기</h3>
     <div class="product-info">
-      <div class="product-image"><img src = "../../upload/${product.picture1}"></div>
+      <div class="product-image"><img src = "../../upload/${product.picture1}" width="200" height="200"></div>
       <div class="product-details">
-        <b>상품명 ${product.name}</b><br>
-        색상 ${product.color}<br>
-        사이즈 ${product.size} <br><br>
+        <b>상품명 : ${product.name}</b><br><br>
+        색상 : ${product.color}<br>
+        사이즈 : ${product.size} <br><br>
       </div>
     </div>
     <hr>

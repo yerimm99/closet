@@ -21,10 +21,10 @@
       .bullets label{display: inline-block;border-radius: 50%;background-color: rgba(0,0,0,0.55);width: 20px;
           height: 20px;cursor: pointer;}
       /* 현재 선택된 불릿 배경 흰색으로 구분 표시 */
-      .slider input[type=radio]:nth-child(1):checked~.bullets>label:nth-child(1){background-color: #fff;}
-      .slider input[type=radio]:nth-child(2):checked~.bullets>label:nth-child(2){background-color: #fff;}
-      .slider input[type=radio]:nth-child(3):checked~.bullets>label:nth-child(3){background-color: #fff;}
-      .slider input[type=radio]:nth-child(4):checked~.bullets>label:nth-child(4){background-color: #fff;}
+      .slider input[type=radio]:nth-child(1):checked~.bullets>label:nth-child(1){background-color: lightgray;}
+      .slider input[type=radio]:nth-child(2):checked~.bullets>label:nth-child(2){background-color: lightgray;}
+      .slider input[type=radio]:nth-child(3):checked~.bullets>label:nth-child(3){background-color: lightgray;}
+      .slider input[type=radio]:nth-child(4):checked~.bullets>label:nth-child(4){background-color: lightgray;}
       .slider input[type=radio]:nth-child(1):checked~ul.imgs>li:nth-child(1){left: 0;transition: 0.5s;z-index:1;}
       .slider input[type=radio]:nth-child(2):checked~ul.imgs>li:nth-child(2){left: 0;transition: 0.5s;z-index:1;}
       .slider input[type=radio]:nth-child(3):checked~ul.imgs>li:nth-child(3){left: 0;transition: 0.5s;z-index:1;}
