@@ -71,7 +71,7 @@ public class MeetController {
 		return "redirect:/closet/groupbuy.do";
 	}
 
-	//url로 확인해봤는데 삭제 작동 잘 됩니다!
+	
 	@RequestMapping("/myPage/deleteMeet.do")
 	public String removeMeet(HttpServletRequest request,
 			@RequestParam("productId") int productId

@@ -173,6 +173,7 @@ public class GroupbuyFormController {
 		status.setComplete();  // remove session
 		return mav2;
 	}
+	
 
 	@RequestMapping("/groupbuy/delete.do")
 	public String removeGroupbuy(HttpServletRequest request,
