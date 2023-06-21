@@ -162,13 +162,14 @@
                             <div class="btn-group">
 						    <c:choose>
 						    <c:when test="${product.status == 0}">
-						        판매 종료<br>
+						        경매 종료<br>
 						        <a href="<c:url value='/auction/delete.do'>
 						            <c:param name='productId' value='${prod.productId}' />
 						        </c:url>" class="deleteBtn">삭제하기</a>
 						    </c:when>
 						    <c:when test="${product.status != 0}">
 						        <c:if test="${empty prod.price}">
+						        입찰 대기 중<br>
 						            <a href="<c:url value='/auction/update.do'>
 						                <c:param name='productId' value='${prod.productId}' />
 						            </c:url>" class="reBtn">수정하기</a>
@@ -177,6 +178,7 @@
 						            </c:url>" class="deleteBtn">삭제하기</a>
 						        </c:if>
 						        <c:if test="${!empty prod.price}">
+						        경매 진행 중<br>
 						            <a href="<c:url value='/auction/update.do'>
 						                <c:param name='productId' value='${prod.productId}' />
 						            </c:url>" class="reBtn">수정하기</a>

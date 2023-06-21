@@ -161,20 +161,28 @@
 					 <td>
                           <div class="btn-group">
                                 <c:choose>
-                                    <c:when test="${prod.peopleSum > 0}">
-                                        <a href="<c:url value='/groupbuy/update.do'>
-                                            <c:param name='productId' value='${prod.productId}' />
-                                        </c:url>" class = "reBtn">수정하기</a>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <a href="<c:url value='/groupbuy/update.do'>
-                                            <c:param name='productId' value='${prod.productId}' />
-                                        </c:url>" class = "reBtn">수정하기</a>
-                                        <a href="<c:url value='/groupbuy/delete.do'>
-                                            <c:param name='productId' value='${prod.productId}' />
-                                        </c:url>" class = "deleteBtn">삭제하기</a>
-                                    </c:otherwise>
-                                </c:choose>
+									<c:when test="${prod.status == 0}">
+									판매 종료<br>
+									<a href="<c:url value='/groupbuy/delete.do'>
+									         <c:param name='productId' value='${prod.productId}' />
+									     </c:url>" class="deleteBtn">삭제하기</a>
+									</c:when>
+									<c:when test="${prod.peopleSum > 0 && prod.status == 1}">
+									인원 모집중<br>
+									<a href="<c:url value='/groupbuy/update.do'>
+									         <c:param name='productId' value='${prod.productId}' />
+									     </c:url>" class="reBtn">수정하기</a>
+									</c:when>
+									<c:otherwise>
+									판매중<br>
+									<a href="<c:url value='/groupbuy/update.do'>
+									         <c:param name='productId' value='${prod.productId}' />
+									     </c:url>" class="reBtn">수정하기</a>
+									<a href="<c:url value='/groupbuy/delete.do'>
+									         <c:param name='productId' value='${prod.productId}' />
+									     </c:url>" class="deleteBtn">삭제하기</a>
+									</c:otherwise>
+									</c:choose>
                             </div>
                         </td>
 					</tr>
