@@ -147,43 +147,35 @@ public class AuctionFormController {
 					String filePath = absolutePath + fileName;
 					file.transferTo(new File(filePath));
 
-					// 파일 경로 저장
-					picturePaths.add(filePath);
-					filee.add(fileName);
-
-				} catch (IOException e) {
-					// 파일 저장 중 오류 발생
-					e.printStackTrace();
-					// 오류 처리
-					// ...
-					ModelAndView mav = new ModelAndView("index");
-					return mav;
-				}
-			}
-		}
-
-		// 파일 경로들을 Product 엔티티의 picture1, picture2, picture3, picture4에 할당
-		Auction product = auctionForm.getAuction();
-
-		if (picturePaths.size() >= 2) {
-			product.setPicture1(filee.get(0));
-			product.setPicture2(filee.get(1));
-		}
-		product.setPicture3(picturePaths.size() >= 3 ? filee.get(2) : null);
-		product.setPicture4(picturePaths.size() >= 4 ? filee.get(3) : null);
-
-		closet.insertAuction(product); // 등록 
-		closet.scheduleAuctionEnd(product);
-
-		ModelAndView mav = new ModelAndView("auction/detail");
-
-		String supp = "";
-		supp = product.getAccount().getUserId();
-
-		mav.addObject("product", product);
-		mav.addObject("supp", supp);
-		status.setComplete();  // remove session
-		return mav;
+	            } catch (IOException e) {
+	                // 파일 저장 중 오류 발생
+	                e.printStackTrace();
+	                // 오류 처리
+	                // ...
+	                ModelAndView mav = new ModelAndView("index");
+	    	        return mav;
+	            }
+	        }
+	    }
+	    
+	 // 파일 경로들을 Product 엔티티의 picture1, picture2, picture3, picture4에 할당
+	    Auction product = auctionForm.getAuction();
+	    
+	    if (picturePaths.size() >= 2) {
+	    	product.setPicture1(filee.get(0));
+	        product.setPicture2(filee.get(1));
+	    }
+	    product.setPicture3(picturePaths.size() >= 3 ? filee.get(2) : null);
+	    product.setPicture4(picturePaths.size() >= 4 ? filee.get(3) : null);
+	    
+	    closet.insertAuction(product); // 등록 
+	    closet.scheduleAuctionEnd(product);
+	    String supp = product.getAccount().getUserId();
+	    ModelAndView mav = new ModelAndView("auction/detail");
+	    mav.addObject("supp", supp);
+	    mav.addObject("product", product);
+	    status.setComplete();  // remove session
+	    return mav;
 	}
 
 	@RequestMapping("/auction/delete.do")

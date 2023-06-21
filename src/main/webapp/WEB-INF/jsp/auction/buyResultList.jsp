@@ -194,7 +194,7 @@
                 </table>
             </c:otherwise>
         </c:choose>
-   
+   <br><br>
     <div class="page-buttons">
             <!-- 이전 페이지 버튼 -->
             <c:if test="${productList.page > 0}">
@@ -228,6 +228,7 @@
                 </form>
             </c:if>
         </div>
+        <br><br><br><br>
 </div>
 </body>
 </html>

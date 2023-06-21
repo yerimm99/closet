@@ -137,12 +137,14 @@
                </tr>
                <tr>
                   <c:if test="${product.account.userId ne supp}" >
+                  	<c:if test="${product.status != 0}" >
                      <td colspan = "3" class = "gobtn">
                         <a href = "<c:url value='/bid/newBid.do'>
                               <c:param name = 'productId' value='${product.productId}' />
                               </c:url>"><b style = "color:white;font-size:18px">경매 참가하기</b>
                         </a>
                      </td>
+                     </c:if>
                   </c:if>
                   <c:if test="${product.account.userId eq supp}" >
                      <td class = "gobtn" style="width:50%">
@@ -150,24 +152,25 @@
                                                <c:param name='productId' value='${product.productId}' />
                                            </c:url>"><b style = "color:white;font-size:18px">수정하기</b></a>
                      </td>
-                     
-                     <c:choose>
-                        <c:when test="${!empty product.price}">
+                        <c:if test="${!empty product.price}">
+                        	<c:if test="${product.status != 0}" >
                            <td class = "gobtn" style="width:50%">
                               <a href="<c:url value='/auction/successBySupp.do'>
                                                <c:param name='productId' value='${product.productId}' />
                                            </c:url>"><b style = "color:white;font-size:18px">낙찰하기</b></a>
                                    </td>
-                        </c:when>
-                        <c:otherwise>
+                              </c:if>
+                         </c:if>
+                         <c:choose>
+    					  <c:when test="${empty product.price or product.status == 0}">
                            <td class = "gobtn" style="width:50%">
                               <a href="<c:url value='/auction/delete.do'>
                                                <c:param name='productId' value='${product.productId}' />
                                            </c:url>"><b style = "color:white;font-size:18px">삭제하기</b></a>
                                    </td>
-                        </c:otherwise>
-                     </c:choose>
-                  </c:if>
+                          </c:when>
+                         </c:choose>
+                 </c:if>
                </tr>
                <tr>
                   <td colspan = "3" class = "gobtn2">

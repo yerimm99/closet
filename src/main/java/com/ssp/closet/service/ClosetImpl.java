@@ -112,21 +112,21 @@ public class ClosetImpl implements ClosetFacade{
 	private TaskScheduler scheduler;
 
 	public void scheduleAuctionEnd(Auction auction) { //낙찰처리
-		Date closingTime = auction.getEndDate(); // 경매 종료 시간을 가져옴
-		System.out.println(closingTime);
-		Runnable auctionEndTask = new Runnable() {
-			@Override
-			public void run() {
-				Bid highestBid = findMaxPrice(auction.getProductId());
-				if (highestBid != null && auction.getStatus() != 0) {
-					// 낙찰 처리
-					auction.setWinner(highestBid.getUserId());
-					updateResult(auction.getWinner(), auction.getProductId());
-				}
-				auction.setStatus(0);
-				aucRepository.save(auction);
-			}
-		};
+
+	    Date closingTime = auction.getEndDate(); // 경매 종료 시간을 가져옴
+	    Runnable auctionEndTask = new Runnable() {
+	        @Override
+	        public void run() {
+	        	Bid highestBid = findMaxPrice(auction.getProductId());
+	            if (highestBid != null && auction.getStatus() != 0) {
+	                // 낙찰 처리
+	                auction.setWinner(highestBid.getUserId());
+	                updateResult(auction.getWinner(), auction.getProductId());
+	            }
+	            auction.setStatus(0);
+            	aucRepository.save(auction);
+	        }
+	    };
 
 		// 스케줄 생성: closingTime에 auctionEndTask 실행
 
