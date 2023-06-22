@@ -70,6 +70,25 @@ public class LikeController {
 		}
 	}
 
+	@RequestMapping("/like/delete.do")
+	public ModelAndView likeMark_delete(HttpServletRequest request,
+			@RequestParam("productId") int productId) throws Exception {
+
+		UserSession userSession = 
+				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
+
+		Account account = closet.getAccount(userSession.getAccount().getUserId());
+		Product product = closet.getProduct(productId);
+
+		closet.deleteLike(product, account);
+
+		if(product.getDTYPE().equals("Groupbuy")) {
+			return new ModelAndView("redirect:/like/groupbuyList.do");
+		} else {
+			return new ModelAndView("redirect:/like/auctionList.do");
+		}
+	}
+
 	@RequestMapping("/like/auctionList.do")
 	public ModelAndView auctionLikeMarkList(HttpServletRequest request) throws Exception {
 		UserSession userSession = 
@@ -137,7 +156,7 @@ public class LikeController {
 		mav2.addObject("productList", GroupbuyList);
 		return mav2;
 	}
-	
+
 	@RequestMapping("/like/groupbuyList2.do")
 	public ModelAndView groupbuyLikeMarkList_page(@ModelAttribute("productList") PagedListHolder<Groupbuy> productList,
 			@RequestParam("pageName") String page, 
