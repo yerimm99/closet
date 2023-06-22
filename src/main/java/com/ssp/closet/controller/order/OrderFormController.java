@@ -102,14 +102,14 @@ public class OrderFormController {
 			@RequestParam("address1") String address1,
 			@RequestParam("address2") String address2,
 			SessionStatus status, BindingResult result) {
-
+		
+		String sAddress = postCode + " " + address1 + " " + address2;
+		orderForm.getOrder().setShipAddress(sAddress);
 		validator.validateOrderForm(orderForm.getOrder(), result);
 		ModelAndView mav1 = new ModelAndView("order/registerForm");
 		if (result.hasErrors()) return mav1;
 		
 		orderForm.getOrder().setExpiryDate(orderForm.convertToFormattedDate(orderForm.getOrder().getExpiryDate()));
-		String sAddress = postCode + " " + address1 + " " + address2;
-		orderForm.getOrder().setShipAddress(sAddress);
 		closet.createDelivery(orderForm.getOrder()); //등록 
 
 		if(closet.getProduct(orderForm.getOrder().getProductId()).getDTYPE().equals("Groupbuy")) {
