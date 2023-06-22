@@ -9,6 +9,7 @@ import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -23,39 +24,58 @@ public class RankController {
 		this.closet = closet;
 	}
 
-	//좋아요순
-	@RequestMapping("/closet/best/auction.do")
-	public String auctionRankingList(HttpServletRequest request,
+	//옥션좋아요순
+	@RequestMapping("/rank/auction/likeList.do")
+	public String auctionLikeRankingList(HttpServletRequest request,
 			ModelMap model) {
 		
 		PagedListHolder<Auction> likeList = new PagedListHolder<Auction>(closet.getAuctionSortedByLikeCount());
 		
 		likeList.setPageSize(10);
-		model.put("likeList", likeList);
+		model.put("productList", likeList);
+		model.put("DTYPE", "Auction");
+	
+		return "main/rank";
+	}
+	
+	//옥션랭킹순
+	@RequestMapping("/rank/auction/reviewList.do")
+	public String auctionReviewRankingList(HttpServletRequest request,
+			ModelMap model) {
 		
 		PagedListHolder<Auction> reviewList = new PagedListHolder<Auction>(closet.getAuctionRankingByReviewRating());
 		
 		reviewList.setPageSize(10);
-		model.put("reviewList", reviewList);
+		model.put("productList", reviewList);
+		model.put("DTYPE", "Auction");
 		
-		return "rank/auctionList";
+		return "main/rank";
 	}
 	
-	@RequestMapping("/closet/best/groupbuy.do")
-	public String groupbuyRankingList(HttpServletRequest request,
+	@RequestMapping("/rank/groupbuy/likeList.do")
+	public String groupbuyLikeRankingList(HttpServletRequest request,
 			ModelMap model) {
 		
 		PagedListHolder<Groupbuy> groupbuyList = new PagedListHolder<Groupbuy>(closet.getGroupbuySortedByLikeCount());
 		
 		groupbuyList.setPageSize(10);
-		model.put("likeList", groupbuyList);
+		model.put("productList", groupbuyList);
+		model.put("DTYPE", "Groupbuy");
 		
-		PagedListHolder<Groupbuy> reviewList = new PagedListHolder<Groupbuy>(closet.getGroupbuyRankingByReviewRating());
+		return "main/rank";
+	}
+	
+	@RequestMapping("/rank/groupbuy/reviewList.do")
+	public String groupbuyReviewRankingList(HttpServletRequest request,
+			ModelMap model) {
 		
-		reviewList.setPageSize(10);
-		model.put("reviewList", reviewList);
+		PagedListHolder<Groupbuy> groupbuyList = new PagedListHolder<Groupbuy>(closet.getGroupbuyRankingByReviewRating());
 		
-		return "rank/groupbuyList";
+		groupbuyList.setPageSize(10);
+		model.put("productList", groupbuyList);
+		model.put("DTYPE", "Groupbuy");
+		
+		return "main/rank";
 	}
 	
 	
