@@ -181,8 +181,11 @@ public class ViewGroupbuyController {
 	      if(userSession != null) {
 	         supp = userSession.getAccount().getUserId();
 	      }
-	      model.put("supp", supp);
 	      
+	      Meet meet = closet.findMeetByUserIdAndProductId(supp, productId);
+	      
+	      model.put("meet", meet);
+	      model.put("supp", supp);
 	      model.put("product", product);
 	   }
 }

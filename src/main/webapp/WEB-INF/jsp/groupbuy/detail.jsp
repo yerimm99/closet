@@ -128,12 +128,23 @@
                   <td>${product.account.userId}</td>
                </tr>
                <tr>
-                  <c:if test="${product.account.userId ne supp}" >
+                  <c:if test="${product.account.userId ne supp and meet eq null}" >
                   	<c:if test="${product.status != 0}" >
                      <td colspan = "2" class = "gobtn">
                         <a href = "<c:url value='/groupbuy/enjoy.do'>
                               <c:param name = 'productId' value='${product.productId}'/>
                               </c:url>"><b style = "color:white;font-size:18px">공동구매 참가하기</b>
+                        </a>
+                     </td>
+                     </c:if>
+                  </c:if>
+                  
+                  <c:if test="${product.account.userId ne supp and meet ne null}" >
+                  	<c:if test="${product.status != 0}" >
+                     <td colspan = "2" class = "gobtn">
+                        <a href = "<c:url value='/myPage/deleteMeet.do'>
+                              <c:param name = 'productId' value='${product.productId}'/>
+                              </c:url>"><b style = "color:white;font-size:18px">참가 취소하기</b>
                         </a>
                      </td>
                      </c:if>
