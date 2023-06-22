@@ -42,6 +42,12 @@ public class ReviewController {
 	public String getIndexPage(HttpServletRequest request, ModelMap model, 
 			@RequestParam("productId") int productId) throws Exception {
 		Product product = closet.getProduct(productId);
+		UserSession userSession = 
+				(UserSession) WebUtils.getSessionAttribute(request, "userSession");	
+		Account account = closet.getAccount(userSession.getAccount().getUserId());
+		if(closet.findReviewByOrderId(closet.getOrderByUserIdAndProductId(userSession.getAccount().getUserId(), productId).getOrderId()) != null) {
+			return  "redirect:/closet/mypage.do";
+		}
 		model.put("product", product);
 		return  "/review/registerForm";
 	}
