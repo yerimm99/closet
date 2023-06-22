@@ -173,9 +173,16 @@
 					<td colspan="2"><hr><form:errors path="account.email" cssClass="error-message" /></td>
 				</tr>
 				<tr>
+					<c:if test="${accountForm.newAccount}">
 					<td colspan="2">
 						<input type="submit" value="가입하기" class="btn">
 					</td>
+					</c:if>
+					<c:if test="${!accountForm.newAccount}">
+					<td colspan="2">
+						<input type="submit" value="수정하기" class="btn">
+					</td>
+					</c:if>
 				</tr>
 			</table>
 		</form:form>
