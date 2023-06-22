@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -43,4 +44,6 @@ public class Account implements Serializable {
   @OneToMany(mappedBy = "account")
   private List<Product> products;
 
+  @Transient
+  private double avgRating;
 }
