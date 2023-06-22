@@ -25,9 +25,6 @@ public class GroupbuyForm implements Serializable {
 		this.groupbuy = new Groupbuy();
 	}
 
-	public Groupbuy getGroupbuy() {
-		return groupbuy;
-	}
 	public boolean isNewGroupbuy() {
 		return newGroupbuy;
 	}

@@ -22,7 +22,6 @@ public interface ClosetFacade {
    List<Category> getCategoryList();
    Category getCategory(String categoryId);
 
-   List<Product> getProductList(int type, int status);
    Product getProduct(int productId);
    
    

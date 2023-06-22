@@ -146,6 +146,10 @@ public class AuctionFormController {
 					String fileName = file.getOriginalFilename();
 					String filePath = absolutePath + fileName;
 					file.transferTo(new File(filePath));
+					
+					// 파일 경로 저장
+					picturePaths.add(filePath);
+					filee.add(fileName);
 
 	            } catch (IOException e) {
 	                // 파일 저장 중 오류 발생
@@ -164,7 +168,17 @@ public class AuctionFormController {
 	    if (picturePaths.size() >= 2) {
 	    	product.setPicture1(filee.get(0));
 	        product.setPicture2(filee.get(1));
+	    }else {
+	    	System.out.println("");
+	    	System.out.println("사진 set 실패");
+	    	System.out.println("");
 	    }
+	    System.out.println("");
+    	System.out.println(product.getPicture1());
+    	System.out.println("");
+    	System.out.println(product.getPicture2());
+    	System.out.println("");
+    	
 	    product.setPicture3(picturePaths.size() >= 3 ? filee.get(2) : null);
 	    product.setPicture4(picturePaths.size() >= 4 ? filee.get(3) : null);
 	    
