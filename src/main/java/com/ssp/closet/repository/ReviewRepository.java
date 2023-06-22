@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
 	
 	List<Review> findByUserId(String userId);
+	Review findByOrderId(int orderId);
 	
 	@Query("SELECT r.rating FROM Review r WHERE r.userId = :userId")
     List<Float> getRatingsByUserId(@Param("userId") String userId);

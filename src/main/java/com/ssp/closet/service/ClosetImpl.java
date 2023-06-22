@@ -309,6 +309,9 @@ public class ClosetImpl implements ClosetFacade{
    public List<Review> readReviewListToMe(String userId) {
       return reviewRepository.findByUserId(userId);
    }
+   public Review findReviewByOrderId(int orderId) {
+	   return reviewRepository.findByOrderId(orderId);
+   }
    
    public String userRating(String userId) {
 	    List<Float> ratings = reviewRepository.getRatingsByUserId(userId);

@@ -97,6 +97,7 @@ public interface ClosetFacade {
    //리뷰
    void insertReview(Review review);
    List<Review> readReviewListToMe(String userId);
+   Review findReviewByOrderId(int orderId);
    String userRating(String userId);
 
    
