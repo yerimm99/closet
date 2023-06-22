@@ -127,7 +127,7 @@
 				</tr>
 				<tr>
 					<td>비밀번호</td>
-					<td><form:password path="account.password" placeholder="필수 항목입니다."/>
+					<td><form:password path="account.password"/>
 					</td>
 				</tr>
 				<tr>
@@ -135,7 +135,7 @@
 				</tr>
 				<tr>
 					<td>비밀번호 확인</td>
-					<td><form:password path="repeatedPassword" placeholder="필수 항목입니다."/> 
+					<td><form:password path="repeatedPassword"/> 
 					</td>
 				</tr>
 				<tr>
@@ -158,7 +158,7 @@
 				</tr>
 				<tr>
 					<td>전화번호</td>
-					<td><form:input path="account.phone" placeholder="xxx-xxxx-xxxx 형식으로 입력해주세요." />
+					<td><form:input path="account.phone" placeholder="010-1234-5678" />
 					</td>
 				</tr>
 				<tr>
@@ -166,7 +166,7 @@
 				</tr>
 				<tr>
 					<td>이메일</td>
-					<td><form:input path="account.email" />
+					<td><form:input path="account.email" placeholder="abc123@gmail.com"/>
 					</td>
 				</tr>
 				<tr>

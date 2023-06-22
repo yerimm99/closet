@@ -31,6 +31,10 @@ public class OrderFormValidator implements Validator {
             errors.rejectValue("creditCard", "INVALID_CREDITCARD", "Invalid CreditCard format.");
         }
 		
+		if (!order.getExpiryDate().equals("") && !order.getExpiryDate().matches("(0[1-9]|1[0-2])/\\d{2}")) {
+		    errors.rejectValue("expiryDate", "INVALID_EXPIRYDATE", "Invalid ExpiryDate format. Please use MM/YY format.");
+		}
+
 		errors.setNestedPath("");
 	}
 }
