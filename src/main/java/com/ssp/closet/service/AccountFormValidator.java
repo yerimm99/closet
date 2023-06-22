@@ -34,14 +34,14 @@ public class AccountFormValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.password", "PASSWORD_REQUIRED", "비밀번호를 입력해주세요.");
 
 		if (!account.getPhone().equals("") && !account.getPhone().matches("\\d{3}-\\d{4}-\\d{4}")) {
-			errors.rejectValue("account.phone", "INVALID_PHONE", "Invalid Phone format.");
+			errors.rejectValue("account.phone", "INVALID_PHONE", "올바르지 않은 형식입니다.");
 		}
 
 		if (!account.getEmail().equals("") && !account.getEmail().matches("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")) {
-			errors.rejectValue("account.email", "INVALID_EMAIL", "Invalid Email format.");
+			errors.rejectValue("account.email", "INVALID_EMAIL", "올바르지 않은 형식입니다.");
 		}
 
-		if (closet.getAccount(accountForm.getAccount().getUserId()) != null) {
+		if (accountForm.isNewAccount() && closet.getAccount(accountForm.getAccount().getUserId()) != null) {
 			errors.rejectValue("account.userId", "DUPLICATE_USER_ID", "이미 존재하는 아이디 입니다.");
 		}
 

@@ -35,8 +35,6 @@ public class Account implements Serializable {
   private String address;
   @Column(name="PHONE")
   private String phone;
-  @Column(name="RATING")
-  private double rating;
 
   @OneToMany(mappedBy = "bidder")
   private List<Bid> bids;

@@ -68,7 +68,6 @@ public class AccountFormController {
 			if (accountForm.isNewAccount()) {
 				String sAddress = postCode + " " + address1 + " " + address2;
 		        accountForm.getAccount().setAddress(sAddress);
-		        accountForm.getAccount().setRating(0);
 		        Account existUser = closet.getAccount(accountForm.getAccount().getUserId());
 		        accountForm.isExistAccount(existUser);
 		        
