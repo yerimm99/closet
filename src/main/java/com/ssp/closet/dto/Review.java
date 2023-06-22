@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
@@ -18,10 +20,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Review {
-    @Id
-    @JoinColumn(name = "ORDERID", referencedColumnName = "ORDERID")
-    @Column(name = "ORDERID")
-    private int orderId;
+	 @Id
+	    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	    @Column(name = "ORDERID")
+	    private int orderId;
     
     @JoinColumn(name = "PRODUCTID", referencedColumnName = "PRODUCTID")
     @Column(name = "PRODUCTID")
@@ -34,10 +36,10 @@ public class Review {
     @Column(name = "PNAME")
     private String name;
     
-    @Column(name = "WRITEDATE")
-    private Date writeDate;
+    @Column(name = "WRITEDATE", insertable = false, updatable = false)
+    private String writeDate;
     
-    @Column(name = "CONTENT")
+    @Column(name = "WRITEDATE")
     private String content;
     
     @Column(name = "RATING")
