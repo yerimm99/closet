@@ -63,14 +63,8 @@
 </head>
 <body>
     <div class="container">
+    <b>경매 상품 베스트</b>
         <div class="product-list">
-            <c:choose>
-                <c:when test="${productList.getSource() == null}">
-                    <div class="sell">
-                        경매 상품이 하나도 없습니다.
-                    </div>
-                </c:when>
-                <c:otherwise>
                     <c:forEach var="prod" items="${productList.pageList}">
                         <div class="product-card">
                             <a href="<c:url value='/auction/detail.do'>
@@ -93,26 +87,7 @@
                             </a>
                         </div>
                     </c:forEach>
-                </c:otherwise>
-            </c:choose>
         </div>
     </div>
-    <!-- 이전 페이지 버튼 -->
-    <c:if test="${productList.page > 0}">
-        <form action="/closet/auction2.do?pageName=previous" method="get">
-            <input type="hidden" name="pageName" value="previous">
-            <input type="submit" value="Previous">
-        </form>
-    </c:if>
-    
-    ${productList.page + 1}
-
-    <!-- 다음 페이지 버튼 -->
-    <c:if test="${productList.page + 1 < productList.pageCount}">
-        <form action="/closet/auction2.do?pageName=next" method="get">
-            <input type="hidden" name="pageName" value="next">
-            <input type="submit" value="Next">
-        </form>
-    </c:if>
 </body>
 </html>
