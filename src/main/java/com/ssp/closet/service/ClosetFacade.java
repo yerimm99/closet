@@ -97,7 +97,7 @@ public interface ClosetFacade {
 	void insertReview(Review review);
 	void deleteReview(int orderId);
 	List<Review> readReviewListByMe();
-	List<Review> readReviewListToMe();
+	List<Review> readReviewListToMe(String userId);
 
 	
 	//계정
@@ -105,6 +105,7 @@ public interface ClosetFacade {
 	Account getAccount(String userId, String password);
 	void insertAccount(Account account);
 	void updateAccount(Account account);
+	
 	
 	/*
 	 * public static final List<Account> accountList = null;
