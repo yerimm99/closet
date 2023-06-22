@@ -23,6 +23,7 @@ import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
 import com.ssp.closet.dto.Bid;
 import com.ssp.closet.dto.Groupbuy;
+import com.ssp.closet.dto.LikeMark;
 import com.ssp.closet.dto.Product;
 import com.ssp.closet.service.ClosetFacade;
 
@@ -204,14 +205,22 @@ public class ViewAuctionController {
 		UserSession userSession = 
 	            (UserSession) WebUtils.getSessionAttribute(request, "userSession");
 	      String supp = "";
+	      int like = -1;
 	      if(userSession != null) {
 	         supp = userSession.getAccount().getUserId();
+	         Product prod = closet.getProduct(productId);
+	         LikeMark lm = closet.cheakLikeMark(prod, userSession.getAccount());
+	         if(lm != null) {
+	        	 like = lm.getMark();
+	         }
+		     
 	      }
 	      Integer likeSum = closet.getLikeSum(productId);
 	      model.put("rating", closet.userRating(product.getAccount().getUserId()));
 	      model.put("likeSum", likeSum);
  	      model.put("supp", supp);
 		  model.put("product", product);
+		  model.put("like", like);
 	}
 
 	@RequestMapping({"/auction/successBySupp.do","/myPage/myAuction.do"})

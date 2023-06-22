@@ -53,6 +53,10 @@
             max-width: 100%;
             height:100%;
         }
+        .mypageImg {
+      width: 22px;
+      height: 22px;
+    }
    </style>
 </head>
 <body>
@@ -174,13 +178,24 @@
                </tr>
                <tr>
                   <td colspan = "3" class = "gobtn2">
-                     <a href = "<c:url value='/like.do'>
-                           <c:param name = 'productId' value='${product.productId}' />
-                           </c:url>"><b style = "font-size:18px">관심상품
+                    <c:if test="${like == -1}">
+	                     <a href = "<c:url value='/like.do'>
+	                           <c:param name = 'productId' value='${product.productId}' />
+	                           </c:url>">
+	                         <b style = "font-size:18px"><img border="0" src="../../images/heart1.png" class="mypageImg"/>관심상품
                            <c:if test="${empty likeSum}"> 0 </c:if>
-                           <c:if test="${!empty likeSum}"> ${likeSum} </c:if>
-                           </b> 
-                     </a>
+                           <c:if test="${!empty likeSum}"> ${likeSum} </c:if></b>
+	                     </a>
+                     </c:if>
+                  	<c:if test="${like != -1}">
+	                     <a href = "<c:url value='/like.do'>
+	                           <c:param name = 'productId' value='${product.productId}' />
+	                           </c:url>">
+	                     	<b style = "font-size:18px"><img border="0" src="../../images/heart2.png" class="mypageImg"/>관심상품
+                           <c:if test="${empty likeSum}"> 0 </c:if>
+                           <c:if test="${!empty likeSum}"> ${likeSum} </c:if></b>
+	                     </a>
+                     </c:if>
                   </td>
                </tr>
             </table>

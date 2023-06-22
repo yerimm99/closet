@@ -19,5 +19,4 @@ public interface LikeMarkRepository extends JpaRepository<LikeMark, Long> {
 	@Query("SELECT SUM(l.mark) FROM LikeMark l WHERE l.product.productId = :productId")
 	Integer getMarkSumByProduct(@Param("productId") int productId);
 	LikeMark findByProductAndAccount(Product product, Account account);
-	
 }
