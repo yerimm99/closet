@@ -54,6 +54,7 @@
             height:100%;
         }
         .mypageImg {
+        margin-top:2px;
       width: 22px;
       height: 22px;
     }
@@ -182,7 +183,7 @@
 	                     <a href = "<c:url value='/like.do'>
 	                           <c:param name = 'productId' value='${product.productId}' />
 	                           </c:url>">
-	                         <b style = "font-size:18px"><img border="0" src="../../images/heart1.png" class="mypageImg"/>관심상품
+	                         <b style = "font-size:18px"><img border="0" src="../../images/heart1.png" class="mypageImg"/>
                            <c:if test="${empty likeSum}"> 0 </c:if>
                            <c:if test="${!empty likeSum}"> ${likeSum} </c:if></b>
 	                     </a>
@@ -191,7 +192,7 @@
 	                     <a href = "<c:url value='/like.do'>
 	                           <c:param name = 'productId' value='${product.productId}' />
 	                           </c:url>">
-	                     	<b style = "font-size:18px"><img border="0" src="../../images/heart2.png" class="mypageImg"/>관심상품
+	                     	<b style = "font-size:18px"><img border="0" src="../../images/heart2.png" class="mypageImg"/>
                            <c:if test="${empty likeSum}"> 0 </c:if>
                            <c:if test="${!empty likeSum}"> ${likeSum} </c:if></b>
 	                     </a>
