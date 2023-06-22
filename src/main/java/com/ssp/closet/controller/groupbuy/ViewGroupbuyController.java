@@ -18,7 +18,9 @@ import org.springframework.web.util.WebUtils;
 import com.ssp.closet.controller.UserSession;
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Groupbuy;
+import com.ssp.closet.dto.LikeMark;
 import com.ssp.closet.dto.Meet;
+import com.ssp.closet.dto.Product;
 import com.ssp.closet.service.ClosetFacade;
 
 
@@ -178,12 +180,19 @@ public class ViewGroupbuyController {
 	      UserSession userSession = 
 	            (UserSession) WebUtils.getSessionAttribute(request, "userSession");
 	      String supp = "";
+	      int like = -1;
 	      if(userSession != null) {
 	         supp = userSession.getAccount().getUserId();
+	         Product prod = closet.getProduct(productId);
+	         LikeMark lm = closet.cheakLikeMark(prod, userSession.getAccount());
+	         if(lm != null) {
+	        	 like = lm.getMark();
+	         }
 	      }
 	      
 	      Meet meet = closet.findMeetByUserIdAndProductId(supp, productId);
 	      
+	      model.put("like", like);
 	      model.put("meet", meet);
 	      model.put("supp", supp);
 	      model.put("product", product);
