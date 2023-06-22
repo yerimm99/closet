@@ -70,7 +70,7 @@
 				</tr>
 				<tr>
 					<td>판매자 평점 </td>
-					<td>${account.avgRating}</td>
+					<td>${rating}</td>
 					<td></td>
 				</tr>
 			</table>

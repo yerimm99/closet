@@ -80,7 +80,6 @@ public class ReviewController {
 		return  "redirect:/closet/mypage.do";
 	}
 
-	//공동구매 상품 리스트 보기
 	@RequestMapping("/review/list.do")
 	public String viewReviewList(HttpServletRequest request,
 			ModelMap model) {
@@ -95,8 +94,8 @@ public class ReviewController {
 		PagedListHolder<Review> reviewList = new PagedListHolder<Review>(reviews);
 		PagedListHolder<Product> productList = new PagedListHolder<Product>(prdList);//경매게시글에 대한 페이징 객체
 		
-		reviewList.setPageSize(1);
-		productList.setPageSize(1);
+		reviewList.setPageSize(5);
+		productList.setPageSize(5);
 		model.put("reviewList", reviewList);
 		model.put("productList", productList);
 		return "review/listToMe";
@@ -120,6 +119,4 @@ public class ReviewController {
 		model.put("productList", productList);
 		return "review/listToMe";
 	}
-
-
 }

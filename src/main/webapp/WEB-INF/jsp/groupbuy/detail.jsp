@@ -168,7 +168,7 @@
                     		</td>
                      	</c:otherwise>
                      </c:choose>
-    					  <c:if test="${product.peopleSum == 0 or product.status == 0}">
+    					  <c:if test="${product.peopleSum == 0 and product.status == 0}">
                            <td class = "gobtn" style="width:50%">
                               <a href="<c:url value='/groupbuy/delete.do'>
                                             <c:param name='productId' value='${product.productId}' />
