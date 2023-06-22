@@ -83,7 +83,6 @@ public class LikeController {
 					if (product.getProduct().getDTYPE().equals("Auction")) {
 						auctionLikeList.add(closet.getAuction(product.getProduct().getProductId()));
 					}
-					
 				}
 		    	PagedListHolder<Auction> AuctionList = new PagedListHolder<>(auctionLikeList);
 				

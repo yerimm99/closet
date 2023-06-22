@@ -369,8 +369,8 @@ public class ClosetImpl implements ClosetFacade{
 		return likeRepository.findByAccount(account);
 	}
 	
-	public int getLikeSum(Product product) {
-		return likeRepository.getLikeCountByProduct(product);
+	public Integer getLikeSum(int productId) {
+		return likeRepository.getMarkSumByProduct(productId);
 	}
 	
 	public LikeMark cheakLikeMark(Product product, Account account) {

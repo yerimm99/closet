@@ -85,7 +85,7 @@ public interface ClosetFacade {
 	void createLike(LikeMark like);
 	void deleteLike(Product product, Account account);
 	List<LikeMark> findLikeMark(Account account);
-	int getLikeSum(Product product);
+	Integer getLikeSum(int productId);
 	LikeMark cheakLikeMark(Product product, Account account);
 	
 	//주문

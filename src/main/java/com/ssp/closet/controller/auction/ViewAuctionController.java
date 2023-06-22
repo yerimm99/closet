@@ -23,6 +23,7 @@ import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
 import com.ssp.closet.dto.Bid;
 import com.ssp.closet.dto.Groupbuy;
+import com.ssp.closet.dto.Product;
 import com.ssp.closet.service.ClosetFacade;
 
 @Controller
@@ -206,8 +207,10 @@ public class ViewAuctionController {
 	      if(userSession != null) {
 	         supp = userSession.getAccount().getUserId();
 	      }
-	    model.put("supp", supp);
-		model.put("product", product);
+	      Integer likeSum = closet.getLikeSum(productId);
+	      model.put("likeSum", likeSum);
+ 	      model.put("supp", supp);
+		  model.put("product", product);
 	}
 
 	@RequestMapping({"/auction/successBySupp.do","/myPage/myAuction.do"})
