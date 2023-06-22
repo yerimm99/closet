@@ -162,9 +162,11 @@
                             <div class="btn-group">
 						    <c:if test="${prod.status == 0}">
 						        경매 종료<br>
-						        <a href="<c:url value='/auction/delete.do'>
-						            <c:param name='productId' value='${prod.productId}' />
-						        </c:url>" class="deleteBtn">삭제하기</a>
+						        <c:if test="${empty prod.price}">
+							        <a href="<c:url value='/auction/delete.do'>
+							            <c:param name='productId' value='${prod.productId}' />
+							        </c:url>" class="deleteBtn">삭제하기</a>
+							    </c:if>
 						    </c:if>
 						    <c:if test="${prod.status != 0}">
 						        <c:if test="${empty prod.price}">
