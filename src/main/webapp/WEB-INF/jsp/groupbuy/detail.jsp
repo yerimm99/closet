@@ -178,8 +178,9 @@
                </tr>
                <tr>
 		<td colspan="2" class="gobtn2">
-			<a href="<c:url value='/likes/like.do/'/>${product.productId}/users/${userSession.account.userId}">
-				<b style="font-size: 18px">관심상품</b>
+			 <a href = "<c:url value='/like.do'>
+                           <c:param name = 'productId' value='${product.productId}' />
+                           </c:url>"><b style = "font-size:18px">관심상품</b>
 			</a>
 		 </td>
                </tr>
