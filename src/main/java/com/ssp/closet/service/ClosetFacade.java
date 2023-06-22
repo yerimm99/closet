@@ -106,7 +106,6 @@ public interface ClosetFacade {
    //계정
    Account getAccount(String userId);
    Account getAccount(String userId, String password);
-
    void createAccount(Account account);
 
    /*
