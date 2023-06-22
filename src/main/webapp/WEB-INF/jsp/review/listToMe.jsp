@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html>
@@ -163,11 +165,11 @@
                                     	${review.rating}
                                     </td>
                                     <td>
-                                        <div class="btn-group">
-                                        	${review.writeDate}<br>
-                                            ${review.content}
-                                        </div>
-                                    </td>
+   										 <div class="btn-group">
+       									 <fmt:formatDate value="${review.writeDate}" pattern="yyyy-MM-dd" /><br>
+      									  ${review.content}
+   									 </div>
+									</td>
                                 </tr>
                             </c:if>
                         </c:forEach>
