@@ -38,7 +38,6 @@ public class RestOrderController {
 		return order;   // convert order to JSON text in response body
 	}
 	
-	
 	// @ResponseBody         
 	@GetMapping(value = "/ordersBy/{username}", produces = "application/json")
 	public List<Delivery> getOrdersByUsername(@PathVariable("userId") String userId, HttpServletResponse response)

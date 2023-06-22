@@ -118,6 +118,9 @@
 	</script>
 </head>
 <body>
+<!-- 메뉴바 -->
+	<jsp:include page = "../menu.jsp"/>
+	<hr>
 	<div class="container">
 		<div class="page-title">주문/결제</div>
 		<div class="product-info">
