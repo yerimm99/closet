@@ -11,7 +11,7 @@
    <style type = "text/css">
       body{margin:0}
       .layout{margin:0px auto;width:1180px;padding:10px}
-      .slider{float:left;width: 480px;height: 360px;position: relative;margin: 0 auto;
+      .slider{float:left;width: 324px;height: 324px;position: relative;margin: 0 auto;
           overflow: hidden;margin:50px 20px 0px 40px}
       .slider input[type=radio]{display: none;}
       ul.imgs{padding: 0;margin: 0;list-style: none;}

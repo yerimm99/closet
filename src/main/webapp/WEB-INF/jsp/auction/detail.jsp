@@ -11,7 +11,7 @@
    <style type = "text/css">
       body{margin:0}
       .layout{margin:0px auto;width:1180px;padding:10px}
-      .slider{float:left;width: 480px;height:360px;position: relative;margin: 0 auto;
+      .slider{float:left;width: 324px;height:324px;position: relative;margin: 0 auto;
           overflow: hidden;margin:50px 20px 0px 40px; /* 현재 슬라이드 오른쪽에 위치한 나머지 슬라이드 들이 보이지 않도록 가림 */
       }
       .slider input[type=radio]{display: none;}
