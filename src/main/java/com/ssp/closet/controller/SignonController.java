@@ -31,11 +31,11 @@ public class SignonController {
 	@Value("account/SignonForm")
 	private String formViewName;
 	
-//	@RequestMapping("/account/SignonForm.do")
-//	public String showForm() {
-//		return formViewName;
-//	}
-
+	@RequestMapping(method = RequestMethod.GET)
+	public String showForm() {
+		return "redirect:/closet/index.do";
+	}
+	
 	@RequestMapping("/account/signon.do")
 	public ModelAndView handleRequest(HttpServletRequest request,
 			@RequestParam("userId") String userId,
