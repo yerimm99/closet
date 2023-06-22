@@ -96,8 +96,30 @@
             color: #333;
             font-weight: bold;
         }
-        .btn{text-align:center;font-size:20px;border-radius:10px;
-      border:1px solid black;width:100px;height:35px;color:white;margin-top:10px}
+       .btn {
+			text-align: center;
+			font-size: 20px;
+			border-radius: 10px;
+			border: 1px solid black;
+			width: 100px;
+			height: 35px;
+			color: white;
+			margin-top: 10px;
+		}
+
+		.btn-cancel {
+		    background-color: #FF3366;
+		    border-color: #FF3366;
+		    font-family: Arial, sans-serif; /* 원하는 폰트 설정 */
+		    font-size: 14px; /* 원하는 글씨 크기 설정 */
+		    color: #FFFFFF; /* 흰색으로 설정 */
+		    display: flex; /* 텍스트를 가운데로 정렬하기 위해 flex 사용 */
+		    align-items: center; /* 텍스트를 수직 가운데로 정렬 */
+		    justify-content: center; /* 텍스트를 수평 가운데로 정렬 */
+		    height: 35px; /* 원하는 버튼 높이 설정 */
+		    width: 100px; /* 원하는 버튼 너비 설정 */
+		    border-radius: 10px;
+		}
 	</style>
 </head>
 <body>
@@ -124,7 +146,7 @@
                             </a><br>
                             <a href = "<c:url value='/like/delete.do'>
 								<c:param name = 'productId' value='${prod.productId}' />
-								</c:url>" class = "btn">관심상품 취소하기
+								</c:url>" class="btn btn-cancel">관심상품 취소
 							</a>
                         </div>
                     </c:forEach>
