@@ -39,7 +39,7 @@
 		.category a {
 		    background-color: white;
 		    height: 40px;
-		    font-size: 18px;
+		    font-size: 15px;
 		    text-align: center;
 		    margin-right: 15px;
 		    text-decoration-color: gray;
@@ -110,9 +110,9 @@
         <br>
         <div class="category">
             <a href="<c:url value='/rank/auction/likeList.do' />">경매 좋아요순</a>
-            <a href="<c:url value='/rank/auction/reviewList.do' />">경매 리뷰순</a>
+            <a href="<c:url value='/rank/auction/reviewList.do' />">경매 판매자 평점순</a>
             <a href="<c:url value='/rank/groupbuy/likeList.do' />">공동구매 좋아요순</a>
-            <a href="<c:url value='/rank/groupbuy/reviewList.do' />">공동구매 리뷰순</a>
+            <a href="<c:url value='/rank/groupbuy/reviewList.do' />">공동구매 판매자 평점순</a>
         </div>
         
         <!-- 해당 상품 리스트 -->

@@ -56,7 +56,7 @@ public class ReviewController {
 	public String createReview(HttpServletRequest request,
 			@RequestParam("productId") int productId,
 			@RequestParam("rating") float rating, 
-			@RequestParam("content") String content) 
+			@RequestParam("content") String content, ModelMap model) 
 					throws Exception{
 		UserSession userSession = 
 				(UserSession) WebUtils.getSessionAttribute(request, "userSession");	
@@ -75,9 +75,8 @@ public class ReviewController {
 		newReview.setUserId(suppId);
 		newReview.setWriteDate(date);
 	    newReview.setRating(rating);
-
+	    
 		closet.insertReview(newReview);
-
 		return  "redirect:/closet/mypage.do";
 	}
 

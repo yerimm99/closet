@@ -43,4 +43,5 @@ public class Account implements Serializable {
 
   @Transient
   private double avgRating;
+  
 }
