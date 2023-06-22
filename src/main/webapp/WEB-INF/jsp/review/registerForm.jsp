@@ -128,11 +128,11 @@
 			<form method="POST" action="/review/registerForm.do?productId=${product.productId }">
 				<div class="bid-input-container">
 					<B>별점</B> &nbsp;&nbsp;&nbsp;
-					<input type="text" class="bid-input" placeholder="5점이하의 실수 입력" name = "rating"/><br>
+					<input type="text" class="bid-input" placeholder="0~5점" name = "rating"/><br>
 					<b>한줄평</b> &nbsp;&nbsp;&nbsp;
-					<input type="text" class="bid-input" placeholder="간단하게 한줄평 써주세요." name = "content"/><br>
+					<input type="text" class="bid-input" placeholder="한줄평" name = "content"/><br>
 				</div>
-				<input class="submit-button" type="submit" value="입찰하기">
+				<input class="submit-button" type="submit" value="저장하기">
 			</form>
 		</div>
 	</div>
