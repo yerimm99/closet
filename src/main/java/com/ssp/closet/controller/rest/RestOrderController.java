@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssp.closet.dto.Delivery;
@@ -25,7 +26,7 @@ public class RestOrderController {
 		this.closet = closet;
 	}
 	
-	// @ResponseBody         /order/detail.do?orderId=34
+	@ResponseBody         //order/detail.do?orderId=34
 	@GetMapping(value = "/order/detail/{orderId}", produces = "application/json")
 	public Delivery getOrder(@PathVariable("orderId") int orderId, HttpServletResponse response)
 			throws IOException {
@@ -37,7 +38,6 @@ public class RestOrderController {
 		}
 		return order;   // convert order to JSON text in response body
 	}
-	
 	
 	// @ResponseBody         
 	@GetMapping(value = "/ordersBy/{username}", produces = "application/json")

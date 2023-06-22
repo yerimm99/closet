@@ -118,6 +118,9 @@
 	</script>
 </head>
 <body>
+<!-- 메뉴바 -->
+	<jsp:include page = "../menu.jsp"/>
+	<hr>
 	<div class="container">
 		<div class="page-title">주문/결제</div>
 		<div class="product-info">
@@ -154,12 +157,12 @@
 				</div>
 				<div>
 					<label for="order.creditCard" class="field-label">카드 번호</label>
-					<form:input path="order.creditCard" id="order.creditCard" class="input-field" /> 
+					<form:input path="order.creditCard" id="order.creditCard" placeholder="1234-1234-1234-1234" class="input-field" /> 
 					<form:errors path="order.creditCard" cssClass="error-message"/>
 				</div>
 				<div>
 					<label for="order.expiryDate" class="field-label">만료 기간</label>
-					<form:input path="order.expiryDate" id="order.expiryDate" placeholder="MM/YYYY" class="input-field" /> 
+					<form:input path="order.expiryDate" id="order.expiryDate" placeholder="MM/YY" class="input-field" /> 
 					<form:errors path="order.expiryDate" cssClass="error-message"/>
 				</div>
 				<div class="total-price">

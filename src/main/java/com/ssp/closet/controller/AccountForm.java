@@ -26,10 +26,10 @@ public class AccountForm implements Serializable {
 	public Account getAccount() {
 		return account;
 	}
-	
+
 	public void setAccount(Account account) {
-        this.account = account;
-    }
+		this.account = account;
+	}
 
 	public boolean isNewAccount() {
 		return newAccount;
@@ -43,4 +43,12 @@ public class AccountForm implements Serializable {
 		return repeatedPassword;
 	}
 
+	public boolean isExistAccount(Account account) {
+		if(account == null) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
 }

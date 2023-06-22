@@ -69,6 +69,8 @@ public class AccountFormController {
 				String sAddress = postCode + " " + address1 + " " + address2;
 		        accountForm.getAccount().setAddress(sAddress);
 		        accountForm.getAccount().setRating(0);
+		        Account existUser = closet.getAccount(accountForm.getAccount().getUserId());
+		        accountForm.isExistAccount(existUser);
 		        
 		        validator.validate(accountForm, result);
 		        if (result.hasErrors()) {
