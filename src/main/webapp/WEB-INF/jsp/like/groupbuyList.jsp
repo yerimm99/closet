@@ -106,15 +106,11 @@
 	<hr>
 	
 	<div class = "layout">
+	
+		<div style="text-align:center;font-size:24px;margin-top:60px">공동구매 관심 상품 리스트<br><br></div>
 		<div class="container">
         <div class="product-list">
-            <c:choose>
-                <c:when test="${productList.getSource() == null}">
-                    <div class="sell">
-                        공동구매 상품이 하나도 없습니다.
-                    </div>
-                </c:when>
-                <c:otherwise>
+           
                     <c:forEach var="prod" items="${productList.pageList}">
                         <div class="product-card">
                             <a href="<c:url value='/groupbuy/detail.do'>
@@ -132,8 +128,6 @@
 							</a>
                         </div>
                     </c:forEach>
-                </c:otherwise>
-            </c:choose>
         </div>
     </div>
 	

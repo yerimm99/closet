@@ -140,14 +140,14 @@
 				<div style = "margin:10px"><b>관심 상품 관리</b></div>
 				<hr>
 				<div class = "func">
-					<a href="<c:url value='/bookmark/auctionList.do'></c:url>">
+					<a href="<c:url value='/like/auctionList.do'></c:url>">
 						<img border="0" src="../../images/click.png" class = "clickImg"
 							width = "40" height = "40"/>
 						<span>경매 관심 상품 조회</span>
 					</a>
 				</div>
 				<div class = "func">
-					<a href="<c:url value='/bookmark/groupbuyList.do'></c:url>">
+					<a href="<c:url value='/like/groupbuyList.do'></c:url>">
 						<img border="0" src="../../images/click.png" class = "clickImg"
 							width = "40" height = "40"/>
 						<span>공동구매 관심 상품 조회</span>
