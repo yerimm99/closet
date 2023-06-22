@@ -1,11 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<c:set var="targetUrl">
-	<c:url value='/bid/confirmBid.do' />
-</c:set>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,16 +8,16 @@
 	<title>리뷰 등록 페이지</title>
 	<style>
 		/* KREAM 컬러 팔레트 */
-		:root { -
-			-kream-primary-color: #FF3366; -
-			-kream-secondary-color: #333333; -
-			-kream-tertiary-color: #F5F5F5;
+		:root {
+			--kream-primary-color: #FF3366;
+			--kream-secondary-color: #333333;
+			--kream-tertiary-color: #F5F5F5;
 		}
 		
 		body {
 			margin: 0;
 			font-family: 'Noto Sans', Arial, sans-serif;
-			background-color: var(- -kream-tertiary-color);
+			background-color: var(--kream-tertiary-color);
 		}
 		
 		.container {
@@ -36,7 +31,7 @@
 		h3 {
 			font-size: 24px;
 			margin-bottom: 20px;
-			color: var(- -kream-secondary-color);
+			color: var(--kream-secondary-color);
 			text-align: center;
 			font-family: 'Pacifico', cursive;
 		}
@@ -48,13 +43,19 @@
 		}
 		
 		.product-image {
-			width: 200px;
-			height: 200px;
-			margin-right: 20px;
-			background-color: var(- -kream-tertiary-color);
+			width: 20px;
+			height: 20px;
+			margin-right: 2px;
+			background-color: var(--kream-tertiary-color);
 			border: 1px solid #ccc;
+			margin-bottom: 500px;
 		}
-		
+
+ 	   .resized-image {
+    	    max-width: 200px; /* 최대 가로 너비 */
+    	    max-height: 200px; /* 최대 세로 높이 */
+ 	   }
+
 		.product-details {
 			flex: 1;
 		}
@@ -83,13 +84,13 @@
 		
 		.bid-input:focus {
 			outline: none;
-			border-color: var(- -kream-primary-color);
+			border-color: var(--kream-primary-color);
 			box-shadow: 0 0 0 2px rgba(255, 51, 102, 0.5);
 		}
 		
 		.submit-button {
 			padding: 10px 20px;
-			background-color: var(- -kream-primary-color);
+			background-color: var(--kream-primary-color);
 			color: #fff;
 			border: none;
 			cursor: pointer;
@@ -100,12 +101,8 @@
 			color: red;
 		}
 	</style>
-	<link
-		href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
-		rel="stylesheet">
-	<link
-		href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap"
-		rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 	<!-- 메뉴바 -->
@@ -115,22 +112,22 @@
 		<h3>판매자 리뷰 작성하기</h3>
 		<div class="product-info">
 			<div class="product-image">
-				<img src="../../upload/${product.picture1}">
+   				 <img src="../../upload/${product.picture1}" class="resized-image">
 			</div>
 			<div class="product-details">
-				<b>상품명 ${product.name}</b><br> 색상 ${product.color}<br> 사이즈
-				${product.size} <br>
-				<br>
+				<b>상품명:</b> ${product.name}<br>
+				<b>색상:</b> ${product.color}<br>
+				<b>사이즈:</b> ${product.size}<br>
 			</div>
 		</div>
 		<hr>
 		<div>
-			<form method="POST" action="/review/registerForm.do?productId=${product.productId }">
+			<form method="POST" action="/review/registerForm.do?productId=${product.productId}">
 				<div class="bid-input-container">
-					<B>별점</B> &nbsp;&nbsp;&nbsp;
-					<input type="text" class="bid-input" placeholder="0~5점" name = "rating"/><br>
-					<b>한줄평</b> &nbsp;&nbsp;&nbsp;
-					<input type="text" class="bid-input" placeholder="한줄평" name = "content"/><br>
+					<b>별점:</b>
+					<input type="text" class="bid-input" placeholder="0~5점" name="rating" required><br>
+					<b>한줄평:</b>
+					<input type="text" class="bid-input" placeholder="한줄평" name="content" required><br>
 				</div>
 				<input class="submit-button" type="submit" value="저장하기">
 			</form>
