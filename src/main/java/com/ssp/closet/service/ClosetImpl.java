@@ -28,11 +28,11 @@ import com.ssp.closet.repository.GroupbuyRepository;
 import com.ssp.closet.repository.LikeMarkRepository;
 import com.ssp.closet.repository.MeetRepository;
 import com.ssp.closet.repository.ProductRepository;
+import com.ssp.closet.repository.ReviewRepository;
 
 @Service
 @Transactional
 public class ClosetImpl implements ClosetFacade{
-
 
 	@Autowired  
 	private ProductRepository productRepository;
@@ -302,9 +302,13 @@ public class ClosetImpl implements ClosetFacade{
 	}
 
 	//리뷰
+	@Autowired
+	private ReviewRepository reviewRepository;
+
 	@Override
 	public void insertReview(Review review) {
 		// TODO Auto-generated method stub
+		reviewRepository.save(review);
 
 	}
 	@Override
@@ -318,9 +322,8 @@ public class ClosetImpl implements ClosetFacade{
 		return null;
 	}
 	@Override
-	public List<Review> readReviewListToMe() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Review> readReviewListToMe(String userId) {
+		return reviewRepository.findByUserId(userId);
 	}
 
 
@@ -376,4 +379,5 @@ public class ClosetImpl implements ClosetFacade{
 	public LikeMark cheakLikeMark(Product product, Account account) {
 		return likeRepository.findByProductAndAccount(product, account);
 	}
+
 }

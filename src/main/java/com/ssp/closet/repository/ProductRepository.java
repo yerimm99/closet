@@ -20,5 +20,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer>{
 	@Query("SELECT p FROM Product p ORDER BY p.rank DESC")
 	List<Product> findTopRankingProducts();
 		
-	Product findByProductId(int productId);
+		Product findByProductId(int productId);
+		
 }
