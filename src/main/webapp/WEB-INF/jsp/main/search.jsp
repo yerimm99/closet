@@ -76,18 +76,18 @@
 	
     <div class="search-container">
         <form class="search-form" action="<c:url value='/closet/searchResult.do'/>" method="POST">
-            <input type="text" name="keyword" placeholder="상품명" required>
+            <input type="text" name="keyword" placeholder="상품명을 입력해주세요" required>
             <input type="submit" value="Search">
         </form>
         <div class="search-recommendations">
             <b>추천 검색어</b>
             <ul>
-                <li><a href="<c:url value='/closet/searchResult.do?keyword=나이키' />">나이키</a></li>
-                <li><a href="<c:url value='/closet/searchResult.do?keyword=아디다스' />">아디다스</a></li>
-                <li><a href="<c:url value='/closet/searchResult.do?keyword=빈폴' />">빈폴</a></li>
-                <li><a href="<c:url value='/closet/searchResult.do?keyword=디젤' />">디젤</a></li>
-                <li><a href="<c:url value='/closet/searchResult.do?keyword=스투시' />">스투시</a></li>
-                <li><a href="<c:url value='/closet/searchResult.do?keyword=반팔' />">반팔</a></li>
+                <li><a href="<c:url value='/closet/searchResult.do?keyword=nike' />">Nike</a></li>
+                <li><a href="<c:url value='/closet/searchResult.do?keyword=adidas' />">Adidas</a></li>
+                <li><a href="<c:url value='/closet/searchResult.do?keyword=supreme' />">Supreme</a></li>
+                <li><a href="<c:url value='/closet/searchResult.do?keyword=diesel' />">Diesel</a></li>
+                <li><a href="<c:url value='/closet/searchResult.do?keyword=stussy' />">Stussy</a></li>
+                <li><a href="<c:url value='/closet/searchResult.do?keyword=telfar' />">Telfa</a></li>
             </ul>
         </div>
 

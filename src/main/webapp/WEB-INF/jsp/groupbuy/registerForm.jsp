@@ -129,7 +129,7 @@
 			<tr>
 				<td>사진첨부</td>
 				<td><!-- form:form태그에 file url업로드 기능 없음. requestParam으로 가져가야함 -->
-					최소 1개 최대 4개의 사진을 업로드해주세요<br>
+					최소 2개 최대 4개의 사진을 업로드해주세요<br>
 					    
 					<input type="file" name="files" accept="image/*" multiple />
 					<form:errors path="groupbuy.picture1" cssClass="error-message"/>

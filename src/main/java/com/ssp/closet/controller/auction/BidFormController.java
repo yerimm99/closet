@@ -95,7 +95,7 @@ public class BidFormController {
 		}
 		closet.createBid(bid);
 		bid.getAuction().setPrice(bid.getBidPrice());
-		ModelAndView mav = new ModelAndView("auction/detail");
+		ModelAndView mav = new ModelAndView("redirect:/closet/auction.do");
 		mav.addObject("product", bid.getAuction());
 		status.setComplete();  // remove session
 		return mav;
