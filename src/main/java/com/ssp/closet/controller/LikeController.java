@@ -1,6 +1,7 @@
 package com.ssp.closet.controller;
 
 import com.ssp.closet.dto.LikeMark;
+import com.ssp.closet.dto.Meet;
 import com.ssp.closet.dto.Product;
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
@@ -43,22 +44,28 @@ public class LikeController {
 		if (userSession != null) {
 			Account account = closet.getAccount(userSession.getAccount().getUserId());
 			Product product = closet.getProduct(productId);
-
+			String supp = "";
+			supp = userSession.getAccount().getUserId();
+			int like;
 			if(closet.cheakLikeMark(product, account) == null) {
-				LikeMark like = new LikeMark();
-				like.setAccount(account);
-				like.setMark(1);
-				like.setProduct(product);
-
-				closet.createLike(like);
+				LikeMark likes = new LikeMark();
+				likes.setAccount(account);
+				likes.setMark(1);
+				likes.setProduct(product);
+				like = 1;
+				
+				closet.createLike(likes);
 			}
 			else {
 				closet.deleteLike(product, account);
-			}
+				like = -1;
+				}
 			model.addAttribute("product", product);
-			model.addAttribute("supp", userSession.getAccount().getUserId());
-
+			model.addAttribute("like", like);
+		    model.addAttribute("supp", supp);
 			if(product.getDTYPE().equals("Groupbuy")) {
+				Meet meet = closet.findMeetByUserIdAndProductId(supp, productId);
+				model.put("meet", meet);
 				return new ModelAndView("/groupbuy/detail", model);
 			} else {
 				return new ModelAndView("/auction/detail", model);
