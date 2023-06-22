@@ -17,7 +17,7 @@
 	        justify-content: center;
 	        align-items: flex-start;
 	        gap: 20px;
-	        margin-top: 400px; /* Add margin-top to create space between the menu bar and the product list */
+	        margin-top: 1200px; /* Add margin-top to create space between the menu bar and the product list */
 	    }
         
         .product-card {

@@ -16,6 +16,6 @@ public class SignoffController {
 		session.removeAttribute("userSession");
 		session.invalidate();
 		
-		return "index";
+		return "redirect:/closet/index.do";
 	}
 }
