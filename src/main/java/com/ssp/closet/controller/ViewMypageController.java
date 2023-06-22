@@ -30,6 +30,7 @@ public class ViewMypageController {
 			if (userSession != null) {
 				Account account = closet.getAccount(userSession.getAccount().getUserId());
 				model.put("account", account);
+				model.put("rating", closet.userRating(userSession.getAccount().getUserId()));
 				return "/main/myPage";
 			} else {
 				return "redirect:/account/SignonForm.do";
