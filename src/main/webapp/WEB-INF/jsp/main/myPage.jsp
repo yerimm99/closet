@@ -40,7 +40,7 @@
 		<div class = "accountInfo">
 			<table>
 				<tr>
-					<td rowspan = "5" width = "200"><img border="0" src="../../images/welcome.png" class = "img"/></td>
+					<td rowspan = "6" width = "200"><img border="0" src="../../images/welcome.png" class = "img"/></td>
 					<td colspan = "3" class = "name"><b>${account.username}님</b></td>
 				</tr>
 				<tr>
@@ -66,6 +66,11 @@
 				<tr>
 					<td>주소</td>
 					<td>${account.address}</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>판매자 평점 </td>
+					<td>${account.avgRating}</td>
 					<td></td>
 				</tr>
 			</table>
@@ -154,7 +159,6 @@
 					</a>
 				</div>
 			</div>
-			<br><br><br><br><br>
 		</div>
 	</div>
 </body>

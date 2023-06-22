@@ -8,28 +8,27 @@
 <head>
     <meta charset="UTF-8">
     <title>공동구매 상품 리스트</title>
-    <style type="text/css">
+        <style type="text/css">
         body {
             font-family: Arial, sans-serif;
         }
         
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
         .product-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            grid-gap: 20px;
-        }
+	        display: flex;
+	        flex-wrap: wrap;
+	        justify-content: center;
+	        align-items: flex-start;
+	        gap: 20px;
+	        margin-top: 1300px; /* Add margin-top to create space between the menu bar and the product list */
+	    }
         
         .product-card {
             background-color: #fff;
             border-radius: 4px;
             padding: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            width: 250px;
         }
         
         .product-card a {
@@ -59,20 +58,25 @@
             font-size: 16px;
             color: #FF4E50;
         }
+        
+        .product-card .rank {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #FF4E50;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="product-list">
-            <c:choose>
-                <c:when test="${productList.getSource() == null}">
-                    <div class="sell">
-                        공동구매 상품이 하나도 없습니다.
-                    </div>
-                </c:when>
-                <c:otherwise>
-                    <c:forEach var="prod" items="${productList.pageList}">
-                        <div class="product-card">
+ <div class="product-list">
+        <% int rank = 1; %>
+        <c:forEach var="prod" items="${productList.pageList}">
+            <div class="product-card">
+                <span class="rank"><%= rank++ %></span>
                             <a href="<c:url value='/groupbuy/detail.do'>
                                 <c:param name='productId' value='${prod.productId}' />
                             </c:url>">
@@ -84,26 +88,7 @@
                             </a>
                         </div>
                     </c:forEach>
-                </c:otherwise>
-            </c:choose>
         </div>
-    </div>
-	<!-- 이전 페이지 버튼 -->
-    <c:if test="${productList.page > 0}">
-        <form action="/closet/groupbuy2.do?pageName=previous" method="get">
-            <input type="hidden" name="pageName" value="previous">
-            <input type="submit" value="Previous">
-        </form>
-    </c:if>
-    
-    ${productList.page + 1}
 
-    <!-- 다음 페이지 버튼 -->
-    <c:if test="${productList.page + 1 < productList.pageCount}">
-        <form action="/closet/groupbuy2.do?pageName=next" method="get">
-            <input type="hidden" name="pageName" value="next">
-            <input type="submit" value="Next">
-        </form>
-    </c:if>
 </body>
 </html>
