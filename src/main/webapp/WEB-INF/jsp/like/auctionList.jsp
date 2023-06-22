@@ -122,30 +122,69 @@
 		</c:if>
 
 		<div class="container">
-			<div class="product-list">
-				<c:forEach var="prod" items="${productList.pageList}">
-					<div class="product-card">
-						<a href="<c:url value='/auction/detail.do' />">
-							<img src="../../upload/${prod.picture1}" alt="Product Image">
-							<h3>${prod.name}</h3>
-							<p>
-								<c:choose>
-									<c:when test="${empty prod.price}">
-										<span>${prod.startPrice}원</span><br>
-										경매 시작가
-									</c:when>
-									<c:otherwise>
-										<span>${prod.price}원</span><br>
-										현재 최고가
-									</c:otherwise>
-								</c:choose>
-							</p>
-						</a><br>
-						<a href="<c:url value='/like/delete.do' />" class="btn">관심상품 취소하기</a>
-					</div>
-				</c:forEach>
-			</div>
-		</div>
+        <div class="product-list">
+                    <c:forEach var="prod" items="${productList.pageList}">
+                        <div class="product-card">
+                            <a href="<c:url value='/auction/detail.do'>
+                                <c:param name='productId' value='${prod.productId}' />
+                            </c:url>">
+                                <img src="../../upload/${prod.picture1}" alt="Product Image">
+                                <h3>${prod.name}</h3>
+                                <p>
+                                    <c:choose>
+                                        <c:when test="${empty prod.price}">
+                                            <span>${prod.startPrice}원</span><br>
+                                            경매 시작가
+                                        </c:when>
+                                        <c:otherwise>
+                                            <span>${prod.price}원</span><br>
+                                            현재 최고가
+                                        </c:otherwise>
+                                    </c:choose>
+                                </p>
+                            </a><br>
+                            <a href = "<c:url value='/like/delete.do'>
+								<c:param name = 'productId' value='${prod.productId}' />
+								</c:url>" class = "btn">관심상품 취소하기
+							</a>
+                        </div>
+                    </c:forEach>
+        </div>
+
+        <div class="page-buttons">
+            <!-- 이전 페이지 버튼 -->
+            <c:if test="${productList.page > 0}">
+                <form action="/like/auctionList2.do?pageName=previous" method="get" style="display: inline;">
+                    <input type="hidden" name="pageName" value="previous">
+                    <button type="submit">
+                        &lt;
+                    </button>
+                </form>
+            </c:if>
+
+            <c:forEach var="pageNum" begin="1" end="${productList.pageCount}">
+			    <c:choose>
+			        <c:when test="${pageNum == productList.page + 1}">
+			            <span class="current">${pageNum}</span>
+			        </c:when>
+			        <c:otherwise>
+			              ${pageNum}
+			        </c:otherwise>
+			    </c:choose>
+			</c:forEach>
+			
+
+            <!-- 다음 페이지 버튼 -->
+            <c:if test="${productList.page + 1 < productList.pageCount}">
+                <form action="/like/auctionList2.do?pageName=next" method="get" style="display: inline;">
+                    <input type="hidden" name="pageName" value="next">
+                    <button type="submit">
+                        &gt;
+                    </button>
+                </form>
+            </c:if>
+        </div>
+        </div>
 	</div>
 </body>
 </html>

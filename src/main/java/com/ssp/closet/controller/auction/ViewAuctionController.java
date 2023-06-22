@@ -208,6 +208,7 @@ public class ViewAuctionController {
 	         supp = userSession.getAccount().getUserId();
 	      }
 	      Integer likeSum = closet.getLikeSum(productId);
+	      model.put("rating", closet.userRating(product.getAccount().getUserId()));
 	      model.put("likeSum", likeSum);
  	      model.put("supp", supp);
 		  model.put("product", product);

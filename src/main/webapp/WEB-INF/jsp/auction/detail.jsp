@@ -133,7 +133,7 @@
                </tr>
                <tr>
                   <th>판매자</th>
-                  <td colspan = "2">${product.account.userId}</td>
+                  <td colspan = "2">${product.account.userId} &nbsp;&nbsp;${rating}</td>
                </tr>
                <tr>
                   <c:if test="${product.account.userId ne supp}" >

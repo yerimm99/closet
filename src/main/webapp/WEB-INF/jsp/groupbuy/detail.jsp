@@ -125,7 +125,7 @@
                </tr>
                <tr>
                   <th>판매자</th>
-                  <td>${product.account.userId}</td>
+                  <td>${product.account.userId} &nbsp;&nbsp;${rating}</td>
                </tr>
                <tr>
                   <c:if test="${product.account.userId ne supp and meet eq null}" >
@@ -177,12 +177,15 @@
                   </c:if>
                </tr>
                <tr>
-		<td colspan="2" class="gobtn2">
-			<a href = "<c:url value='/like.do'>
+				<td colspan="2" class="gobtn2">
+						<a href = "<c:url value='/like.do'>
                            <c:param name = 'productId' value='${product.productId}' />
-                           </c:url>"><b style = "font-size:18px">관심상품</b>
+                           </c:url>"><b style = "font-size:18px">관심상품
+                           <c:if test="${empty likeSum}"> 0 </c:if>
+                           <c:if test="${!empty likeSum}"> ${likeSum} </c:if>
+                           </b>
                      </a>
-		 </td>
+				 </td>
                </tr>
                
             </table>

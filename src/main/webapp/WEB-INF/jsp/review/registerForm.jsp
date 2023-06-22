@@ -125,7 +125,7 @@
 		</div>
 		<hr>
 		<div>
-			<form method="POST" action="/review/registerForm.do">
+			<form method="POST" action="/review/registerForm.do?productId=${product.productId }">
 				<div class="bid-input-container">
 					<B>별점</B> &nbsp;&nbsp;&nbsp;
 					<input type="text" class="bid-input" placeholder="5점이하의 실수 입력" name = "rating"/><br>

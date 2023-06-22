@@ -134,7 +134,7 @@
         <div class="page-buttons">
             <!-- 이전 페이지 버튼 -->
             <c:if test="${productList.page > 0}">
-                <form action="/closet/groupbuy2.do?pageName=previous" method="get" style="display: inline;">
+                <form action="/like/groupbuyList2.do?pageName=previous" method="get" style="display: inline;">
                     <input type="hidden" name="pageName" value="previous">
                     <button type="submit">
                         &lt;
@@ -156,7 +156,7 @@
 
             <!-- 다음 페이지 버튼 -->
             <c:if test="${productList.page + 1 < productList.pageCount}">
-                <form action="/closet/groupbuy2.do?pageName=next" method="get" style="display: inline;">
+                <form action="/like/groupbuyList2.do?pageName=next" method="get" style="display: inline;">
                     <input type="hidden" name="pageName" value="next">
                     <button type="submit">
                         &gt;

@@ -19,6 +19,7 @@ import com.ssp.closet.controller.UserSession;
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Groupbuy;
 import com.ssp.closet.dto.Meet;
+import com.ssp.closet.dto.Review;
 import com.ssp.closet.service.ClosetFacade;
 
 
@@ -183,9 +184,12 @@ public class ViewGroupbuyController {
 	      }
 	      
 	      Meet meet = closet.findMeetByUserIdAndProductId(supp, productId);
-	      
+	      Integer likeSum = closet.getLikeSum(productId);
+
+	      model.put("rating", closet.userRating(product.getAccount().getUserId()));
 	      model.put("meet", meet);
 	      model.put("supp", supp);
 	      model.put("product", product);
+	      model.put("likeSum", likeSum);
 	   }
 }
