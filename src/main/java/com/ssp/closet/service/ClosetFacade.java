@@ -2,13 +2,10 @@ package com.ssp.closet.service;
 
 import java.util.List;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
 import com.ssp.closet.dto.Bid;
-import com.ssp.closet.dto.Category;
 import com.ssp.closet.dto.Groupbuy;
 import com.ssp.closet.dto.LikeMark;
 import com.ssp.closet.dto.Meet;
@@ -18,12 +15,7 @@ import com.ssp.closet.dto.Review;
 
 public interface ClosetFacade {
    
-   //카테고리
-   List<Category> getCategoryList();
-   Category getCategory(String categoryId);
-
    Product getProduct(int productId);
-   
    
    //경매
    void insertAuction(Auction auction);
@@ -106,18 +98,9 @@ public interface ClosetFacade {
    Account getAccount(String userId, String password);
    void createAccount(Account account);
 
-   /*
-    * public static final List<Account> accountList = null;
-    * 
-    * public static Account getAccountByUserId(String userId) { // userId에 해당하는 계정을
-    * accountList에서 검색하여 반환 for (Account account : accountList) { if
-    * (account.getUserId().equals(userId)) { return account; } } return null; //
-    * 검색된 계정이 없는 경우 null 반환 }
-    * 
-    * public static Account getAccountByEmail(String email) { // email에 해당하는 계정을
-    * accountList에서 검색하여 반환 for (Account account : accountList) { if
-    * (account.getEmail().equals(email)) { return account; } } return null; // 검색된
-    * 계정이 없는 경우 null 반환 }
-    */
-   /* List<Product> getTopRankingProducts(); */
+   //랭킹
+   List<Auction> getAuctionSortedByLikeCount();
+   List<Groupbuy> getGroupbuySortedByLikeCount();
+   List<Auction> getAuctionRankingByReviewRating();
+   List<Groupbuy> getGroupbuyRankingByReviewRating();
 }

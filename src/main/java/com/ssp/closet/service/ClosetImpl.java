@@ -1,6 +1,7 @@
 package com.ssp.closet.service;
 
-import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -14,7 +15,6 @@ import org.springframework.stereotype.Service;
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
 import com.ssp.closet.dto.Bid;
-import com.ssp.closet.dto.Category;
 import com.ssp.closet.dto.Groupbuy;
 import com.ssp.closet.dto.LikeMark;
 import com.ssp.closet.dto.Meet;
@@ -37,11 +37,7 @@ public class ClosetImpl implements ClosetFacade{
 
    @Autowired  
    private ProductRepository productRepository;
-
-   public List<Product> getProductList() {
-      return productRepository.findAll();
-   }
-
+   
    public Product getProduct(int productId) {
       return productRepository.findByProductId(productId);
    }
@@ -327,21 +323,6 @@ public class ClosetImpl implements ClosetFacade{
 	    }
 	}
 
-
-   //카테고리
-   @Override
-   public List<Category> getCategoryList() {
-      // TODO Auto-generated method stub
-      return null;
-   }
-   @Override
-   public Category getCategory(String categoryId) {
-      // TODO Auto-generated method stub
-      return null;
-   }
-
-
-
    //계정
    @Autowired
    private AccountRepository accountRepository;
@@ -379,4 +360,90 @@ public class ClosetImpl implements ClosetFacade{
 	public LikeMark cheakLikeMark(Product product, Account account) {
 		return likeRepository.findByProductAndAccount(product, account);
 	}
+	
+	//랭킹 좋아요순
+	public List<Auction> getAuctionSortedByLikeCount() {
+        List<Auction> products = aucRepository.findAll();
+        
+        for (Auction product : products) {
+        	if(getLikeSum(product.getProductId()) != null) {
+	            int likeCount = getLikeSum(product.getProductId());
+	            product.setLikeCount(likeCount);
+        	}
+        }
+        
+        products.sort(Comparator.comparingInt(Product::getLikeCount).reversed());
+        
+        return products;
+    }
+		public List<Groupbuy> getGroupbuySortedByLikeCount() {
+	        List<Groupbuy> products = groupbuyRepository.findAll();
+	        
+	        for (Groupbuy product : products) {
+	        	if(getLikeSum(product.getProductId()) != null) {
+		            int likeCount = getLikeSum(product.getProductId());
+		            product.setLikeCount(likeCount);
+	        	}
+	        }
+	        
+	        products.sort(Comparator.comparingInt(Product::getLikeCount).reversed());
+	        
+	        return products;
+	    }
+		
+		
+		//평점순
+		public List<Auction> getAuctionRankingByReviewRating() {
+		    List<Account> sellers = accountRepository.findAll();
+
+		    for (Account seller : sellers) {
+		    	if(userRating(seller.getUserId()) != "") {
+			    	 double rating = Double.parseDouble(userRating(seller.getUserId()));
+			    	 seller.setAvgRating(rating);
+		    	}
+		    }
+
+		    sellers.sort(Comparator.comparingDouble(Account::getAvgRating).reversed());
+
+		    List<Auction> rankingProducts = new ArrayList<>();
+
+		    for (Account seller : sellers) {
+		        List<Auction> sellerProducts = findSellAuctionByAccount(seller);
+		        rankingProducts.addAll(sellerProducts);
+		        if (rankingProducts.size() >= 10) {
+		            break;
+		        }
+		    }
+		   
+		    return rankingProducts.subList(0, Math.min(rankingProducts.size(), 10));
+		}
+		
+		public List<Groupbuy> getGroupbuyRankingByReviewRating() {
+		    List<Account> sellers = accountRepository.findAll();
+
+		    for (Account seller : sellers) {
+		    	if(userRating(seller.getUserId()) != "") {
+			    	 double rating = Double.parseDouble(userRating(seller.getUserId()));
+			    	 seller.setAvgRating(rating);
+		    	}
+		    }
+
+		    sellers.sort(Comparator.comparingDouble(Account::getAvgRating).reversed());
+
+		    List<Groupbuy> rankingProducts = new ArrayList<>();
+
+		    for (Account seller : sellers) {
+		        List<Groupbuy> sellerProducts = findSellGroupbuyByAccount(seller);
+		        rankingProducts.addAll(sellerProducts);
+		        if (rankingProducts.size() >= 10) {
+		            break;
+		        }
+		    }
+		   
+		    return rankingProducts.subList(0, Math.min(rankingProducts.size(), 10));
+		}
+
+
+
+		
 }

@@ -32,6 +32,7 @@ public class Groupbuy extends Product implements Serializable {
     private List<Meet> meets;
 
 	public void initGroupbuy(Account account) {
+		super.setDTYPE("Groupbuy");
 		super.setStatus(1);
 		super.setRegisterDate(new Date());
 		super.setAccount(account);

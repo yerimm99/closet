@@ -19,6 +19,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -79,9 +80,10 @@ public class Product implements Serializable {
 	@Column(name = "DTYPE", insertable=false, updatable=false)
 	private String DTYPE;
 	
-	
 	@ManyToOne
 	@JoinColumn(name = "USERID", referencedColumnName = "USERID")
 	private Account account;
 
+	@Transient
+	private int likeCount;
 }
