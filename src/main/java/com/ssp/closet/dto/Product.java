@@ -53,8 +53,6 @@ public class Product implements Serializable {
 	private String name;
 	@Column(name="PDESCRIPTION")
 	private String description; // 상품 설명
-	@Column(name="PTYPE")
-	private int ptype; // 경매? 공동구매?
 	@Column(name="STATUS")
 	private int status; // 판매 상태
 	@Column(name="REGISTERDATE")
@@ -81,8 +79,6 @@ public class Product implements Serializable {
 	@Column(name = "DTYPE", insertable=false, updatable=false)
 	private String DTYPE;
 	
-	@Column(name = "RANK")
-	private Integer rank;
 	
 	@ManyToOne
 	@JoinColumn(name = "USERID", referencedColumnName = "USERID")

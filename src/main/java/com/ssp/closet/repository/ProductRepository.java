@@ -12,14 +12,8 @@ import com.ssp.closet.dto.Product;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer>{
-	
-	List<Product> findByPtypeAndStatus(int ptype, int status);
 	List<Product> findByNameIgnoreCaseContaining(String keywords);
 	//List<Product> findAll();
-		
-	@Query("SELECT p FROM Product p ORDER BY p.rank DESC")
-	List<Product> findTopRankingProducts();
-		
-		Product findByProductId(int productId);
-		
+	Product findByProductId(int productId);
+
 }

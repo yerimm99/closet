@@ -38,10 +38,6 @@ public class ClosetImpl implements ClosetFacade{
    @Autowired  
    private ProductRepository productRepository;
 
-   public List<Product> getProductList(int type, int status) {
-      return productRepository.findByPtypeAndStatus(type, status);
-   }
-
    public List<Product> getProductList() {
       return productRepository.findAll();
    }
