@@ -16,5 +16,4 @@ public interface LikeMarkRepository extends JpaRepository<LikeMark, Long> {
 	void deleteByProductAndAccount(Product product, Account account);
 	int getLikeCountByProduct(Product product);
 	LikeMark findByProductAndAccount(Product product, Account account);
-	
 }

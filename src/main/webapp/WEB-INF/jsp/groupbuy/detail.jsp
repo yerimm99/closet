@@ -178,9 +178,16 @@
                </tr>
                <tr>
 		<td colspan="2" class="gobtn2">
-			<a href="<c:url value='/likes/like.do/'/>${product.productId}/users/${userSession.account.userId}">
-				<b style="font-size: 18px">관심상품</b>
-			</a>
+			<c:if test="${like == -1}">
+				<a href="<c:url value='/like.do'/>?productId=${product.productId}">
+					<b style="font-size: 18px"><img border="0" src="../../images/heart1.png" class="mypageImg"/>관심상품</b>
+				</a>
+			</c:if>
+			<c:if test="${like != -1}">
+				<a href="<c:url value='/like.do'/>?productId=${product.productId}">
+					<b style="font-size: 18px"><img border="0" src="../../images/heart2.png" class="mypageImg"/>관심상품</b>
+				</a>
+			</c:if>
 		 </td>
                </tr>
                
