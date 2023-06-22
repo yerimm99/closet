@@ -125,7 +125,7 @@
                </tr>
                <tr>
                   <th>판매자</th>
-                  <td>${product.account.userId}</td>
+                  <td>${product.account.userId} &nbsp;&nbsp;${rating}</td>
                </tr>
                <tr>
                   <c:if test="${product.account.userId ne supp and meet eq null}" >
@@ -180,12 +180,16 @@
 		<td colspan="2" class="gobtn2">
 			<c:if test="${like == -1}">
 				<a href="<c:url value='/like.do'/>?productId=${product.productId}">
-					<b style="font-size: 18px"><img border="0" src="../../images/heart1.png" class="mypageImg"/>관심상품</b>
+					<b style="font-size: 18px"><img border="0" src="../../images/heart1.png" class="mypageImg"/>
+					<c:if test="${empty likeSum}"> 0 </c:if>
+                    <c:if test="${!empty likeSum}"> ${likeSum} </c:if></b>
 				</a>
 			</c:if>
 			<c:if test="${like != -1}">
 				<a href="<c:url value='/like.do'/>?productId=${product.productId}">
-					<b style="font-size: 18px"><img border="0" src="../../images/heart2.png" class="mypageImg"/>관심상품</b>
+					<b style="font-size: 18px"><img border="0" src="../../images/heart2.png" class="mypageImg"/>
+					<c:if test="${empty likeSum}"> 0 </c:if>
+                     <c:if test="${!empty likeSum}"> ${likeSum} </c:if></b>
 				</a>
 			</c:if>
 		 </td>

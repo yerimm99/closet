@@ -60,9 +60,16 @@ public class LikeController {
 				closet.deleteLike(product, account);
 				like = -1;
 				}
+			
 			model.addAttribute("product", product);
+			
+			Integer likeSum = closet.getLikeSum(productId);
+			model.addAttribute("likeSum", likeSum);
+			
 			model.addAttribute("like", like);
 		    model.addAttribute("supp", supp);
+		    
+		    
 			if(product.getDTYPE().equals("Groupbuy")) {
 				Meet meet = closet.findMeetByUserIdAndProductId(supp, productId);
 				model.put("meet", meet);
@@ -119,7 +126,7 @@ public class LikeController {
 			System.out.println();
 		}
 
-		AuctionList.setPageSize(4);
+		AuctionList.setPageSize(12);
 		ModelAndView mav2 = new ModelAndView("like/auctionList");
 		mav2.addObject("productList", AuctionList);
 		return mav2;
@@ -158,7 +165,7 @@ public class LikeController {
 
 		PagedListHolder<Groupbuy> GroupbuyList = new PagedListHolder<Groupbuy>(groupbuyLikeList);
 
-		GroupbuyList.setPageSize(4);
+		GroupbuyList.setPageSize(12);
 		ModelAndView mav2 = new ModelAndView("like/groupbuyList");
 		mav2.addObject("productList", GroupbuyList);
 		return mav2;
