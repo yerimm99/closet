@@ -39,18 +39,20 @@ public class LikeController {
         this.goupbuyRepository = goupbuyRepository;
     }
 
-    @PostMapping("/like.do/{productId}/users/{userId}")
+    @GetMapping("/like.do/{productId}/users/{userId}")
     public ResponseEntity<String> addLikeMark(
             HttpSession session,
             @PathVariable("productId") int productId,
-            @PathVariable("userId") int userId,
-            @RequestParam("mark") int mark) {
+            @PathVariable("userId") String userId) {
+            
+    	
 
         // Retrieve userId from session
-        int loggedInUserId = (int) session.getAttribute("userId");
-
+    	UserSession user2 = (UserSession)session.getAttribute("userSession");
+    	String loggedInUserId = (String) user2.getAccount().getUserId();
+    	System.out.println(loggedInUserId);
         // Ensure that the logged-in user matches the requested userId
-        if (loggedInUserId != userId) {
+        if (!loggedInUserId.equals(userId)) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인한 사용자와 요청한 사용자가 일치하지 않습니다");
         }
 
