@@ -141,7 +141,7 @@
                 </tr>
 			 	 <c:forEach items="${productList.pageList}" var="prod">
                     <tr>
-                        <td width = "250px" height = "250px">
+                        <td width = "324px" height = "324px">
                         	<a href="<c:url value='/groupbuy/detail.do'>
                                 <c:param name='productId' value='${prod.productId}' />
                             	</c:url>">

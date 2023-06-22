@@ -167,7 +167,7 @@
 		  			<c:forEach items="${meetList.pageList}" var="meet" varStatus="meetStatus">
 		   			<c:if test="${prodStatus.index == meetStatus.index}">
 						<tr>
-							<td width = "250px" height = "250px">
+							<td width = "324px" height = "324px">
 								<a href="<c:url value='/groupbuy/detail.do'>
                                 	<c:param name='productId' value='${prod.productId}' />
                             		</c:url>">
