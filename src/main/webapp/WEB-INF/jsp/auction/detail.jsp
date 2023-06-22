@@ -162,7 +162,7 @@
                               </c:if>
                          </c:if>
                          <c:choose>
-    					  <c:when test="${empty product.price or product.status == 0}">
+    					  <c:when test="${empty product.price and product.status == 0}">
                            <td class = "gobtn" style="width:50%">
                               <a href="<c:url value='/auction/delete.do'>
                                                <c:param name='productId' value='${product.productId}' />
