@@ -41,6 +41,4 @@ public class Auction extends Product implements Serializable {
 		super.setStatus(1);
 		super.setAccount(account);
 	}
-
-
 }

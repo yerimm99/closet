@@ -52,12 +52,7 @@
       img {
             max-width: 100%;
             height:100%;
-        }
-        .mypageImg {
-        margin-top:2px;
-      width: 22px;
-      height: 22px;
-    }
+        }   
    </style>
 </head>
 <body>
@@ -79,13 +74,13 @@
                </c:if>
                
             <ul id="imgholder" class="imgs">
-               <li><img src = "../../upload/${product.picture1}" alt="Product Image"></li>
-               <li><img src= "../../upload/${product.picture2}" alt="Product Image"></li>
+               <li><img src = "../../upload/${product.picture1}"></li>
+               <li><img src= "../../upload/${product.picture2}"></li>
                <c:if test="${!empty product.picture3}" >
-                  <li><img src= "../../upload/${product.picture3}" alt="Product Image"></li>
+                  <li><img src= "../../upload/${product.picture3}"></li>
                </c:if>
                <c:if test="${!empty product.picture4}" >
-                  <li><img src="../../upload/${product.picture4}" alt="Product Image"></li>
+                  <li><img src="../../upload/${product.picture4}"></li>
                </c:if>
             </ul>
             <div class="bullets">

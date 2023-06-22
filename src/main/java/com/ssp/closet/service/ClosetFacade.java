@@ -17,7 +17,6 @@ public interface ClosetFacade {
    
    Product getProduct(int productId);
    
-   
    //경매
    void insertAuction(Auction auction);
    Auction getAuction(int productId);
@@ -90,6 +89,7 @@ public interface ClosetFacade {
    //리뷰
    void insertReview(Review review);
    List<Review> readReviewListToMe(String userId);
+   Review findReviewByOrderId(int orderId);
    String userRating(String userId);
 
    
