@@ -30,10 +30,8 @@ public class OrderForm implements Serializable{
 		return newOrder;
 	}
 	
-	
-	
 	public String convertToFormattedDate(String date) {
-		DateFormat inputFormat = new SimpleDateFormat("MM/yyyy");
+		DateFormat inputFormat = new SimpleDateFormat("MM/yy");
         DateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date parsedDate = null;
 		try {
