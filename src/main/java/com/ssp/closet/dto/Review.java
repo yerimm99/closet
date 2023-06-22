@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "suppreview")
+@Table(name = "SUPPREVIEW")
 @Data
 @Getter
 @Setter
@@ -35,7 +35,6 @@ public class Review implements Serializable{
     @JoinColumn(name = "USERID", referencedColumnName = "USERID")
     @Column(name = "USERID")
     private String userId;
-    
     
     @Column(name = "WRITEDATE")
     @CreatedDate

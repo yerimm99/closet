@@ -68,11 +68,6 @@ public class ReviewController {
 		newReview.setOrderId(delivery.getOrderId());;
 		newReview.setUserId(suppId);
 		newReview.setWriteDate(date);
-		
-		double recentRate = closet.getAccount(suppId).getRating();
-	    int countReview = closet.readReviewListToMe(suppId).size();
-	    closet.getAccount(suppId).setRating((countReview * recentRate + rating) / (countReview + 1));
-	    
 	    newReview.setRating(rating);
 
 		closet.insertReview(newReview);

@@ -1,5 +1,6 @@
 package com.ssp.closet.service;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -305,29 +306,30 @@ public class ClosetImpl implements ClosetFacade{
    @Autowired
    private ReviewRepository reviewRepository;
 
-   @Override
    public void insertReview(Review review) {
-      // TODO Auto-generated method stub
       reviewRepository.save(review);
-
    }
-   @Override
-   public void deleteReview(int orderId) {
-      // TODO Auto-generated method stub
-
-   }
-   @Override
-   public List<Review> readReviewListByMe() {
-      // TODO Auto-generated method stub
-      return null;
-   }
-   @Override
+   
    public List<Review> readReviewListToMe(String userId) {
       return reviewRepository.findByUserId(userId);
    }
    public Review findReviewByOrderId(int orderId) {
 	   return reviewRepository.findByOrderId(orderId);
    }
+   
+   public String userRating(String userId) {
+	    List<Float> ratings = reviewRepository.getRatingsByUserId(userId);
+	    if (ratings != null && !ratings.isEmpty()) {
+	        double sum = 0.0;
+	        for (Float rating : ratings) {
+	            sum += rating;
+	        }
+	        double average = sum / ratings.size();
+	        return String.format("%.1f", average);
+	    } else {
+	        return "";
+	    }
+	}
 
 
    //카테고리
@@ -367,24 +369,18 @@ public class ClosetImpl implements ClosetFacade{
    public void createLike(LikeMark like) {
       likeRepository.save(like);
    }
-
-   public void deleteLike(Product product, Account account) {
-      likeRepository.deleteByProductAndAccount(product, account);
-   }
-   public List<LikeMark> findLikeMark(Account account) {
-      return likeRepository.findByAccount(account);
-   }
-   
-   public int getLikeSum(Product product) {
-      return likeRepository.getLikeCountByProduct(product);
-   }
-   
-   public LikeMark cheakLikeMark(Product product, Account account) {
-      return likeRepository.findByProductAndAccount(product, account);
-   }
-   
-//   public int getLikeByProductAndUser(Product product, Account account) {
-//      return likeRepository.getLikeByProductAndAccount(product, account);
-//   }
-
+	public void deleteLike(Product product, Account account) {
+		likeRepository.deleteByProductAndAccount(product, account);
+	}
+	public List<LikeMark> findLikeMark(Account account) {
+		return likeRepository.findByAccount(account);
+	}
+	
+	public Integer getLikeSum(int productId) {
+		return likeRepository.getMarkSumByProduct(productId);
+	}
+	
+	public LikeMark cheakLikeMark(Product product, Account account) {
+		return likeRepository.findByProductAndAccount(product, account);
+	}
 }

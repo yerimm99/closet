@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="EUC-KR">
+	<meta charset="UTF-8">
 	<title>공동구매 관심 상품 리스트</title>
 	<style type = "text/css">
 		body{margin:0}

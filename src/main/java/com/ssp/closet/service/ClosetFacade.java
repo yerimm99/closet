@@ -71,7 +71,6 @@ public interface ClosetFacade {
 
    List<Groupbuy> findTop4GroupbuyOrderByRegisterDate();
 
-   
    //공구참여
    void insertMeet(Meet meet);
    Meet findMeetByUserIdAndProductId(String userId, int productId);
@@ -85,7 +84,7 @@ public interface ClosetFacade {
    void createLike(LikeMark like);
    void deleteLike(Product product, Account account);
    List<LikeMark> findLikeMark(Account account);
-   int getLikeSum(Product product);
+   Integer getLikeSum(int productId);
    LikeMark cheakLikeMark(Product product, Account account);
 //   int getLikeByProductAndUser(Product product, Account account);
    
@@ -98,10 +97,9 @@ public interface ClosetFacade {
    
    //리뷰
    void insertReview(Review review);
-   void deleteReview(int orderId);
-   List<Review> readReviewListByMe();
    List<Review> readReviewListToMe(String userId);
    Review findReviewByOrderId(int orderId);
+   String userRating(String userId);
 
    
    //계정

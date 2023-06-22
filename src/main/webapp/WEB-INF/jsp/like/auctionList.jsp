@@ -8,106 +8,119 @@
 <head>
 	<meta charset="EUC-KR">
 	<title>경매 관심 상품 리스트</title>
-	<style type = "text/css">
-		body{margin:0}
-		.layout{margin:0px auto;width:1180px;padding:10px}
-		
-		body {
-            font-family: Arial, sans-serif;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .product-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            grid-gap: 20px;
-        }
-        
-        .product-card {
-            background-color: #fff;
-            border-radius: 4px;
-            padding: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        
-        .product-card a {
-            color: #333;
-            text-decoration: none;
-        }
-        
-        .product-card img {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 10px;
-        }
-        
-        .product-card h3 {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-        
-        .product-card p {
-            font-size: 14px;
-            color: #888;
-            margin-bottom: 10px;
-        }
-        
-        .product-card span {
-            font-weight: bold;
-            font-size: 16px;
-            color: #FF4E50;
-        }
+	<style type="text/css">
+		body { margin: 0 }
+		.layout { margin: 0px auto; width: 1180px; padding: 10px }
 
-		.page-button {
-		  border: none;
-		  background: none;
-		  color: inherit;
-		  cursor: pointer;
-		  padding: 0;
+		body {
+			font-family: Arial, sans-serif;
 		}
 
-        .page-buttons {
-            text-align: center;
-            margin-top: 20px;
-        }
-        
-        .page-buttons button {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            padding: 5px 10px;
-            margin: 0 5px;
-            cursor: pointer;
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            color: #333;
-            text-decoration: none;
-        }
-        
-        .page-buttons button:hover {
-            background-color: #f5f5f5;
-        }
-        
-        .page-buttons .current {
-            color: #333;
-            font-weight: bold;
-        }
-        .btn{text-align:center;font-size:20px;border-radius:10px;
-      border:1px solid black;width:100px;height:35px;color:white;margin-top:10px}
+		.container {
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 20px;
+		}
+
+		.product-list {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+			grid-gap: 20px;
+		}
+
+		.product-card {
+			background-color: #fff;
+			border-radius: 4px;
+			padding: 20px;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		}
+
+		.product-card a {
+			color: #333;
+			text-decoration: none;
+		}
+
+		.product-card img {
+			max-width: 100%;
+			height: auto;
+			margin-bottom: 10px;
+		}
+
+		.product-card h3 {
+			font-size: 18px;
+			margin-bottom: 10px;
+		}
+
+		.product-card p {
+			font-size: 14px;
+			color: #888;
+			margin-bottom: 10px;
+		}
+
+		.product-card span {
+			font-weight: bold;
+			font-size: 16px;
+			color: #FF4E50;
+		}
+
+		.page-button {
+			border: none;
+			background: none;
+			color: inherit;
+			cursor: pointer;
+			padding: 0;
+		}
+
+		.page-buttons {
+			text-align: center;
+			margin-top: 20px;
+		}
+
+		.page-buttons button {
+			background-color: #fff;
+			border: 1px solid #ddd;
+			padding: 5px 10px;
+			margin: 0 5px;
+			cursor: pointer;
+			font-family: Arial, sans-serif;
+			font-size: 14px;
+			color: #333;
+			text-decoration: none;
+		}
+
+		.page-buttons button:hover {
+			background-color: #f5f5f5;
+		}
+
+		.page-buttons .current {
+			color: #333;
+			font-weight: bold;
+		}
+
+		.btn {
+			text-align: center;
+			font-size: 20px;
+			border-radius: 10px;
+			border: 1px solid black;
+			width: 100px;
+			height: 35px;
+			color: white;
+			margin-top: 10px;
+		}
 	</style>
 </head>
 <body>
 	<!-- 메뉴바 -->
-	<jsp:include page = "../menu.jsp"/>
+	<jsp:include page="../menu.jsp" />
 	<hr>
-	
-	<div class = "layout">
+
+	<div class="layout">
 		<div style="text-align:center;font-size:24px;margin-top:60px">경매 관심 상품 리스트<br><br></div>
-		
+
+		<c:if test="${empty productList.pageList}">
+			아무것도 없음.
+		</c:if>
+
 		<div class="container">
         <div class="product-list">
                     <c:forEach var="prod" items="${productList.pageList}">

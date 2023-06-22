@@ -215,10 +215,12 @@ public class ViewAuctionController {
 	         }
 		     
 	      }
-	    System.out.println(like);
-	    model.put("like", like);
-	    model.put("supp", supp);
-		model.put("product", product);
+	      Integer likeSum = closet.getLikeSum(productId);
+	      model.put("rating", closet.userRating(product.getAccount().getUserId()));
+	      model.put("likeSum", likeSum);
+ 	      model.put("supp", supp);
+		  model.put("product", product);
+		  model.put("like", like);
 	}
 
 	@RequestMapping({"/auction/successBySupp.do","/myPage/myAuction.do"})
