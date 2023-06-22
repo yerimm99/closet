@@ -6,7 +6,8 @@ import com.ssp.closet.dto.Account;
 
 public interface AccountRepository extends JpaRepository<Account, String> {
 
-	//Optional<Account> findByUserId(String userId);
-	
+	Account findByUserId(String userId);
+
+	Account findByUserIdAndPassword(String userId, String password);
 
 }

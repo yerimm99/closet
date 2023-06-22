@@ -61,7 +61,6 @@ public class ViewOrderController {
 		return "order/list";
 	}
 	
-	
 	@RequestMapping("/order/detail.do")
 	public void detailOrder(HttpServletRequest request,
 			ModelMap model,

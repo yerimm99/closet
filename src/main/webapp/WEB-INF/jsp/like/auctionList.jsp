@@ -110,13 +110,6 @@
 		
 		<div class="container">
         <div class="product-list">
-            <c:choose>
-                <c:when test="${productList.getSource() == null}">
-                    <div class="sell">
-                        경매 상품이 하나도 없습니다.
-                    </div>
-                </c:when>
-                <c:otherwise>
                     <c:forEach var="prod" items="${productList.pageList}">
                         <div class="product-card">
                             <a href="<c:url value='/auction/detail.do'>
@@ -143,8 +136,6 @@
 							</a>
                         </div>
                     </c:forEach>
-                </c:otherwise>
-            </c:choose>
         </div>
 
         <div class="page-buttons">

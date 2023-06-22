@@ -18,8 +18,8 @@ public class OrderServiceClient_rest {
 	private static String orderSvcUrl = "http://" + host + ":" + port + "/rest";				
 
 	public static void main(String[] args) {		
-		getOrderInfo("j2ee");	
-		getOrderInfo(1002);
+		getOrderInfo("aaa");	
+		getOrderInfo(32);
 	}
 
 	private static void getOrderInfo(int orderId) {
@@ -28,7 +28,7 @@ public class OrderServiceClient_rest {
 		Delivery order = null;
 		try {
 			order = restTemplate.getForObject(
-					orderSvcUrl + "/order/{orderId}", Delivery.class, orderId);
+					orderSvcUrl + "/order/detail/{orderId}", Delivery.class, orderId);
 		} catch (HttpStatusCodeException e) {
 			if (e.getStatusCode() == HttpStatus.NOT_FOUND) {	// 404 Not Found	
 				System.out.println("Order with ID " + orderId + " not found");
@@ -37,7 +37,7 @@ public class OrderServiceClient_rest {
 			e.printStackTrace();
 			return;
 		}		
-		if (order != null) printOrder(order);		
+		if (order != null) printOrder(order); //아래 메소드인 printOrders 호출		
 		
 		System.out.println();
 	}
@@ -57,7 +57,7 @@ public class OrderServiceClient_rest {
 			e.printStackTrace();
 			return;
 		} 	
-		if (orders != null) printOrders(orders, username);
+		if (orders != null) printOrders(orders, username);  //아래 메소드인 printOrders 호출
 		
 		System.out.println();
 	}

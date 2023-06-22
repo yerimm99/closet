@@ -1,74 +1,122 @@
-/*
- * package com.ssp.closet.controller;
- * 
- * import com.ssp.closet.dto.LikeMark; import com.ssp.closet.dto.Product; import
- * com.ssp.closet.dto.Account; import com.ssp.closet.dto.Auction;
- * 
- * import com.ssp.closet.repository.LikeMarkRepository; import
- * com.ssp.closet.repository.ProductRepository; import
- * com.ssp.closet.repository.AccountRepository; import
- * com.ssp.closet.repository.AuctionRepository; import
- * com.ssp.closet.repository.GroupbuyRepository;
- * 
- * import java.util.Optional;
- * 
- * import javax.servlet.http.HttpSession;
- * 
- * import org.springframework.beans.factory.annotation.Autowired; import
- * org.springframework.http.HttpStatus; import
- * org.springframework.http.ResponseEntity; import
- * org.springframework.web.bind.annotation.*;
- * 
- * @RestController
- * 
- * @RequestMapping("/likes") public class LikeController {
- * 
- * private final ProductRepository productRepository; private final
- * LikeMarkRepository likeMarkRepository; private final AccountRepository
- * accountRepository; private final AuctionRepository auctionRepository; private
- * final GroupbuyRepository goupbuyRepository;
- * 
- * @Autowired public LikeController(ProductRepository productRepository,
- * LikeMarkRepository likeMarkRepository, AccountRepository accountRepository,
- * AuctionRepository auctionRepository, GroupbuyRepository goupbuyRepository) {
- * this.productRepository = productRepository; this.likeMarkRepository =
- * likeMarkRepository; this.accountRepository = accountRepository;
- * this.auctionRepository = auctionRepository; this.goupbuyRepository =
- * goupbuyRepository; }
- * 
- * @GetMapping("/like.do/{productId}/users/{userId}") public
- * ResponseEntity<String> addLikeMark( HttpSession session,
- * 
- * @PathVariable("productId") int productId,
- * 
- * @PathVariable("userId") String userId) {
- * 
- * 
- * 
- * // Retrieve userId from session UserSession user2 =
- * (UserSession)session.getAttribute("userSession"); String loggedInUserId =
- * (String) user2.getAccount().getUserId();
- * //System.out.println(loggedInUserId); // Ensure that the logged-in user
- * matches the requested userId if (!loggedInUserId.equals(userId)) { return
- * ResponseEntity.status(HttpStatus.UNAUTHORIZED).
- * body("로그인한 사용자와 요청한 사용자가 일치하지 않습니다"); }
- * 
- * Product product = productRepository.findById(productId).orElse(null); if
- * (product == null) { return
- * ResponseEntity.status(HttpStatus.NOT_FOUND).body("상품을 찾을 수 없습니다"); }
- * 
- * Account user = accountRepository.findById(userId).orElse(null); if (user ==
- * null) { return
- * ResponseEntity.status(HttpStatus.NOT_FOUND).body("사용자를 찾을 수 없습니다"); }
- * 
- * LikeMark likeMark = likeMarkRepository.findByProductAndAccount(product,
- * user); if (likeMark != null) { // If the user already liked the product,
- * increment the existing mark likeMark.setMark(likeMark.getMark() + 1); } else
- * { // If the user didn't like the product before, create a new LikeMark entry
- * likeMark = new LikeMark(); likeMark.setProduct(product);
- * likeMark.setAccount(user); likeMark.setMark(1); }
- * 
- * likeMarkRepository.save(likeMark);
- * 
- * return ResponseEntity.status(HttpStatus.CREATED).body("관심상품이 등록되었습니다"); } }
- */
+package com.ssp.closet.controller;
+
+import com.ssp.closet.dto.LikeMark;
+import com.ssp.closet.dto.Product;
+import com.ssp.closet.dto.Account;
+import com.ssp.closet.dto.Auction;
+import com.ssp.closet.dto.Groupbuy;
+import com.ssp.closet.service.ClosetFacade;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.WebUtils;
+
+@Controller
+public class LikeController {
+
+	
+	@Autowired
+	private ClosetFacade closet;
+
+	@Autowired
+	public void setClosetFacade(ClosetFacade closet) {
+		this.closet = closet;
+	}
+
+    @RequestMapping("/like.do")
+    public ModelAndView likeMark(HttpServletRequest request,
+    		@RequestParam("productId") int productId,
+    		ModelMap model) throws Exception {
+            
+    	UserSession userSession = 
+				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
+		if (userSession != null) {
+			Account account = closet.getAccount(userSession.getAccount().getUserId());
+			Product product = closet.getProduct(productId);
+			
+			if(closet.cheakLikeMark(product, account) == null) {
+				LikeMark like = new LikeMark();
+				like.setAccount(account);
+				like.setMark(1);
+				like.setProduct(product);
+				
+				closet.createLike(like);
+			}
+			else {
+				closet.deleteLike(product, account);
+				}
+			model.addAttribute("product", product);
+			
+			if(product.getDTYPE().equals("Groupbuy")) {
+				return new ModelAndView("/groupbuy/detail", model);
+			} else {
+				return new ModelAndView("/auction/detail", model);
+			}
+		}
+		else {
+			ModelAndView mav = new ModelAndView("/account/SignonForm");
+ 	        return mav;
+		}
+    }
+    
+    @RequestMapping("/like/auctionList.do")
+    public ModelAndView auctionLikeMarkList(HttpServletRequest request,
+    		ModelMap model) throws Exception {
+	    	UserSession userSession = 
+					(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
+			if (userSession != null) {
+				Account account = closet.getAccount(userSession.getAccount().getUserId());
+				
+				List<LikeMark> likeMarkList = closet.findLikeMark(account);
+				List<Auction> auctionLikeList  = new ArrayList<>();
+				
+				for (LikeMark product : likeMarkList) {
+					if (product.getProduct().getDTYPE().equals("Auction")) {
+						auctionLikeList.add(closet.getAuction(product.getProduct().getProductId()));
+					}
+					
+				}
+		    	PagedListHolder<Auction> AuctionList = new PagedListHolder<>(auctionLikeList);
+				
+				AuctionList.setPageSize(9);
+				model.put("productList", AuctionList);
+		
+			}
+			return new ModelAndView("like/auctionList", "productList", model);
+    	
+    }
+    
+    @RequestMapping("/like/groupbuyList.do")
+    public ModelAndView groupbuyLikeMarkList(HttpServletRequest request,
+    		ModelMap model) throws Exception {
+	    	UserSession userSession = 
+					(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
+			if (userSession != null) {
+				Account account = closet.getAccount(userSession.getAccount().getUserId());
+				
+				List <Groupbuy> groupbuyLikeList = new ArrayList<Groupbuy>();
+				
+				for (LikeMark product : closet.findLikeMark(account)) {
+					if (product.getProduct().getDTYPE().equals("Groupbuy")) {
+						groupbuyLikeList.add(closet.getGroupbuyDetail(product.getProduct().getProductId()));
+					}
+				}
+				
+				PagedListHolder<Groupbuy> GroupbuyList = new PagedListHolder<Groupbuy>(groupbuyLikeList);
+				
+				GroupbuyList.setPageSize(9);
+				model.put("productList", GroupbuyList);
+			}
+			return new ModelAndView("like/groupbuyList", "productList", model);
+    	
+    }
+}

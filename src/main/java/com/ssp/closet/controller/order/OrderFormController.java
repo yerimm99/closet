@@ -107,12 +107,22 @@ public class OrderFormController {
 		orderForm.getOrder().setShipAddress(sAddress);
 		validator.validateOrderForm(orderForm.getOrder(), result);
 		ModelAndView mav1 = new ModelAndView("order/registerForm");
+		
+		String dtype = closet.getProduct(orderForm.getOrder().getProductId()).getDTYPE();
+		if(dtype.equals("Groupbuy")) {
+			Groupbuy gProd = closet.getGroupbuyDetail(orderForm.getOrder().getProductId());
+			mav1.addObject("product", gProd);
+		} else {
+			Auction aProd = closet.getAuction(orderForm.getOrder().getProductId());
+			mav1.addObject("product", aProd);
+		}
+
 		if (result.hasErrors()) return mav1;
 		
 		orderForm.getOrder().setExpiryDate(orderForm.convertToFormattedDate(orderForm.getOrder().getExpiryDate()));
 		closet.createDelivery(orderForm.getOrder()); //등록 
 
-		if(closet.getProduct(orderForm.getOrder().getProductId()).getDTYPE().equals("Groupbuy")) {
+		if(dtype.equals("Groupbuy")) {
 			Meet meet = closet.findMeetByUserIdAndProductId(orderForm.getOrder().getUserId(), orderForm.getOrder().getProductId());
 			meet.setMeetResult(3);
 			closet.insertMeet(meet);
