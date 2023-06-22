@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import lombok.Data;
 
 @SuppressWarnings("serial")
@@ -17,8 +15,10 @@ public class LikeMark implements Serializable {
     /* Private Fields */
     
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@SequenceGenerator(name="LikeMark_SEQ_GENERATOR", sequenceName="LIKEMARK_SEQ", initialValue=1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="LikeMark_SEQ_GENERATOR")
     @Column(name = "ID")
+	
     private Long id;
 	
     @ManyToOne
@@ -27,8 +27,9 @@ public class LikeMark implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "USERID", referencedColumnName = "USERID")
-    private Account user;
+    private Account account;
 
     @Column(name = "MARK")
     private int mark;
+
 }

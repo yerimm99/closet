@@ -365,32 +365,24 @@ public class ClosetImpl implements ClosetFacade{
 
 	//계정
 	@Autowired
-	private AccountDao accountDao;
-	@Autowired
-	private AccountRepository accountRepo;
+	private AccountRepository accountRepository;
 
 	@Override
-	public Account getAccount(String name) {
-		return accountDao.getAccount(name);
+	public Account getAccount(String userId) {
+		return accountRepository.findByUserId(userId);
 	}
 	@Override
 	public Account getAccount(String userId, String password) {
-		return accountDao.getAccount(userId, password);
+		return accountRepository.findByUserIdAndPassword(userId, password);
 	}
 	@Override
 	public void insertAccount(Account account) {
-		accountRepo.save(account);
+		accountRepository.save(account);
 
 	}
 	@Override
 	public void updateAccount(Account account) {
-		accountRepo.save(account);
-	}
-
-	private final ProductDao productDao;
-
-	public ClosetImpl(ProductDao productDao) {
-		this.productDao = productDao;
+		accountRepository.save(account);
 	}
 
 	/*
