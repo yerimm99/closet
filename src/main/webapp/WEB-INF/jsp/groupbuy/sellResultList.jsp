@@ -163,9 +163,11 @@
                                 <c:choose>
 									<c:when test="${prod.status == 0}">
 									판매 종료<br>
-									<a href="<c:url value='/groupbuy/delete.do'>
-									         <c:param name='productId' value='${prod.productId}' />
-									     </c:url>" class="deleteBtn">삭제하기</a>
+									<c:if test="${empty prod.peopleSum}">
+										<a href="<c:url value='/groupbuy/delete.do'>
+										         <c:param name='productId' value='${prod.productId}' />
+										     </c:url>" class="deleteBtn">삭제하기</a>
+									</c:if>    
 									</c:when>
 									<c:when test="${prod.peopleSum > 0 && prod.status == 1}">
 									인원 모집중<br>
