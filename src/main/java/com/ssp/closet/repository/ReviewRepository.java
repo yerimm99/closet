@@ -11,4 +11,5 @@ import org.springframework.stereotype.Repository;
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
     // Add additional methods if needed
 	List<Review> findByUserId(String userId);
+	Review findByOrderId(int orderId);
 }

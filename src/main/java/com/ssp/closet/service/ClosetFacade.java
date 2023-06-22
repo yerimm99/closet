@@ -101,6 +101,7 @@ public interface ClosetFacade {
    void deleteReview(int orderId);
    List<Review> readReviewListByMe();
    List<Review> readReviewListToMe(String userId);
+   Review findReviewByOrderId(int orderId);
 
    
    //계정

@@ -57,9 +57,12 @@ public class ReviewController {
 		Account account = closet.getAccount(userSession.getAccount().getUserId());
 		String suppId = closet.getProduct(productId).getAccount().getUserId();
 		Delivery delivery=closet.getOrderByUserIdAndProductId(account.getUserId(), productId);
-
+		
+		Review review = closet.findReviewByOrderId(delivery.getOrderId());
+		if(review != null) {
+			return "/closet/index.do";
+		}
 		Date date = new Date();
-
 		Review newReview = new Review();
 		newReview.setContent(content);
 		newReview.setOrderId(delivery.getOrderId());;

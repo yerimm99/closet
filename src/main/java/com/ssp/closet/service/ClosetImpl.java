@@ -325,6 +325,9 @@ public class ClosetImpl implements ClosetFacade{
    public List<Review> readReviewListToMe(String userId) {
       return reviewRepository.findByUserId(userId);
    }
+   public Review findReviewByOrderId(int orderId) {
+	   return reviewRepository.findByOrderId(orderId);
+   }
 
 
    //카테고리
