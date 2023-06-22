@@ -18,7 +18,6 @@ public class LikeMark implements Serializable {
 	@SequenceGenerator(name="LikeMark_SEQ_GENERATOR", sequenceName="LIKEMARK_SEQ", initialValue=1, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="LikeMark_SEQ_GENERATOR")
     @Column(name = "ID")
-	
     private Long id;
 	
     @ManyToOne

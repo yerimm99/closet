@@ -1,34 +1,21 @@
 package com.ssp.closet.service;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-
 import org.springframework.scheduling.TaskScheduler;
-import org.springframework.scheduling.annotation.Scheduled;
-
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.ssp.closet.dao.AccountDao;
-import com.ssp.closet.dao.AuctionDao;
-import com.ssp.closet.dao.BookmarkDao;
-import com.ssp.closet.dao.GroupbuyDao;
-import com.ssp.closet.dao.ProductDao;
-import com.ssp.closet.dao.MeetDao;
 
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
 import com.ssp.closet.dto.Bid;
-import com.ssp.closet.dto.Bookmark;
 import com.ssp.closet.dto.Category;
 import com.ssp.closet.dto.Groupbuy;
+import com.ssp.closet.dto.LikeMark;
 import com.ssp.closet.dto.Meet;
 import com.ssp.closet.dto.Delivery;
 import com.ssp.closet.dto.Product;
@@ -38,6 +25,7 @@ import com.ssp.closet.repository.AuctionRepository;
 import com.ssp.closet.repository.BidRepository;
 import com.ssp.closet.repository.DeliveryRepository;
 import com.ssp.closet.repository.GroupbuyRepository;
+import com.ssp.closet.repository.LikeMarkRepository;
 import com.ssp.closet.repository.MeetRepository;
 import com.ssp.closet.repository.ProductRepository;
 
@@ -204,19 +192,6 @@ public class ClosetImpl implements ClosetFacade{
 		return bidRepository.findByUserIdAndProductId(userId, productId);
 	}
 
-
-	//관심상품
-	@Autowired
-	private BookmarkDao bookmarkDao;
-
-	public void createMark(Bookmark bookmark) {
-		bookmarkDao.createMark(bookmark);
-	}
-	public void deleteMark(String userId, int productId) {
-		bookmarkDao.deleteMark(userId, productId);
-	}
-
-
 	//공동구매
 	@Autowired
 	private GroupbuyRepository groupbuyRepository;
@@ -367,32 +342,38 @@ public class ClosetImpl implements ClosetFacade{
 	@Autowired
 	private AccountRepository accountRepository;
 
-	@Override
 	public Account getAccount(String userId) {
 		return accountRepository.findByUserId(userId);
 	}
-	@Override
+	
 	public Account getAccount(String userId, String password) {
 		return accountRepository.findByUserIdAndPassword(userId, password);
 	}
-	@Override
-	public void insertAccount(Account account) {
-		accountRepository.save(account);
-
-	}
-	@Override
-	public void updateAccount(Account account) {
+	
+	public void createAccount(Account account) {
 		accountRepository.save(account);
 	}
+	
+	//좋아요
+	@Autowired
+	private LikeMarkRepository likeRepository;
+	
+	public void createLike(LikeMark like) {
+		likeRepository.save(like);
+	}
 
-	/*
-	 * @Override public List<Product> getTopRankingProducts() { // Implement the
-	 * logic to retrieve the top ranking products // Example: // 1. Use the
-	 * productDao to fetch the top ranking products // based on your ranking
-	 * criteria (e.g., sales, ratings, views). // Adjust the method name and
-	 * parameters based on your productDao implementation. List<Product>
-	 * topRankingProducts = productDao.getTopRankingProducts();
-	 * 
-	 * // 2. Return the list of top ranking products return topRankingProducts; }
-	 */
+	public void deleteLike(Product product, Account account) {
+		likeRepository.deleteByProductAndAccount(product, account);
+	}
+	public List<LikeMark> findLikeMark(Account account) {
+		return likeRepository.findByAccount(account);
+	}
+	
+	public int getLikeSum(Product product) {
+		return likeRepository.getLikeCountByProduct(product);
+	}
+	
+	public LikeMark cheakLikeMark(Product product, Account account) {
+		return likeRepository.findByProductAndAccount(product, account);
+	}
 }

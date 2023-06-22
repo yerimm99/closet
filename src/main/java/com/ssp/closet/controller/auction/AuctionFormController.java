@@ -44,7 +44,7 @@ public class AuctionFormController {
 	private ClosetFacade closet;
 
 	@Autowired
-	public void setClosetStore(ClosetFacade closet) {
+	public void setClosetFacade(ClosetFacade closet) {
 		this.closet = closet;
 	}
 	@Autowired

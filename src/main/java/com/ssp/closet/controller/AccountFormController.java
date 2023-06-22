@@ -75,7 +75,7 @@ public class AccountFormController {
 		            return formViewName;
 		        }
 		        
-				closet.insertAccount(accountForm.getAccount());
+				closet.createAccount(accountForm.getAccount());
 			}
 			else {
 		        if(postCode.length() > 0) {
@@ -88,7 +88,7 @@ public class AccountFormController {
 		            return formViewName;
 		        }
 		        
-				closet.updateAccount(accountForm.getAccount());
+				closet.createAccount(accountForm.getAccount());
 				
 				UserSession userSession = 
 						(UserSession) WebUtils.getSessionAttribute(request, "userSession");		

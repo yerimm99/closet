@@ -174,7 +174,7 @@
                </tr>
                <tr>
                   <td colspan = "3" class = "gobtn2">
-                     <a href = "<c:url value='/bookmark/create.do'>
+                     <a href = "<c:url value='/like.do'>
                            <c:param name = 'productId' value='${product.productId}' />
                            </c:url>"><b style = "font-size:18px">관심상품</b>
                      </a>

@@ -8,9 +8,9 @@ import org.springframework.data.domain.Pageable;
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Auction;
 import com.ssp.closet.dto.Bid;
-import com.ssp.closet.dto.Bookmark;
 import com.ssp.closet.dto.Category;
 import com.ssp.closet.dto.Groupbuy;
+import com.ssp.closet.dto.LikeMark;
 import com.ssp.closet.dto.Meet;
 import com.ssp.closet.dto.Product;
 import com.ssp.closet.dto.Delivery;
@@ -82,9 +82,11 @@ public interface ClosetFacade {
 	
 	
 	//관심상품
-	void createMark(Bookmark bookmark);
-	void deleteMark(String userId, int productId);
-	
+	void createLike(LikeMark like);
+	void deleteLike(Product product, Account account);
+	List<LikeMark> findLikeMark(Account account);
+	int getLikeSum(Product product);
+	LikeMark cheakLikeMark(Product product, Account account);
 	
 	//주문
 	void createDelivery(Delivery delivery);
@@ -103,9 +105,7 @@ public interface ClosetFacade {
 	//계정
 	Account getAccount(String userId);
 	Account getAccount(String userId, String password);
-	void insertAccount(Account account);
-	void updateAccount(Account account);
-	
+	void createAccount(Account account);
 	/*
 	 * public static final List<Account> accountList = null;
 	 * 
