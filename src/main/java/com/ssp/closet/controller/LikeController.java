@@ -22,9 +22,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
 @Controller
+@SessionAttributes("productList")
 public class LikeController {
 
-	
+
 	@Autowired
 	private ClosetFacade closet;
 
@@ -33,21 +34,19 @@ public class LikeController {
 		this.closet = closet;
 	}
 
-    @RequestMapping("/like.do")
-    public ModelAndView likeMark(HttpServletRequest request,
-    		@RequestParam("productId") int productId,
-    		ModelMap model) throws Exception {
-            
-    	UserSession userSession = 
+	@RequestMapping("/like.do")
+	public ModelAndView likeMark(HttpServletRequest request,
+			@RequestParam("productId") int productId,
+			ModelMap model) throws Exception {
+
+		UserSession userSession = 
 				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
 		if (userSession != null) {
 			Account account = closet.getAccount(userSession.getAccount().getUserId());
 			Product product = closet.getProduct(productId);
-			
 			String supp = "";
 			supp = userSession.getAccount().getUserId();
 			int like;
-			
 			if(closet.cheakLikeMark(product, account) == null) {
 				LikeMark likes = new LikeMark();
 				likes.setAccount(account);
@@ -64,7 +63,6 @@ public class LikeController {
 			model.addAttribute("product", product);
 			model.addAttribute("like", like);
 		    model.addAttribute("supp", supp);
-			
 			if(product.getDTYPE().equals("Groupbuy")) {
 				Meet meet = closet.findMeetByUserIdAndProductId(supp, productId);
 				model.put("meet", meet);
@@ -75,59 +73,111 @@ public class LikeController {
 		}
 		else {
 			ModelAndView mav = new ModelAndView("/account/SignonForm");
- 	        return mav;
+			return mav;
 		}
-    }
-    
-    @RequestMapping("/like/auctionList.do")
-    public ModelAndView auctionLikeMarkList(HttpServletRequest request,
-    		ModelMap model) throws Exception {
-	    	UserSession userSession = 
-					(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
-			if (userSession != null) {
-				Account account = closet.getAccount(userSession.getAccount().getUserId());
-				
-				List<LikeMark> likeMarkList = closet.findLikeMark(account);
-				List<Auction> auctionLikeList  = new ArrayList<>();
-				
-				for (LikeMark product : likeMarkList) {
-					if (product.getProduct().getDTYPE().equals("Auction")) {
-						auctionLikeList.add(closet.getAuction(product.getProduct().getProductId()));
-					}
-					
-				}
-		    	PagedListHolder<Auction> AuctionList = new PagedListHolder<>(auctionLikeList);
-				
-				AuctionList.setPageSize(9);
-				model.put("productList", AuctionList);
-		
+	}
+
+	@RequestMapping("/like/delete.do")
+	public ModelAndView likeMark_delete(HttpServletRequest request,
+			@RequestParam("productId") int productId) throws Exception {
+
+		UserSession userSession = 
+				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
+
+		Account account = closet.getAccount(userSession.getAccount().getUserId());
+		Product product = closet.getProduct(productId);
+
+		closet.deleteLike(product, account);
+
+		if(product.getDTYPE().equals("Groupbuy")) {
+			return new ModelAndView("redirect:/like/groupbuyList.do");
+		} else {
+			return new ModelAndView("redirect:/like/auctionList.do");
+		}
+	}
+
+	@RequestMapping("/like/auctionList.do")
+	public ModelAndView auctionLikeMarkList(HttpServletRequest request) throws Exception {
+		UserSession userSession = 
+				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
+
+		Account account = closet.getAccount(userSession.getAccount().getUserId());
+
+		List<LikeMark> likeMarkList = closet.findLikeMark(account);
+		List<Auction> auctionLikeList  = new ArrayList<>();
+
+		for (LikeMark product : likeMarkList) {
+			if (product.getProduct().getDTYPE().equals("Auction")) {
+				auctionLikeList.add(closet.getAuction(product.getProduct().getProductId()));
 			}
-			return new ModelAndView("like/auctionList", "productList", model);
-    	
-    }
-    
-    @RequestMapping("/like/groupbuyList.do")
-    public ModelAndView groupbuyLikeMarkList(HttpServletRequest request,
-    		ModelMap model) throws Exception {
-	    	UserSession userSession = 
-					(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
-			if (userSession != null) {
-				Account account = closet.getAccount(userSession.getAccount().getUserId());
-				
-				List <Groupbuy> groupbuyLikeList = new ArrayList<Groupbuy>();
-				
-				for (LikeMark product : closet.findLikeMark(account)) {
-					if (product.getProduct().getDTYPE().equals("Groupbuy")) {
-						groupbuyLikeList.add(closet.getGroupbuyDetail(product.getProduct().getProductId()));
-					}
-				}
-				
-				PagedListHolder<Groupbuy> GroupbuyList = new PagedListHolder<Groupbuy>(groupbuyLikeList);
-				
-				GroupbuyList.setPageSize(9);
-				model.put("productList", GroupbuyList);
+		}
+		PagedListHolder<Auction> AuctionList = new PagedListHolder<>(auctionLikeList);
+
+		if(AuctionList != null) {
+			System.out.println();
+			System.out.println("리스트 있음");
+			System.out.println();
+		}
+
+		AuctionList.setPageSize(4);
+		ModelAndView mav2 = new ModelAndView("like/auctionList");
+		mav2.addObject("productList", AuctionList);
+		return mav2;
+	}
+
+	@RequestMapping("/like/auctionList2.do")
+	public ModelAndView auctionLikeMarkList_page(@ModelAttribute("productList") PagedListHolder<Auction> productList,
+			@RequestParam("pageName") String page, 
+			ModelMap model) throws Exception {	
+
+		if ("next".equals(page)) {
+			productList.nextPage();
+		}
+		else if ("previous".equals(page)) {
+			productList.previousPage();
+		}
+		ModelAndView mav2 = new ModelAndView("like/auctionList");
+		mav2.addObject("productList", productList);
+		return mav2;
+	}
+
+	@RequestMapping("/like/groupbuyList.do")
+	public ModelAndView groupbuyLikeMarkList(HttpServletRequest request) throws Exception {
+		UserSession userSession = 
+				(UserSession) WebUtils.getSessionAttribute(request, "userSession");		
+
+		Account account = closet.getAccount(userSession.getAccount().getUserId());
+
+		List <Groupbuy> groupbuyLikeList = new ArrayList<Groupbuy>();
+
+		for (LikeMark product : closet.findLikeMark(account)) {
+			if (product.getProduct().getDTYPE().equals("Groupbuy")) {
+				groupbuyLikeList.add(closet.getGroupbuyDetail(product.getProduct().getProductId()));
 			}
-			return new ModelAndView("like/groupbuyList", "productList", model);
-    	
-    }
+		}
+
+		PagedListHolder<Groupbuy> GroupbuyList = new PagedListHolder<Groupbuy>(groupbuyLikeList);
+
+		GroupbuyList.setPageSize(4);
+		ModelAndView mav2 = new ModelAndView("like/groupbuyList");
+		mav2.addObject("productList", GroupbuyList);
+		return mav2;
+	}
+
+	@RequestMapping("/like/groupbuyList2.do")
+	public ModelAndView groupbuyLikeMarkList_page(@ModelAttribute("productList") PagedListHolder<Groupbuy> productList,
+			@RequestParam("pageName") String page, 
+			ModelMap model) throws Exception {	
+
+		if ("next".equals(page)) {
+			productList.nextPage();
+		}
+		else if ("previous".equals(page)) {
+			productList.previousPage();
+		}
+		ModelAndView mav2 = new ModelAndView("like/groupbuyList");
+		mav2.addObject("productList", productList);
+		return mav2;
+	}
+
 }

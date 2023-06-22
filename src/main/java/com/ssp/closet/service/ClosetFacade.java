@@ -17,109 +17,109 @@ import com.ssp.closet.dto.Delivery;
 import com.ssp.closet.dto.Review;
 
 public interface ClosetFacade {
-	
-	//카테고리
-	List<Category> getCategoryList();
-	Category getCategory(String categoryId);
+   
+   //카테고리
+   List<Category> getCategoryList();
+   Category getCategory(String categoryId);
 
-	List<Product> getProductList(int type, int status);
-	Product getProduct(int productId);
-	
-	
-	//경매
-	void insertAuction(Auction auction);
-	Auction getAuction(int productId);
-	void updateMaxPrice(int productId);
-	List<Auction> getAuctionList();
-	List<Auction> getAuctionByCategoryId(String categoryId);
-	List<Auction> searchAuctionList(String keywords);
-	//추가
-	List<Auction> getAuctionByUsed(int used);
-	List<Auction> getAuctionByCategoryIdAndUsed(String categoryId, int used);
-	List<Auction> findSellAuctionByAccount(Account account);
-	void deleteAuctionByProductId(int productId);
+   List<Product> getProductList(int type, int status);
+   Product getProduct(int productId);
+   
+   
+   //경매
+   void insertAuction(Auction auction);
+   Auction getAuction(int productId);
+   void updateMaxPrice(int productId);
+   List<Auction> getAuctionList();
+   List<Auction> getAuctionByCategoryId(String categoryId);
+   List<Auction> searchAuctionList(String keywords);
+   //추가
+   List<Auction> getAuctionByUsed(int used);
+   List<Auction> getAuctionByCategoryIdAndUsed(String categoryId, int used);
+   List<Auction> findSellAuctionByAccount(Account account);
+   void deleteAuctionByProductId(int productId);
 
-	void scheduleAuctionEnd(Auction auction);
-	void closedAuctionBySupp(Auction auction);
-	
-	List<Auction> findTop4AuctionOrderByRegisterDate();
-	
-	
-	//입찰
-	void createBid(Bid bid);
-	void insertBid(Bid bid);
-	boolean isBidPriceExists(int productId, int bidPrice);
-	void deleteBid(int productId, String userId);
-	void updateResult(String userId, int productId);
-	Bid findMaxPrice(int productId);		 	  
-	List<Bid> getBid(String userId);
-	Bid getBid(String userId, int productId);
-	Integer countBidByProductId(int productId);
+   void scheduleAuctionEnd(Auction auction);
+   void closedAuctionBySupp(Auction auction);
+   
+   List<Auction> findTop4AuctionOrderByRegisterDate();
+   
+   
+   //입찰
+   void createBid(Bid bid);
+   void insertBid(Bid bid);
+   boolean isBidPriceExists(int productId, int bidPrice);
+   void deleteBid(int productId, String userId);
+   void updateResult(String userId, int productId);
+   Bid findMaxPrice(int productId);            
+   List<Bid> getBid(String userId);
+   Bid getBid(String userId, int productId);
+   Integer countBidByProductId(int productId);
 
-	
-	//공동구매
-	void insertGroupbuy(Groupbuy groupbuy);
-	Groupbuy getGroupbuyDetail(int productId);
-	List<Groupbuy> getGroupbuyList();
-	List<Groupbuy> getGroupbuyByCategoryId(String categoryId);
-	List<Groupbuy> findSellGroupbuyByAccount(Account account);
-	Groupbuy findBuyGroupbuyByProductId(int productId);
-	void deleteGroupbuyByProductId(int productId);
-	List<Groupbuy> searchGroupbuyList(String keywords);
+   
+   //공동구매
+   void insertGroupbuy(Groupbuy groupbuy);
+   Groupbuy getGroupbuyDetail(int productId);
+   List<Groupbuy> getGroupbuyList();
+   List<Groupbuy> getGroupbuyByCategoryId(String categoryId);
+   List<Groupbuy> findSellGroupbuyByAccount(Account account);
+   Groupbuy findBuyGroupbuyByProductId(int productId);
+   void deleteGroupbuyByProductId(int productId);
+   List<Groupbuy> searchGroupbuyList(String keywords);
 
-	void scheduleGroupbuyEnd (Groupbuy groupbuy);
+   void scheduleGroupbuyEnd (Groupbuy groupbuy);
 
-	List<Groupbuy> findTop4GroupbuyOrderByRegisterDate();
+   List<Groupbuy> findTop4GroupbuyOrderByRegisterDate();
 
-	
-	//공구참여
-	void insertMeet(Meet meet);
-	Meet findMeetByUserIdAndProductId(String userId, int productId);
-	List<Meet> findMeetByProductId(int productId);
-	List<Meet> findMeetByUserId(String userId);
-	Integer getMeetCountByProductId(int productId);
-	void deleteByUserIdAndProductId(String userId, int productId);
-	
-	
-	//관심상품
-	void createLike(LikeMark like);
-	void deleteLike(Product product, Account account);
-	List<LikeMark> findLikeMark(Account account);
-	int getLikeSum(Product product);
-	LikeMark cheakLikeMark(Product product, Account account);
-	
-	//주문
-	void createDelivery(Delivery delivery);
-	List<Delivery> getOrderList(String userId);
-	Delivery getOrder(int orderId);
-	Delivery getOrderByUserIdAndProductId(String userId, int productId);
-	
-	
-	//리뷰
-	void insertReview(Review review);
-	void deleteReview(int orderId);
-	List<Review> readReviewListByMe();
-	List<Review> readReviewListToMe(String userId);
+   
+   //공구참여
+   void insertMeet(Meet meet);
+   Meet findMeetByUserIdAndProductId(String userId, int productId);
+   List<Meet> findMeetByProductId(int productId);
+   List<Meet> findMeetByUserId(String userId);
+   Integer getMeetCountByProductId(int productId);
+   void deleteByUserIdAndProductId(String userId, int productId);
+   
+   
+   //관심상품
+   void createLike(LikeMark like);
+   void deleteLike(Product product, Account account);
+   List<LikeMark> findLikeMark(Account account);
+   int getLikeSum(Product product);
+   LikeMark cheakLikeMark(Product product, Account account);
+//   int getLikeByProductAndUser(Product product, Account account);
+   
+   //주문
+   void createDelivery(Delivery delivery);
+   List<Delivery> getOrderList(String userId);
+   Delivery getOrder(int orderId);
+   Delivery getOrderByUserIdAndProductId(String userId, int productId);
+   
+   
+   //리뷰
+   void insertReview(Review review);
+   void deleteReview(int orderId);
+   List<Review> readReviewListByMe();
+   List<Review> readReviewListToMe(String userId);
 
-	
-	//계정
-	Account getAccount(String userId);
-	Account getAccount(String userId, String password);
+   
+   //계정
+   Account getAccount(String userId);
+   Account getAccount(String userId, String password);
+   void createAccount(Account account);
 
-	void createAccount(Account account);
-
-	/*
-	 * public static final List<Account> accountList = null;
-	 * 
-	 * public static Account getAccountByUserId(String userId) { // userId에 해당하는 계정을
-	 * accountList에서 검색하여 반환 for (Account account : accountList) { if
-	 * (account.getUserId().equals(userId)) { return account; } } return null; //
-	 * 검색된 계정이 없는 경우 null 반환 }
-	 * 
-	 * public static Account getAccountByEmail(String email) { // email에 해당하는 계정을
-	 * accountList에서 검색하여 반환 for (Account account : accountList) { if
-	 * (account.getEmail().equals(email)) { return account; } } return null; // 검색된
-	 * 계정이 없는 경우 null 반환 }
-	 */
-	/* List<Product> getTopRankingProducts(); */
+   /*
+    * public static final List<Account> accountList = null;
+    * 
+    * public static Account getAccountByUserId(String userId) { // userId에 해당하는 계정을
+    * accountList에서 검색하여 반환 for (Account account : accountList) { if
+    * (account.getUserId().equals(userId)) { return account; } } return null; //
+    * 검색된 계정이 없는 경우 null 반환 }
+    * 
+    * public static Account getAccountByEmail(String email) { // email에 해당하는 계정을
+    * accountList에서 검색하여 반환 for (Account account : accountList) { if
+    * (account.getEmail().equals(email)) { return account; } } return null; // 검색된
+    * 계정이 없는 경우 null 반환 }
+    */
+   /* List<Product> getTopRankingProducts(); */
 }
