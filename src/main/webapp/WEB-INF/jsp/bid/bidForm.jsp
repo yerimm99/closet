@@ -19,7 +19,6 @@
 
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
       background-color: var(--kream-tertiary-color);
     }
 
@@ -97,8 +96,6 @@
       color: red;
     }
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 	<!-- 메뉴바 -->
