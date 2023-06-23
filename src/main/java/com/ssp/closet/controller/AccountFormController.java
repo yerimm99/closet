@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.util.WebUtils;
 
-import com.ssp.closet.controller.AccountForm;
-import com.ssp.closet.controller.UserSession;
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.service.AccountFormValidator;
 import com.ssp.closet.service.ClosetFacade;
@@ -23,10 +21,10 @@ import com.ssp.closet.service.ClosetFacade;
 @RequestMapping({"/account/registerForm.do","/account/updateForm.do"})
 public class AccountFormController {
 
-    @Value("account/registerForm") // 수정: properties 파일에 form.view.name 값 설정 필요
+    @Value("account/registerForm") 
     private String formViewName;
     
-    @Value("index") // 수정: properties 파일에 success.view.name 값 설정 필요
+    @Value("index") 
     private String successViewName;
 
     private final ClosetFacade closet;

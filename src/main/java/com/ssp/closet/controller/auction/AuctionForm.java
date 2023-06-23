@@ -1,7 +1,6 @@
 package com.ssp.closet.controller.auction;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import com.ssp.closet.dto.Auction;
 

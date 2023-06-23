@@ -2,22 +2,14 @@ package com.ssp.closet.controller.auction;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.util.ResourceUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,9 +21,7 @@ import org.springframework.web.servlet.ModelAndViewDefiningException;
 import org.springframework.web.util.WebUtils;
 
 import com.ssp.closet.controller.UserSession;
-import com.ssp.closet.controller.auction.AuctionForm;
 import com.ssp.closet.dto.Account;
-import com.ssp.closet.dto.Auction;
 import com.ssp.closet.dto.Auction;
 import com.ssp.closet.service.AuctionFormValidator;
 import com.ssp.closet.service.ClosetFacade;
@@ -152,10 +142,7 @@ public class AuctionFormController {
 					filee.add(fileName);
 
 	            } catch (IOException e) {
-	                // 파일 저장 중 오류 발생
 	                e.printStackTrace();
-	                // 오류 처리
-	                // ...
 	                ModelAndView mav = new ModelAndView("index");
 	    	        return mav;
 	            }
@@ -168,17 +155,7 @@ public class AuctionFormController {
 	    if (picturePaths.size() >= 2) {
 	    	product.setPicture1(filee.get(0));
 	        product.setPicture2(filee.get(1));
-	    }else {
-	    	System.out.println("");
-	    	System.out.println("사진 set 실패");
-	    	System.out.println("");
 	    }
-	    System.out.println("");
-    	System.out.println(product.getPicture1());
-    	System.out.println("");
-    	System.out.println(product.getPicture2());
-    	System.out.println("");
-    	
 	    product.setPicture3(picturePaths.size() >= 3 ? filee.get(2) : null);
 	    product.setPicture4(picturePaths.size() >= 4 ? filee.get(3) : null);
 	    
