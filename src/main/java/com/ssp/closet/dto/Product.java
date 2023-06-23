@@ -25,7 +25,6 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.OrderBy;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -49,20 +48,20 @@ public class Product implements Serializable {
 	@Column(name="PRODUCTID")
 	private int productId;
 	@Column(name="CATEGORYID")
-	private String categoryId; // 상의? 하의? ....
+	private String categoryId; // 의류 카테고리
 	@Column(name="PNAME")
 	private String name;
 	@Column(name="PDESCRIPTION")
 	private String description; // 상품 설명
 	@Column(name="STATUS")
-	private int status; // 판매 상태
+	private int status; // 판매 상태 (판매중/판매종료)
 	@Column(name="REGISTERDATE")
 	@CreatedDate
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date registerDate; // 등록 날짜
 	@Column(name="ENDDATE")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date endDate;
+	private Date endDate; //종료 날짜
 	@Column(name="COLOR")
 	private String color;
 	@Column(name="PSIZE")

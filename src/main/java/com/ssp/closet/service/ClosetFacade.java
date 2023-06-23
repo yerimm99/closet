@@ -14,6 +14,11 @@ import com.ssp.closet.dto.Delivery;
 import com.ssp.closet.dto.Review;
 
 public interface ClosetFacade {
+	
+	//계정
+	Account getAccount(String userId);
+	Account getAccount(String userId, String password);
+	void createAccount(Account account);
    
    Product getProduct(int productId);
    
@@ -21,14 +26,13 @@ public interface ClosetFacade {
    void insertAuction(Auction auction);
    Auction getAuction(int productId);
    void updateMaxPrice(int productId);
+   void deleteAuctionByProductId(int productId);
    List<Auction> getAuctionList();
    List<Auction> getAuctionByCategoryId(String categoryId);
    List<Auction> searchAuctionList(String keywords);
-   //추가
    List<Auction> getAuctionByUsed(int used);
    List<Auction> getAuctionByCategoryIdAndUsed(String categoryId, int used);
    List<Auction> findSellAuctionByAccount(Account account);
-   void deleteAuctionByProductId(int productId);
 
    void scheduleAuctionEnd(Auction auction);
    void closedAuctionBySupp(Auction auction);
@@ -38,7 +42,6 @@ public interface ClosetFacade {
    
    //입찰
    void createBid(Bid bid);
-   void insertBid(Bid bid);
    boolean isBidPriceExists(int productId, int bidPrice);
    void deleteBid(int productId, String userId);
    void updateResult(String userId, int productId);
@@ -59,7 +62,6 @@ public interface ClosetFacade {
    List<Groupbuy> searchGroupbuyList(String keywords);
 
    void scheduleGroupbuyEnd (Groupbuy groupbuy);
-
    List<Groupbuy> findTop4GroupbuyOrderByRegisterDate();
 
    //공구참여
@@ -71,13 +73,12 @@ public interface ClosetFacade {
    void deleteByUserIdAndProductId(String userId, int productId);
    
    
-   //관심상품
+   //좋아요
    void createLike(LikeMark like);
    void deleteLike(Product product, Account account);
    List<LikeMark> findLikeMark(Account account);
    Integer getLikeSum(int productId);
    LikeMark cheakLikeMark(Product product, Account account);
-//   int getLikeByProductAndUser(Product product, Account account);
    
    //주문
    void createDelivery(Delivery delivery);
@@ -92,11 +93,6 @@ public interface ClosetFacade {
    Review findReviewByOrderId(int orderId);
    String userRating(String userId);
 
-   
-   //계정
-   Account getAccount(String userId);
-   Account getAccount(String userId, String password);
-   void createAccount(Account account);
 
    //랭킹
    List<Auction> getAuctionSortedByLikeCount();

@@ -223,6 +223,7 @@ public class ViewAuctionController {
 		  model.put("like", like);
 	}
 
+	//수동 낙찰
 	@RequestMapping({"/auction/successBySupp.do","/myPage/myAuction.do"})
 	public String successBySupp(HttpServletRequest request,
 			@RequestParam("productId") int productId
@@ -236,6 +237,7 @@ public class ViewAuctionController {
 		return "redirect:/myPage/sellAuction.do";
 	}
 	
+	//홈화면의 최신상품 리스트
 	@GetMapping("/closet/index.do")
 	public ModelAndView newProductList(
 			ModelMap model) {

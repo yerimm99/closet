@@ -23,7 +23,7 @@ public class SearchProductsController {
 	private ClosetFacade closet;
 
 	@Autowired
-	public void setPetStore(ClosetFacade closet) {
+	public void setCloset(ClosetFacade closet) {
 		this.closet = closet;
 	}
 

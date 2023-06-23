@@ -24,7 +24,6 @@ import com.ssp.closet.dto.Auction;
 import com.ssp.closet.dto.Bid;
 import com.ssp.closet.dto.Groupbuy;
 import com.ssp.closet.dto.Meet;
-import com.ssp.closet.dto.Product;
 import com.ssp.closet.service.ClosetFacade;
 import com.ssp.closet.service.OrderFormValidator;
 
@@ -129,7 +128,7 @@ public class OrderFormController {
 		} else {
 			Bid bid = closet.getBid(orderForm.getOrder().getUserId(), orderForm.getOrder().getProductId());
 			bid.setBidResult(3);
-			closet.insertBid(bid);
+			closet.createBid(bid);
 		}
 
 		ModelAndView mav2 = new ModelAndView("order/detail");

@@ -16,7 +16,6 @@
         
         body {
             margin: 0;
-            font-family: 'Noto Sans', Arial, sans-serif;
             background-color: var(--kream-tertiary-color);
         }
         

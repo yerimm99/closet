@@ -1,9 +1,7 @@
 package com.ssp.closet.dto;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
@@ -24,11 +22,11 @@ import javax.persistence.OneToMany;
 public class Auction extends Product implements Serializable {
 
 	@Column(name = "STARTPRICE")
-	private Integer startPrice;
+	private Integer startPrice; //경매 시작가
 	@Column(name = "USED")
-	private int used;
+	private int used; //중고,새 상품 구분
 	@Column(name = "WINNER")
-	private String winner;
+	private String winner; //낙찰자
 	
 	
 	@OneToMany(mappedBy = "auction")

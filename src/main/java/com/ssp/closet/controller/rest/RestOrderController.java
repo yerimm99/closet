@@ -39,7 +39,7 @@ public class RestOrderController {
 		return order;   // convert order to JSON text in response body
 	}
 	
-	// @ResponseBody         
+	@ResponseBody         
 	@GetMapping(value = "/ordersBy/{username}", produces = "application/json")
 	public List<Delivery> getOrdersByUsername(@PathVariable("userId") String userId, HttpServletResponse response)
 			throws IOException {
@@ -51,21 +51,5 @@ public class RestOrderController {
 		}
 		return orderList;  // convert list of orders to JSON text in response body
 	}
-	
-	
-	//주문 삭제...? 있어야 하나ㅠㅠㅠ
-//	// @ResponseBody
-//	@DeleteMapping("/order/{orderId}")
-//	@ResponseStatus(HttpStatus.OK)
-//	public Order deleteOrder(@PathVariable("orderId") int orderId, HttpServletResponse response)
-//			throws IOException {
-//		System.out.println("/rest/order/{orderId} request with DELETE method accepted: {orderId} = " + orderId);
-//		Order order = orderSvc.removeOrder(orderId);
-//		if (order == null) {
-//			response.sendError(HttpServletResponse.SC_NOT_FOUND);
-//			return null;
-//		}
-//		System.out.println("order " + order.getOrderId() + " deleted.");
-//		return order;	 	// convert order to JSON text in response body
-//	}
+
 }

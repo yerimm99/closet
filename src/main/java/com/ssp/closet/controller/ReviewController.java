@@ -1,23 +1,18 @@
 package com.ssp.closet.controller;
 
 import com.ssp.closet.dto.Review;
-import com.ssp.closet.repository.ReviewRepository;
 import com.ssp.closet.service.ClosetFacade;
 import com.ssp.closet.dto.Product;
 import com.ssp.closet.dto.Account;
 import com.ssp.closet.dto.Delivery;
-import com.ssp.closet.dto.Groupbuy;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -56,7 +51,7 @@ public class ReviewController {
 	public String createReview(HttpServletRequest request,
 			@RequestParam("productId") int productId,
 			@RequestParam("rating") float rating, 
-			@RequestParam("content") String content) 
+			@RequestParam("content") String content, ModelMap model) 
 					throws Exception{
 		UserSession userSession = 
 				(UserSession) WebUtils.getSessionAttribute(request, "userSession");	
@@ -75,9 +70,8 @@ public class ReviewController {
 		newReview.setUserId(suppId);
 		newReview.setWriteDate(date);
 	    newReview.setRating(rating);
-
+	    
 		closet.insertReview(newReview);
-
 		return  "redirect:/closet/mypage.do";
 	}
 

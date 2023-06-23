@@ -19,6 +19,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "SUPPREVIEW")
 @Data
