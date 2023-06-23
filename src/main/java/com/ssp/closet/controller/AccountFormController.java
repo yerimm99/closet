@@ -24,7 +24,7 @@ public class AccountFormController {
     @Value("account/registerForm") 
     private String formViewName;
     
-    @Value("index") 
+    @Value("redirect:/closet/index.do") 
     private String successViewName;
 
     private final ClosetFacade closet;
@@ -94,7 +94,7 @@ public class AccountFormController {
 				if (userSession != null) {
 					Account account = closet.getAccount(userSession.getAccount().getUserId());
 					model.addAttribute("account", account);
-					return "/main/myPage";
+					return "redirect:/closet/mypage.do";
 				} else {
 					return "redirect:/account/SignonForm.do";
 				}
