@@ -1,13 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="EUC-KR">
-	<title>∑Œ±◊¿Œ∆˚</title>
+	<meta charset="UTF-8">
+	<title>Î°úÍ∑∏Ïù∏Ìèº</title>
 	<style type="text/css">
 		.layout{margin:0px auto;width:1180px;padding:10px;font-size:18px}
 		table, td{border:none;}
@@ -23,12 +22,12 @@
 	</style>
 </head>
 <body>
-	<!-- ∏ﬁ¥∫πŸ -->
+	<!-- Î©îÎâ¥Î∞î -->
 	<jsp:include page = "../menu.jsp"/>
 	<hr>
 	
 	<div class = "layout">
-		<!-- ∑Œ±◊¿Œ ∆˚ -->
+		<!-- Î°úÍ∑∏Ïù∏ Ìèº -->
 		<form name="form" method="POST" action="<c:url value='/account/signon.do' />">
 			<c:if test="${!empty signonForwardAction}">
       			<input type="hidden" name="forwardAction"
@@ -36,28 +35,28 @@
     		</c:if>
 			<table>
 				<tr>
-					<td style="text-align:center;font-size:24px">∑Œ±◊¿Œ</td>
+					<td style="text-align:center;font-size:24px">Î°úÍ∑∏Ïù∏</td>
 				</tr>
 				<tr>
 					<td>
 						<br><br>
-						<input type="text" name="userId" placeholder = "æ∆¿Ãµ ¿‘∑¬" size = "40"
+						<input type="text" name="userId" placeholder = "ÏïÑÏù¥Îîî ÏûÖÎ†•" size = "40"
 							class = "inp">
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<input type="password" name="password" placeholder = "∫Òπ–π¯»£ ¿‘∑¬"
+						<input type="password" name="password" placeholder = "ÎπÑÎ∞ÄÎ≤àÌò∏ ÏûÖÎ†•"
 							class = "inp">
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<input type = "submit" class = "btn" value = "∑Œ±◊¿Œ">
+						<input type = "submit" class = "btn" value = "Î°úÍ∑∏Ïù∏">
 						<form:errors path="message" cssClass="error-message"/>
 					</td>
 				</tr>
-				<%-- ø°∑Ø ∏ﬁΩ√¡ˆ∞° ¿÷¿ª ∞ÊøÏ √‚∑¬ --%>
+				<%-- ÏóêÎü¨ Î©îÏãúÏßÄÍ∞Ä ÏûàÏùÑ Í≤ΩÏö∞ Ï∂úÎ†• --%>
                 <c:if test="${not empty message}">
                     <tr>
                         <td>
@@ -67,7 +66,7 @@
                 </c:if>
 			</table><br>
 			<!-- <div class = "btnBox">
-				<input type="submit" value="∑Œ±◊¿Œ" onClick="login()" class = "btn"> &nbsp;
+				<input type="submit" value="Î°úÍ∑∏Ïù∏" onClick="login()" class = "btn"> &nbsp;
 			</div>-->
 		</form>
 	</div>

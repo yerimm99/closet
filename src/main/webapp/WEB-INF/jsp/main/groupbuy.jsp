@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="EUC-KR">
+	<meta charset="utf-8">
 	<title>공동구매 페이지</title>
 	<style type = "text/css">
 		body{margin:0}
