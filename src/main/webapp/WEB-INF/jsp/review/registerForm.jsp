@@ -32,7 +32,6 @@
             margin-bottom: 20px;
             color: var(--kream-secondary-color);
             text-align: center;
-            font-family: 'Pacifico', cursive;
         }
         
        .product-info-container {
