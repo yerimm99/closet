@@ -33,7 +33,6 @@
             margin-bottom: 20px;
             color: var(--kream-secondary-color);
             text-align: center;
-            font-family: 'Pacifico', cursive;
         }
         
        .product-info-container {
@@ -105,8 +104,6 @@
             text-align: center;
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- 메뉴바 -->
