@@ -6,6 +6,6 @@
 
 
 
-💟프로젝트 시연 영상💟
+:white_check_mark:프로젝트 시연 영상
 
 https://drive.google.com/file/d/13WBKlRj1sCNKJDXosgSLLDFhQ68vvCdS/view?usp=drive_link
