@@ -15,5 +15,5 @@
 
 ## 💡 동작 화면
 <a href="https://drive.google.com/file/d/13WBKlRj1sCNKJDXosgSLLDFhQ68vvCdS/view?usp=drive_link">![0e712668-5a29-4cbc-af81-be6bd3ddbf4a-ezgif com-crop](https://github.com/yerimm99/closet/assets/86309538/14158e5c-9da3-47ed-8520-f9a7bba75f37)</a> 
-<br> ### gif 클릭 시 전체 시연 영상을 보실 수 있습니다.
+> gif 클릭 시 프로젝트 전체 시연 영상으로 이동 🏃‍♀️
 <br>
