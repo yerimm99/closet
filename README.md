@@ -9,8 +9,8 @@
 ## 🛠 기술 스택
 > <a href="https://www.java.com/ko/"><img src="https://img.shields.io/badge/Java-F58219?style=flat-square&logo=Java&logoColor=white"/></a>
 <a href="https://spring.io/projects/spring-boot"><img src="https://img.shields.io/badge/SpringBoot-6AAE3D?style=flat-square&logo=SpringBoot&logoColor=white"/></a>
-<a href="https://spring.io/projects/spring-data-jpa"><img src="https://img.shields.io/badge/Spring Data JPA-6AAE3D?style=flat-square&logo=&logoColor=white"/></a>
-<a href="https://www.oracle.com/"><img src="https://img.shields.io/badge/Oracle-4479A1?style=flat-square&logo=Oracle&logoColor=white"/></a>
+<a href="https://spring.io/projects/spring-data-jpa"><img src="https://img.shields.io/badge/Spring Data JPA-375582?style=flat-square&logo=&logoColor=white"/></a>
+<a href="https://www.oracle.com/"><img src="https://img.shields.io/badge/Oracle-A374DB?style=flat-square&logo=Oracle&logoColor=white"/></a>
 <br>
 
 ## 💡 동작 화면
