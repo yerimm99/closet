@@ -15,4 +15,5 @@
 
 ## :white_check_mark: 프로젝트 시연 영상 
 ![0e712668-5a29-4cbc-af81-be6bd3ddbf4a-ezgif com-crop](https://github.com/yerimm99/closet/assets/86309538/14158e5c-9da3-47ed-8520-f9a7bba75f37)
+<br>
 <a href="https://drive.google.com/file/d/13WBKlRj1sCNKJDXosgSLLDFhQ68vvCdS/view?usp=drive_link">🏃‍♀️전체 영상 보러가기</a>
